@@ -12,6 +12,28 @@ FlorkaFun es una plataforma Web3 para el lanzamiento de tokens meme en la red So
 - **Operaciones de Swap**: Interfaz para intercambiar tokens directamente en la plataforma.
 - **Roles de Usuario**: Sistema con tres niveles de permisos (usuario estándar, moderador, administrador).
 
+## Diseño de la Interfaz
+
+El diseño de la interfaz ya está implementado en React y se compone de varias secciones principales:
+
+### Página Principal (Home)
+Muestra los tokens ya lanzados en la blockchain de Solana con información básica y enlaces a sus foros correspondientes.
+
+### Página de Próximos Lanzamientos (Next)
+Muestra los tokens que han ganado las votaciones y están programados para ser lanzados próximamente, con sus fechas de lanzamiento.
+
+### Página de Votaciones (Vote)
+Permite a los usuarios votar por los candidatos a tokens meme que podrían ser lanzados en la blockchain. Muestra porcentajes de votación en tiempo real.
+
+### Página de Foros
+Sistema de foros moderados donde los usuarios pueden discutir sobre tokens actuales y futuros.
+
+### Página de Creación de Tokens
+Muestra diferentes paquetes para la creación de tokens meme en Solana, permitiendo a los usuarios seleccionar y pagar por el servicio.
+
+### Página de Swap
+Interfaz para intercambiar tokens directamente en la plataforma, mostrando tasas de cambio y comisiones.
+
 ## Arquitectura
 
 El sistema se compone de dos partes principales:
@@ -24,6 +46,12 @@ El sistema se compone de dos partes principales:
   - `requirements.md`: Requisitos detallados del sistema
   - `design.md`: Diseño de la arquitectura y componentes
   - `tasks.md`: Plan de implementación con tareas específicas
+- `/src/`: Código fuente del frontend
+  - `/components/`: Componentes reutilizables de React
+  - `/screens/`: Páginas principales de la aplicación
+  - `/icons/`: Iconos y elementos gráficos
+- `/static/`: Archivos estáticos (imágenes, SVG, etc.)
+- `/backend/`: Código del backend con Strapi (en desarrollo)
 
 ## Tecnologías Utilizadas
 
@@ -63,6 +91,20 @@ El proyecto sigue un enfoque modular donde cada sección (Home, Next, Votaciones
 3. Mantener las colecciones de contenido en el CMS como fuentes únicas de verdad.
 4. No agregar, eliminar o renombrar campos, endpoints o lógicas de negocio sin validación humana.
 5. Solicitar aprobación antes de ejecutar operaciones sensibles.
+
+## Próximos Pasos
+
+Siguiendo el plan de implementación definido en `tasks.md`, los próximos pasos son:
+
+1. Configuración del entorno Docker con Strapi
+2. Configuración inicial de Strapi
+3. Implementación de modelos de datos
+4. Implementación de APIs
+5. Implementación de automatizaciones (CRON jobs)
+6. Implementación de funcionalidades específicas por sección
+7. Integración con Blockchain de Solana
+8. Seguridad y optimización
+9. Documentación y despliegue final
 
 ## Licencia
 
