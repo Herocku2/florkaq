@@ -1,0 +1,46 @@
+{
+  "kind": "collectionType",
+  "collectionName": "usuarios",
+  "info": {
+    "singularName": "usuario",
+    "pluralName": "usuarios",
+    "displayName": "Usuario",
+    "description": "Usuarios de la plataforma FlorkaFun"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "nombre": {
+      "type": "string",
+      "required": true,
+      "maxLength": 100,
+      "minLength": 2
+    },
+    "email": {
+      "type": "email",
+      "required": true,
+      "unique": true
+    },
+    "walletSolana": {
+      "type": "string",
+      "unique": true,
+      "maxLength": 50
+    },
+    "rol": {
+      "type": "enumeration",
+      "enum": ["usuario", "moderador", "admin"],
+      "default": "usuario",
+      "required": true
+    },
+    "fechaRegistro": {
+      "type": "datetime",
+      "default": "now"
+    },
+    "activo": {
+      "type": "boolean",
+      "default": true
+    }
+  }
+}

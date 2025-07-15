@@ -1,0 +1,53 @@
+{
+  "kind": "collectionType",
+  "collectionName": "votaciones",
+  "info": {
+    "singularName": "votacion",
+    "pluralName": "votaciones",
+    "displayName": "Votacion",
+    "description": "Votaciones para tokens meme en FlorkaFun"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "titulo": {
+      "type": "string",
+      "required": true,
+      "maxLength": 200,
+      "default": "Votación Semanal de Tokens Meme"
+    },
+    "descripcion": {
+      "type": "text",
+      "maxLength": 500
+    },
+    "fechaInicio": {
+      "type": "datetime",
+      "required": true
+    },
+    "fechaFin": {
+      "type": "datetime",
+      "required": true
+    },
+    "activa": {
+      "type": "boolean",
+      "default": true
+    },
+    "tokenGanador": {
+      "type": "string",
+      "maxLength": 100
+    },
+    "totalVotos": {
+      "type": "integer",
+      "default": 0
+    },
+    "candidatos": {
+      "type": "json",
+      "required": true
+    },
+    "resultados": {
+      "type": "json"
+    }
+  }
+}
