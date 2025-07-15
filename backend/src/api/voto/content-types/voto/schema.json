@@ -1,0 +1,34 @@
+{
+  "kind": "collectionType",
+  "collectionName": "votos",
+  "info": {
+    "singularName": "voto",
+    "pluralName": "votos",
+    "displayName": "Voto",
+    "description": "Votos emitidos en votaciones"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "usuario": {
+      "type": "string",
+      "required": true
+    },
+    "votacion": {
+      "type": "string",
+      "required": true
+    },
+    "candidatoVotado": {
+      "type": "string",
+      "required": true
+    },
+    "fechaVoto": {
+      "type": "datetime",
+      "default": "now"
+    },
+    "ipAddress": {
+      "type": "string"
+    }
+  }
+}

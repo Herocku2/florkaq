@@ -1,0 +1,44 @@
+{
+  "kind": "collectionType",
+  "collectionName": "foros",
+  "info": {
+    "singularName": "foro",
+    "pluralName": "foros",
+    "displayName": "Foro",
+    "description": "Foros de discusión para tokens"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "titulo": {
+      "type": "string",
+      "required": true,
+      "maxLength": 200
+    },
+    "descripcion": {
+      "type": "text",
+      "maxLength": 1000
+    },
+    "tokenRelacionado": {
+      "type": "string",
+      "required": true
+    },
+    "creador": {
+      "type": "string",
+      "required": true
+    },
+    "moderado": {
+      "type": "boolean",
+      "default": false
+    },
+    "activo": {
+      "type": "boolean",
+      "default": true
+    },
+    "fechaCreacion": {
+      "type": "datetime",
+      "default": "now"
+    }
+  }
+}

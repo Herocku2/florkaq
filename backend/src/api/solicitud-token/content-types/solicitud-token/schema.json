@@ -1,0 +1,47 @@
+{
+  "kind": "collectionType",
+  "collectionName": "solicitudes_token",
+  "info": {
+    "singularName": "solicitud-token",
+    "pluralName": "solicitudes-token",
+    "displayName": "Solicitud Token",
+    "description": "Solicitudes de creación de tokens"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "usuario": {
+      "type": "string",
+      "required": true
+    },
+    "paquete": {
+      "type": "string",
+      "required": true
+    },
+    "estado": {
+      "type": "enumeration",
+      "enum": ["pendiente", "aprobado", "rechazado"],
+      "default": "pendiente",
+      "required": true
+    },
+    "datosToken": {
+      "type": "json",
+      "required": true
+    },
+    "fechaPago": {
+      "type": "datetime"
+    },
+    "aprobado": {
+      "type": "boolean",
+      "default": false
+    },
+    "fechaCreacion": {
+      "type": "datetime",
+      "default": "now"
+    },
+    "notas": {
+      "type": "text"
+    }
+  }
+}

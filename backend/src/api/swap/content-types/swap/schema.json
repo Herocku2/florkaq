@@ -1,0 +1,56 @@
+{
+  "kind": "collectionType",
+  "collectionName": "swaps",
+  "info": {
+    "singularName": "swap",
+    "pluralName": "swaps",
+    "displayName": "Swap",
+    "description": "Operaciones de intercambio de tokens"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "tokenOrigen": {
+      "type": "string",
+      "required": true
+    },
+    "tokenDestino": {
+      "type": "string",
+      "required": true
+    },
+    "usuario": {
+      "type": "string",
+      "required": true
+    },
+    "cantidadOrigen": {
+      "type": "decimal",
+      "required": true
+    },
+    "cantidadDestino": {
+      "type": "decimal",
+      "required": true
+    },
+    "tasaCambio": {
+      "type": "decimal",
+      "required": true
+    },
+    "estado": {
+      "type": "enumeration",
+      "enum": ["pendiente", "completado", "fallido"],
+      "default": "pendiente",
+      "required": true
+    },
+    "txHashSolana": {
+      "type": "string",
+      "maxLength": 100
+    },
+    "fechaCreacion": {
+      "type": "datetime",
+      "default": "now"
+    },
+    "fechaCompletado": {
+      "type": "datetime"
+    }
+  }
+}

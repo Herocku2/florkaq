@@ -1,0 +1,38 @@
+{
+  "kind": "collectionType",
+  "collectionName": "comentarios",
+  "info": {
+    "singularName": "comentario",
+    "pluralName": "comentarios",
+    "displayName": "Comentario",
+    "description": "Comentarios en foros y tokens"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "texto": {
+      "type": "text",
+      "required": true,
+      "maxLength": 1000
+    },
+    "usuario": {
+      "type": "string",
+      "required": true
+    },
+    "tokenRelacionado": {
+      "type": "string"
+    },
+    "foroRelacionado": {
+      "type": "string"
+    },
+    "aprobado": {
+      "type": "boolean",
+      "default": true
+    },
+    "fechaCreacion": {
+      "type": "datetime",
+      "default": "now"
+    }
+  }
+}
