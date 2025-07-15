@@ -1,0 +1,43 @@
+{
+  "kind": "collectionType",
+  "collectionName": "actividades",
+  "info": {
+    "singularName": "actividad",
+    "pluralName": "actividades",
+    "displayName": "Actividad",
+    "description": "Registro de actividades y logs del sistema"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "tipo": {
+      "type": "enumeration",
+      "enum": ["voto", "comentario", "token_creado", "swap", "solicitud", "moderacion"],
+      "required": true
+    },
+    "descripcion": {
+      "type": "string",
+      "required": true,
+      "maxLength": 500
+    },
+    "usuario": {
+      "type": "string",
+      "required": true
+    },
+    "entidadRelacionada": {
+      "type": "string"
+    },
+    "tipoEntidad": {
+      "type": "enumeration",
+      "enum": ["token", "votacion", "foro", "comentario", "swap", "solicitud"]
+    },
+    "fechaActividad": {
+      "type": "datetime",
+      "default": "now"
+    },
+    "metadatos": {
+      "type": "json"
+    }
+  }
+}
