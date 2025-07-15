@@ -7,26 +7,44 @@ services:
     working_dir: /app
     volumes:
       - .:/app
+      - /app/node_modules
     ports:
       - "5173:5173"
     command: >
       bash -c "npm install && npm run dev -- --host 0.0.0.0"
     environment:
       - NODE_ENV=development
+      - VITE_API_URL=http://localhost:1337
     depends_on:
       - strapi
+    networks:
+      - florkafun-network
 
   # Backend Strapi
   strapi:
     image: strapi/strapi:latest
+    container_name: florkafun-strapi
+    restart: unless-stopped
     volumes:
       - ./backend:/srv/app
+      - strapi-data:/srv/app/.tmp
     ports:
       - "1337:1337"
     environment:
       - DATABASE_CLIENT=sqlite
       - DATABASE_FILENAME=./data.db
-      - APP_KEYS=toBeModified1,toBeModified2
-      - API_TOKEN_SALT=tobemodified
-      - ADMIN_JWT_SECRET=tobemodified
-      - JWT_SECRET=tobemodified
+      - APP_KEYS=florkafun1,florkafun2,florkafun3,florkafun4
+      - API_TOKEN_SALT=florkafunsalt123456789
+      - ADMIN_JWT_SECRET=florkafunadminjwtsecret
+      - JWT_SECRET=florkafunjwtsecret
+      - NODE_ENV=development
+      - STRAPI_TELEMETRY_DISABLED=true
+    networks:
+      - florkafun-network
+
+volumes:
+  strapi-data:
+
+networks:
+  florkafun-network:
+    driver: bridge
