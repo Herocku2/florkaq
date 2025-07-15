@@ -63,7 +63,7 @@ services:
           npx create-strapi-app@latest . --quickstart --no-run --skip-cloud
         fi
         npm install
-        npm run develop
+        echo 'y' | npm run develop
       "
     depends_on:
       - postgres
@@ -105,7 +105,7 @@ services:
       PGRST_DB_URI: postgres://florkafun_user:florkafun_password@postgres:5432/florkafun
       PGRST_DB_SCHEMAS: public
       PGRST_DB_ANON_ROLE: florkafun_user
-      PGRST_JWT_SECRET: florkafunjwtsecret
+      PGRST_JWT_SECRET: florkafunjwtsecretthisissuperlongandhas32characters
     depends_on:
       - postgres
     networks:

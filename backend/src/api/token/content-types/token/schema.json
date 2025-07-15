@@ -40,7 +40,7 @@
     },
     "estado": {
       "type": "enumeration",
-      "enum": ["lanzado", "próximo", "inactivo"],
+      "enum": ["lanzado", "proximo", "inactivo"],
       "default": "inactivo",
       "required": true
     },
@@ -49,36 +49,6 @@
       "enum": ["solana-mainnet", "solana-devnet"],
       "default": "solana-mainnet",
       "required": true
-    },
-    "foros": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::foro.foro",
-      "mappedBy": "tokenRelacionado"
-    },
-    "comentarios": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::comentario.comentario",
-      "mappedBy": "tokenRelacionado"
-    },
-    "votaciones": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::votacion.votacion",
-      "mappedBy": "candidatos"
-    },
-    "swapsOrigen": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::swap.swap",
-      "mappedBy": "tokenOrigen"
-    },
-    "swapsDestino": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::swap.swap",
-      "mappedBy": "tokenDestino"
     }
   }
 }
