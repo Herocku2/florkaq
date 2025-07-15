@@ -1,0 +1,84 @@
+{
+  "kind": "collectionType",
+  "collectionName": "tokens",
+  "info": {
+    "singularName": "token",
+    "pluralName": "tokens",
+    "displayName": "Token",
+    "description": "Tokens meme en la plataforma FlorkaFun"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "nombre": {
+      "type": "string",
+      "required": true,
+      "maxLength": 100,
+      "minLength": 2
+    },
+    "descripcion": {
+      "type": "text",
+      "required": true,
+      "maxLength": 500
+    },
+    "mintAddress": {
+      "type": "string",
+      "unique": true,
+      "maxLength": 50
+    },
+    "imagen": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "fechaLanzamiento": {
+      "type": "datetime",
+      "required": true
+    },
+    "estado": {
+      "type": "enumeration",
+      "enum": ["lanzado", "próximo", "inactivo"],
+      "default": "inactivo",
+      "required": true
+    },
+    "red": {
+      "type": "enumeration",
+      "enum": ["solana-mainnet", "solana-devnet"],
+      "default": "solana-mainnet",
+      "required": true
+    },
+    "foros": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::foro.foro",
+      "mappedBy": "tokenRelacionado"
+    },
+    "comentarios": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::comentario.comentario",
+      "mappedBy": "tokenRelacionado"
+    },
+    "votaciones": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::votacion.votacion",
+      "mappedBy": "candidatos"
+    },
+    "swapsOrigen": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::swap.swap",
+      "mappedBy": "tokenOrigen"
+    },
+    "swapsDestino": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::swap.swap",
+      "mappedBy": "tokenDestino"
+    }
+  }
+}
