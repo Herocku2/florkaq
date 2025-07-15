@@ -1,0 +1,33 @@
+{
+  "name": "florkafun-backend",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Backend de FlorkaFun basado en Strapi CMS",
+  "scripts": {
+    "build": "strapi build",
+    "develop": "strapi develop",
+    "start": "strapi start",
+    "strapi": "strapi"
+  },
+  "devDependencies": {},
+  "dependencies": {
+    "@strapi/strapi": "4.15.5",
+    "@strapi/plugin-users-permissions": "4.15.5",
+    "@strapi/plugin-i18n": "4.15.5",
+    "@strapi/plugin-graphql": "4.15.5",
+    "pg": "8.8.0",
+    "pg-connection-string": "2.5.0",
+    "sqlite3": "5.1.6"
+  },
+  "author": {
+    "name": "FlorkaFun Team"
+  },
+  "strapi": {
+    "uuid": "florkafun-backend-uuid"
+  },
+  "engines": {
+    "node": ">=16.0.0 <=20.x.x",
+    "npm": ">=6.0.0"
+  },
+  "license": "MIT"
+}
