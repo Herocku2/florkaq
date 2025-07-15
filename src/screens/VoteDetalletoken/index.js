@@ -1,0 +1,1 @@
+export { VoteDetalletoken } from "./VoteDetalletoken";

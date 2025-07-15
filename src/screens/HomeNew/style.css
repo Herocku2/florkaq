@@ -1,0 +1,145 @@
+.home-new {
+  align-items: center;
+  background-color: #020102;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 2951px;
+  padding: 10px 24px;
+  position: relative;
+}
+
+.home-new .img-5 {
+  flex: 0 0 auto;
+  position: relative;
+}
+
+.home-new .frame-70 {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px 0px 0px;
+  position: relative;
+}
+
+.home-new .fair-launches-the-3 {
+  height: 185.51px;
+  position: relative;
+  width: 1500.82px;
+}
+
+.home-new .no-need-for-a-3 {
+  height: 131.75px;
+  position: relative;
+  width: 1390.64px;
+}
+
+.home-new .element-launches-a-month-3 {
+  height: 52.2px;
+  position: relative;
+  width: 1315.84px;
+}
+
+.home-new .baner-3 {
+  flex: 0 0 auto;
+  position: relative;
+  width: 1524px;
+}
+
+.home-new .titulo-pagina-5 {
+  align-items: flex-start;
+  display: flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  padding: 24px 10px 10px;
+  position: relative;
+  width: 1515px;
+}
+
+.home-new .frame-71 {
+  -webkit-backdrop-filter: blur(2px) brightness(100%);
+  align-items: baseline;
+  backdrop-filter: blur(2px) brightness(100%);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 1, 162, 0.15) 100%
+  );
+  border: 1px solid;
+  border-color: #000000;
+  border-radius: 20px;
+  display: flex;
+  flex: 0 0 auto;
+  justify-content: space-between;
+  padding: 24px 40px;
+  position: relative;
+  width: 1539px;
+}
+
+.home-new .tarjeta-ranking-7 {
+  height: 476px;
+  object-fit: cover;
+  position: relative;
+  width: 439px;
+  z-index: 2;
+}
+
+.home-new .tarjeta-ranking-8 {
+  height: 476px;
+  object-fit: cover;
+  position: relative;
+  width: 439px;
+  z-index: 1;
+}
+
+.home-new .tarjeta-ranking-9 {
+  height: 476px;
+  object-fit: cover;
+  position: relative;
+  width: 439px;
+  z-index: 0;
+}
+
+.home-new .menu-tabla-3 {
+  color: var(--color-primario) !important;
+}
+
+.home-new .menu-tabla-4 {
+  display: flex !important;
+  flex: 0 0 auto !important;
+  padding: 24px 0px 0px !important;
+  width: 1277px !important;
+}
+
+.home-new .menu-tabla-5 {
+  color: var(--color-secundario) !important;
+}
+
+.home-new .frame-72 {
+  align-items: center;
+  display: inline-flex;
+  flex-direction: column;
+  height: 934px;
+  padding: 24px 0px 0px;
+  position: relative;
+}
+
+.home-new .frame-73 {
+  align-items: flex-start;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 60px;
+  justify-content: center;
+  position: relative;
+}
+
+.home-new .paginacion-3 {
+  align-self: stretch !important;
+  display: flex !important;
+  flex: 0 0 auto !important;
+  justify-content: flex-end !important;
+  margin-bottom: -0.09px !important;
+  width: 100% !important;
+}

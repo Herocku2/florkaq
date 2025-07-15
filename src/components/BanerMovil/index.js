@@ -1,0 +1,1 @@
+export { BanerMovil } from "./BanerMovil";

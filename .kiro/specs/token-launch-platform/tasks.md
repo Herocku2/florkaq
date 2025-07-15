@@ -172,55 +172,54 @@
     - Validar comportamiento del CRON job en entorno dev y producción (modo dry-run vs real)
     - _Requirements: 12.4, 12.5_
 
-- [ ] 6. Implementación de funcionalidades específicas por sección
-  - [ ] 6.1 Implementar lógica para página Home (Tokens Lanzados)
-    - Crear controlador para listar tokens lanzados
-    - Implementar filtros y ordenación
+- [ ] 6. Integración del frontend con el backend
+  - [ ] 6.1 Implementar servicios de API en el frontend
+    - Crear servicios para consumir APIs REST/GraphQL
+    - Implementar manejo de errores y reintentos
+    - Crear interceptores para autenticación
+    - _Requirements: 14.1, 14.3, 14.5_
+
+  - [ ] 6.2 Integrar página Home (Tokens Lanzados) con backend
+    - Conectar componente TarjetaProyectos con API de tokens
+    - Implementar filtros y paginación
     - Añadir enlaces a foros correspondientes
-    - Crear pruebas de integración
     - _Requirements: 16.1, 15.1, 15.2_
 
-  - [ ] 6.2 Implementar lógica para página Next (Próximos Lanzamientos)
-    - Crear controlador para listar tokens próximos
+  - [ ] 6.3 Integrar página Next (Próximos Lanzamientos) con backend
+    - Conectar componentes con API de tokens próximos
     - Implementar ordenación por fecha de lanzamiento
     - Añadir funcionalidad "Recordarme"
-    - Crear pruebas de integración
     - _Requirements: 16.2, 15.1, 15.2_
 
-  - [ ] 6.3 Implementar lógica para página Votaciones
-    - Crear controlador para listar votaciones activas
+  - [ ] 6.4 Integrar página Votaciones con backend
+    - Conectar componente TarjetaVotos con API de votaciones
     - Implementar lógica para emitir votos
     - Añadir cálculo de porcentajes en tiempo real
-    - Crear pruebas de integración
     - _Requirements: 16.3, 15.1, 15.2_
 
-  - [ ] 6.4 Implementar lógica para página Foros
-    - Crear controlador para listar y crear foros
-    - Implementar lógica para comentarios
+  - [ ] 6.5 Integrar página Foros con backend
+    - Implementar componentes para listar y crear foros
+    - Conectar con API de foros y comentarios
     - Añadir funcionalidades de moderación
-    - Crear pruebas de integración
     - _Requirements: 16.5, 15.1, 15.2_
 
-  - [ ] 6.5 Implementar lógica para página Creación de Token
-    - Crear controlador para listar paquetes
+  - [ ] 6.6 Integrar página Creación de Token con backend
+    - Conectar formularios con API de paquetes y solicitudes
     - Implementar lógica para enviar solicitudes
     - Añadir simulación de pago
-    - Crear pruebas de integración
     - _Requirements: 16.6, 15.1, 15.2_
 
-  - [ ] 6.6 Implementar lógica para página Swap
-    - Crear controlador para operaciones de swap
+  - [ ] 6.7 Integrar página Swap con backend
+    - Conectar componente Swap con API de operaciones
     - Implementar cálculo de tasas y comisiones
     - Añadir registro de transacciones
-    - Crear pruebas de integración
     - _Requirements: 16.7, 15.1, 15.2_
 
-  - [ ] 6.7 Implementar lógica para página Perfil de Usuario
-    - Crear controlador para mostrar datos de perfil
-    - Implementar historial de actividades
-    - Añadir funcionalidad para conectar wallet
-    - Crear pruebas de integración
-    - _Requirements: 16.8, 15.1, 15.2_
+  - [ ] 6.8 Implementar autenticación en el frontend
+    - Crear componentes de registro e inicio de sesión
+    - Implementar gestión de tokens JWT
+    - Añadir protección de rutas según rol
+    - _Requirements: 7.1, 7.2, 7.3, 7.5_
 
 - [ ] 7. Integración con Blockchain de Solana
   - [ ] 7.1 Implementar conexión básica con Solana
@@ -249,6 +248,12 @@
     - Añadir asociación de wallet a cuenta de usuario
     - Crear pruebas unitarias para el servicio
     - _Requirements: 7.5, 17.1_
+
+  - [ ] 7.5 Integrar wallet Phantom en el frontend
+    - Añadir botón de conexión de wallet
+    - Implementar lógica para firmar mensajes
+    - Crear componente para mostrar balance y transacciones
+    - _Requirements: 17.1, 17.4_
 
 - [ ] 8. Seguridad y optimización
   - [ ] 8.1 Implementar autenticación y autorización avanzada

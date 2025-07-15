@@ -1,0 +1,1 @@
+export { HomeDetalletoken } from "./HomeDetalletoken";

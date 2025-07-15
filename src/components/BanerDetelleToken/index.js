@@ -1,0 +1,1 @@
+export { BanerDetelleToken } from "./BanerDetelleToken";

@@ -1,0 +1,1 @@
+export { TarjetaVotos } from "./TarjetaVotos";

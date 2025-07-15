@@ -1,0 +1,28 @@
+
+🧠 KIRO AI - INSTRUCCIONES DE IMPLEMENTACIÓN PARA FLOORKAFUN
+
+Objetivo: Crear un CMS basado en Strapi dentro de Docker para la plataforma FlorkaFun, una plataforma Web3 para lanzar tokens meme en Solana.
+
+1. Crear un proyecto con docker-compose que levante Strapi usando SQLite
+2. Crear las siguientes colecciones:
+  - Tokens: nombre, descripcion, mintAddress, imagen, fechaLanzamiento, estado, red
+  - Votaciones: fechaInicio, fechaFin, candidatos (relación con Tokens), tokenGanador
+  - Comentarios: texto, usuario, tokenRelacionado, aprobado
+  - Foros: título, tokenRelacionado, creador, respuestas, moderado
+  - Usuarios: nombre, email, walletSolana, rol
+  - Paquetes: nombre, precio, características, nivel, beneficios
+  - SolicitudesToken: usuario, paquete, estado, datos, fechaPago, aprobado
+  - Swaps: tokenOrigen, tokenDestino, usuario, tasaCambio, estado, txHashSolana
+
+3. Configurar roles:
+  - Usuario Estándar: votar, comentar, pagar paquetes
+  - Moderador: crear y moderar foros, bloquear usuarios
+  - Administrador: control total
+
+4. Crear relaciones entre entidades en Strapi
+5. Implementar CRON Jobs:
+  - Final de votación => mover token a “Next”
+  - Día de lanzamiento => mover token a “Lanzado”
+6. Exponer API REST y GraphQL
+7. Conectar frontend (en Vercel) vía API
+8. Validar metadatos y conexión con Solana para creación de tokens y swaps

@@ -1,0 +1,133 @@
+.swap-screen {
+  align-items: center;
+  background-color: #020102;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 1305px;
+  padding: 10px 24px;
+  position: relative;
+}
+
+.swap-screen .heder-3 {
+  flex: 0 0 auto;
+  position: relative;
+}
+
+.swap-screen .titulo-pagina-3 {
+  align-items: flex-start;
+  display: flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  padding: 24px 10px 10px;
+  position: relative;
+  width: 1515px;
+}
+
+.swap-screen .baner-movil-3 {
+  flex: 0 0 auto !important;
+}
+
+.swap-screen .baner-movil-4 {
+  width: 117px !important;
+}
+
+.swap-screen .frame-64 {
+  align-items: flex-start;
+  display: flex;
+  gap: 40px;
+  height: 633px;
+  justify-content: center;
+  position: relative;
+  width: 1575px;
+}
+
+.swap-screen .rectangle-8 {
+  height: 598px;
+  margin-left: -4.00px;
+  object-fit: cover;
+  position: relative;
+  width: 1016px;
+}
+
+.swap-screen .swap-instance {
+  align-items: center !important;
+  flex: 1 !important;
+  flex-grow: 1 !important;
+  height: 590px !important;
+  justify-content: center !important;
+  width: unset !important;
+}
+
+.swap-screen .swap-2 {
+  flex: 1 !important;
+  flex-grow: 1 !important;
+  width: unset !important;
+}
+
+.swap-screen .swap-3 {
+  width: 175px !important;
+}
+
+.swap-screen .swap-4 {
+  left: 55px !important;
+}
+
+.swap-screen .swap-5 {
+  left: 9px !important;
+  width: 147px !important;
+}
+
+.swap-screen .swap-6 {
+  flex: 1 !important;
+  flex-grow: 1 !important;
+  margin-right: -2.00px !important;
+  width: unset !important;
+}
+
+.swap-screen .swap-7 {
+  flex: 1 !important;
+  flex-grow: 1 !important;
+  margin-right: unset !important;
+  width: unset !important;
+}
+
+.swap-screen .swap-8 {
+  justify-content: center !important;
+}
+
+.swap-screen .frame-65 {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  height: 180px;
+  position: relative;
+  width: 1597px;
+}
+
+.swap-screen .text-wrapper-43 {
+  color: #ffffff;
+  font-family: "Orbitron", Helvetica;
+  font-size: 20px;
+  font-weight: 400;
+  height: 24px;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-top: -1.00px;
+  position: relative;
+  text-shadow: 4px 4px 4px #ff01a1;
+  white-space: nowrap;
+  width: 1010px;
+}
+
+.swap-screen .koma-inu-the-most {
+  align-self: stretch;
+  color: #eab4d7;
+  flex: 1;
+  font-family: "Orbitron", Helvetica;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: normal;
+  position: relative;
+}

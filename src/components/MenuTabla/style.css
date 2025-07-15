@@ -1,0 +1,52 @@
+.menu-tabla {
+  align-items: center;
+  display: inline-flex;
+  gap: 12px;
+  position: relative;
+}
+
+.menu-tabla .text-wrapper-11 {
+  color: #e7b4d4;
+  display: block;
+  font-family: "Orbitron", Helvetica;
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-top: -1.00px;
+  position: relative;
+  width: fit-content;
+}
+
+.menu-tabla .line {
+  height: 25px;
+  object-fit: cover;
+  position: relative;
+  width: 1px;
+}
+
+.menu-tabla .text-wrapper-12 {
+  color: #ff01a1;
+  display: block;
+  font-family: "Orbitron", Helvetica;
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-top: -1.00px;
+  position: relative;
+  width: fit-content;
+}
+
+.menu-tabla .new {
+  color: #eab4d7;
+  display: block;
+  font-family: "Orbitron", Helvetica;
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-top: -1.00px;
+  position: relative;
+  width: fit-content;
+}

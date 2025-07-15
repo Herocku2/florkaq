@@ -1,0 +1,30 @@
+.heder {
+  align-items: center;
+  display: inline-flex;
+  gap: 27px;
+  position: relative;
+}
+
+.heder .frame {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  position: relative;
+}
+
+.heder .logo-3 {
+  position: relative !important;
+  width: 124px !important;
+}
+
+.heder .design-component-instance-node {
+  flex: 0 0 auto !important;
+}
+
+.heder .div {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 112px;
+  position: relative;
+}

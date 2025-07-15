@@ -1,0 +1,1 @@
+export { TarjetaDetalle } from "./TarjetaDetalle";
