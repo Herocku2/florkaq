@@ -1,154 +1,154 @@
 # Implementation Plan
 
-- [ ] 1. Configuración del entorno Docker con Strapi
+- [x] 1. Configuración del entorno Docker con Strapi
   - Crear archivo docker-compose.yml para Strapi y SQLite
   - Configurar volúmenes para persistencia de datos
   - Exponer Strapi en el puerto 1337
   - _Requirements: 8.1, 8.2, 8.3_
 
-- [ ] 2. Configuración inicial de Strapi
-  - [ ] 2.1 Instalar y configurar Strapi con SQLite
+- [x] 2. Configuración inicial de Strapi
+  - [x] 2.1 Instalar y configurar Strapi con SQLite
     - Crear proyecto Strapi dentro del contenedor Docker
     - Configurar base de datos SQLite
     - Habilitar API REST y GraphQL
     - _Requirements: 1.1, 1.5, 14.1_
 
-  - [ ] 2.2 Configurar roles y permisos básicos
+  - [x] 2.2 Configurar roles y permisos básicos
     - Crear roles de usuario estándar, moderador y administrador
     - Establecer permisos iniciales para cada rol
     - Configurar autenticación JWT
     - _Requirements: 7.1, 7.2, 7.4, 7.6_
     
-  - [ ] 2.3 Crear scripts CLI para:
+  - [x] 2.3 Crear scripts CLI para:
     - Inicializar el proyecto en entornos nuevos (instalación + primeros datos)
     - Crear seeds básicos (usuarios admin, ejemplos de tokens, foros de prueba)
     - Generar fixtures de desarrollo para probar lógica de votaciones, swaps, etc.
     - _Requirements: 8.4, 9.2_
 
-- [ ] 3. Implementación de modelos de datos
-  - [ ] 3.1 Crear colección de Tokens
+- [x] 3. Implementación de modelos de datos
+  - [x] 3.1 Crear colección de Tokens
     - Definir campos: nombre, descripcion, mintAddress, imagen, fechaLanzamiento, estado, red
     - Implementar validaciones para cada campo
     - Crear pruebas unitarias para el modelo
     - _Requirements: 13.1, 13.2_
 
-  - [ ] 3.2 Crear colección de Usuarios
+  - [x] 3.2 Crear colección de Usuarios
     - Definir campos: nombre, email, walletSolana, rol
     - Implementar validaciones para cada campo
     - Configurar autenticación y autorización
     - Crear pruebas unitarias para el modelo
     - _Requirements: 7.1, 7.2, 7.3, 13.1_
 
-  - [ ] 3.3 Crear colección de Votaciones
+  - [x] 3.3 Crear colección de Votaciones
     - Definir campos: fechaInicio, fechaFin
     - Establecer relación con Tokens (candidatos y ganador)
     - Implementar validaciones para cada campo
     - Crear pruebas unitarias para el modelo
     - _Requirements: 2.1, 2.2, 13.1, 13.2_
 
-  - [ ] 3.4 Crear colección de Foros
+  - [x] 3.4 Crear colección de Foros
     - Definir campos: título, tokenRelacionado, creador, respuestas, moderado
     - Establecer relaciones con Tokens y Usuarios
     - Implementar validaciones para cada campo
     - Crear pruebas unitarias para el modelo
     - _Requirements: 5.1, 5.2, 13.1, 13.2_
 
-  - [ ] 3.5 Crear colección de Comentarios
+  - [x] 3.5 Crear colección de Comentarios
     - Definir campos: texto, usuario, tokenRelacionado, foroRelacionado, aprobado
     - Establecer relaciones con Usuarios, Tokens y Foros
     - Implementar validaciones para cada campo
     - Crear pruebas unitarias para el modelo
     - _Requirements: 5.2, 5.3, 13.1, 13.2_
 
-  - [ ] 3.6 Crear colección de Paquetes
+  - [x] 3.6 Crear colección de Paquetes
     - Definir campos: nombre, precio, características, nivel, beneficios
     - Implementar validaciones para cada campo
     - Crear pruebas unitarias para el modelo
     - _Requirements: 9.1, 9.6, 13.1_
 
-  - [ ] 3.7 Crear colección de SolicitudesToken
+  - [x] 3.7 Crear colección de SolicitudesToken
     - Definir campos: usuario, paquete, estado, datosToken, fechaPago, aprobado
     - Establecer relaciones con Usuarios y Paquetes
     - Implementar validaciones para cada campo
     - Crear pruebas unitarias para el modelo
     - _Requirements: 9.3, 9.4, 13.1, 13.2_
 
-  - [ ] 3.8 Crear colección de Swaps
+  - [x] 3.8 Crear colección de Swaps
     - Definir campos: tokenOrigen, tokenDestino, usuario, tasaCambio, estado, txHashSolana
     - Establecer relaciones con Tokens y Usuarios
     - Implementar validaciones para cada campo
     - Crear pruebas unitarias para el modelo
     - _Requirements: 10.1, 10.2, 10.4, 13.1, 13.2_
 
-  - [ ] 3.9 Crear colección de Votos
+  - [x] 3.9 Crear colección de Votos
     - Definir campos: usuario, votacion, candidatoVotado, fechaVoto
     - Establecer relaciones con Usuarios, Votaciones y Tokens
     - Implementar validaciones para cada campo
     - Crear pruebas unitarias para el modelo
     - _Requirements: 2.2, 2.5, 13.1, 13.2_
 
-  - [ ] 3.10 Crear colección de Actividad
+  - [x] 3.10 Crear colección de Actividad
     - Registrar acciones importantes de usuarios y admins
     - Asociar logs con entidades (token, swap, solicitud, etc.)
     - Añadir filtros por fecha, tipo de evento, usuario
     - _Requirements: 18.4, 18.5_
 
-- [ ] 4. Implementación de APIs
-  - [ ] 4.1 Configurar endpoints REST para Tokens
+- [x] 4. Implementación de APIs
+  - [x] 4.1 Configurar endpoints REST para Tokens
     - Implementar CRUD para tokens
     - Añadir filtros por estado y fecha
     - Implementar paginación y ordenación
     - Crear pruebas de integración para los endpoints
     - _Requirements: 14.1, 14.3, 14.5_
 
-  - [ ] 4.2 Configurar endpoints REST para Votaciones
+  - [x] 4.2 Configurar endpoints REST para Votaciones
     - Implementar CRUD para votaciones
     - Añadir endpoint para emitir votos
     - Implementar validación de votos duplicados
     - Crear pruebas de integración para los endpoints
     - _Requirements: 2.2, 2.5, 14.1, 14.3_
 
-  - [ ] 4.3 Configurar endpoints REST para Foros y Comentarios
+  - [x] 4.3 Configurar endpoints REST para Foros y Comentarios
     - Implementar CRUD para foros
     - Implementar CRUD para comentarios
     - Añadir validación de permisos según rol
     - Crear pruebas de integración para los endpoints
     - _Requirements: 5.1, 5.2, 5.3, 14.1, 14.3_
 
-  - [ ] 4.4 Configurar endpoints REST para Usuarios
+  - [x] 4.4 Configurar endpoints REST para Usuarios
     - Implementar endpoints para registro e inicio de sesión
     - Implementar endpoint para actualizar perfil
     - Añadir endpoint para conectar wallet Solana
     - Crear pruebas de integración para los endpoints
     - _Requirements: 7.1, 7.2, 7.3, 7.5, 14.1_
 
-  - [ ] 4.5 Configurar endpoints REST para Paquetes y Solicitudes
+  - [x] 4.5 Configurar endpoints REST para Paquetes y Solicitudes
     - Implementar endpoints para listar paquetes
     - Implementar endpoints para crear y consultar solicitudes
     - Añadir validación de permisos
     - Crear pruebas de integración para los endpoints
     - _Requirements: 9.1, 9.2, 9.3, 14.1, 14.3_
 
-  - [ ] 4.6 Configurar endpoints REST para Swaps
+  - [x] 4.6 Configurar endpoints REST para Swaps
     - Implementar endpoints para operaciones de swap
     - Añadir validación de datos y permisos
     - Crear pruebas de integración para los endpoints
     - _Requirements: 10.1, 10.2, 10.3, 14.1, 14.3_
 
-  - [ ] 4.7 Configurar GraphQL API
+  - [x] 4.7 Configurar GraphQL API
     - Definir tipos y resolvers para todas las entidades
     - Implementar queries y mutations principales
     - Añadir validación de permisos
     - Crear pruebas de integración para la API GraphQL
     - _Requirements: 14.1, 14.3, 14.6_
 
-  - [ ] 4.8 Verificar integridad entre módulos independientes
+  - [x] 4.8 Verificar integridad entre módulos independientes
     - Cada página debe consumir APIs aisladas que no modifiquen el comportamiento de otras secciones sin autorización
     - Validar que actualizaciones en "Next" no afecten "Home" sin flujo de aprobación
     - _Requirements: 16.9_
 
-- [ ] 5. Implementación de automatizaciones (CRON jobs)
-  - [ ] 5.1 Implementar CRON job para finalización de votaciones
+- [x] 5. Implementación de automatizaciones (CRON jobs)
+  - [x] 5.1 Implementar CRON job para finalización de votaciones
     - Crear servicio para verificar votaciones finalizadas
     - Implementar lógica para determinar ganador
     - Crear token en estado "próximo" con fecha de lanzamiento
@@ -156,14 +156,14 @@
     - Validar comportamiento del CRON job en entorno dev y producción (modo dry-run vs real)
     - _Requirements: 2.3, 2.4, 12.1, 12.5_
 
-  - [ ] 5.2 Implementar CRON job para lanzamiento de tokens
+  - [x] 5.2 Implementar CRON job para lanzamiento de tokens
     - Crear servicio para verificar tokens programados para lanzamiento
     - Implementar lógica para cambiar estado a "lanzado"
     - Crear pruebas unitarias para el servicio
     - Validar comportamiento del CRON job en entorno dev y producción (modo dry-run vs real)
     - _Requirements: 3.2, 12.2, 12.5_
 
-  - [ ] 5.3 Implementar sistema de notificaciones
+  - [x] 5.3 Implementar sistema de notificaciones
     - Crear servicio para enviar notificaciones
     - Implementar notificaciones para aprobación de solicitudes
     - Implementar notificaciones para lanzamiento de tokens
@@ -172,8 +172,8 @@
     - Validar comportamiento del CRON job en entorno dev y producción (modo dry-run vs real)
     - _Requirements: 12.4, 12.5_
 
-- [ ] 6. Integración del frontend con el backend
-  - [ ] 6.1 Implementar servicios de API en el frontend
+- [x] 6. Integración del frontend con el backend
+  - [x] 6.1 Implementar servicios de API en el frontend
     - Crear servicios para consumir APIs REST/GraphQL
     - Implementar manejo de errores y reintentos
     - Crear interceptores para autenticación
@@ -215,14 +215,14 @@
     - Añadir registro de transacciones
     - _Requirements: 16.7, 15.1, 15.2_
 
-  - [ ] 6.8 Implementar autenticación en el frontend
+  - [x] 6.8 Implementar autenticación en el frontend
     - Crear componentes de registro e inicio de sesión
     - Implementar gestión de tokens JWT
     - Añadir protección de rutas según rol
     - _Requirements: 7.1, 7.2, 7.3, 7.5_
 
 - [ ] 7. Integración con Blockchain de Solana
-  - [ ] 7.1 Implementar conexión básica con Solana
+  - [x] 7.1 Implementar conexión básica con Solana
     - Configurar cliente de Solana
     - Implementar funciones para consultar datos de la blockchain
     - Crear pruebas unitarias para la conexión
