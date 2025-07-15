@@ -53,6 +53,7 @@ services:
       - API_TOKEN_SALT=florkafunsalt123456789
       - ADMIN_JWT_SECRET=florkafunadminjwtsecret
       - JWT_SECRET=florkafunjwtsecret
+      - TRANSFER_TOKEN_SALT=florkafuntransfersalt123456789
       - NODE_ENV=development
       - STRAPI_TELEMETRY_DISABLED=true
       - HOST=0.0.0.0
