@@ -840,6 +840,55 @@ export interface ApiPaquetePaquete extends Schema.CollectionType {
   };
 }
 
+export interface ApiRankingRanking extends Schema.CollectionType {
+  collectionName: 'rankings';
+  info: {
+    singularName: 'ranking';
+    pluralName: 'rankings';
+    displayName: 'Ranking';
+    description: 'Top 3 de tokens m\u00E1s votados de todos los tiempos';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    posicion: Attribute.Integer &
+      Attribute.Required &
+      Attribute.Unique &
+      Attribute.SetMinMax<{
+        min: 1;
+        max: 3;
+      }>;
+    token: Attribute.Relation<
+      'api::ranking.ranking',
+      'oneToOne',
+      'api::token.token'
+    >;
+    totalVotos: Attribute.Integer &
+      Attribute.Required &
+      Attribute.SetMinMax<{
+        min: 0;
+      }> &
+      Attribute.DefaultTo<0>;
+    fechaActualizacion: Attribute.DateTime & Attribute.Required;
+    activo: Attribute.Boolean & Attribute.Required & Attribute.DefaultTo<true>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::ranking.ranking',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::ranking.ranking',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiSolicitudTokenSolicitudToken extends Schema.CollectionType {
   collectionName: 'solicitudes_token';
   info: {
@@ -1109,6 +1158,7 @@ declare module '@strapi/types' {
       'api::comentario.comentario': ApiComentarioComentario;
       'api::foro.foro': ApiForoForo;
       'api::paquete.paquete': ApiPaquetePaquete;
+      'api::ranking.ranking': ApiRankingRanking;
       'api::solicitud-token.solicitud-token': ApiSolicitudTokenSolicitudToken;
       'api::swap.swap': ApiSwapSwap;
       'api::token.token': ApiTokenToken;

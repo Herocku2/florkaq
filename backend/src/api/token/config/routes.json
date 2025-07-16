@@ -1,0 +1,28 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/tokens",
+      "handler": "token.find",
+      "config": {
+        "auth": false
+      }
+    },
+    {
+      "method": "GET", 
+      "path": "/tokens/:id",
+      "handler": "token.findOne",
+      "config": {
+        "auth": false
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/tokens",
+      "handler": "token.create",
+      "config": {
+        "auth": false
+      }
+    }
+  ]
+}

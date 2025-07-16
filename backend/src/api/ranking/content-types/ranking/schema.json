@@ -1,0 +1,43 @@
+{
+  "kind": "collectionType",
+  "collectionName": "rankings",
+  "info": {
+    "singularName": "ranking",
+    "pluralName": "rankings",
+    "displayName": "Ranking",
+    "description": "Top 3 de tokens más votados de todos los tiempos"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "posicion": {
+      "type": "integer",
+      "required": true,
+      "min": 1,
+      "max": 3,
+      "unique": true
+    },
+    "token": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::token.token"
+    },
+    "totalVotos": {
+      "type": "integer",
+      "required": true,
+      "default": 0,
+      "min": 0
+    },
+    "fechaActualizacion": {
+      "type": "datetime",
+      "required": true
+    },
+    "activo": {
+      "type": "boolean",
+      "default": true,
+      "required": true
+    }
+  }
+}

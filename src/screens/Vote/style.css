@@ -87,3 +87,36 @@
   justify-content: flex-end !important;
   width: 1647px !important;
 }
+/* Estilos para la nueva lista de tokens horizontal */
+.tokens-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 20px 0;
+}
+
+.token-card-item {
+  width: 100%;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1400px) {
+  .tokens-list {
+    max-width: 1000px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .tokens-list {
+    max-width: 900px;
+  }
+}
+
+@media (max-width: 768px) {
+  .tokens-list {
+    max-width: 100%;
+    padding: 0 10px;
+  }
+}

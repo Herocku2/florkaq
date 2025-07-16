@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { BanerMovil } from "../../components/BanerMovil";
 import { Heder } from "../../components/Heder";
 import { Paginacion } from "../../components/Paginacion";
@@ -7,6 +7,49 @@ import { TarjetaVotos } from "../../components/TarjetaVotos";
 import "./style.css";
 
 export const Vote = () => {
+  const [tokens, setTokens] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchTokens = async () => {
+      try {
+        console.log('Intentando obtener tokens de:', 'http://localhost:1337/api/tokens/candidatos');
+        const response = await fetch('http://localhost:1337/api/tokens?filters[estado][$eq]=inactivo&populate=imagen');
+        console.log('Respuesta del servidor:', response.status, response.ok);
+        
+        if (response.ok) {
+          const data = await response.json();
+          console.log('Datos recibidos:', data);
+          setTokens(data.data || []);
+        } else {
+          console.log('Error fetching tokens:', response.status);
+          // Si hay error, usar datos de ejemplo
+          setTokens([
+            { id: 1, attributes: { nombre: "Bukele Coin", descripcion: "Token del presidente de El Salvador" }},
+            { id: 2, attributes: { nombre: "Gustavo Petro Token", descripcion: "Token del presidente colombiano" }},
+            { id: 3, attributes: { nombre: "Barack Obama Coin", descripcion: "Token del expresidente estadounidense" }}
+          ]);
+        }
+      } catch (error) {
+        console.log('Error de conexión:', error);
+        // Datos de ejemplo si falla la conexión
+        setTokens([
+          { id: 1, attributes: { nombre: "Bukele Coin", descripcion: "Token del presidente de El Salvador" }},
+          { id: 2, attributes: { nombre: "Gustavo Petro Token", descripcion: "Token del presidente colombiano" }},
+          { id: 3, attributes: { nombre: "Barack Obama Coin", descripcion: "Token del expresidente estadounidense" }}
+        ]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchTokens();
+  }, []);
+
+  if (loading) {
+    return <div>Cargando tokens...</div>;
+  }
+
   return (
     <div className="vote">
       <Heder
@@ -53,40 +96,25 @@ export const Vote = () => {
         imageWrapperClassName="design-component-instance-node-3"
         imageWrapperClassNameOverride="design-component-instance-node-3"
       />
-      <div className="frame-136">
-        <TarjetaVotos
-          className="design-component-instance-node-4"
-          line="/img/line-8-2.svg"
-          to="/voteu47detalletokenu47vista"
-        />
-        <TarjetaVotos
-          className="design-component-instance-node-4"
-          line="/img/line-8-3.svg"
-          to="/voteu47detalletokenu47vista"
-        />
-        <TarjetaVotos
-          className="design-component-instance-node-4"
-          line="/img/line-8-4.svg"
-          to="/voteu47detalletokenu47vista"
-        />
-      </div>
-
-      <div className="frame-137">
-        <TarjetaVotos
-          className="design-component-instance-node-4"
-          line="/img/line-8-5.svg"
-          to="/voteu47detalletokenu47vista"
-        />
-        <TarjetaVotos
-          className="design-component-instance-node-4"
-          line="/img/line-8-6.svg"
-          to="/voteu47detalletokenu47vista"
-        />
-        <TarjetaVotos
-          className="design-component-instance-node-4"
-          line="/img/line-8-7.svg"
-          to="/voteu47detalletokenu47vista"
-        />
+      <div className="tokens-list">
+        {tokens.map((token, index) => {
+          // Construir URL de la imagen
+          const imagenUrl = token.attributes.imagen?.data?.attributes?.url 
+            ? `http://localhost:1337${token.attributes.imagen.data.attributes.url}`
+            : "/img/image-4.png"; // Imagen por defecto si no hay imagen
+          
+          return (
+            <TarjetaVotos
+              key={token.id}
+              className="token-card-item"
+              line={`/img/line-8-${index + 2}.svg`}
+              to="/voteu47detalletokenu47vista"
+              text={token.attributes.nombre}
+              text1={token.attributes.descripcion}
+              imagen={imagenUrl}
+            />
+          );
+        })}
       </div>
 
       <Paginacion

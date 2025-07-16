@@ -8,68 +8,52 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./style.css";
 
-export const TarjetaVotos = ({ className, line = "/img/line-8-1.svg", to }) => {
+export const TarjetaVotos = ({ className, line = "/img/line-8-1.svg", to, text = "AI Bonk Complex", text1 = "Complex", imagen = "/img/image-4.png" }) => {
   return (
-    <Link className={`tarjeta-votos ${className}`} to={to}>
-      <div className="group-7">
-        <div className="overlap-group-2">
-          <div className="rectangle-5" />
-
-          <img
-            className="rectangle-6"
-            alt="Rectangle"
-            src="/img/rectangle-11.png"
-          />
+    <Link className={`tarjeta-votos-horizontal ${className}`} to={to}>
+      <div className="token-card-container">
+        <div className="token-image-section">
+          <img className="token-image" alt={text} src={imagen} />
         </div>
-      </div>
-
-      <div className="frame-48">
-        <div className="frame-49">
-          <div className="group-8">
-            <img className="image-4" alt="Image" src="/img/image-4.png" />
+        
+        <div className="token-info-section">
+          <div className="token-header">
+            <h3 className="token-name">{text}</h3>
+            <p className="token-description">{text1}</p>
           </div>
-        </div>
-
-        <div className="frame-50">
-          <div className="frame-51">
-            <div className="text-wrapper-33">AI Bonk Complex</div>
-          </div>
-
-          <div className="text-wrapper-34">Complex</div>
-
-          <div className="text-wrapper-35">6M a go</div>
-        </div>
-
-        <div className="frame-52">
-          <div className="frame-53">
-            <div className="frame-54">
-              <div className="text-wrapper-36">Mcap:</div>
-
-              <div className="text-wrapper-37">+ 0,5%</div>
+          
+          <div className="token-stats">
+            <div className="stat-item">
+              <span className="stat-label">Market Cap:</span>
+              <span className="stat-value">$4,680</span>
+              <span className="stat-change positive">+0.5%</span>
             </div>
-
-            <div className="text-wrapper-38">$ 4.680</div>
-          </div>
-
-          <div className="frame-55">
-            <div className="frame-54">
-              <div className="text-wrapper-39">24 H vol:</div>
-
-              <div className="text-wrapper-37">+ 0,5%</div>
+            <div className="stat-item">
+              <span className="stat-label">24h Volume:</span>
+              <span className="stat-value">$2,340</span>
+              <span className="stat-change positive">+1.2%</span>
             </div>
-
-            <div className="text-wrapper-38">$ 4.680</div>
+          </div>
+          
+          <div className="token-progress">
+            <div className="progress-info">
+              <span className="progress-text">6M to go</span>
+              <span className="progress-percentage">78%</span>
+            </div>
+            <div className="progress-bar">
+              <div className="progress-fill" style={{width: '78%'}}></div>
+            </div>
           </div>
         </div>
-
-        <img className="line-3" alt="Line" src={line} />
-
-        <div className="frame-56">
-          <div className="text-wrapper-40">6M a go</div>
-        </div>
-
-        <div className="frame-57">
-          <div className="text-wrapper-41">Vote</div>
+        
+        <div className="vote-section">
+          <button className="vote-button">
+            <span className="vote-text">Vote</span>
+          </button>
+          <div className="vote-count">
+            <span className="votes-number">1,234</span>
+            <span className="votes-label">votes</span>
+          </div>
         </div>
       </div>
     </Link>
@@ -79,4 +63,7 @@ export const TarjetaVotos = ({ className, line = "/img/line-8-1.svg", to }) => {
 TarjetaVotos.propTypes = {
   line: PropTypes.string,
   to: PropTypes.string,
+  text: PropTypes.string,
+  text1: PropTypes.string,
+  imagen: PropTypes.string,
 };
