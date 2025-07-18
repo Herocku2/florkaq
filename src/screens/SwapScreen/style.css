@@ -1,17 +1,14 @@
 .swap-screen {
   align-items: center;
   background-color: #020102;
-  display: inline-flex;
+  display: flex;
   flex-direction: column;
-  gap: 10px;
-  height: 1305px;
-  padding: 10px 24px;
+  gap: 20px;
+  min-height: 100vh;
+  padding: 0;
   position: relative;
-}
-
-.swap-screen .heder-3 {
-  flex: 0 0 auto;
-  position: relative;
+  width: 100%;
+  font-family: "Orbitron", Helvetica;
 }
 
 .swap-screen .titulo-pagina-3 {

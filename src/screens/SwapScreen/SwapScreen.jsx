@@ -1,12 +1,13 @@
 import React from "react";
 import { BanerMovil } from "../../components/BanerMovil";
+import { Heder } from "../../components/Heder";
 import { Swap } from "../../components/Swap";
 import "./style.css";
 
 export const SwapScreen = () => {
   return (
     <div className="swap-screen">
-      <img className="heder-3" alt="Heder" src="/img/heder-2.svg" />
+      <Heder className="heder-home" />
 
       <div className="titulo-pagina-3" />
 
