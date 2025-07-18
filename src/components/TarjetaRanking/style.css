@@ -432,6 +432,7 @@
   border-radius: 15px;
 }
 
+/* ESTRELLA DEL CENTRO EN NEXT - IGUAL QUE HOME */
 .home-next .tarjeta-ranking-5 .token-image-container {
   width: 55px;
   height: 55px;
@@ -500,6 +501,7 @@
   border-radius: 15px;
 }
 
+/* ESTRELLA DEL CENTRO EN VOTE - IGUAL QUE HOME */
 .vote .tarjeta-ranking-11 .token-image-container {
   width: 55px;
   height: 55px;
@@ -568,6 +570,7 @@
   border-radius: 15px;
 }
 
+/* ESTRELLA DEL CENTRO EN HOMENEW - IGUAL QUE HOME */
 .home-new .tarjeta-ranking-8 .token-image-container {
   width: 55px;
   height: 55px;
