@@ -132,6 +132,75 @@
   width: 200px;
 }
 
+/* Estilos específicos para estrellas laterales en HomeNext */
+.home-next .tarjeta-ranking-instance .token-image-container,
+.home-next .tarjeta-ranking-6 .token-image-container {
+  width: 45px;
+  height: 45px;
+  border: 2px solid #ffd700;
+  margin-bottom: 6px;
+}
+
+.home-next .tarjeta-ranking-instance .token-name,
+.home-next .tarjeta-ranking-6 .token-name {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 3px;
+}
+
+.home-next .tarjeta-ranking-instance .token-symbol,
+.home-next .tarjeta-ranking-6 .token-symbol {
+  font-size: 11px;
+  margin-bottom: 6px;
+}
+
+.home-next .tarjeta-ranking-instance .market-cap,
+.home-next .tarjeta-ranking-6 .market-cap {
+  font-size: 11px;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.home-next .tarjeta-ranking-instance .view-details-button,
+.home-next .tarjeta-ranking-6 .view-details-button {
+  font-size: 10px;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 15px;
+}
+
+/* Estilos específicos para estrella central en HomeNext */
+.home-next .tarjeta-ranking-5 .token-image-container {
+  width: 70px;
+  height: 70px;
+  border: 3px solid #ffd700;
+  margin-bottom: 10px;
+}
+
+.home-next .tarjeta-ranking-5 .token-name {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.home-next .tarjeta-ranking-5 .token-symbol {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.home-next .tarjeta-ranking-5 .market-cap {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+
+.home-next .tarjeta-ranking-5 .view-details-button {
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 18px;
+  border-radius: 22px;
+}
+
 .home-next .menu-tabla-2 {
   display: flex !important;
   flex: 0 0 auto !important;

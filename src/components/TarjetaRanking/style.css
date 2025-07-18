@@ -1,24 +1,27 @@
 .tarjeta-ranking {
-  align-items: flex-start;
+  align-items: center;
   background-image: url(../../../static/img/tarjeta-ranking.png);
   background-position: 50% 50%;
   background-size: cover;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  height: 476px;
-  padding: 69px 18px;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  padding: 20px;
   position: relative;
-  width: 439px;
+  box-sizing: border-box;
 }
 
 .tarjeta-ranking .frame-10 {
   align-items: center;
   display: flex;
-  flex: 0 0 auto;
   flex-direction: column;
+  justify-content: center;
   position: relative;
-  width: 401.99px;
+  width: 100%;
+  height: 100%;
+  gap: 8px;
 }
 
 .tarjeta-ranking .frame-11 {
@@ -250,4 +253,348 @@
   position: relative;
   text-align: center;
   width: 131px;
+}
+
+/* Nuevos estilos para el diseño de estrella como en la imagen */
+.tarjeta-ranking .token-image-container {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid #ffd700;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tarjeta-ranking .token-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.tarjeta-ranking .token-name {
+  font-family: "Orbitron", Helvetica;
+  font-size: 18px;
+  font-weight: 700;
+  color: #000000;
+  text-align: center;
+  margin-bottom: 4px;
+  line-height: 1.2;
+}
+
+.tarjeta-ranking .token-symbol {
+  font-family: "Orbitron", Helvetica;
+  font-size: 14px;
+  font-weight: 400;
+  color: #666666;
+  text-align: center;
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+
+.tarjeta-ranking .market-cap {
+  font-family: "Orbitron", Helvetica;
+  font-size: 14px;
+  font-weight: 600;
+  color: #000000;
+  text-align: center;
+  margin-bottom: 12px;
+  line-height: 1.2;
+}
+
+.tarjeta-ranking .view-details-button {
+  background: linear-gradient(135deg, #ff1493, #ff69b4);
+  color: #ffffff;
+  font-family: "Orbitron", Helvetica;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  box-shadow: 0 2px 8px rgba(255, 20, 147, 0.3);
+}
+
+.tarjeta-ranking .view-details-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255, 20, 147, 0.4);
+  background: linear-gradient(135deg, #ff69b4, #ff1493);
+}
+
+/* Estilos específicos para estrellas laterales más pequeñas (200px) */
+.tarjeta-ranking-2 .token-image-container,
+.tarjeta-ranking-4 .token-image-container {
+  width: 45px;
+  height: 45px;
+  border: 2px solid #ffd700;
+  margin-bottom: 6px;
+}
+
+.tarjeta-ranking-2 .token-name,
+.tarjeta-ranking-4 .token-name {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 3px;
+}
+
+.tarjeta-ranking-2 .token-symbol,
+.tarjeta-ranking-4 .token-symbol {
+  font-size: 11px;
+  margin-bottom: 6px;
+}
+
+.tarjeta-ranking-2 .market-cap,
+.tarjeta-ranking-4 .market-cap {
+  font-size: 11px;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.tarjeta-ranking-2 .view-details-button,
+.tarjeta-ranking-4 .view-details-button {
+  font-size: 10px;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 15px;
+}
+
+/* Estilos específicos para estrella central más grande (240px) */
+.tarjeta-ranking-3 .token-image-container {
+  width: 55px;
+  height: 55px;
+  border: 3px solid #ffd700;
+  margin-bottom: 8px;
+}
+
+.tarjeta-ranking-3 .token-name {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.tarjeta-ranking-3 .token-symbol {
+  font-size: 13px;
+  margin-bottom: 8px;
+}
+
+.tarjeta-ranking-3 .market-cap {
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.tarjeta-ranking-3 .view-details-button {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 7px 14px;
+  border-radius: 18px;
+}
+
+/* Estilos específicos para página NEXT */
+.home-next .tarjeta-ranking-instance .token-image-container,
+.home-next .tarjeta-ranking-6 .token-image-container {
+  width: 45px;
+  height: 45px;
+  border: 2px solid #ffd700;
+  margin-bottom: 6px;
+}
+
+.home-next .tarjeta-ranking-instance .token-name,
+.home-next .tarjeta-ranking-6 .token-name {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 3px;
+}
+
+.home-next .tarjeta-ranking-instance .token-symbol,
+.home-next .tarjeta-ranking-6 .token-symbol {
+  font-size: 11px;
+  margin-bottom: 6px;
+}
+
+.home-next .tarjeta-ranking-instance .market-cap,
+.home-next .tarjeta-ranking-6 .market-cap {
+  font-size: 11px;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.home-next .tarjeta-ranking-instance .view-details-button,
+.home-next .tarjeta-ranking-6 .view-details-button {
+  font-size: 10px;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 15px;
+}
+
+.home-next .tarjeta-ranking-5 .token-image-container {
+  width: 55px;
+  height: 55px;
+  border: 3px solid #ffd700;
+  margin-bottom: 8px;
+}
+
+.home-next .tarjeta-ranking-5 .token-name {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.home-next .tarjeta-ranking-5 .token-symbol {
+  font-size: 13px;
+  margin-bottom: 8px;
+}
+
+.home-next .tarjeta-ranking-5 .market-cap {
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.home-next .tarjeta-ranking-5 .view-details-button {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 7px 14px;
+  border-radius: 18px;
+}
+
+/* Estilos específicos para página VOTE */
+.vote .tarjeta-ranking-10 .token-image-container,
+.vote .tarjeta-ranking-12 .token-image-container {
+  width: 45px;
+  height: 45px;
+  border: 2px solid #ffd700;
+  margin-bottom: 6px;
+}
+
+.vote .tarjeta-ranking-10 .token-name,
+.vote .tarjeta-ranking-12 .token-name {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 3px;
+}
+
+.vote .tarjeta-ranking-10 .token-symbol,
+.vote .tarjeta-ranking-12 .token-symbol {
+  font-size: 11px;
+  margin-bottom: 6px;
+}
+
+.vote .tarjeta-ranking-10 .market-cap,
+.vote .tarjeta-ranking-12 .market-cap {
+  font-size: 11px;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.vote .tarjeta-ranking-10 .view-details-button,
+.vote .tarjeta-ranking-12 .view-details-button {
+  font-size: 10px;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 15px;
+}
+
+.vote .tarjeta-ranking-11 .token-image-container {
+  width: 55px;
+  height: 55px;
+  border: 3px solid #ffd700;
+  margin-bottom: 8px;
+}
+
+.vote .tarjeta-ranking-11 .token-name {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.vote .tarjeta-ranking-11 .token-symbol {
+  font-size: 13px;
+  margin-bottom: 8px;
+}
+
+.vote .tarjeta-ranking-11 .market-cap {
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.vote .tarjeta-ranking-11 .view-details-button {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 7px 14px;
+  border-radius: 18px;
+}
+
+/* Estilos específicos para página HOMENEW */
+.home-new .tarjeta-ranking-7 .token-image-container,
+.home-new .tarjeta-ranking-9 .token-image-container {
+  width: 45px;
+  height: 45px;
+  border: 2px solid #ffd700;
+  margin-bottom: 6px;
+}
+
+.home-new .tarjeta-ranking-7 .token-name,
+.home-new .tarjeta-ranking-9 .token-name {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 3px;
+}
+
+.home-new .tarjeta-ranking-7 .token-symbol,
+.home-new .tarjeta-ranking-9 .token-symbol {
+  font-size: 11px;
+  margin-bottom: 6px;
+}
+
+.home-new .tarjeta-ranking-7 .market-cap,
+.home-new .tarjeta-ranking-9 .market-cap {
+  font-size: 11px;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.home-new .tarjeta-ranking-7 .view-details-button,
+.home-new .tarjeta-ranking-9 .view-details-button {
+  font-size: 10px;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 15px;
+}
+
+.home-new .tarjeta-ranking-8 .token-image-container {
+  width: 55px;
+  height: 55px;
+  border: 3px solid #ffd700;
+  margin-bottom: 8px;
+}
+
+.home-new .tarjeta-ranking-8 .token-name {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.home-new .tarjeta-ranking-8 .token-symbol {
+  font-size: 13px;
+  margin-bottom: 8px;
+}
+
+.home-new .tarjeta-ranking-8 .market-cap {
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.home-new .tarjeta-ranking-8 .view-details-button {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 7px 14px;
+  border-radius: 18px;
 }

@@ -3,6 +3,7 @@ import { Heder } from "../../components/Heder";
 import { MenuTabla } from "../../components/MenuTabla";
 import { Paginacion } from "../../components/Paginacion";
 import { TarjetaProyectos } from "../../components/TarjetaProyectos";
+import { TarjetaRanking } from "../../components/TarjetaRanking";
 import "./style.css";
 
 export const HomeNew = () => {
@@ -41,22 +42,28 @@ export const HomeNew = () => {
       <div className="titulo-pagina-5" />
 
       <div className="frame-71">
-        <img
+        <TarjetaRanking
           className="tarjeta-ranking-7"
-          alt="Tarjeta ranking"
-          src="/img/tarjeta-ranking.png"
+          tokenName="Shina inu"
+          tokenSymbol="SBH"
+          marketCap="$150000"
+          tokenImage="/img/image-4.png"
         />
 
-        <img
+        <TarjetaRanking
           className="tarjeta-ranking-8"
-          alt="Tarjeta ranking"
-          src="/img/tarjeta-ranking.png"
+          tokenName="CAt"
+          tokenSymbol="CAT"
+          marketCap="$20000"
+          tokenImage="/img/image-3.png"
         />
 
-        <img
+        <TarjetaRanking
           className="tarjeta-ranking-9"
-          alt="Tarjeta ranking"
-          src="/img/tarjeta-ranking.png"
+          tokenName="florka"
+          tokenSymbol="FLK"
+          marketCap="$25000"
+          tokenImage="/img/image-1.png"
         />
       </div>
 

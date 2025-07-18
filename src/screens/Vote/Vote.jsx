@@ -65,18 +65,24 @@ export const Vote = () => {
       <div className="frame-135">
         <TarjetaRanking
           className="tarjeta-ranking-10"
-          groupClassName="design-component-instance-node-3"
-          text="2"
+          tokenName="Shina inu"
+          tokenSymbol="SBH"
+          marketCap="$150000"
+          tokenImage="/img/image-4.png"
         />
         <TarjetaRanking
           className="tarjeta-ranking-11"
-          groupClassName="design-component-instance-node-3"
-          text="1"
+          tokenName="CAt"
+          tokenSymbol="CAT"
+          marketCap="$20000"
+          tokenImage="/img/image-3.png"
         />
         <TarjetaRanking
           className="tarjeta-ranking-12"
-          groupClassName="design-component-instance-node-3"
-          text="3"
+          tokenName="florka"
+          tokenSymbol="FLK"
+          marketCap="$25000"
+          tokenImage="/img/image-1.png"
         />
       </div>
 

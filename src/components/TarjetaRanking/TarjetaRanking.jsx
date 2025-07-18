@@ -7,50 +7,41 @@ import PropTypes from "prop-types";
 import React from "react";
 import "./style.css";
 
-export const TarjetaRanking = ({ className, groupClassName, text = "3" }) => {
+export const TarjetaRanking = ({ 
+  className, 
+  groupClassName, 
+  text = "3",
+  tokenName = "Token Name",
+  tokenSymbol = "TKN", 
+  marketCap = "$0",
+  tokenImage = "/img/image-3.png"
+}) => {
   return (
     <div className={`tarjeta-ranking ${className}`}>
       <div className="frame-10">
-        <div className="frame-11">
-          <div className="element-wrapper">
-            <div className="element">{text}</div>
-          </div>
+        {/* Imagen del token en la parte superior */}
+        <div className="token-image-container">
+          <img className="token-image" alt={tokenName} src={tokenImage} />
         </div>
 
-        <div className="frame-12">
-          <div className="frame-13">
-            <div className={`image-wrapper ${groupClassName}`}>
-              <img className="image-2" alt="Image" src="/img/image-3.png" />
-            </div>
-          </div>
-
-          <div className="frame-14">
-            <div className="frame-15">
-              <div className="text-wrapper-6">AI Bonk Complex</div>
-            </div>
-
-            <div className="frame-16">
-              <div className="text-wrapper-7">Complex</div>
-
-              <div className="text-wrapper-8">just now</div>
-            </div>
-          </div>
+        {/* Nombre del token */}
+        <div className="token-name">
+          {tokenName}
         </div>
 
-        <div className="frame-17">
-          <div className="frame-18">
-            <div className="frame-19">
-              <div className="text-wrapper-9">MC:</div>
+        {/* Símbolo del token */}
+        <div className="token-symbol">
+          {tokenSymbol}
+        </div>
 
-              <div className="text-wrapper-9">$12.1K</div>
-            </div>
-          </div>
+        {/* Market Cap */}
+        <div className="market-cap">
+          MC: {marketCap}
+        </div>
 
-          <div className="frame-20">
-            <div className="frame-21">
-              <div className="text-wrapper-10">+ 0.001 SOL</div>
-            </div>
-          </div>
+        {/* Botón View Details */}
+        <div className="view-details-button">
+          View Details
         </div>
       </div>
     </div>

@@ -134,6 +134,75 @@
   filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
 }
 
+/* Estilos específicos para estrellas laterales en HomeNew */
+.home-new .tarjeta-ranking-7 .token-image-container,
+.home-new .tarjeta-ranking-9 .token-image-container {
+  width: 45px;
+  height: 45px;
+  border: 2px solid #ffd700;
+  margin-bottom: 6px;
+}
+
+.home-new .tarjeta-ranking-7 .token-name,
+.home-new .tarjeta-ranking-9 .token-name {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 3px;
+}
+
+.home-new .tarjeta-ranking-7 .token-symbol,
+.home-new .tarjeta-ranking-9 .token-symbol {
+  font-size: 11px;
+  margin-bottom: 6px;
+}
+
+.home-new .tarjeta-ranking-7 .market-cap,
+.home-new .tarjeta-ranking-9 .market-cap {
+  font-size: 11px;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.home-new .tarjeta-ranking-7 .view-details-button,
+.home-new .tarjeta-ranking-9 .view-details-button {
+  font-size: 10px;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 15px;
+}
+
+/* Estilos específicos para estrella central en HomeNew */
+.home-new .tarjeta-ranking-8 .token-image-container {
+  width: 70px;
+  height: 70px;
+  border: 3px solid #ffd700;
+  margin-bottom: 10px;
+}
+
+.home-new .tarjeta-ranking-8 .token-name {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.home-new .tarjeta-ranking-8 .token-symbol {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.home-new .tarjeta-ranking-8 .market-cap {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+
+.home-new .tarjeta-ranking-8 .view-details-button {
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 18px;
+  border-radius: 22px;
+}
+
 .home-new .menu-tabla-3 {
   color: var(--color-primario) !important;
 }

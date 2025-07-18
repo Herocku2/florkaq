@@ -44,15 +44,24 @@ export const HomeNext = () => {
       <div className="frame-67">
         <TarjetaRanking
           className="tarjeta-ranking-instance"
-          groupClassName="design-component-instance-node-2"
+          tokenName="Shina inu"
+          tokenSymbol="SBH"
+          marketCap="$150000"
+          tokenImage="/img/image-4.png"
         />
         <TarjetaRanking
           className="tarjeta-ranking-5"
-          groupClassName="design-component-instance-node-2"
+          tokenName="CAt"
+          tokenSymbol="CAT"
+          marketCap="$20000"
+          tokenImage="/img/image-3.png"
         />
         <TarjetaRanking
           className="tarjeta-ranking-6"
-          groupClassName="design-component-instance-node-2"
+          tokenName="florka"
+          tokenSymbol="FLK"
+          marketCap="$25000"
+          tokenImage="/img/image-1.png"
         />
       </div>
 
