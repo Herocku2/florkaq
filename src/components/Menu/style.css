@@ -1,51 +1,41 @@
 .menu {
   align-items: center;
   display: inline-flex;
-  gap: 12px;
+  gap: 20px;
   position: relative;
+}
+
+.menu .text-wrapper-21,
+.menu .text-wrapper-22 {
+  color: #ffffff;
+  display: block;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: normal;
+  position: relative;
+  width: fit-content;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  padding: 8px 12px;
+  border-radius: 6px;
+}
+
+.menu .text-wrapper-21:hover,
+.menu .text-wrapper-22:hover {
+  color: #ff69b4;
+  background: rgba(255, 105, 180, 0.1);
+  transform: translateY(-1px);
 }
 
 .menu .text-wrapper-21 {
-  color: #ff01a1;
-  display: block;
-  font-family: "Orbitron", Helvetica;
-  font-size: 24px;
-  font-weight: 400;
-  letter-spacing: 0;
-  line-height: normal;
-  margin-top: -1.00px;
-  position: relative;
-  width: fit-content;
+  color: #ff69b4;
+  font-weight: 600;
 }
 
-.menu .line-2 {
-  height: 25px;
-  object-fit: cover;
-  position: relative;
-  width: 1px;
-}
-
-.menu .text-wrapper-22 {
-  color: #eab4d7;
-  display: block;
-  font-family: "Orbitron", Helvetica;
-  font-size: 24px;
-  font-weight: 400;
-  letter-spacing: 0;
-  line-height: normal;
-  margin-top: -1.00px;
-  position: relative;
-  width: fit-content;
-}
-
-.menu .text-wrapper-23 {
-  color: #eab4d7;
-  font-family: "Orbitron", Helvetica;
-  font-size: 24px;
-  font-weight: 400;
-  letter-spacing: 0;
-  line-height: normal;
-  margin-top: -1.00px;
-  position: relative;
-  width: fit-content;
+.menu .menu-separator {
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 16px;
+  font-weight: 300;
 }

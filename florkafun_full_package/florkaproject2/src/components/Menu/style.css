@@ -1,0 +1,51 @@
+.menu {
+  align-items: center;
+  display: inline-flex;
+  gap: 12px;
+  position: relative;
+}
+
+.menu .text-wrapper-21 {
+  color: #ff01a1;
+  display: block;
+  font-family: "Orbitron", Helvetica;
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-top: -1.00px;
+  position: relative;
+  width: fit-content;
+}
+
+.menu .line-2 {
+  height: 25px;
+  object-fit: cover;
+  position: relative;
+  width: 1px;
+}
+
+.menu .text-wrapper-22 {
+  color: #eab4d7;
+  display: block;
+  font-family: "Orbitron", Helvetica;
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-top: -1.00px;
+  position: relative;
+  width: fit-content;
+}
+
+.menu .text-wrapper-23 {
+  color: #eab4d7;
+  font-family: "Orbitron", Helvetica;
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-top: -1.00px;
+  position: relative;
+  width: fit-content;
+}

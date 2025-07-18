@@ -1,66 +1,82 @@
 .home-all {
   align-items: center;
   background-color: #020102;
-  display: inline-flex;
+  display: flex;
   flex-direction: column;
-  gap: 10px;
-  height: 2951px;
-  padding: 10px 24px;
+  gap: 20px;
+  min-height: 100vh;
+  padding: 0;
   position: relative;
+  width: 100%;
 }
 
 .home-all .img-3 {
   flex: 0 0 auto;
   position: relative;
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  object-fit: contain;
 }
 
 .home-all .frame-60 {
   align-items: center;
-  display: inline-flex;
-  flex: 0 0 auto;
+  display: flex;
   flex-direction: column;
-  gap: 24px;
-  padding: 24px 0px 0px;
+  gap: 15px;
+  padding: 20px 0;
   position: relative;
+  max-width: 1200px;
+  width: 100%;
 }
 
 .home-all .fair-launches-the {
-  height: 185.51px;
+  height: auto;
   position: relative;
-  width: 1500.82px;
+  width: 100%;
+  max-width: 800px;
+  object-fit: contain;
 }
 
 .home-all .no-need-for-a {
-  height: 131.75px;
+  height: auto;
   position: relative;
-  width: 1390.64px;
+  width: 100%;
+  max-width: 700px;
+  object-fit: contain;
 }
 
 .home-all .element-launches-a-month {
-  height: 52.2px;
+  height: auto;
   position: relative;
-  width: 1315.84px;
+  width: 100%;
+  max-width: 650px;
+  object-fit: contain;
 }
 
 .home-all .baner {
   flex: 0 0 auto;
   position: relative;
-  width: 1524px;
+  width: 100%;
+  max-width: 1000px;
+  height: auto;
+  object-fit: contain;
 }
 
 .home-all .titulo-pagina-2 {
-  align-items: flex-start;
+  align-items: center;
   display: flex;
   flex: 0 0 auto;
   gap: 10px;
-  padding: 24px 10px 10px;
+  padding: 15px;
   position: relative;
-  width: 1515px;
+  width: 100%;
+  max-width: 1200px;
 }
 
 .home-all .frame-61 {
   -webkit-backdrop-filter: blur(2px) brightness(100%);
-  align-items: baseline;
+  align-items: center;
   backdrop-filter: blur(2px) brightness(100%);
   background: linear-gradient(
     180deg,
@@ -73,32 +89,33 @@
   display: flex;
   flex: 0 0 auto;
   justify-content: space-between;
-  padding: 24px 40px;
+  padding: 20px;
   position: relative;
-  width: 1539px;
+  width: 100%;
+  max-width: 1200px;
 }
 
 .home-all .tarjeta-ranking-2 {
-  height: 476px;
+  height: 300px;
   object-fit: cover;
   position: relative;
-  width: 439px;
+  width: 280px;
   z-index: 2;
 }
 
 .home-all .tarjeta-ranking-3 {
-  height: 476px;
+  height: 300px;
   object-fit: cover;
   position: relative;
-  width: 439px;
+  width: 280px;
   z-index: 1;
 }
 
 .home-all .tarjeta-ranking-4 {
-  height: 476px;
+  height: 300px;
   object-fit: cover;
   position: relative;
-  width: 439px;
+  width: 280px;
   z-index: 0;
 }
 

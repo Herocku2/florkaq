@@ -1,0 +1,1 @@
+export { MenuTabla } from "./MenuTabla";

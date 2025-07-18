@@ -1,0 +1,200 @@
+.tarjeta-detalle {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  position: relative;
+  width: 475px;
+}
+
+.tarjeta-detalle .make-sure-the-wrapper {
+  align-items: center;
+  align-self: stretch;
+  background-image: url(../../../static/img/frame-159.png);
+  background-position: 50% 50%;
+  background-size: cover;
+  display: flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  justify-content: center;
+  padding: 10px;
+  position: relative;
+  width: 100%;
+}
+
+.tarjeta-detalle .make-sure-the {
+  color: transparent;
+  font-family: var(--texto-boton-font-family);
+  font-size: var(--texto-boton-font-size);
+  font-style: var(--texto-boton-font-style);
+  font-weight: var(--texto-boton-font-weight);
+  letter-spacing: var(--texto-boton-letter-spacing);
+  line-height: var(--texto-boton-line-height);
+  margin-top: -1.00px;
+  position: relative;
+  width: fit-content;
+}
+
+.tarjeta-detalle .text-wrapper-25 {
+  color: #aba8a8;
+  font-family: var(--texto-boton-font-family);
+  font-size: var(--texto-boton-font-size);
+  font-style: var(--texto-boton-font-style);
+  font-weight: var(--texto-boton-font-weight);
+  letter-spacing: var(--texto-boton-letter-spacing);
+  line-height: var(--texto-boton-line-height);
+}
+
+.tarjeta-detalle .text-wrapper-26 {
+  color: #ffffff;
+  font-family: var(--texto-boton-font-family);
+  font-size: var(--texto-boton-font-size);
+  font-style: var(--texto-boton-font-style);
+  font-weight: var(--texto-boton-font-weight);
+  letter-spacing: var(--texto-boton-letter-spacing);
+  line-height: var(--texto-boton-line-height);
+}
+
+.tarjeta-detalle .frame-44 {
+  align-items: center;
+  align-self: stretch;
+  border: 1px solid;
+  border-color: var(--color-secundario);
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+  width: 100%;
+}
+
+.tarjeta-detalle .text-wrapper-27 {
+  align-self: stretch;
+  color: #eab4d7;
+  font-family: var(--texto-boton-font-family);
+  font-size: var(--texto-boton-font-size);
+  font-style: var(--texto-boton-font-style);
+  font-weight: var(--texto-boton-font-weight);
+  letter-spacing: var(--texto-boton-letter-spacing);
+  line-height: var(--texto-boton-line-height);
+  margin-top: -1.00px;
+  position: relative;
+  text-align: center;
+}
+
+.tarjeta-detalle .frame-45 {
+  align-items: flex-start;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 37px;
+  justify-content: center;
+  padding: 10px;
+  position: relative;
+}
+
+.tarjeta-detalle .earth-outline {
+  height: 50px;
+  position: relative;
+  width: 50px;
+}
+
+.tarjeta-detalle .x-logo-svg {
+  background-image: url(../../../static/img/group.png);
+  background-size: 100% 100%;
+  height: 45px;
+  position: relative;
+  width: 50px;
+}
+
+.tarjeta-detalle .symbol-svg {
+  background-image: url(../../../static/img/artboard.png);
+  background-size: 100% 100%;
+  height: 50.0px;
+  position: relative;
+  width: 50.0px;
+}
+
+.tarjeta-detalle .frame-46 {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 22px;
+  padding: 24px 0px 0px;
+  position: relative;
+  width: 100%;
+}
+
+.tarjeta-detalle .frame-47 {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  justify-content: space-between;
+  position: relative;
+  width: 100%;
+}
+
+.tarjeta-detalle .text-wrapper-28 {
+  color: #eab4d7;
+  font-family: "Orbitron", Helvetica;
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-top: -1.00px;
+  position: relative;
+  width: fit-content;
+}
+
+.tarjeta-detalle .text-wrapper-29 {
+  color: #1dff0080;
+  font-family: "Orbitron", Helvetica;
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-top: -1.00px;
+  position: relative;
+  text-align: right;
+  width: fit-content;
+}
+
+.tarjeta-detalle .text-wrapper-30 {
+  color: #ff01a1;
+  font-family: "Orbitron", Helvetica;
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-top: -1.00px;
+  position: relative;
+  text-align: right;
+  width: fit-content;
+}
+
+.tarjeta-detalle .text-wrapper-31 {
+  color: #eab4d7;
+  font-family: "Orbitron", Helvetica;
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-top: -1.00px;
+  position: relative;
+  text-align: right;
+  width: fit-content;
+}
+
+.tarjeta-detalle .text-wrapper-32 {
+  color: #eab4d7;
+  font-family: "Orbitron", Helvetica;
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-top: -1.00px;
+  position: relative;
+  width: 161px;
+}

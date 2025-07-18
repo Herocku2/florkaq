@@ -1,0 +1,26 @@
+.paginacion {
+  align-items: center;
+  display: inline-flex;
+  gap: 10px;
+  justify-content: center;
+  padding: 10px;
+  position: relative;
+}
+
+.paginacion .icon-chevron-right {
+  height: 29.09px;
+  position: relative;
+  width: 20px;
+}
+
+.paginacion .element-de {
+  color: var(--m-1);
+  font-family: var(--cuerpo-de-texto2-font-family);
+  font-size: var(--cuerpo-de-texto2-font-size);
+  font-style: var(--cuerpo-de-texto2-font-style);
+  font-weight: var(--cuerpo-de-texto2-font-weight);
+  letter-spacing: var(--cuerpo-de-texto2-letter-spacing);
+  line-height: var(--cuerpo-de-texto2-line-height);
+  position: relative;
+  width: fit-content;
+}

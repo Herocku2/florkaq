@@ -1,20 +1,78 @@
 .heder {
   align-items: center;
-  display: inline-flex;
-  gap: 27px;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 40px;
   position: relative;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
 }
 
 .heder .frame {
   align-items: center;
-  display: inline-flex;
+  display: flex;
   flex: 0 0 auto;
   position: relative;
+  gap: 10px;
 }
 
-.heder .logo-3 {
-  position: relative !important;
-  width: 124px !important;
+.heder .logo-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  font-size: 18px;
+  transition: all 0.3s ease;
+}
+
+.heder .logo-container:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.1);
+}
+
+.heder .flower-icon {
+  font-size: 24px;
+  filter: drop-shadow(0 0 8px rgba(255, 105, 180, 0.6));
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.heder .logo-text {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  background: linear-gradient(135deg, #ff69b4, #ff1493, #da70d6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 20px rgba(255, 105, 180, 0.3);
+}
+
+.heder .beta-badge {
+  background: linear-gradient(135deg, #ff69b4, #ff1493);
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 8px rgba(255, 105, 180, 0.4);
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from { box-shadow: 0 2px 8px rgba(255, 105, 180, 0.4); }
+  to { box-shadow: 0 2px 12px rgba(255, 105, 180, 0.8); }
 }
 
 .heder .design-component-instance-node {
@@ -23,8 +81,29 @@
 
 .heder .div {
   align-items: center;
-  display: inline-flex;
+  display: flex;
   flex: 0 0 auto;
-  gap: 112px;
+  gap: 40px;
   position: relative;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .heder {
+    padding: 15px 30px;
+  }
+  
+  .heder .div {
+    gap: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .heder {
+    padding: 15px 20px;
+  }
+  
+  .heder .div {
+    gap: 20px;
+  }
 }

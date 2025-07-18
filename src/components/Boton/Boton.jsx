@@ -4,12 +4,13 @@ Please share your feedback here: https://form.asana.com/?k=uvp-HPgd3_hyoXRBw1IcN
 */
 
 import React from "react";
+import { Link } from "react-router-dom";
 import "./style.css";
 
 export const Boton = ({ className }) => {
   return (
-    <div className={`boton ${className}`}>
-      <div className="text-wrapper-24">Connect wallet</div>
-    </div>
+    <Link to="/auth" className={`boton ${className}`}>
+      <div className="text-wrapper-24">Get Started</div>
+    </Link>
   );
 };

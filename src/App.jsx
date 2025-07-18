@@ -16,19 +16,45 @@ import { Screen15 } from "./screens/Screen15";
 import { SwapScreen } from "./screens/SwapScreen";
 import { Vote } from "./screens/Vote";
 import { VoteDetalletoken } from "./screens/VoteDetalletoken";
+import { Auth } from "./screens/Auth/Auth";
 
 const router = createBrowserRouter([
   {
-    path: "/*",
+    path: "/",
     element: <HomeAll />,
   },
   {
-    path: "/homeu47all",
-    element: <HomeAll />,
+    path: "/next",
+    element: <HomeNext />,
+  },
+  {
+    path: "/vote",
+    element: <Vote />,
   },
   {
     path: "/news",
     element: <News />,
+  },
+  {
+    path: "/forum",
+    element: <HomeNew />,
+  },
+  {
+    path: "/create",
+    element: <Create />,
+  },
+  {
+    path: "/publish",
+    element: <Publish />,
+  },
+  {
+    path: "/auth",
+    element: <Auth />,
+  },
+  // Rutas adicionales existentes
+  {
+    path: "/homeu47all",
+    element: <HomeAll />,
   },
   {
     path: "/swap",
@@ -57,10 +83,6 @@ const router = createBrowserRouter([
   {
     path: "/publish1",
     element: <Publish />,
-  },
-  {
-    path: "/vote",
-    element: <Vote />,
   },
   {
     path: "/publish2",

@@ -1,0 +1,40 @@
+.baner-detelle-token {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 1008px;
+}
+
+.baner-detelle-token .rectangle-2 {
+  align-self: stretch;
+  height: 363px;
+  object-fit: cover;
+  position: relative;
+  width: 100%;
+}
+
+.baner-detelle-token .frame-43 {
+  align-items: flex-end;
+  display: inline-flex;
+  flex: 0 0 auto;
+  justify-content: center;
+  margin-top: -199px;
+  position: relative;
+}
+
+.baner-detelle-token .rectangle-3 {
+  height: 262.93px;
+  position: relative;
+  width: 262.93px;
+}
+
+.baner-detelle-token .rectangle-4 {
+  height: 149.58px;
+  margin-bottom: -8.00px;
+  margin-left: -73px;
+  margin-right: -8.00px;
+  object-fit: cover;
+  position: relative;
+  width: 149.58px;
+}
