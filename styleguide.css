@@ -26,8 +26,7 @@
   --m-1: rgba(255, 1, 162, 0.3);
   --negro: rgba(0, 0, 0, 1);
   --sombra-titulo1: 4px 4px 4px 0px rgba(255, 1, 162, 1);
-  --sombratitulo-2: 4px 4px 4px 0px rgba(255, 1, 162, 1), 0px 4px 4px 0px
-    rgba(0, 0, 0, 0.25);
+  --sombratitulo-2: 4px 4px 4px 0px rgba(255, 1, 162, 1), 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   --texto-boton-font-family: "Orbitron", Helvetica;
   --texto-boton-font-size: 24px;
   --texto-boton-font-style: normal;
@@ -64,4 +63,117 @@
   --titulo-xxl-font-weight: 400;
   --titulo-xxl-letter-spacing: 0px;
   --titulo-xxl-line-height: normal;
+}
+
+/* UNIFORMIDAD TIPOGRÁFICA GLOBAL - Basado en Home como referencia maestra */
+/* Aplicar a todas las páginas públicas para consistencia */
+
+/* Estructura base de páginas */
+.home-all, .home-next, .home-new, .vote, .news, .swap-screen,
+.create, .create-screen, .create-wrapper, .publish, .publish-screen, 
+.publish-wrapper, .screen15, .home-detalletoken, .vote-detalletoken,
+.div-wrapper, .auth {
+  align-items: center;
+  background-color: #020102;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-height: 100vh;
+  padding: 0;
+  position: relative;
+  width: 100%;
+  font-family: "Orbitron", Helvetica;
+}
+
+/* Tipografía consistente para títulos */
+.text-wrapper-42, .text-wrapper-43, 
+h1, h2, h3, .titulo-seccion {
+  font-family: "Orbitron", Helvetica;
+  font-size: 50px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: normal;
+  color: #ffffff;
+  text-align: center;
+  margin: 20px 0;
+}
+
+/* Tipografía para texto de cuerpo */
+p, .text-content, .description-text {
+  font-family: "Orbitron", Helvetica;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: normal;
+  color: #ffffff;
+  text-align: left;
+  margin: 15px 0;
+}
+
+/* Espaciado consistente para frames principales */
+.frame-60, .frame-66, .frame-70, .frame-58, .frame-64, .frame-65,
+.main-content-frame {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 20px 0;
+  position: relative;
+  max-width: 1200px;
+  width: 100%;
+}
+
+/* Imágenes principales consistentes */
+.fair-launches-the, .fair-launches-the-2, .fair-launches-the-3,
+.no-need-for-a, .no-need-for-a-2, .no-need-for-a-3,
+.element-launches-a-month, .element-launches-a-month-2, .element-launches-a-month-3 {
+  height: auto;
+  position: relative;
+  width: 100%;
+  object-fit: contain;
+}
+
+.fair-launches-the, .fair-launches-the-2, .fair-launches-the-3 {
+  max-width: 800px;
+}
+
+.no-need-for-a, .no-need-for-a-2, .no-need-for-a-3 {
+  max-width: 700px;
+}
+
+.element-launches-a-month, .element-launches-a-month-2, .element-launches-a-month-3 {
+  max-width: 650px;
+}
+
+/* Logo isotipo consistente */
+.img-3, .img-4, .img-5, .logo-isotipo {
+  flex: 0 0 auto;
+  position: relative;
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Banners consistentes */
+.baner, .baner-2, .baner-3, .banner-main {
+  flex: 0 0 auto;
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Títulos de página consistentes */
+.titulo-pagina, .titulo-pagina-2, .titulo-pagina-3, .titulo-pagina-4, 
+.titulo-pagina-5, .titulo-pagina-10 {
+  align-items: center;
+  display: flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  padding: 15px;
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
 }

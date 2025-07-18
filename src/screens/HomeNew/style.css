@@ -94,43 +94,43 @@
   position: relative;
   width: 100%;
   max-width: 1200px;
-  gap: 20px;
+  gap: 15px;
 }
 
-/* Posición 2 - Izquierda (más baja) */
+/* Posición 2 - Izquierda (segundo lugar - más baja) */
 .home-new .tarjeta-ranking-7 {
-  height: 280px;
+  height: 200px;
   object-fit: cover;
   position: relative;
-  width: 280px;
+  width: 200px;
   z-index: 2;
   order: 1;
-  margin-bottom: 40px;
+  margin-bottom: 0px;
   filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
 }
 
-/* Posición 1 - Centro (más alta) */
+/* Posición 1 - Centro (primer lugar - más alta) */
 .home-new .tarjeta-ranking-8 {
-  height: 320px;
+  height: 240px;
   object-fit: cover;
   position: relative;
-  width: 280px;
+  width: 240px;
   z-index: 3;
   order: 2;
-  margin-bottom: 0px;
+  margin-bottom: 60px;
   filter: drop-shadow(0 6px 12px rgba(255, 215, 0, 0.4));
-  transform: scale(1.05);
+  transform: scale(1.1);
 }
 
-/* Posición 3 - Derecha (más baja) */
+/* Posición 3 - Derecha (tercer lugar - más baja) */
 .home-new .tarjeta-ranking-9 {
-  height: 280px;
+  height: 200px;
   object-fit: cover;
   position: relative;
-  width: 280px;
+  width: 200px;
   z-index: 1;
   order: 3;
-  margin-bottom: 40px;
+  margin-bottom: 0px;
   filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
 }
 
