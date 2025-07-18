@@ -1,66 +1,82 @@
 .home-next {
   align-items: center;
   background-color: #020102;
-  display: inline-flex;
+  display: flex;
   flex-direction: column;
-  gap: 10px;
-  height: 2951px;
-  padding: 10px 24px;
+  gap: 20px;
+  min-height: 100vh;
+  padding: 0;
   position: relative;
+  width: 100%;
 }
 
 .home-next .img-4 {
   flex: 0 0 auto;
   position: relative;
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  object-fit: contain;
 }
 
 .home-next .frame-66 {
   align-items: center;
-  display: inline-flex;
-  flex: 0 0 auto;
+  display: flex;
   flex-direction: column;
-  gap: 24px;
-  padding: 24px 0px 0px;
+  gap: 15px;
+  padding: 20px 0;
   position: relative;
+  max-width: 1200px;
+  width: 100%;
 }
 
 .home-next .fair-launches-the-2 {
-  height: 185.51px;
+  height: auto;
   position: relative;
-  width: 1500.82px;
+  width: 100%;
+  max-width: 800px;
+  object-fit: contain;
 }
 
 .home-next .no-need-for-a-2 {
-  height: 131.75px;
+  height: auto;
   position: relative;
-  width: 1390.64px;
+  width: 100%;
+  max-width: 700px;
+  object-fit: contain;
 }
 
 .home-next .element-launches-a-month-2 {
-  height: 52.2px;
+  height: auto;
   position: relative;
-  width: 1315.84px;
+  width: 100%;
+  max-width: 650px;
+  object-fit: contain;
 }
 
 .home-next .baner-2 {
   flex: 0 0 auto;
   position: relative;
-  width: 1524px;
+  width: 100%;
+  max-width: 1000px;
+  height: auto;
+  object-fit: contain;
 }
 
 .home-next .titulo-pagina-4 {
-  align-items: flex-start;
+  align-items: center;
   display: flex;
   flex: 0 0 auto;
   gap: 10px;
-  padding: 24px 10px 10px;
+  padding: 15px;
   position: relative;
-  width: 1515px;
+  width: 100%;
+  max-width: 1200px;
 }
 
 .home-next .frame-67 {
   -webkit-backdrop-filter: blur(2px) brightness(100%);
-  align-items: baseline;
+  align-items: center;
   backdrop-filter: blur(2px) brightness(100%);
   background: linear-gradient(
     180deg,
@@ -73,9 +89,10 @@
   display: flex;
   flex: 0 0 auto;
   justify-content: space-between;
-  padding: 24px 40px;
+  padding: 20px;
   position: relative;
-  width: 1539px;
+  width: 100%;
+  max-width: 1200px;
 }
 
 .home-next .tarjeta-ranking-instance {

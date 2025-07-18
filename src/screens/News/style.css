@@ -1,27 +1,24 @@
 .news {
   align-items: center;
   background-color: #020102;
-  display: inline-flex;
+  display: flex;
   flex-direction: column;
-  gap: 10px;
-  height: 1457px;
-  padding: 10px 24px;
+  gap: 20px;
+  min-height: 100vh;
+  padding: 0;
   position: relative;
-}
-
-.news .heder-2 {
-  flex: 0 0 auto;
-  position: relative;
+  width: 100%;
 }
 
 .news .titulo-pagina {
-  align-items: flex-start;
+  align-items: center;
   display: flex;
   flex: 0 0 auto;
   gap: 10px;
-  padding: 24px 10px 10px;
+  padding: 15px;
   position: relative;
-  width: 1515px;
+  width: 100%;
+  max-width: 1200px;
 }
 
 .news .baner-movil-instance {

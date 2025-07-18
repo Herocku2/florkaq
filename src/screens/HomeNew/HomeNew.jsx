@@ -1,4 +1,5 @@
 import React from "react";
+import { Heder } from "../../components/Heder";
 import { MenuTabla } from "../../components/MenuTabla";
 import { Paginacion } from "../../components/Paginacion";
 import { TarjetaProyectos } from "../../components/TarjetaProyectos";
@@ -7,7 +8,7 @@ import "./style.css";
 export const HomeNew = () => {
   return (
     <div className="home-new">
-      <img className="img-5" alt="Heder" src="/img/heder-4.svg" />
+      <Heder className="heder-home" />
 
       <div className="frame-70">
         <img
