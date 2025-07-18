@@ -1,32 +1,43 @@
 .vote {
   align-items: center;
   background-color: #020102;
-  display: inline-flex;
+  display: flex;
   flex-direction: column;
-  gap: 10px;
-  height: 2558px;
-  padding: 10px 24px;
+  gap: 20px;
+  min-height: 100vh;
+  padding: 0;
   position: relative;
+  width: 100%;
 }
 
-.vote .heder-7 {
-  flex: 0 0 auto !important;
-  padding: 10px 0px 0px !important;
+.vote .loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh;
+  width: 100%;
+}
+
+.vote .loading-text {
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 500;
 }
 
 .vote .titulo-pagina-10 {
-  align-items: flex-start;
+  align-items: center;
   display: flex;
   flex: 0 0 auto;
   gap: 10px;
-  padding: 24px 10px 10px;
+  padding: 15px;
   position: relative;
-  width: 1515px;
+  width: 100%;
+  max-width: 1200px;
 }
 
 .vote .frame-135 {
   -webkit-backdrop-filter: blur(2px) brightness(100%);
-  align-items: baseline;
+  align-items: center;
   backdrop-filter: blur(2px) brightness(100%);
   background: linear-gradient(
     180deg,
@@ -39,9 +50,10 @@
   display: flex;
   flex: 0 0 auto;
   justify-content: space-between;
-  padding: 24px 40px;
+  padding: 20px;
   position: relative;
-  width: 1539px;
+  width: 100%;
+  max-width: 1200px;
 }
 
 .vote .tarjeta-ranking-10 {

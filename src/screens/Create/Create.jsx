@@ -1,11 +1,12 @@
 import React from "react";
 import { BanerMovil } from "../../components/BanerMovil";
+import { Heder } from "../../components/Heder";
 import "./style.css";
 
 export const Create = () => {
   return (
     <div className="create">
-      <img className="heder-4" alt="Heder" src="/img/heder-5.svg" />
+      <Heder className="heder-home" />
 
       <div className="titulo-pagina-6" />
 

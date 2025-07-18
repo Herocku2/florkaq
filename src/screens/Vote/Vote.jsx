@@ -47,27 +47,19 @@ export const Vote = () => {
   }, []);
 
   if (loading) {
-    return <div>Cargando tokens...</div>;
+    return (
+      <div className="vote">
+        <Heder className="heder-home" />
+        <div className="loading-container">
+          <div className="loading-text">Cargando tokens...</div>
+        </div>
+      </div>
+    );
   }
 
   return (
     <div className="vote">
-      <Heder
-        className="heder-7"
-        logoColor="url(#pattern0_2089_1302)"
-        menuImg="/img/line-1-7.svg"
-        menuLine="/img/line-2-7.svg"
-        menuLine1="/img/line-2-7.svg"
-        menuLine2="/img/line-2-7.svg"
-        menuLine3="/img/line-2-7.svg"
-        menuLine4="/img/line-2-7.svg"
-        menuLine5="/img/line-2-7.svg"
-        to1="/publish1"
-        to2="/homeu47all"
-        to3="/swap"
-        to4="/create1"
-        to5="/news"
-      />
+      <Heder className="heder-home" />
       <div className="titulo-pagina-10" />
 
       <div className="frame-135">
