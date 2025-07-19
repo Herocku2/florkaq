@@ -11,60 +11,67 @@ export const HomeNext = () => {
     <div className="home-next">
       <Heder className="heder-home" />
 
-      <div className="frame-66">
-        <img
-          className="fair-launches-the-2"
-          alt="Fair launches the"
-          src="/img/fair-launches-the-dev-gets-80-and-marketing-is-on-us.png"
-        />
-
-        <img
-          className="no-need-for-a-2"
-          alt="No need for a"
-          src="/img/no-need-for-a-community-everyone-s-here-waiting-to-blow-up-you.png"
-        />
-
-        <img
-          className="element-launches-a-month-2"
-          alt="Element launches a month"
-          src="/img/2-launches-a-month-only-the-best-takes-the-crown.png"
-        />
+      {/* Título de la sección */}
+      <div className="next-tokens-title">
+        <span className="star-icon">⭐</span>
+        <span className="title-text">Top 3 Next Tokens</span>
+        <span className="star-icon">⭐</span>
       </div>
 
-      <img
-        className="img-4"
-        alt="Frame logo isotipo"
-        src="/img/frame-logo-isotipo.png"
-      />
-
-      <img className="baner-2" alt="Baner" src="/img/baner-1.png" />
-
-      <div className="titulo-pagina-4" />
-
       <div className="frame-67">
-        <TarjetaRanking
-          className="tarjeta-ranking-2"
-          tokenName="Shina inu"
-          tokenSymbol="SBH"
-          marketCap="$150000"
-          tokenImage="/img/image-4.png"
-        />
+        <div className="ranking-position">
+          <TarjetaRanking
+            className="tarjeta-ranking-2"
+            tokenName="florkiño"
+            tokenSymbol="flk"
+            marketCap="Votos: 2"
+            tokenImage="/img/image-4.png"
+          />
+          <div className="position-number position-2">2</div>
+        </div>
 
-        <TarjetaRanking
-          className="tarjeta-ranking-3"
-          tokenName="CAt"
-          tokenSymbol="CAT"
-          marketCap="$20000"
-          tokenImage="/img/image-3.png"
-        />
+        <div className="ranking-position">
+          <TarjetaRanking
+            className="tarjeta-ranking-3"
+            tokenName="anto"
+            tokenSymbol="ANT"
+            marketCap="Votos: 4"
+            tokenImage="/img/image-3.png"
+          />
+          <div className="position-number position-1">1</div>
+        </div>
 
-        <TarjetaRanking
-          className="tarjeta-ranking-4"
-          tokenName="florka"
-          tokenSymbol="FLK"
-          marketCap="$25000"
-          tokenImage="/img/image-1.png"
-        />
+        <div className="ranking-position">
+          <TarjetaRanking
+            className="tarjeta-ranking-4"
+            tokenName="nicolukas"
+            tokenSymbol="NKL"
+            marketCap="Votos: 1"
+            tokenImage="/img/image-1.png"
+          />
+          <div className="position-number position-3">3</div>
+        </div>
+      </div>
+
+      {/* Sección promocional */}
+      <div className="promo-section">
+        <p className="promo-text">
+          From just $50, create your token with a free promo video and guaranteed exposure.
+        </p>
+        <button className="click-here-button">Click Here</button>
+        <p className="promo-subtext">
+          Launch your token for just $50 and go viral from day one
+        </p>
+        <p className="promo-details">
+          Includes FREE promo video and official post on X. No hassle.
+        </p>
+      </div>
+
+      {/* Título de la sección inferior */}
+      <div className="next-tokens-bottom-title">
+        <span className="star-icon">⭐</span>
+        <span className="title-text">Next Tokens on Solana</span>
+        <span className="star-icon">⭐</span>
       </div>
 
       <MenuTabla
