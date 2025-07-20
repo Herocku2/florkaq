@@ -229,11 +229,12 @@
 
 .home-new .frame-73 {
   align-items: flex-start;
-  display: inline-flex;
+  display: flex;
   flex: 0 0 auto;
-  gap: 60px;
+  gap: 30px;
   justify-content: center;
   position: relative;
+  flex-wrap: wrap;
 }
 
 .home-new .paginacion-3 {

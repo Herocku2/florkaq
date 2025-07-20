@@ -13,65 +13,56 @@ export const TarjetaProyectos = ({
   openOutline = "/img/open-outline.svg",
   starOutline = "/img/star-outline.svg",
   to,
+  tokenName = "CAT",
+  tokenSymbol = "CAT",
+  tokenImage = "/img/image-4.png",
+  marketCap = "$20000",
+  progress = "15%",
+  progressValue = 15
 }) => {
   return (
-    <Link className="tarjeta-proyectos" to={to}>
-      <div className="frame-22">
-        <div className="frame-23">
-          <div className="frame-24">
-            <div className={`img-wrapper ${groupClassName}`}>
-              <img className="image-3" alt="Image" src="/img/image-4.png" />
-            </div>
-          </div>
-
-          <div className="frame-25">
-            <div className="frame-26">
-              <div className="text-wrapper-13">AI Bonk Complex</div>
-            </div>
-
-            <div className="frame-27">
-              <div className="text-wrapper-14">Complex</div>
-
-              <div className="text-wrapper-15">just now</div>
-            </div>
-          </div>
-        </div>
-
-        <div className="frame-28">
-          <img className="img-2" alt="Open outline" src={openOutline} />
-
-          <img className="img-2" alt="Star outline" src={starOutline} />
-        </div>
+    <Link className="tarjeta-proyectos nft-card" to={to}>
+      {/* Imagen principal del NFT */}
+      <div className="nft-image-container">
+        <img className="nft-image" alt={tokenName} src={tokenImage} />
       </div>
 
-      <div className="frame-29">
-        <div className="frame-30">
-          <div className="frame-31">
-            <div className="text-wrapper-16">MC:</div>
-
-            <div className="text-wrapper-16">$12.1K</div>
+      {/* Información del token */}
+      <div className="nft-info">
+        <div className="token-header">
+          <h3 className="token-name">{tokenName}</h3>
+          <span className="approved-badge">approved</span>
+        </div>
+        
+        <div className="token-symbol">{tokenSymbol}</div>
+        
+        <div className="token-stats">
+          <div className="stat-row">
+            <span className="stat-label">Market Cap</span>
+            <span className="stat-value">{marketCap}</span>
+          </div>
+          
+          <div className="stat-row">
+            <span className="stat-label">Progress</span>
+            <span className="stat-value">{progress}</span>
           </div>
         </div>
 
-        <div className="frame-32">
-          <div className="frame-33">
-            <div className="text-wrapper-17">+ 0.001 SOL</div>
-          </div>
-        </div>
-      </div>
-
-      <div className="frame-34">
-        <div className="frame-35">
-          <div className="frame-36">
-            <div className="text-wrapper-16">Progres</div>
-
-            <div className="text-wrapper-16">50%</div>
+        {/* Barra de progreso */}
+        <div className="progress-container">
+          <div className="progress-bar">
+            <div 
+              className="progress-fill" 
+              style={{ width: `${progressValue}%` }}
+            ></div>
           </div>
         </div>
 
-        <div className="rectangle-wrapper">
-          <div className="rectangle" />
-        </div>
+        {/* Botón de acción */}
+        <button className="view-details-btn">
+          View Project Details
+          <span className="btn-icon">/{tokenSymbol.toLowerCase()}</span>
+        </button>
       </div>
     </Link>
   );

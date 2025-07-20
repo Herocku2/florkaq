@@ -395,7 +395,7 @@
   border-radius: 18px;
 }
 
-/* Estilos específicos para página NEXT */
+/* Estilos específicos para página NEXT - AJUSTADOS PARA COINCIDIR CON HOME */
 .home-next .tarjeta-ranking-instance .token-image-container,
 .home-next .tarjeta-ranking-6 .token-image-container {
   width: 45px;
@@ -432,7 +432,7 @@
   border-radius: 15px;
 }
 
-/* ESTRELLA DEL CENTRO EN NEXT - EXACTAMENTE IGUAL QUE HOME */
+/* ESTRELLA DEL CENTRO EN NEXT - AJUSTADA PARA COINCIDIR CON HOME */
 .home-next .tarjeta-ranking-5 .token-image-container {
   width: 55px;
   height: 55px;

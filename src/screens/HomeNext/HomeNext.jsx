@@ -85,41 +85,59 @@ export const HomeNext = () => {
       <div className="frame-68">
         <div className="frame-69">
           <TarjetaProyectos
-            groupClassName="design-component-instance-node-2"
-            openOutline="/img/open-outline-1.svg"
-            starOutline="/img/star-outline-7.svg"
             to="/homeu47detalletokenu47compra"
+            tokenName="florkiño"
+            tokenSymbol="flk"
+            tokenImage="/img/image-4.png"
+            marketCap="$22000"
+            progress="12%"
+            progressValue={12}
           />
           <TarjetaProyectos
-            groupClassName="design-component-instance-node-2"
-            openOutline="/img/open-outline-1.svg"
-            starOutline="/img/star-outline-8.svg"
-          />
-        </div>
-
-        <div className="frame-69">
-          <TarjetaProyectos
-            groupClassName="design-component-instance-node-2"
-            openOutline="/img/open-outline-1.svg"
-            starOutline="/img/star-outline-9.svg"
-          />
-          <TarjetaProyectos
-            groupClassName="design-component-instance-node-2"
-            openOutline="/img/open-outline-1.svg"
-            starOutline="/img/star-outline-10.svg"
+            tokenName="anto"
+            tokenSymbol="ANT"
+            tokenImage="/img/image-3.png"
+            marketCap="$35000"
+            progress="28%"
+            progressValue={28}
           />
         </div>
 
         <div className="frame-69">
           <TarjetaProyectos
-            groupClassName="design-component-instance-node-2"
-            openOutline="/img/open-outline-1.svg"
-            starOutline="/img/star-outline-11.svg"
+            tokenName="nicolukas"
+            tokenSymbol="NKL"
+            tokenImage="/img/image-1.png"
+            marketCap="$18000"
+            progress="6%"
+            progressValue={6}
           />
           <TarjetaProyectos
-            groupClassName="design-component-instance-node-2"
-            openOutline="/img/open-outline-1.svg"
-            starOutline="/img/star-outline-12.svg"
+            tokenName="NEXT"
+            tokenSymbol="NXT"
+            tokenImage="/img/image-2.png"
+            marketCap="$42000"
+            progress="35%"
+            progressValue={35}
+          />
+        </div>
+
+        <div className="frame-69">
+          <TarjetaProyectos
+            tokenName="FUTURE"
+            tokenSymbol="FUT"
+            tokenImage="/img/image-5.png"
+            marketCap="$15000"
+            progress="9%"
+            progressValue={9}
+          />
+          <TarjetaProyectos
+            tokenName="MOON"
+            tokenSymbol="MOON"
+            tokenImage="/img/image-6.png"
+            marketCap="$58000"
+            progress="41%"
+            progressValue={41}
           />
         </div>
 

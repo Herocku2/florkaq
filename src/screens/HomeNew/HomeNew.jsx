@@ -81,35 +81,59 @@ export const HomeNew = () => {
       <div className="frame-72">
         <div className="frame-73">
           <TarjetaProyectos
-            openOutline="/img/open-outline-13.svg"
-            starOutline="/img/star-outline-13.svg"
             to="/homeu47detalletokenu47compra"
+            tokenName="CAT"
+            tokenSymbol="CAT"
+            tokenImage="/img/image-3.png"
+            marketCap="$20000"
+            progress="15%"
+            progressValue={15}
           />
           <TarjetaProyectos
-            openOutline="/img/open-outline-13.svg"
-            starOutline="/img/star-outline-14.svg"
+            tokenName="Shina inu"
+            tokenSymbol="SBH"
+            tokenImage="/img/image-4.png"
+            marketCap="$150000"
+            progress="4%"
+            progressValue={4}
           />
         </div>
 
         <div className="frame-73">
           <TarjetaProyectos
-            openOutline="/img/open-outline-13.svg"
-            starOutline="/img/star-outline-15.svg"
+            tokenName="florka"
+            tokenSymbol="FLK"
+            tokenImage="/img/image-1.png"
+            marketCap="$25000"
+            progress="18%"
+            progressValue={18}
           />
           <TarjetaProyectos
-            openOutline="/img/open-outline-13.svg"
-            starOutline="/img/star-outline-16.svg"
+            tokenName="DOGE"
+            tokenSymbol="DOGE"
+            tokenImage="/img/image-2.png"
+            marketCap="$45000"
+            progress="32%"
+            progressValue={32}
           />
         </div>
 
         <div className="frame-73">
           <TarjetaProyectos
-            openOutline="/img/open-outline-13.svg"
-            starOutline="/img/star-outline-17.svg"
+            tokenName="PEPE"
+            tokenSymbol="PEPE"
+            tokenImage="/img/image-5.png"
+            marketCap="$12000"
+            progress="8%"
+            progressValue={8}
           />
           <TarjetaProyectos
-            openOutline="/img/open-outline-13.svg"
-            starOutline="/img/star-outline-18.svg"
+            tokenName="BONK"
+            tokenSymbol="BONK"
+            tokenImage="/img/image-6.png"
+            marketCap="$67000"
+            progress="25%"
+            progressValue={25}
           />
         </div>
 
