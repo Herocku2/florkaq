@@ -1,7 +1,5 @@
 /* Nuevo diseño horizontal para las cards de votación */
 .tarjeta-votos-horizontal {
-  text-decoration: none;
-  color: inherit;
   display: block;
   margin-bottom: 16px;
 }
@@ -23,6 +21,16 @@
   transform: translateY(-2px);
   box-shadow: 0 8px 25px rgba(255, 1, 161, 0.3);
   border-color: #ff01a1;
+}
+
+/* Área clickeable para navegar al detalle del token */
+.token-clickable-area {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  text-decoration: none;
+  color: inherit;
+  min-width: 0;
 }
 
 .token-card-container::before {
@@ -190,15 +198,42 @@
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 100px;
+  justify-content: center;
 }
 
-.vote-button:hover {
+.vote-button:hover:not(:disabled) {
   transform: translateY(-1px);
   box-shadow: 0 4px 15px rgba(255, 1, 161, 0.4);
 }
 
-.vote-button:active {
+.vote-button:active:not(:disabled) {
   transform: translateY(0);
+}
+
+.vote-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Estado cuando el usuario ya votó */
+.vote-button.voted {
+  background: linear-gradient(135deg, #00ff88 0%, #00cc6a 100%);
+}
+
+.vote-button.voted:hover:not(:disabled) {
+  background: linear-gradient(135deg, #ff4444 0%, #cc3333 100%);
+  box-shadow: 0 4px 15px rgba(255, 68, 68, 0.4);
+}
+
+/* Estado de carga */
+.vote-button.loading {
+  background: linear-gradient(135deg, #666666 0%, #888888 100%);
+  cursor: wait;
 }
 
 .vote-text {
@@ -208,6 +243,11 @@
   color: #ffffff;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+}
+
+.voted-icon {
+  font-size: 12px;
+  color: #ffffff;
 }
 
 .vote-count {

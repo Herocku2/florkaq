@@ -4,11 +4,14 @@ import { Heder } from "../../components/Heder";
 import { Paginacion } from "../../components/Paginacion";
 import { TarjetaRanking } from "../../components/TarjetaRanking";
 import { TarjetaVotos } from "../../components/TarjetaVotos";
+import { useVoting } from "../../hooks/useVoting";
 import "./style.css";
 
 export const Vote = () => {
   const [tokens, setTokens] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [tokenVotes, setTokenVotes] = useState({});
+  const { vote, unvote, getVoteCount, hasUserVoted, loading: votingLoading } = useVoting();
 
   useEffect(() => {
     const fetchTokens = async () => {
@@ -17,34 +20,63 @@ export const Vote = () => {
         const response = await fetch('http://localhost:1337/api/tokens?filters[estado][$eq]=inactivo&populate=imagen');
         console.log('Respuesta del servidor:', response.status, response.ok);
         
+        let tokensData = [];
         if (response.ok) {
           const data = await response.json();
           console.log('Datos recibidos:', data);
-          setTokens(data.data || []);
+          tokensData = data.data || [];
         } else {
           console.log('Error fetching tokens:', response.status);
           // Si hay error, usar datos de ejemplo
-          setTokens([
+          tokensData = [
             { id: 1, attributes: { nombre: "Bukele Coin", descripcion: "Token del presidente de El Salvador" }},
             { id: 2, attributes: { nombre: "Gustavo Petro Token", descripcion: "Token del presidente colombiano" }},
             { id: 3, attributes: { nombre: "Barack Obama Coin", descripcion: "Token del expresidente estadounidense" }}
-          ]);
+          ];
         }
+        
+        setTokens(tokensData);
+        
+        // Obtener conteos de votos para cada token
+        const voteCountsPromises = tokensData.map(async (token) => {
+          const count = await getVoteCount(token.id);
+          return { tokenId: token.id, count };
+        });
+        
+        const voteCounts = await Promise.all(voteCountsPromises);
+        const voteCountsMap = {};
+        voteCounts.forEach(({ tokenId, count }) => {
+          voteCountsMap[tokenId] = count;
+        });
+        
+        setTokenVotes(voteCountsMap);
+        
       } catch (error) {
         console.log('Error de conexión:', error);
         // Datos de ejemplo si falla la conexión
-        setTokens([
+        const fallbackTokens = [
           { id: 1, attributes: { nombre: "Bukele Coin", descripcion: "Token del presidente de El Salvador" }},
           { id: 2, attributes: { nombre: "Gustavo Petro Token", descripcion: "Token del presidente colombiano" }},
           { id: 3, attributes: { nombre: "Barack Obama Coin", descripcion: "Token del expresidente estadounidense" }}
-        ]);
+        ];
+        setTokens(fallbackTokens);
+        
+        // Conteos de ejemplo
+        setTokenVotes({
+          1: 45,
+          2: 32,
+          3: 28
+        });
+        
+        // Simular que el usuario ya votó por el token 1 para testing
+        localStorage.setItem('userId', 'test_user_123');
       } finally {
         setLoading(false);
       }
     };
 
     fetchTokens();
-  }, []);
+  }, [getVoteCount]);
 
   if (loading) {
     return (
@@ -110,6 +142,29 @@ export const Vote = () => {
               text={token.attributes.nombre}
               text1={token.attributes.descripcion}
               imagen={imagenUrl}
+              tokenId={token.id}
+              initialVotes={tokenVotes[token.id] || 0}
+              hasUserVoted={hasUserVoted(token.id)}
+              onVote={async (tokenId) => {
+                const success = await vote(tokenId);
+                if (success) {
+                  setTokenVotes(prev => ({
+                    ...prev,
+                    [tokenId]: (prev[tokenId] || 0) + 1
+                  }));
+                }
+                return success;
+              }}
+              onUnvote={async (tokenId) => {
+                const success = await unvote(tokenId);
+                if (success) {
+                  setTokenVotes(prev => ({
+                    ...prev,
+                    [tokenId]: Math.max((prev[tokenId] || 0) - 1, 0)
+                  }));
+                }
+                return success;
+              }}
             />
           );
         })}
