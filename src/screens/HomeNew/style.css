@@ -220,28 +220,141 @@
 
 .home-new .frame-72 {
   align-items: center;
-  display: inline-flex;
-  flex-direction: column;
-  height: 934px;
-  padding: 24px 0px 0px;
-  position: relative;
-}
-
-.home-new .frame-73 {
-  align-items: flex-start;
   display: flex;
-  flex: 0 0 auto;
-  gap: 30px;
-  justify-content: center;
+  flex-direction: column;
+  padding: 24px 20px;
   position: relative;
-  flex-wrap: wrap;
+  width: 100%;
+  max-width: 1200px;
 }
 
-.home-new .paginacion-3 {
-  align-self: stretch !important;
-  display: flex !important;
-  flex: 0 0 auto !important;
-  justify-content: flex-end !important;
-  margin-bottom: -0.09px !important;
-  width: 100% !important;
+/* Grid de cards - 3 por fila */
+.home-new .cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  width: 100%;
+  max-width: 780px;
+  margin-bottom: 40px;
+  justify-items: center;
+}
+
+/* Cards más pequeñas específicamente para Home */
+.home-new .tarjeta-proyectos.nft-card {
+  height: 320px !important;
+  width: 240px !important;
+  max-width: 240px;
+}
+
+.home-new .tarjeta-proyectos .nft-image-container {
+  height: 160px !important;
+}
+
+.home-new .tarjeta-proyectos .nft-info {
+  padding: 15px !important;
+  gap: 8px !important;
+}
+
+.home-new .tarjeta-proyectos .token-name {
+  font-size: 16px !important;
+}
+
+.home-new .tarjeta-proyectos .token-symbol {
+  font-size: 12px !important;
+  margin-bottom: 6px !important;
+}
+
+.home-new .tarjeta-proyectos .stat-label {
+  font-size: 11px !important;
+}
+
+.home-new .tarjeta-proyectos .stat-value {
+  font-size: 12px !important;
+}
+
+.home-new .tarjeta-proyectos .progress-container {
+  margin-bottom: 12px !important;
+}
+
+.home-new .tarjeta-proyectos .view-details-btn {
+  font-size: 11px !important;
+  padding: 10px 12px !important;
+}
+
+/* Controles de paginación */
+.home-new .pagination-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 600px;
+  padding: 20px 0;
+}
+
+.home-new .pagination-btn {
+  background: linear-gradient(135deg, #ff01a1, #ff69b4);
+  color: #ffffff;
+  font-family: "Orbitron", Helvetica;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 1, 161, 0.3);
+}
+
+.home-new .pagination-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 1, 161, 0.4);
+}
+
+.home-new .pagination-btn:disabled {
+  background: #333333;
+  color: #666666;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+.home-new .pagination-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.home-new .page-info {
+  font-family: "Orbitron", Helvetica;
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.home-new .total-info {
+  font-family: "Orbitron", Helvetica;
+  font-size: 12px;
+  font-weight: 400;
+  color: #cccccc;
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+  .home-new .cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 600px;
+  }
+}
+
+@media (max-width: 768px) {
+  .home-new .cards-grid {
+    grid-template-columns: 1fr;
+    max-width: 300px;
+  }
+  
+  .home-new .pagination-controls {
+    flex-direction: column;
+    gap: 20px;
+  }
 }

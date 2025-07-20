@@ -309,28 +309,98 @@
 
 .home-next .frame-68 {
   align-items: center;
-  display: inline-flex;
-  flex-direction: column;
-  height: 934px;
-  padding: 24px 0px 0px;
-  position: relative;
-}
-
-.home-next .frame-69 {
-  align-items: flex-start;
   display: flex;
-  flex: 0 0 auto;
-  gap: 30px;
-  justify-content: center;
+  flex-direction: column;
+  padding: 24px 20px;
   position: relative;
-  flex-wrap: wrap;
+  width: 100%;
+  max-width: 1200px;
 }
 
-.home-next .paginacion-2 {
-  align-self: stretch !important;
-  display: flex !important;
-  flex: 0 0 auto !important;
-  justify-content: flex-end !important;
-  margin-bottom: -0.09px !important;
-  width: 100% !important;
+/* Grid de cards - 3 por fila */
+.home-next .cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  width: 100%;
+  max-width: 900px;
+  margin-bottom: 40px;
+}
+
+/* Controles de paginación */
+.home-next .pagination-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 600px;
+  padding: 20px 0;
+}
+
+.home-next .pagination-btn {
+  background: linear-gradient(135deg, #ff01a1, #ff69b4);
+  color: #ffffff;
+  font-family: "Orbitron", Helvetica;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 1, 161, 0.3);
+}
+
+.home-next .pagination-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 1, 161, 0.4);
+}
+
+.home-next .pagination-btn:disabled {
+  background: #333333;
+  color: #666666;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+.home-next .pagination-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.home-next .page-info {
+  font-family: "Orbitron", Helvetica;
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.home-next .total-info {
+  font-family: "Orbitron", Helvetica;
+  font-size: 12px;
+  font-weight: 400;
+  color: #cccccc;
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+  .home-next .cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 600px;
+  }
+}
+
+@media (max-width: 768px) {
+  .home-next .cards-grid {
+    grid-template-columns: 1fr;
+    max-width: 300px;
+  }
+  
+  .home-next .pagination-controls {
+    flex-direction: column;
+    gap: 20px;
+  }
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Heder } from "../../components/Heder";
 import { MenuTabla } from "../../components/MenuTabla";
 import { Paginacion } from "../../components/Paginacion";
@@ -6,7 +6,44 @@ import { TarjetaProyectos } from "../../components/TarjetaProyectos";
 import { TarjetaRanking } from "../../components/TarjetaRanking";
 import "./style.css";
 
+// Datos de ejemplo para tokens Next
+const allNextTokens = [
+  { tokenName: "florkiño", tokenSymbol: "flk", tokenImage: "/img/image-4.png", marketCap: "$22000", progress: "12%", progressValue: 12 },
+  { tokenName: "anto", tokenSymbol: "ANT", tokenImage: "/img/image-3.png", marketCap: "$35000", progress: "28%", progressValue: 28 },
+  { tokenName: "nicolukas", tokenSymbol: "NKL", tokenImage: "/img/image-1.png", marketCap: "$18000", progress: "6%", progressValue: 6 },
+  { tokenName: "NEXT", tokenSymbol: "NXT", tokenImage: "/img/image-2.png", marketCap: "$42000", progress: "35%", progressValue: 35 },
+  { tokenName: "FUTURE", tokenSymbol: "FUT", tokenImage: "/img/image-5.png", marketCap: "$15000", progress: "9%", progressValue: 9 },
+  { tokenName: "MOON", tokenSymbol: "MOON", tokenImage: "/img/image-6.png", marketCap: "$58000", progress: "41%", progressValue: 41 },
+  { tokenName: "ROCKET", tokenSymbol: "RKT", tokenImage: "/img/image-3.png", marketCap: "$73000", progress: "52%", progressValue: 52 },
+  { tokenName: "STAR", tokenSymbol: "STAR", tokenImage: "/img/image-4.png", marketCap: "$29000", progress: "17%", progressValue: 17 },
+  { tokenName: "NOVA", tokenSymbol: "NOVA", tokenImage: "/img/image-1.png", marketCap: "$46000", progress: "33%", progressValue: 33 },
+  { tokenName: "COMET", tokenSymbol: "CMT", tokenImage: "/img/image-2.png", marketCap: "$61000", progress: "38%", progressValue: 38 },
+  { tokenName: "GALAXY", tokenSymbol: "GLX", tokenImage: "/img/image-5.png", marketCap: "$84000", progress: "47%", progressValue: 47 },
+  { tokenName: "ORBIT", tokenSymbol: "ORB", tokenImage: "/img/image-6.png", marketCap: "$37000", progress: "21%", progressValue: 21 }
+];
+
 export const HomeNext = () => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const cardsPerPage = 6;
+  const totalPages = Math.ceil(allNextTokens.length / cardsPerPage);
+
+  // Calcular las cards para la página actual
+  const startIndex = (currentPage - 1) * cardsPerPage;
+  const endIndex = startIndex + cardsPerPage;
+  const currentTokens = allNextTokens.slice(startIndex, endIndex);
+
+  // Funciones de navegación
+  const goToNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  const goToPrevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
   return (
     <div className="home-next">
       <Heder className="heder-home" />
@@ -83,69 +120,49 @@ export const HomeNext = () => {
         to2="/homeu47all"
       />
       <div className="frame-68">
-        <div className="frame-69">
-          <TarjetaProyectos
-            to="/homeu47detalletokenu47compra"
-            tokenName="florkiño"
-            tokenSymbol="flk"
-            tokenImage="/img/image-4.png"
-            marketCap="$22000"
-            progress="12%"
-            progressValue={12}
-          />
-          <TarjetaProyectos
-            tokenName="anto"
-            tokenSymbol="ANT"
-            tokenImage="/img/image-3.png"
-            marketCap="$35000"
-            progress="28%"
-            progressValue={28}
-          />
+        {/* Grid de cards - 3 por fila */}
+        <div className="cards-grid">
+          {currentTokens.map((token, index) => (
+            <TarjetaProyectos
+              key={`${token.tokenSymbol}-${index}`}
+              to={index === 0 ? "/homeu47detalletokenu47compra" : undefined}
+              tokenName={token.tokenName}
+              tokenSymbol={token.tokenSymbol}
+              tokenImage={token.tokenImage}
+              marketCap={token.marketCap}
+              progress={token.progress}
+              progressValue={token.progressValue}
+            />
+          ))}
         </div>
 
-        <div className="frame-69">
-          <TarjetaProyectos
-            tokenName="nicolukas"
-            tokenSymbol="NKL"
-            tokenImage="/img/image-1.png"
-            marketCap="$18000"
-            progress="6%"
-            progressValue={6}
-          />
-          <TarjetaProyectos
-            tokenName="NEXT"
-            tokenSymbol="NXT"
-            tokenImage="/img/image-2.png"
-            marketCap="$42000"
-            progress="35%"
-            progressValue={35}
-          />
+        {/* Controles de paginación personalizados */}
+        <div className="pagination-controls">
+          <button 
+            className="pagination-btn prev-btn" 
+            onClick={goToPrevPage}
+            disabled={currentPage === 1}
+          >
+            ← Previous
+          </button>
+          
+          <div className="pagination-info">
+            <span className="page-info">
+              Page {currentPage} of {totalPages}
+            </span>
+            <span className="total-info">
+              ({allNextTokens.length} total tokens)
+            </span>
+          </div>
+          
+          <button 
+            className="pagination-btn next-btn" 
+            onClick={goToNextPage}
+            disabled={currentPage === totalPages}
+          >
+            Next →
+          </button>
         </div>
-
-        <div className="frame-69">
-          <TarjetaProyectos
-            tokenName="FUTURE"
-            tokenSymbol="FUT"
-            tokenImage="/img/image-5.png"
-            marketCap="$15000"
-            progress="9%"
-            progressValue={9}
-          />
-          <TarjetaProyectos
-            tokenName="MOON"
-            tokenSymbol="MOON"
-            tokenImage="/img/image-6.png"
-            marketCap="$58000"
-            progress="41%"
-            progressValue={41}
-          />
-        </div>
-
-        <Paginacion
-          className="paginacion-2"
-          iconChevronRight="/img/icon-chevron-right-2.png"
-          img="/img/icon-chevron-right-3.png"
-        />
       </div>
     </div>
   );
