@@ -1,9 +1,15 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Heder } from "../../components/Heder";
+import authService from "../../services/authService";
 import "./style.css";
 
 export const Auth = () => {
+  const navigate = useNavigate();
   const [isLogin, setIsLogin] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -16,20 +22,67 @@ export const Auth = () => {
       ...formData,
       [e.target.name]: e.target.value
     });
+    // Limpiar errores cuando el usuario empiece a escribir
+    if (error) setError('');
+    if (success) setSuccess('');
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (isLogin) {
-      // Handle login
-      console.log('Login attempt:', { email: formData.email, password: formData.password });
-    } else {
-      // Handle registration
-      if (formData.password !== formData.confirmPassword) {
-        alert('Las contraseñas no coinciden');
-        return;
+    setLoading(true);
+    setError('');
+    setSuccess('');
+
+    try {
+      if (isLogin) {
+        // Handle login
+        const result = await authService.login({
+          email: formData.email,
+          password: formData.password
+        });
+
+        if (result.success) {
+          setSuccess('¡Inicio de sesión exitoso! Redirigiendo...');
+          setTimeout(() => {
+            navigate('/'); // Redirigir a la página principal
+          }, 1500);
+        } else {
+          setError(result.error);
+        }
+      } else {
+        // Handle registration
+        if (formData.password !== formData.confirmPassword) {
+          setError('Las contraseñas no coinciden');
+          setLoading(false);
+          return;
+        }
+
+        if (formData.password.length < 6) {
+          setError('La contraseña debe tener al menos 6 caracteres');
+          setLoading(false);
+          return;
+        }
+
+        const result = await authService.register({
+          nombre: formData.nombre,
+          email: formData.email,
+          password: formData.password
+        });
+
+        if (result.success) {
+          setSuccess('¡Registro exitoso! Redirigiendo...');
+          setTimeout(() => {
+            navigate('/'); // Redirigir a la página principal
+          }, 1500);
+        } else {
+          setError(result.error);
+        }
       }
-      console.log('Registration attempt:', formData);
+    } catch (error) {
+      setError('Error inesperado. Por favor, intenta de nuevo.');
+      console.error('Auth error:', error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -50,6 +103,19 @@ export const Auth = () => {
               }
             </p>
           </div>
+
+          {/* Mensajes de error y éxito */}
+          {error && (
+            <div className="auth-message error-message">
+              {error}
+            </div>
+          )}
+          
+          {success && (
+            <div className="auth-message success-message">
+              {success}
+            </div>
+          )}
 
           <form className="auth-form" onSubmit={handleSubmit}>
             {!isLogin && (
@@ -108,8 +174,8 @@ export const Auth = () => {
               </div>
             )}
 
-            <button type="submit" className="auth-button">
-              {isLogin ? 'Iniciar Sesión' : 'Crear Cuenta'}
+            <button type="submit" className="auth-button" disabled={loading}>
+              {loading ? 'Procesando...' : (isLogin ? 'Iniciar Sesión' : 'Crear Cuenta')}
             </button>
           </form>
 

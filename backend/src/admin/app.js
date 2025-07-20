@@ -22,32 +22,40 @@ const config = {
   
   // Personalización del branding
   auth: {
-    logo: null, // Sin logo personalizado por ahora
+    logo: '/admin/florka-logo.svg',
   },
   
   menu: {
-    logo: null, // Sin logo personalizado por ahora
+    logo: '/admin/florka-logo.svg',
+  },
+  
+  // Traducciones directas en config
+  translations: {
+    en: {
+      'app.components.LeftMenu.navbrand.title': 'FlorkaFun Dashboard',
+      'app.components.LeftMenu.navbrand.workplace': 'Admin Area',
+    }
   },
 };
 
 const bootstrap = (app) => {
-  console.log('FlorkafFun Dashboard loading...');
+  console.log('FlorkaFun Dashboard loading...');
   
   // Cambiar el título de la página de forma segura
   if (typeof document !== 'undefined') {
-    document.title = 'FlorkafFun Dashboard';
+    document.title = 'FlorkaFun Dashboard';
     
     // Cambiar el título del dashboard en el DOM cuando esté disponible
     setTimeout(() => {
       const titleElement = document.querySelector('[data-testid="main-nav-brand-title"]');
       if (titleElement) {
-        titleElement.textContent = 'FlorkafFun Dashboard';
+        titleElement.textContent = 'FlorkaFun Dashboard';
       }
       
       // También cambiar otros elementos de título
       const navTitle = document.querySelector('.sc-ksBlkl');
       if (navTitle) {
-        navTitle.textContent = 'FlorkafFun Dashboard';
+        navTitle.textContent = 'FlorkaFun Dashboard';
       }
     }, 1000);
   }

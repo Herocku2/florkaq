@@ -1,21 +1,21 @@
-// Configuración para personalizar el branding de FlorkafFun
+// Configuración para personalizar el branding de FlorkaFun
 module.exports = {
   // Personalizar traducciones
   translations: {
     en: {
-      'app.components.LeftMenu.navbrand.title': 'FlorkafFun Dashboard',
+      'app.components.LeftMenu.navbrand.title': 'FlorkaFun Dashboard',
       'app.components.LeftMenu.navbrand.workplace': 'Admin Area',
-      'Auth.form.welcome.title': 'Welcome to FlorkafFun!',
-      'Auth.form.welcome.subtitle': 'Log in to your FlorkafFun Admin Area',
-      'HomePage.welcome': 'Welcome to FlorkafFun Admin!',
-      'HomePage.welcome.again': 'Welcome back to FlorkafFun!',
-      'Settings.application.title': 'FlorkafFun Settings',
+      'Auth.form.welcome.title': 'Welcome to FlorkaFun!',
+      'Auth.form.welcome.subtitle': 'Log in to your FlorkaFun Admin Area',
+      'HomePage.welcome': 'Welcome to FlorkaFun Admin!',
+      'HomePage.welcome.again': 'Welcome back to FlorkaFun!',
+      'Settings.application.title': 'FlorkaFun Settings',
       'global.content-manager': 'Content Manager',
       'content-manager.plugin.name': 'Content Manager',
       // Cambiar el título del dashboard
-      'HomePage.head.title': 'FlorkafFun Dashboard',
-      'app.components.HomePage.welcome': 'Welcome to FlorkafFun Dashboard!',
-      'app.components.HomePage.welcome.again': 'Welcome back to FlorkafFun Dashboard!',
+      'HomePage.head.title': 'FlorkaFun Dashboard',
+      'app.components.HomePage.welcome': 'Welcome to FlorkaFun Dashboard!',
+      'app.components.HomePage.welcome.again': 'Welcome back to FlorkaFun Dashboard!',
     }
   }
 };
