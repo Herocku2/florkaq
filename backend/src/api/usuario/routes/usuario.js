@@ -1,20 +1,12 @@
 'use strict';
 
-/**
- * usuario router
- */
-
-const { createCoreRouter } = require('@strapi/strapi').factories;
-
-const defaultRouter = createCoreRouter('api::usuario.usuario');
-
-// Rutas personalizadas
-const customRoutes = {
+module.exports = {
   routes: [
+    // Rutas personalizadas de autenticación
     {
-      method: 'GET',
-      path: '/usuarios/me',
-      handler: 'usuario.me',
+      method: 'POST',
+      path: '/usuario/register',
+      handler: 'usuario.register',
       config: {
         policies: [],
         middlewares: [],
@@ -22,17 +14,8 @@ const customRoutes = {
     },
     {
       method: 'POST',
-      path: '/usuarios/conectar-wallet',
-      handler: 'usuario.conectarWallet',
-      config: {
-        policies: [],
-        middlewares: [],
-      },
-    },
-    {
-      method: 'GET',
-      path: '/usuarios/estadisticas',
-      handler: 'usuario.estadisticas',
+      path: '/usuario/login',
+      handler: 'usuario.login',
       config: {
         policies: [],
         middlewares: [],
@@ -40,5 +23,3 @@ const customRoutes = {
     },
   ],
 };
-
-module.exports = defaultRouter;

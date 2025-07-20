@@ -1,14 +1,10 @@
 'use strict';
 
-/**
- * Auth routes personalizadas
- */
-
 module.exports = {
   routes: [
     {
       method: 'POST',
-      path: '/auth/local/register',
+      path: '/auth/register',
       handler: 'auth.register',
       config: {
         policies: [],
@@ -17,7 +13,7 @@ module.exports = {
     },
     {
       method: 'POST',
-      path: '/auth/local',
+      path: '/auth/login',
       handler: 'auth.login',
       config: {
         policies: [],
@@ -33,5 +29,23 @@ module.exports = {
         middlewares: [],
       },
     },
-  ]
+    {
+      method: 'PUT',
+      path: '/auth/profile',
+      handler: 'auth.updateProfile',
+      config: {
+        policies: [],
+        middlewares: [],
+      },
+    },
+    {
+      method: 'PUT',
+      path: '/auth/change-password',
+      handler: 'auth.changePassword',
+      config: {
+        policies: [],
+        middlewares: [],
+      },
+    },
+  ],
 };

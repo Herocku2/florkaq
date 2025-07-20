@@ -1,99 +1,181 @@
 'use strict';
 
-/**
- * usuario controller
- */
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
 
-const { createCoreController } = require('@strapi/strapi').factories;
+const JWT_SECRET = process.env.JWT_SECRET || 'florkafun-secret-key-2024';
 
-module.exports = createCoreController('api::usuario.usuario', ({ strapi }) => ({
-  // Método personalizado para obtener perfil del usuario actual
-  async me(ctx) {
+module.exports = {
+  // Registro de usuario
+  async register(ctx) {
     try {
-      const user = ctx.state.user;
-      if (!user) {
-        return ctx.unauthorized('No estás autenticado');
+      const { username, email, password } = ctx.request.body;
+
+      console.log('📝 Intento de registro:', { username, email });
+
+      // Validaciones básicas
+      if (!username || !email || !password) {
+        return ctx.send({
+          success: false,
+          error: 'Todos los campos son requeridos'
+        });
       }
 
-      const usuario = await strapi.entityService.findOne('api::usuario.usuario', user.id, {
-        populate: '*'
-      });
-
-      return this.transformResponse(usuario);
-    } catch (error) {
-      ctx.throw(500, 'Error al obtener perfil de usuario');
-    }
-  },
-
-  // Método personalizado para conectar wallet de Solana
-  async conectarWallet(ctx) {
-    try {
-      const user = ctx.state.user;
-      const { walletAddress } = ctx.request.body;
-
-      if (!user) {
-        return ctx.unauthorized('No estás autenticado');
+      if (password.length < 6) {
+        return ctx.send({
+          success: false,
+          error: 'La contraseña debe tener al menos 6 caracteres'
+        });
       }
 
-      if (!walletAddress) {
-        return ctx.badRequest('Dirección de wallet requerida');
-      }
-
-      // Validar formato de dirección de Solana
-      const solanaAddressRegex = /^[1-9A-HJ-NP-Za-km-z]{32,44}$/;
-      if (!solanaAddressRegex.test(walletAddress)) {
-        return ctx.badRequest('Formato de dirección de wallet inválido');
-      }
-
-      // Verificar que no exista otro usuario con la misma wallet
-      const existingUser = await strapi.entityService.findMany('api::usuario.usuario', {
-        filters: {
-          walletSolana: walletAddress,
-          id: { $ne: user.id }
+      // Verificar si el usuario ya existe
+      const existingUser = await strapi.query('plugin::users-permissions.user').findOne({
+        where: {
+          $or: [
+            { email: email.toLowerCase() },
+            { username: username.toLowerCase() }
+          ]
         }
       });
 
-      if (existingUser.length > 0) {
-        return ctx.badRequest('Esta wallet ya está conectada a otra cuenta');
+      if (existingUser) {
+        return ctx.send({
+          success: false,
+          error: 'El usuario o email ya existe'
+        });
       }
 
-      // Actualizar usuario con la wallet
-      const updatedUser = await strapi.entityService.update('api::usuario.usuario', user.id, {
+      // Encriptar contraseña
+      const hashedPassword = await bcrypt.hash(password, 12);
+
+      // Obtener rol por defecto (Authenticated)
+      const defaultRole = await strapi.query('plugin::users-permissions.role').findOne({
+        where: { type: 'authenticated' }
+      });
+
+      // Crear usuario
+      const newUser = await strapi.query('plugin::users-permissions.user').create({
         data: {
-          walletSolana: walletAddress
+          username: username.toLowerCase(),
+          email: email.toLowerCase(),
+          password: hashedPassword,
+          confirmed: true,
+          blocked: false,
+          role: defaultRole.id,
         }
       });
 
-      return this.transformResponse(updatedUser);
+      // Generar JWT
+      const token = jwt.sign(
+        { 
+          id: newUser.id, 
+          email: newUser.email, 
+          username: newUser.username 
+        },
+        JWT_SECRET,
+        { expiresIn: '7d' }
+      );
+
+      // Remover password de la respuesta
+      const { password: _, ...userWithoutPassword } = newUser;
+
+      console.log('✅ Usuario registrado exitosamente:', newUser.id);
+
+      ctx.send({
+        success: true,
+        jwt: token,
+        user: userWithoutPassword,
+        message: 'Usuario registrado exitosamente'
+      });
+
     } catch (error) {
-      ctx.throw(500, 'Error al conectar wallet');
+      console.error('❌ Error en registro:', error);
+      ctx.send({
+        success: false,
+        error: 'Error interno del servidor'
+      });
     }
   },
 
-  // Método personalizado para obtener estadísticas del usuario
-  async estadisticas(ctx) {
+  // Login de usuario
+  async login(ctx) {
     try {
-      const user = ctx.state.user;
-      if (!user) {
-        return ctx.unauthorized('No estás autenticado');
+      const { identifier, password } = ctx.request.body;
+
+      console.log('🔑 Intento de login:', { identifier });
+
+      // Validaciones básicas
+      if (!identifier || !password) {
+        return ctx.send({
+          success: false,
+          error: 'Email/usuario y contraseña son requeridos'
+        });
       }
 
-      // Aquí podrías obtener estadísticas como:
-      // - Número de votos emitidos
-      // - Número de comentarios
-      // - Número de solicitudes de token
-      // - Número de swaps realizados
+      // Buscar usuario por email o username
+      const user = await strapi.query('plugin::users-permissions.user').findOne({
+        where: {
+          $or: [
+            { email: identifier.toLowerCase() },
+            { username: identifier.toLowerCase() }
+          ]
+        }
+      });
 
-      const estadisticas = {
-        votos: 0, // Implementar cuando tengamos el modelo de Votos
-        comentarios: 0, // Implementar cuando tengamos el modelo de Comentarios
-        solicitudes: 0, // Implementar cuando tengamos el modelo de SolicitudesToken
-        swaps: 0 // Implementar cuando tengamos el modelo de Swaps
-      };
+      if (!user) {
+        return ctx.send({
+          success: false,
+          error: 'Credenciales incorrectas'
+        });
+      }
 
-      return { data: estadisticas };
+      // Verificar si el usuario está bloqueado
+      if (user.blocked) {
+        return ctx.send({
+          success: false,
+          error: 'Usuario bloqueado'
+        });
+      }
+
+      // Verificar contraseña
+      const isPasswordValid = await bcrypt.compare(password, user.password);
+
+      if (!isPasswordValid) {
+        return ctx.send({
+          success: false,
+          error: 'Credenciales incorrectas'
+        });
+      }
+
+      // Generar JWT
+      const token = jwt.sign(
+        { 
+          id: user.id, 
+          email: user.email, 
+          username: user.username 
+        },
+        JWT_SECRET,
+        { expiresIn: '7d' }
+      );
+
+      // Remover password de la respuesta
+      const { password: _, ...userWithoutPassword } = user;
+
+      console.log('✅ Login exitoso:', user.id);
+
+      ctx.send({
+        success: true,
+        jwt: token,
+        user: userWithoutPassword,
+        message: 'Login exitoso'
+      });
+
     } catch (error) {
-      ctx.throw(500, 'Error al obtener estadísticas');
+      console.error('❌ Error en login:', error);
+      ctx.send({
+        success: false,
+        error: 'Error interno del servidor'
+      });
     }
   }
-}));
+};

@@ -4,7 +4,7 @@ class AuthService {
   // Registrar nuevo usuario
   async register(userData) {
     try {
-      const response = await fetch(`${API_BASE_URL}/auth/local/register`, {
+      const response = await fetch(`${API_BASE_URL}/usuario/register`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -18,7 +18,7 @@ class AuthService {
 
       const data = await response.json();
 
-      if (response.ok) {
+      if (data.success) {
         // Guardar token y datos del usuario
         localStorage.setItem('token', data.jwt);
         localStorage.setItem('user', JSON.stringify(data.user));
@@ -26,7 +26,7 @@ class AuthService {
       } else {
         return { 
           success: false, 
-          error: data.error?.message || 'Error en el registro' 
+          error: data.error || 'Error en el registro' 
         };
       }
     } catch (error) {
@@ -41,7 +41,7 @@ class AuthService {
   // Iniciar sesión
   async login(credentials) {
     try {
-      const response = await fetch(`${API_BASE_URL}/auth/local`, {
+      const response = await fetch(`${API_BASE_URL}/usuario/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -54,7 +54,7 @@ class AuthService {
 
       const data = await response.json();
 
-      if (response.ok) {
+      if (data.success) {
         // Guardar token y datos del usuario
         localStorage.setItem('token', data.jwt);
         localStorage.setItem('user', JSON.stringify(data.user));
@@ -62,7 +62,7 @@ class AuthService {
       } else {
         return { 
           success: false, 
-          error: data.error?.message || 'Credenciales incorrectas' 
+          error: data.error || 'Credenciales incorrectas' 
         };
       }
     } catch (error) {
@@ -103,16 +103,16 @@ class AuthService {
       const token = this.getToken();
       if (!token) return null;
 
-      const response = await fetch(`${API_BASE_URL}/users/me`, {
+      const response = await fetch(`${API_BASE_URL}/auth/me`, {
         headers: {
           'Authorization': `Bearer ${token}`,
         },
       });
 
       if (response.ok) {
-        const user = await response.json();
-        localStorage.setItem('user', JSON.stringify(user));
-        return user;
+        const data = await response.json();
+        localStorage.setItem('user', JSON.stringify(data.user));
+        return data.user;
       } else {
         // Token inválido, cerrar sesión
         this.logout();

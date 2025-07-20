@@ -1,148 +1,303 @@
 'use strict';
 
-/**
- * Auth controller personalizado para FlorkaFun
- */
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
+
+const JWT_SECRET = process.env.JWT_SECRET || 'florkafun-secret-key-2024';
 
 module.exports = {
+  // Registro de usuario
   async register(ctx) {
     try {
-      const { email, username, password, requestModerator } = ctx.request.body;
+      const { username, email, password } = ctx.request.body;
 
-      // Validar datos requeridos
-      if (!email || !password) {
-        return ctx.badRequest('Email and password are required');
+      // Validaciones básicas
+      if (!username || !email || !password) {
+        return ctx.badRequest('Todos los campos son requeridos');
+      }
+
+      if (password.length < 6) {
+        return ctx.badRequest('La contraseña debe tener al menos 6 caracteres');
       }
 
       // Verificar si el usuario ya existe
       const existingUser = await strapi.query('plugin::users-permissions.user').findOne({
-        where: { email }
+        where: {
+          $or: [
+            { email: email.toLowerCase() },
+            { username: username.toLowerCase() }
+          ]
+        }
       });
 
       if (existingUser) {
-        return ctx.badRequest('User already exists');
+        return ctx.badRequest('El usuario o email ya existe');
       }
 
-      // Crear usuario en el sistema de usuarios de Strapi
-      const user = await strapi.plugins['users-permissions'].services.user.add({
-        email,
-        username: username || email.split('@')[0],
-        password,
-        confirmed: true,
-        role: 1 // Rol de usuario autenticado por defecto
+      // Encriptar contraseña
+      const hashedPassword = await bcrypt.hash(password, 12);
+
+      // Obtener rol por defecto (Authenticated)
+      const defaultRole = await strapi.query('plugin::users-permissions.role').findOne({
+        where: { type: 'authenticated' }
       });
 
-      // Crear entrada en la colección personalizada de usuarios
-      const customUser = await strapi.entityService.create('api::usuario.usuario', {
+      // Crear usuario
+      const newUser = await strapi.query('plugin::users-permissions.user').create({
         data: {
-          nombre: username || email.split('@')[0],
-          email,
-          rol: 'usuario',
-          fechaRegistro: new Date(),
-          activo: true,
-          solicitudModerador: requestModerator || false,
-          fechaSolicitudModerador: requestModerator ? new Date() : null,
-          estadoSolicitudModerador: requestModerator ? 'pendiente' : null
+          username: username.toLowerCase(),
+          email: email.toLowerCase(),
+          password: hashedPassword,
+          confirmed: true,
+          blocked: false,
+          role: defaultRole.id,
         }
       });
 
-      // Generar JWT token
-      const jwt = strapi.plugins['users-permissions'].services.jwt.issue({
-        id: user.id,
-      });
+      // Generar JWT
+      const token = jwt.sign(
+        { 
+          id: newUser.id, 
+          email: newUser.email, 
+          username: newUser.username 
+        },
+        JWT_SECRET,
+        { expiresIn: '7d' }
+      );
 
-      // Si solicitó ser moderador, crear notificación para administradores
-      if (requestModerator) {
-        await strapi.entityService.create('api::actividad.actividad', {
-          data: {
-            tipo: 'solicitud_moderador',
-            descripcion: `${user.username} has requested to be a forum moderator`,
-            usuario: user.id.toString(),
-            entidadRelacionada: customUser.id.toString(),
-            tipoEntidad: 'usuario'
-          }
-        });
-
-        strapi.log.info(`New moderator request from user: ${user.username}`);
-      }
+      // Remover password de la respuesta
+      const { password: _, ...userWithoutPassword } = newUser;
 
       ctx.send({
-        jwt,
-        user: {
-          id: user.id,
-          username: user.username,
-          email: user.email,
-          customUser: customUser
-        }
+        jwt: token,
+        user: userWithoutPassword,
+        message: 'Usuario registrado exitosamente'
       });
 
     } catch (error) {
-      strapi.log.error('Registration error:', error);
-      ctx.badRequest('Registration failed');
+      console.error('Error en registro:', error);
+      ctx.badRequest('Error interno del servidor');
     }
   },
 
+  // Login de usuario
   async login(ctx) {
     try {
       const { identifier, password } = ctx.request.body;
 
-      // Validar datos requeridos
+      // Validaciones básicas
       if (!identifier || !password) {
-        return ctx.badRequest('Email and password are required');
+        return ctx.badRequest('Email/usuario y contraseña son requeridos');
       }
 
-      // Usar el servicio de autenticación de Strapi
-      const { user, jwt } = await strapi.plugins['users-permissions'].services.auth.login({
-        identifier,
-        password
-      });
-
-      // Obtener datos del usuario personalizado
-      const customUser = await strapi.entityService.findMany('api::usuario.usuario', {
-        filters: { email: user.email }
-      });
-
-      ctx.send({
-        jwt,
-        user: {
-          id: user.id,
-          username: user.username,
-          email: user.email,
-          customUser: customUser[0] || null
+      // Buscar usuario por email o username
+      const user = await strapi.query('plugin::users-permissions.user').findOne({
+        where: {
+          $or: [
+            { email: identifier.toLowerCase() },
+            { username: identifier.toLowerCase() }
+          ]
         }
       });
 
+      if (!user) {
+        return ctx.badRequest('Credenciales incorrectas');
+      }
+
+      // Verificar si el usuario está bloqueado
+      if (user.blocked) {
+        return ctx.badRequest('Usuario bloqueado');
+      }
+
+      // Verificar contraseña
+      const isPasswordValid = await bcrypt.compare(password, user.password);
+
+      if (!isPasswordValid) {
+        return ctx.badRequest('Credenciales incorrectas');
+      }
+
+      // Generar JWT
+      const token = jwt.sign(
+        { 
+          id: user.id, 
+          email: user.email, 
+          username: user.username 
+        },
+        JWT_SECRET,
+        { expiresIn: '7d' }
+      );
+
+      // Remover password de la respuesta
+      const { password: _, ...userWithoutPassword } = user;
+
+      ctx.send({
+        jwt: token,
+        user: userWithoutPassword,
+        message: 'Login exitoso'
+      });
+
     } catch (error) {
-      strapi.log.error('Login error:', error);
-      ctx.badRequest('Invalid credentials');
+      console.error('Error en login:', error);
+      ctx.badRequest('Error interno del servidor');
     }
   },
 
+  // Obtener información del usuario actual
   async me(ctx) {
     try {
-      const user = ctx.state.user;
+      const token = ctx.request.header.authorization?.replace('Bearer ', '');
 
-      if (!user) {
-        return ctx.unauthorized('No user found');
+      if (!token) {
+        return ctx.unauthorized('Token no proporcionado');
       }
 
-      // Obtener datos del usuario personalizado
-      const customUser = await strapi.entityService.findMany('api::usuario.usuario', {
-        filters: { email: user.email }
+      // Verificar JWT
+      const decoded = jwt.verify(token, JWT_SECRET);
+
+      // Obtener usuario actualizado
+      const user = await strapi.query('plugin::users-permissions.user').findOne({
+        where: { id: decoded.id }
       });
 
+      if (!user || user.blocked) {
+        return ctx.unauthorized('Usuario no válido');
+      }
+
+      // Remover password de la respuesta
+      const { password: _, ...userWithoutPassword } = user;
+
       ctx.send({
-        user: {
-          id: user.id,
-          username: user.username,
-          email: user.email,
-          customUser: customUser[0] || null
-        }
+        user: userWithoutPassword
       });
 
     } catch (error) {
-      strapi.log.error('Me endpoint error:', error);
-      ctx.internalServerError('Failed to get user data');
+      console.error('Error obteniendo usuario:', error);
+      ctx.unauthorized('Token inválido');
+    }
+  },
+
+  // Actualizar perfil
+  async updateProfile(ctx) {
+    try {
+      const token = ctx.request.header.authorization?.replace('Bearer ', '');
+
+      if (!token) {
+        return ctx.unauthorized('Token no proporcionado');
+      }
+
+      // Verificar JWT
+      const decoded = jwt.verify(token, JWT_SECRET);
+      const { username, email } = ctx.request.body;
+
+      // Validaciones
+      if (email) {
+        const existingUser = await strapi.query('plugin::users-permissions.user').findOne({
+          where: { 
+            email: email.toLowerCase(),
+            id: { $ne: decoded.id }
+          }
+        });
+
+        if (existingUser) {
+          return ctx.badRequest('El email ya está en uso');
+        }
+      }
+
+      if (username) {
+        const existingUser = await strapi.query('plugin::users-permissions.user').findOne({
+          where: { 
+            username: username.toLowerCase(),
+            id: { $ne: decoded.id }
+          }
+        });
+
+        if (existingUser) {
+          return ctx.badRequest('El nombre de usuario ya está en uso');
+        }
+      }
+
+      // Actualizar usuario
+      const updatedUser = await strapi.query('plugin::users-permissions.user').update({
+        where: { id: decoded.id },
+        data: {
+          ...(username && { username: username.toLowerCase() }),
+          ...(email && { email: email.toLowerCase() }),
+        }
+      });
+
+      // Remover password de la respuesta
+      const { password: _, ...userWithoutPassword } = updatedUser;
+
+      ctx.send({
+        user: userWithoutPassword,
+        message: 'Perfil actualizado exitosamente'
+      });
+
+    } catch (error) {
+      console.error('Error actualizando perfil:', error);
+      if (error.name === 'JsonWebTokenError') {
+        return ctx.unauthorized('Token inválido');
+      }
+      ctx.badRequest('Error interno del servidor');
+    }
+  },
+
+  // Cambiar contraseña
+  async changePassword(ctx) {
+    try {
+      const token = ctx.request.header.authorization?.replace('Bearer ', '');
+
+      if (!token) {
+        return ctx.unauthorized('Token no proporcionado');
+      }
+
+      // Verificar JWT
+      const decoded = jwt.verify(token, JWT_SECRET);
+      const { currentPassword, newPassword } = ctx.request.body;
+
+      if (!currentPassword || !newPassword) {
+        return ctx.badRequest('Contraseña actual y nueva son requeridas');
+      }
+
+      if (newPassword.length < 6) {
+        return ctx.badRequest('La nueva contraseña debe tener al menos 6 caracteres');
+      }
+
+      // Obtener usuario
+      const user = await strapi.query('plugin::users-permissions.user').findOne({
+        where: { id: decoded.id }
+      });
+
+      if (!user) {
+        return ctx.unauthorized('Usuario no encontrado');
+      }
+
+      // Verificar contraseña actual
+      const isCurrentPasswordValid = await bcrypt.compare(currentPassword, user.password);
+
+      if (!isCurrentPasswordValid) {
+        return ctx.badRequest('Contraseña actual incorrecta');
+      }
+
+      // Encriptar nueva contraseña
+      const hashedNewPassword = await bcrypt.hash(newPassword, 12);
+
+      // Actualizar contraseña
+      await strapi.query('plugin::users-permissions.user').update({
+        where: { id: decoded.id },
+        data: { password: hashedNewPassword }
+      });
+
+      ctx.send({
+        message: 'Contraseña actualizada exitosamente'
+      });
+
+    } catch (error) {
+      console.error('Error cambiando contraseña:', error);
+      if (error.name === 'JsonWebTokenError') {
+        return ctx.unauthorized('Token inválido');
+      }
+      ctx.badRequest('Error interno del servidor');
     }
   }
 };
