@@ -9,7 +9,29 @@ module.exports = {
    *
    * This gives you an opportunity to extend code.
    */
-  register(/*{ strapi }*/) {},
+  register({ strapi }) {
+    // Registrar middleware global para bypass de autenticación en rutas públicas
+    strapi.server.use(async (ctx, next) => {
+      // Rutas completamente públicas
+      const publicRoutes = [
+        '/api/auth/register',
+        '/api/auth/login',
+        '/api/auth/custom-register',
+        '/api/auth/custom-login',
+        '/api/tokens',
+        '/api/votos',
+        '/api/foros'
+      ];
+
+      // Si es una ruta pública, marcarla como tal
+      if (publicRoutes.some(route => ctx.request.path.startsWith(route))) {
+        console.log('🔓 Acceso público permitido:', ctx.request.path);
+        ctx.state.isPublic = true;
+      }
+
+      await next();
+    });
+  },
 
   /**
    * An asynchronous bootstrap function that runs before

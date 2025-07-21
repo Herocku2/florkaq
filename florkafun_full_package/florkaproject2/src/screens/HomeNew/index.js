@@ -1,1 +1,0 @@
-export { HomeNew } from "./HomeNew";

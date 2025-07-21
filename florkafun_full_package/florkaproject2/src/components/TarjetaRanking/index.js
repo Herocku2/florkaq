@@ -1,1 +1,0 @@
-export { TarjetaRanking } from "./TarjetaRanking";

@@ -1,1 +1,0 @@
-export { Isotipo } from "./Isotipo";

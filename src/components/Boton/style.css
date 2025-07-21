@@ -44,3 +44,79 @@
   content: "👤";
   font-size: 14px;
 }
+/* Estilos para usuario autenticado */
+.boton-user {
+  align-items: center;
+  background: linear-gradient(135deg, #4a90e2, #357abd);
+  border-radius: 25px;
+  display: inline-flex;
+  gap: 10px;
+  height: 50px;
+  justify-content: center;
+  padding: 8px 16px;
+  position: relative;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(74, 144, 226, 0.4);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.boton-user:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(74, 144, 226, 0.6);
+  background: linear-gradient(135deg, #357abd, #4a90e2);
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.username {
+  color: #ffffff;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+}
+
+.logout-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 15px;
+  color: #ffffff;
+  cursor: pointer;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 4px 8px;
+  transition: all 0.2s ease;
+}
+
+.logout-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: scale(1.05);
+}
+
+.logout-btn:active {
+  transform: scale(0.95);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .boton-user {
+    padding: 6px 12px;
+    height: 45px;
+  }
+  
+  .username {
+    font-size: 13px;
+  }
+  
+  .logout-btn {
+    font-size: 11px;
+    padding: 3px 6px;
+  }
+}

@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { AuthProvider } from "./contexts/AuthContext";
+import { securityCleaner } from "./utils/securityCleaner";
 import { Create } from "./screens/Create";
 import { CreateScreen } from "./screens/CreateScreen";
 import { CreateWrapper } from "./screens/CreateWrapper";
@@ -111,5 +113,14 @@ const router = createBrowserRouter([
 ]);
 
 export const App = () => {
-  return <RouterProvider router={router} />;
+  // Inicializar medidas de seguridad al cargar la aplicación
+  useEffect(() => {
+    securityCleaner.initialize();
+  }, []);
+
+  return (
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
+  );
 };

@@ -6,16 +6,15 @@ const bcrypt = require('bcryptjs');
 const JWT_SECRET = process.env.JWT_SECRET || 'florkafun-secret-key-2024';
 
 module.exports = {
-  // Registro de usuario
-  async register(ctx) {
+  // Registro personalizado
+  async customRegister(ctx) {
     try {
       const { username, email, password } = ctx.request.body;
 
-      console.log('📝 Intento de registro:', { username, email });
+      console.log('📝 Registro personalizado:', { username, email });
 
-      // Validaciones básicas
+      // Validaciones
       if (!username || !email || !password) {
-        ctx.status = 200;
         return ctx.send({
           success: false,
           error: 'Todos los campos son requeridos'
@@ -23,14 +22,13 @@ module.exports = {
       }
 
       if (password.length < 6) {
-        ctx.status = 200;
         return ctx.send({
           success: false,
           error: 'La contraseña debe tener al menos 6 caracteres'
         });
       }
 
-      // Verificar si el usuario ya existe
+      // Verificar usuario existente
       const existingUser = await strapi.query('plugin::users-permissions.user').findOne({
         where: {
           $or: [
@@ -41,27 +39,19 @@ module.exports = {
       });
 
       if (existingUser) {
-        ctx.status = 200;
         return ctx.send({
           success: false,
           error: 'El usuario o email ya existe'
         });
       }
 
-      // Encriptar contraseña
+      // Hash password
       const hashedPassword = await bcrypt.hash(password, 12);
 
-      // Obtener rol por defecto (Authenticated)
-      let defaultRole = await strapi.query('plugin::users-permissions.role').findOne({
+      // Obtener rol authenticated
+      const authenticatedRole = await strapi.query('plugin::users-permissions.role').findOne({
         where: { type: 'authenticated' }
       });
-
-      if (!defaultRole) {
-        // Si no existe el rol authenticated, usar public
-        defaultRole = await strapi.query('plugin::users-permissions.role').findOne({
-          where: { type: 'public' }
-        });
-      }
 
       // Crear usuario
       const newUser = await strapi.query('plugin::users-permissions.user').create({
@@ -71,7 +61,7 @@ module.exports = {
           password: hashedPassword,
           confirmed: true,
           blocked: false,
-          role: defaultRole?.id || 1,
+          role: authenticatedRole.id,
         }
       });
 
@@ -86,46 +76,42 @@ module.exports = {
         { expiresIn: '7d' }
       );
 
-      // Remover password de la respuesta
-      const { password: _, ...userWithoutPassword } = newUser;
+      // Respuesta sin password
+      const { password: _, ...userResponse } = newUser;
 
-      console.log('✅ Usuario registrado exitosamente:', newUser.id);
+      console.log('✅ Usuario registrado:', newUser.id);
 
-      ctx.status = 200;
       ctx.send({
         success: true,
         jwt: token,
-        user: userWithoutPassword,
+        user: userResponse,
         message: 'Usuario registrado exitosamente'
       });
 
     } catch (error) {
       console.error('❌ Error en registro:', error);
-      ctx.status = 200;
       ctx.send({
         success: false,
-        error: 'Error interno del servidor: ' + error.message
+        error: 'Error interno: ' + error.message
       });
     }
   },
 
-  // Login de usuario
-  async login(ctx) {
+  // Login personalizado
+  async customLogin(ctx) {
     try {
       const { identifier, password } = ctx.request.body;
 
-      console.log('🔑 Intento de login:', { identifier });
+      console.log('🔑 Login personalizado:', { identifier });
 
-      // Validaciones básicas
       if (!identifier || !password) {
-        ctx.status = 200;
         return ctx.send({
           success: false,
-          error: 'Email/usuario y contraseña son requeridos'
+          error: 'Email/usuario y contraseña requeridos'
         });
       }
 
-      // Buscar usuario por email o username
+      // Buscar usuario
       const user = await strapi.query('plugin::users-permissions.user').findOne({
         where: {
           $or: [
@@ -136,27 +122,23 @@ module.exports = {
       });
 
       if (!user) {
-        ctx.status = 200;
         return ctx.send({
           success: false,
           error: 'Credenciales incorrectas'
         });
       }
 
-      // Verificar si el usuario está bloqueado
       if (user.blocked) {
-        ctx.status = 200;
         return ctx.send({
           success: false,
           error: 'Usuario bloqueado'
         });
       }
 
-      // Verificar contraseña
-      const isPasswordValid = await bcrypt.compare(password, user.password);
+      // Verificar password
+      const isValid = await bcrypt.compare(password, user.password);
 
-      if (!isPasswordValid) {
-        ctx.status = 200;
+      if (!isValid) {
         return ctx.send({
           success: false,
           error: 'Credenciales incorrectas'
@@ -174,25 +156,23 @@ module.exports = {
         { expiresIn: '7d' }
       );
 
-      // Remover password de la respuesta
-      const { password: _, ...userWithoutPassword } = user;
+      // Respuesta sin password
+      const { password: _, ...userResponse } = user;
 
       console.log('✅ Login exitoso:', user.id);
 
-      ctx.status = 200;
       ctx.send({
         success: true,
         jwt: token,
-        user: userWithoutPassword,
+        user: userResponse,
         message: 'Login exitoso'
       });
 
     } catch (error) {
       console.error('❌ Error en login:', error);
-      ctx.status = 200;
       ctx.send({
         success: false,
-        error: 'Error interno del servidor: ' + error.message
+        error: 'Error interno: ' + error.message
       });
     }
   }

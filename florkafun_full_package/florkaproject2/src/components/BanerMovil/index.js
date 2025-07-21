@@ -1,1 +1,0 @@
-export { BanerMovil } from "./BanerMovil";

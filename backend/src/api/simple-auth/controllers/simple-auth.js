@@ -6,16 +6,15 @@ const bcrypt = require('bcryptjs');
 const JWT_SECRET = process.env.JWT_SECRET || 'florkafun-secret-key-2024';
 
 module.exports = {
-  // Registro de usuario
+  // Registro simple sin verificación de permisos
   async register(ctx) {
     try {
+      console.log('📝 Registro simple iniciado');
       const { username, email, password } = ctx.request.body;
-
-      console.log('📝 Intento de registro:', { username, email });
 
       // Validaciones básicas
       if (!username || !email || !password) {
-        ctx.status = 200;
+        ctx.status = 400;
         return ctx.send({
           success: false,
           error: 'Todos los campos son requeridos'
@@ -23,7 +22,7 @@ module.exports = {
       }
 
       if (password.length < 6) {
-        ctx.status = 200;
+        ctx.status = 400;
         return ctx.send({
           success: false,
           error: 'La contraseña debe tener al menos 6 caracteres'
@@ -31,7 +30,7 @@ module.exports = {
       }
 
       // Verificar si el usuario ya existe
-      const existingUser = await strapi.query('plugin::users-permissions.user').findOne({
+      const existingUser = await strapi.db.query('plugin::users-permissions.user').findOne({
         where: {
           $or: [
             { email: email.toLowerCase() },
@@ -41,7 +40,7 @@ module.exports = {
       });
 
       if (existingUser) {
-        ctx.status = 200;
+        ctx.status = 400;
         return ctx.send({
           success: false,
           error: 'El usuario o email ya existe'
@@ -52,26 +51,28 @@ module.exports = {
       const hashedPassword = await bcrypt.hash(password, 12);
 
       // Obtener rol por defecto (Authenticated)
-      let defaultRole = await strapi.query('plugin::users-permissions.role').findOne({
+      const defaultRole = await strapi.db.query('plugin::users-permissions.role').findOne({
         where: { type: 'authenticated' }
       });
 
       if (!defaultRole) {
-        // Si no existe el rol authenticated, usar public
-        defaultRole = await strapi.query('plugin::users-permissions.role').findOne({
-          where: { type: 'public' }
+        console.error('❌ No se encontró el rol authenticated');
+        ctx.status = 500;
+        return ctx.send({
+          success: false,
+          error: 'Error de configuración del sistema'
         });
       }
 
-      // Crear usuario
-      const newUser = await strapi.query('plugin::users-permissions.user').create({
+      // Crear usuario directamente en la base de datos
+      const newUser = await strapi.db.query('plugin::users-permissions.user').create({
         data: {
           username: username.toLowerCase(),
           email: email.toLowerCase(),
           password: hashedPassword,
           confirmed: true,
           blocked: false,
-          role: defaultRole?.id || 1,
+          role: defaultRole.id,
         }
       });
 
@@ -100,8 +101,8 @@ module.exports = {
       });
 
     } catch (error) {
-      console.error('❌ Error en registro:', error);
-      ctx.status = 200;
+      console.error('❌ Error en registro simple:', error);
+      ctx.status = 500;
       ctx.send({
         success: false,
         error: 'Error interno del servidor: ' + error.message
@@ -109,16 +110,15 @@ module.exports = {
     }
   },
 
-  // Login de usuario
+  // Login simple sin verificación de permisos
   async login(ctx) {
     try {
+      console.log('🔑 Login simple iniciado');
       const { identifier, password } = ctx.request.body;
-
-      console.log('🔑 Intento de login:', { identifier });
 
       // Validaciones básicas
       if (!identifier || !password) {
-        ctx.status = 200;
+        ctx.status = 400;
         return ctx.send({
           success: false,
           error: 'Email/usuario y contraseña son requeridos'
@@ -126,7 +126,7 @@ module.exports = {
       }
 
       // Buscar usuario por email o username
-      const user = await strapi.query('plugin::users-permissions.user').findOne({
+      const user = await strapi.db.query('plugin::users-permissions.user').findOne({
         where: {
           $or: [
             { email: identifier.toLowerCase() },
@@ -136,7 +136,7 @@ module.exports = {
       });
 
       if (!user) {
-        ctx.status = 200;
+        ctx.status = 400;
         return ctx.send({
           success: false,
           error: 'Credenciales incorrectas'
@@ -145,7 +145,7 @@ module.exports = {
 
       // Verificar si el usuario está bloqueado
       if (user.blocked) {
-        ctx.status = 200;
+        ctx.status = 400;
         return ctx.send({
           success: false,
           error: 'Usuario bloqueado'
@@ -156,7 +156,7 @@ module.exports = {
       const isPasswordValid = await bcrypt.compare(password, user.password);
 
       if (!isPasswordValid) {
-        ctx.status = 200;
+        ctx.status = 400;
         return ctx.send({
           success: false,
           error: 'Credenciales incorrectas'
@@ -188,11 +188,59 @@ module.exports = {
       });
 
     } catch (error) {
-      console.error('❌ Error en login:', error);
-      ctx.status = 200;
+      console.error('❌ Error en login simple:', error);
+      ctx.status = 500;
       ctx.send({
         success: false,
         error: 'Error interno del servidor: ' + error.message
+      });
+    }
+  },
+
+  // Obtener información del usuario actual
+  async me(ctx) {
+    try {
+      const token = ctx.request.header.authorization?.replace('Bearer ', '');
+
+      if (!token) {
+        ctx.status = 401;
+        return ctx.send({
+          success: false,
+          error: 'Token no proporcionado'
+        });
+      }
+
+      // Verificar JWT
+      const decoded = jwt.verify(token, JWT_SECRET);
+
+      // Obtener usuario actualizado
+      const user = await strapi.db.query('plugin::users-permissions.user').findOne({
+        where: { id: decoded.id }
+      });
+
+      if (!user || user.blocked) {
+        ctx.status = 401;
+        return ctx.send({
+          success: false,
+          error: 'Usuario no válido'
+        });
+      }
+
+      // Remover password de la respuesta
+      const { password: _, ...userWithoutPassword } = user;
+
+      ctx.status = 200;
+      ctx.send({
+        success: true,
+        user: userWithoutPassword
+      });
+
+    } catch (error) {
+      console.error('❌ Error obteniendo usuario:', error);
+      ctx.status = 401;
+      ctx.send({
+        success: false,
+        error: 'Token inválido'
       });
     }
   }

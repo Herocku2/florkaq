@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Heder } from "../../components/Heder";
-import authService from "../../services/authService";
+import { useAuth } from "../../contexts/AuthContext";
 import "./style.css";
 
 export const Auth = () => {
   const navigate = useNavigate();
+  const { login, register, isAuthenticated } = useAuth();
   const [isLogin, setIsLogin] = useState(true);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -16,6 +17,13 @@ export const Auth = () => {
     confirmPassword: '',
     nombre: ''
   });
+
+  // Redirigir si ya está autenticado
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate('/');
+    }
+  }, [isAuthenticated, navigate]);
 
   const handleInputChange = (e) => {
     setFormData({
@@ -35,8 +43,8 @@ export const Auth = () => {
 
     try {
       if (isLogin) {
-        // Handle login
-        const result = await authService.login({
+        // Handle login usando el contexto
+        const result = await login({
           email: formData.email,
           password: formData.password
         });
@@ -50,7 +58,7 @@ export const Auth = () => {
           setError(result.error);
         }
       } else {
-        // Handle registration
+        // Handle registration usando el contexto
         if (formData.password !== formData.confirmPassword) {
           setError('Las contraseñas no coinciden');
           setLoading(false);
@@ -63,7 +71,7 @@ export const Auth = () => {
           return;
         }
 
-        const result = await authService.register({
+        const result = await register({
           nombre: formData.nombre,
           email: formData.email,
           password: formData.password

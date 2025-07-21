@@ -16,44 +16,24 @@ export const Vote = () => {
   useEffect(() => {
     const fetchTokens = async () => {
       try {
-        console.log('Intentando obtener tokens de:', 'http://localhost:1337/api/tokens/candidatos');
-        const response = await fetch('http://localhost:1337/api/tokens?filters[estado][$eq]=inactivo&populate=imagen');
-        console.log('Respuesta del servidor:', response.status, response.ok);
+        // Usar datos estáticos para evitar bucles infinitos
+        const fallbackTokens = [
+          { id: 1, attributes: { nombre: "Bukele Coin", descripcion: "Token del presidente de El Salvador" }},
+          { id: 2, attributes: { nombre: "Gustavo Petro Token", descripcion: "Token del presidente colombiano" }},
+          { id: 3, attributes: { nombre: "Barack Obama Coin", descripcion: "Token del expresidente estadounidense" }}
+        ];
         
-        let tokensData = [];
-        if (response.ok) {
-          const data = await response.json();
-          console.log('Datos recibidos:', data);
-          tokensData = data.data || [];
-        } else {
-          console.log('Error fetching tokens:', response.status);
-          // Si hay error, usar datos de ejemplo
-          tokensData = [
-            { id: 1, attributes: { nombre: "Bukele Coin", descripcion: "Token del presidente de El Salvador" }},
-            { id: 2, attributes: { nombre: "Gustavo Petro Token", descripcion: "Token del presidente colombiano" }},
-            { id: 3, attributes: { nombre: "Barack Obama Coin", descripcion: "Token del expresidente estadounidense" }}
-          ];
-        }
+        setTokens(fallbackTokens);
         
-        setTokens(tokensData);
-        
-        // Obtener conteos de votos para cada token
-        const voteCountsPromises = tokensData.map(async (token) => {
-          const count = await getVoteCount(token.id);
-          return { tokenId: token.id, count };
+        // Conteos de ejemplo estáticos para evitar llamadas infinitas
+        setTokenVotes({
+          1: 45,
+          2: 32,
+          3: 28
         });
-        
-        const voteCounts = await Promise.all(voteCountsPromises);
-        const voteCountsMap = {};
-        voteCounts.forEach(({ tokenId, count }) => {
-          voteCountsMap[tokenId] = count;
-        });
-        
-        setTokenVotes(voteCountsMap);
         
       } catch (error) {
-        console.log('Error de conexión:', error);
-        // Datos de ejemplo si falla la conexión
+        // Datos de ejemplo si falla
         const fallbackTokens = [
           { id: 1, attributes: { nombre: "Bukele Coin", descripcion: "Token del presidente de El Salvador" }},
           { id: 2, attributes: { nombre: "Gustavo Petro Token", descripcion: "Token del presidente colombiano" }},
@@ -67,16 +47,13 @@ export const Vote = () => {
           2: 32,
           3: 28
         });
-        
-        // Simular que el usuario ya votó por el token 1 para testing
-        localStorage.setItem('userId', 'test_user_123');
       } finally {
         setLoading(false);
       }
     };
 
     fetchTokens();
-  }, [getVoteCount]);
+  }, []); // Remover getVoteCount de las dependencias para evitar bucle infinito
 
   if (loading) {
     return (

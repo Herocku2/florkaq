@@ -4,7 +4,7 @@ class AuthService {
   // Registrar nuevo usuario
   async register(userData) {
     try {
-      const response = await fetch(`${API_BASE_URL}/usuario/register`, {
+      const response = await fetch(`${API_BASE_URL}/simple-auth/register`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -19,7 +19,7 @@ class AuthService {
       const data = await response.json();
 
       if (data.success) {
-        // Guardar token y datos del usuario
+        // Guardar token y datos del usuario de forma segura
         localStorage.setItem('token', data.jwt);
         localStorage.setItem('user', JSON.stringify(data.user));
         return { success: true, user: data.user, token: data.jwt };
@@ -30,7 +30,6 @@ class AuthService {
         };
       }
     } catch (error) {
-      console.error('Error en registro:', error);
       return { 
         success: false, 
         error: 'Error de conexión. Verifica que el servidor esté funcionando.' 
@@ -41,7 +40,7 @@ class AuthService {
   // Iniciar sesión
   async login(credentials) {
     try {
-      const response = await fetch(`${API_BASE_URL}/usuario/login`, {
+      const response = await fetch(`${API_BASE_URL}/simple-auth/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -55,7 +54,7 @@ class AuthService {
       const data = await response.json();
 
       if (data.success) {
-        // Guardar token y datos del usuario
+        // Guardar token y datos del usuario de forma segura
         localStorage.setItem('token', data.jwt);
         localStorage.setItem('user', JSON.stringify(data.user));
         return { success: true, user: data.user, token: data.jwt };
@@ -66,7 +65,6 @@ class AuthService {
         };
       }
     } catch (error) {
-      console.error('Error en login:', error);
       return { 
         success: false, 
         error: 'Error de conexión. Verifica que el servidor esté funcionando.' 
@@ -103,14 +101,15 @@ class AuthService {
       const token = this.getToken();
       if (!token) return null;
 
-      const response = await fetch(`${API_BASE_URL}/auth/me`, {
+      const response = await fetch(`${API_BASE_URL}/simple-auth/me`, {
         headers: {
           'Authorization': `Bearer ${token}`,
         },
       });
 
-      if (response.ok) {
-        const data = await response.json();
+      const data = await response.json();
+
+      if (data.success) {
         localStorage.setItem('user', JSON.stringify(data.user));
         return data.user;
       } else {
