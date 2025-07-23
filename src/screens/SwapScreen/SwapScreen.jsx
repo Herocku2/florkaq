@@ -1,7 +1,7 @@
 import React from "react";
 import { BanerMovil } from "../../components/BanerMovil";
 import { Heder } from "../../components/Heder";
-import { Swap } from "../../components/Swap";
+import { SwapForm } from "../../components/SwapForm/SwapForm";
 import "./style.css";
 
 export const SwapScreen = () => {
@@ -26,31 +26,7 @@ export const SwapScreen = () => {
           src="/img/rectangle-2-1.svg"
         />
 
-        <Swap
-          className="swap-instance"
-          divClassName="swap-5"
-          divClassNameOverride="swap-5"
-          frameClassName="swap-2"
-          frameClassNameOverride="swap-2"
-          frameWrapperClassName="swap-8"
-          group="/img/group-12-2.png"
-          group1="/img/group-12-6.png"
-          group2="/img/group-12-7.png"
-          groupClassName="swap-2"
-          groupClassName1="swap-2"
-          groupClassName2="swap-2"
-          groupClassNameOverride="swap-2"
-          groupWrapperClassName="swap-2"
-          groupWrapperClassNameOverride="swap-2"
-          img="/img/group-12-5.png"
-          imgClassName="swap-7"
-          imgClassNameOverride="swap-2"
-          instandClassName="swap-4"
-          overlapClassName="swap-3"
-          overlapClassNameOverride="swap-3"
-          overlapGroupClassName="swap-3"
-          overlapWrapperClassName="swap-6"
-        />
+        <SwapForm />
       </div>
 
       <div className="frame-65">

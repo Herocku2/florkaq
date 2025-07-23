@@ -1,136 +1,340 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { BanerMovil } from "../../components/BanerMovil";
 import { Heder } from "../../components/Heder";
+import { useAuth } from "../../contexts/AuthContext";
+import packageService from "../../services/packageService";
 import "./style.css";
 
 export const Create = () => {
+  const { isAuthenticated, user } = useAuth();
+  const [packages, setPackages] = useState([]);
+  const [selectedPackage, setSelectedPackage] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [tokenFormData, setTokenFormData] = useState({
+    nombre: '',
+    simbolo: '',
+    descripcion: '',
+    red: 'solana',
+    supply: '1000000000'
+  });
+  const [paymentStep, setPaymentStep] = useState(false);
+  const [processingPayment, setProcessingPayment] = useState(false);
+  const [paymentSuccess, setPaymentSuccess] = useState(false);
+  const [requestSubmitted, setRequestSubmitted] = useState(false);
+
+  // Cargar paquetes disponibles
+  useEffect(() => {
+    const fetchPackages = async () => {
+      try {
+        setLoading(true);
+        const response = await packageService.getPackages();
+        
+        if (response && response.data) {
+          const transformedPackages = response.data.map(pkg => 
+            packageService.transformPackageData(pkg)
+          );
+          setPackages(transformedPackages);
+          
+          // Seleccionar el primer paquete por defecto
+          if (transformedPackages.length > 0) {
+            setSelectedPackage(transformedPackages[0]);
+          }
+        }
+      } catch (err) {
+        console.error("Error fetching packages:", err);
+        setError("No se pudieron cargar los paquetes disponibles. Por favor, inténtelo de nuevo más tarde.");
+        
+        // Usar datos de ejemplo si falla
+        const fallbackPackage = {
+          id: 1,
+          nombre: "Paquete Básico",
+          precio: 150,
+          nivel: "básico",
+          caracteristicas: [
+            "Creación de contrato en red seleccionada (Solana, ETH, BNB, etc.)",
+            "200M – 1B de supply (según preferencia).",
+            "Pool de liquidez básica ($1.000).",
+            "1 AMA ($300).",
+            "1-5 Youtubers ($250).",
+            "Listado en la plataforma.",
+            "1 post del token en X.",
+            "Página personalizada."
+          ]
+        };
+        
+        setPackages([fallbackPackage]);
+        setSelectedPackage(fallbackPackage);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPackages();
+  }, []);
+
+  // Manejar cambios en el formulario
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setTokenFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  // Manejar selección de paquete
+  const handlePackageSelect = (pkg) => {
+    setSelectedPackage(pkg);
+  };
+
+  // Manejar envío del formulario
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    
+    if (!isAuthenticated) {
+      setError("Debes iniciar sesión para crear un token");
+      return;
+    }
+    
+    if (!selectedPackage) {
+      setError("Debes seleccionar un paquete");
+      return;
+    }
+    
+    // Validar formulario
+    if (!tokenFormData.nombre || !tokenFormData.simbolo) {
+      setError("El nombre y símbolo del token son obligatorios");
+      return;
+    }
+    
+    // Avanzar al paso de pago
+    setPaymentStep(true);
+    setError(null);
+  };
+
+  // Manejar proceso de pago
+  const handlePayment = async () => {
+    if (!isAuthenticated || !selectedPackage) {
+      return;
+    }
+    
+    setProcessingPayment(true);
+    setError(null);
+    
+    try {
+      // Simular proceso de pago
+      const paymentResult = await packageService.simulatePayment(selectedPackage.precio);
+      
+      if (paymentResult.success) {
+        // Crear solicitud de token
+        const tokenRequestData = {
+          usuario: user.id,
+          paquete: selectedPackage.id,
+          datosToken: JSON.stringify(tokenFormData),
+          estado: 'pendiente',
+          fechaPago: new Date().toISOString(),
+          transaccionId: paymentResult.transactionId,
+          aprobado: false
+        };
+        
+        const requestResult = await packageService.createTokenRequest(tokenRequestData);
+        
+        if (requestResult && requestResult.data) {
+          setPaymentSuccess(true);
+          setRequestSubmitted(true);
+        } else {
+          throw new Error("Error al crear la solicitud de token");
+        }
+      } else {
+        throw new Error("El pago no pudo ser procesado");
+      }
+    } catch (err) {
+      console.error("Error en el proceso de pago:", err);
+      setError("Ocurrió un error durante el proceso de pago. Por favor, inténtelo de nuevo.");
+    } finally {
+      setProcessingPayment(false);
+    }
+  };
+
   return (
     <div className="create">
       <Heder className="heder-home" />
 
-      <div className="titulo-pagina-6" />
+      <div className="titulo-pagina-6">
+        <h1 className="create-title">Crea tu propio Token</h1>
+      </div>
 
       <BanerMovil className="baner-movil-5" frame="/img/frame-31-3.svg" />
-      <div className="frame-74">
-        <div className="frame-75">
-          <div className="frame-76">
-            <div className="text-wrapper-44">Pago</div>
+      
+      {loading ? (
+        <div className="loading-container">
+          <div className="loading-spinner"></div>
+          <p>Cargando paquetes disponibles...</p>
+        </div>
+      ) : error ? (
+        <div className="error-message">{error}</div>
+      ) : requestSubmitted ? (
+        <div className="success-message">
+          <h2>¡Solicitud enviada con éxito!</h2>
+          <p>Tu solicitud de token ha sido recibida. Nuestro equipo se pondrá en contacto contigo pronto.</p>
+          <p>ID de transacción: {paymentSuccess ? "TX-" + Math.random().toString(36).substring(2, 10).toUpperCase() : "N/A"}</p>
+        </div>
+      ) : paymentStep ? (
+        <div className="payment-container">
+          <h2>Resumen de tu solicitud</h2>
+          
+          <div className="token-summary">
+            <div className="summary-item">
+              <span className="summary-label">Nombre del Token:</span>
+              <span className="summary-value">{tokenFormData.nombre}</span>
+            </div>
+            <div className="summary-item">
+              <span className="summary-label">Símbolo:</span>
+              <span className="summary-value">{tokenFormData.simbolo}</span>
+            </div>
+            <div className="summary-item">
+              <span className="summary-label">Red:</span>
+              <span className="summary-value">{tokenFormData.red}</span>
+            </div>
+            <div className="summary-item">
+              <span className="summary-label">Supply:</span>
+              <span className="summary-value">{tokenFormData.supply}</span>
+            </div>
+            <div className="summary-item">
+              <span className="summary-label">Paquete:</span>
+              <span className="summary-value">{selectedPackage?.nombre}</span>
+            </div>
+            <div className="summary-item total">
+              <span className="summary-label">Total a pagar:</span>
+              <span className="summary-value">${selectedPackage?.precio} USDT</span>
+            </div>
+          </div>
+          
+          <div className="payment-actions">
+            <button 
+              className="back-button" 
+              onClick={() => setPaymentStep(false)}
+              disabled={processingPayment}
+            >
+              Volver
+            </button>
+            <button 
+              className="pay-button" 
+              onClick={handlePayment}
+              disabled={processingPayment}
+            >
+              {processingPayment ? "Procesando..." : "Realizar Pago"}
+            </button>
           </div>
         </div>
-
-        <div className="frame-77">
-          <div className="frame-78">
-            <div className="text-wrapper-45">150 USDT</div>
-          </div>
-
-          <p className="p">
-            Ya empieza a sonar el bombo, ideal para tokens con más proyección.
-          </p>
-        </div>
-
-        <img className="line-5" alt="Line" src="/img/line-8.svg" />
-
-        <div className="frame-79">
-          <div className="frame-80">
-            <div className="frame-78">
-              <div className="text-wrapper-46">Incluye:</div>
-            </div>
-
-            <div className="frame-81">
-              <img
-                className="checkmark-circle"
-                alt="Checkmark circle"
-                src="/img/checkmark-circle-sharp.svg"
-              />
-
-              <p className="text-wrapper-47">
-                Creación de contrato en red seleccionada (Solana, ETH, BNB,
-                etc.)
-              </p>
-            </div>
-
-            <div className="frame-81">
-              <img
-                className="checkmark-circle"
-                alt="Checkmark circle"
-                src="/img/checkmark-circle-sharp.svg"
-              />
-
-              <p className="text-wrapper-48">
-                200M – 1B de supply (según preferencia).
-              </p>
-            </div>
-
-            <div className="frame-81">
-              <img
-                className="checkmark-circle"
-                alt="Checkmark circle"
-                src="/img/checkmark-circle-sharp.svg"
-              />
-
-              <p className="text-wrapper-48">
-                Pool de liquidez básica ($1.000).
-              </p>
-            </div>
-
-            <div className="frame-81">
-              <img
-                className="checkmark-circle"
-                alt="Checkmark circle"
-                src="/img/checkmark-circle-sharp.svg"
-              />
-
-              <div className="text-wrapper-48">1 AMA ($300).</div>
-            </div>
-
-            <div className="frame-81">
-              <img
-                className="checkmark-circle"
-                alt="Checkmark circle"
-                src="/img/checkmark-circle-sharp.svg"
-              />
-
-              <div className="text-wrapper-48">1-5 Youtubers ($250).</div>
-            </div>
-
-            <div className="frame-81">
-              <img
-                className="checkmark-circle"
-                alt="Checkmark circle"
-                src="/img/checkmark-circle-sharp.svg"
-              />
-
-              <div className="text-wrapper-48">Listado en la plataforma.</div>
-            </div>
-
-            <div className="frame-81">
-              <img
-                className="checkmark-circle"
-                alt="Checkmark circle"
-                src="/img/checkmark-circle-sharp.svg"
-              />
-
-              <p className="text-wrapper-48">1 post del token en X.</p>
-            </div>
-
-            <div className="frame-81">
-              <img
-                className="checkmark-circle"
-                alt="Checkmark circle"
-                src="/img/checkmark-circle-sharp.svg"
-              />
-
-              <div className="text-wrapper-48">Página personalizada.</div>
+      ) : (
+        <div className="create-form-container">
+          <div className="package-selection">
+            <h2>Selecciona un paquete</h2>
+            <div className="packages-list">
+              {packages.map(pkg => (
+                <div 
+                  key={pkg.id} 
+                  className={`package-card ${selectedPackage?.id === pkg.id ? 'selected' : ''}`}
+                  onClick={() => handlePackageSelect(pkg)}
+                >
+                  <div className="package-header">
+                    <h3>{pkg.nombre}</h3>
+                    <div className="package-price">${pkg.precio} USDT</div>
+                  </div>
+                  <div className="package-features">
+                    {pkg.caracteristicas.map((feature, index) => (
+                      <div key={index} className="feature-item">
+                        <img
+                          className="checkmark-circle"
+                          alt="Checkmark"
+                          src="/img/checkmark-circle-sharp.svg"
+                        />
+                        <span>{feature}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
-
-          <div className="frame-82">
-            <div className="frame-83">
-              <div className="text-wrapper-49">Realizar pago</div>
-            </div>
+          
+          <div className="token-form">
+            <h2>Información del Token</h2>
+            <form onSubmit={handleSubmit}>
+              <div className="form-group">
+                <label htmlFor="nombre">Nombre del Token</label>
+                <input
+                  type="text"
+                  id="nombre"
+                  name="nombre"
+                  value={tokenFormData.nombre}
+                  onChange={handleInputChange}
+                  placeholder="Ej. Florkafun Token"
+                  required
+                />
+              </div>
+              
+              <div className="form-group">
+                <label htmlFor="simbolo">Símbolo (3-5 caracteres)</label>
+                <input
+                  type="text"
+                  id="simbolo"
+                  name="simbolo"
+                  value={tokenFormData.simbolo}
+                  onChange={handleInputChange}
+                  placeholder="Ej. FLK"
+                  maxLength={5}
+                  required
+                />
+              </div>
+              
+              <div className="form-group">
+                <label htmlFor="descripcion">Descripción</label>
+                <textarea
+                  id="descripcion"
+                  name="descripcion"
+                  value={tokenFormData.descripcion}
+                  onChange={handleInputChange}
+                  placeholder="Describe tu token..."
+                  rows={4}
+                />
+              </div>
+              
+              <div className="form-group">
+                <label htmlFor="red">Red Blockchain</label>
+                <select
+                  id="red"
+                  name="red"
+                  value={tokenFormData.red}
+                  onChange={handleInputChange}
+                >
+                  <option value="solana">Solana</option>
+                  <option value="ethereum">Ethereum</option>
+                  <option value="binance">Binance Smart Chain</option>
+                </select>
+              </div>
+              
+              <div className="form-group">
+                <label htmlFor="supply">Supply Total</label>
+                <input
+                  type="text"
+                  id="supply"
+                  name="supply"
+                  value={tokenFormData.supply}
+                  onChange={handleInputChange}
+                  placeholder="Ej. 1000000000"
+                />
+              </div>
+              
+              <button type="submit" className="submit-button">
+                Continuar al Pago
+              </button>
+            </form>
           </div>
         </div>
-      </div>
+      )}
+      
 
       <div className="frame-84">
         <div className="frame-85">
