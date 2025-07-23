@@ -1,195 +1,234 @@
 import apiService from './api.js';
+import { errorHandler } from '../utils/errorHandler.js';
 
 class TokenService {
+  constructor() {
+    // Cache para evitar llamadas duplicadas
+    this.cache = new Map();
+    this.cacheTimeout = 30000; // 30 segundos
+  }
+
+  // Método para obtener datos del cache o hacer nueva petición
+  async getCachedData(key, fetchFn) {
+    const cached = this.cache.get(key);
+    const now = Date.now();
+
+    if (cached && (now - cached.timestamp) < this.cacheTimeout) {
+      return cached.data;
+    }
+
+    try {
+      const data = await fetchFn();
+      this.cache.set(key, { data, timestamp: now });
+      return data;
+    } catch (error) {
+      // Si hay error y tenemos cache, usar cache aunque esté expirado
+      if (cached) {
+        console.warn('Using expired cache due to API error');
+        return cached.data;
+      }
+      throw error;
+    }
+  }
+
   // Get all launched tokens for home page
   async getLaunchedTokens(page = 1, pageSize = 10) {
-    try {
-      const params = {
-        'filters[estado][$eq]': 'lanzado',
-        'populate': 'imagen',
-        'pagination[page]': page,
-        'pagination[pageSize]': pageSize,
-        'sort': 'fechaLanzamiento:desc'
-      };
-      
-      try {
+    const cacheKey = `launched-tokens-${page}-${pageSize}`;
+    
+    return await this.getCachedData(cacheKey, async () => {
+      return await errorHandler.safeAsync(async () => {
+        const params = {
+          'filters[estado][$eq]': 'lanzado',
+          'populate': 'imagen',
+          'pagination[page]': page,
+          'pagination[pageSize]': pageSize,
+          'sort': 'fechaLanzamiento:desc'
+        };
+        
         const response = await apiService.get('tokens', params);
         return response;
-      } catch (apiError) {
-        console.error('API error fetching launched tokens:', apiError);
-        // Retornar datos de ejemplo si la API falla
-        return {
-          data: [
-            { 
-              id: 1, 
-              attributes: { 
-                nombre: "CAT", 
-                descripcion: "Token de ejemplo",
-                estado: "lanzado",
-                fechaLanzamiento: new Date().toISOString(),
-                imagen: { data: { attributes: { url: "/img/image-3.png" } } }
-              } 
-            },
-            { 
-              id: 2, 
-              attributes: { 
-                nombre: "Shina inu", 
-                descripcion: "Token de ejemplo",
-                estado: "lanzado",
-                fechaLanzamiento: new Date().toISOString(),
-                imagen: { data: { attributes: { url: "/img/image-4.png" } } }
-              } 
-            },
-            { 
-              id: 3, 
-              attributes: { 
-                nombre: "florka", 
-                descripcion: "Token de ejemplo",
-                estado: "lanzado",
-                fechaLanzamiento: new Date().toISOString(),
-                imagen: { data: { attributes: { url: "/img/image-1.png" } } }
-              } 
-            }
-          ],
-          meta: {
-            pagination: {
-              page: page,
-              pageSize: pageSize,
-              pageCount: 1,
-              total: 3
-            }
-          }
-        };
+      }, this.getFallbackLaunchedTokens(page, pageSize), 'TokenService.getLaunchedTokens');
+    });
+  }
+
+  // Datos de fallback para tokens lanzados
+  getFallbackLaunchedTokens(page = 1, pageSize = 10) {
+    return {
+      data: [
+        { 
+          id: 1, 
+          attributes: { 
+            nombre: "Bukele", 
+            descripcion: "Token del presidente de El Salvador",
+            estado: "lanzado",
+            fechaLanzamiento: new Date().toISOString(),
+            imagen: { data: { attributes: { url: "/img/image-3.png" } } }
+          } 
+        },
+        { 
+          id: 2, 
+          attributes: { 
+            nombre: "Gustavo Petro Token", 
+            descripcion: "Token del presidente colombiano",
+            estado: "lanzado",
+            fechaLanzamiento: new Date().toISOString(),
+            imagen: { data: { attributes: { url: "/img/image-4.png" } } }
+          } 
+        },
+        { 
+          id: 3, 
+          attributes: { 
+            nombre: "Barack Obama Coin", 
+            descripcion: "Token del expresidente estadounidense",
+            estado: "lanzado",
+            fechaLanzamiento: new Date().toISOString(),
+            imagen: { data: { attributes: { url: "/img/image-1.png" } } }
+          } 
+        }
+      ],
+      meta: {
+        pagination: {
+          page: page,
+          pageSize: pageSize,
+          pageCount: 1,
+          total: 3
+        }
       }
-    } catch (error) {
-      console.error('Error in getLaunchedTokens:', error);
-      return {
-        data: [],
-        meta: { pagination: { page: 1, pageSize: 10, pageCount: 0, total: 0 } }
-      };
-    }
+    };
   }
   
   // Get next tokens for next page
   async getNextTokens(page = 1, pageSize = 10, sortOrder = 'date') {
-    try {
-      const sortField = sortOrder === 'votes' ? 'totalVotos:desc' : 'fechaLanzamiento:asc';
-      
-      const params = {
-        'filters[estado][$eq]': 'proximo',
-        'populate': 'imagen',
-        'pagination[page]': page,
-        'pagination[pageSize]': pageSize,
-        'sort': sortField
-      };
-      
-      try {
+    const cacheKey = `next-tokens-${page}-${pageSize}-${sortOrder}`;
+    
+    return await this.getCachedData(cacheKey, async () => {
+      return await errorHandler.safeAsync(async () => {
+        const sortField = sortOrder === 'votes' ? 'totalVotos:desc' : 'fechaLanzamiento:asc';
+        
+        const params = {
+          'filters[estado][$eq]': 'proximo',
+          'populate': 'imagen',
+          'pagination[page]': page,
+          'pagination[pageSize]': pageSize,
+          'sort': sortField
+        };
+        
         const response = await apiService.get('tokens', params);
         return response;
-      } catch (apiError) {
-        console.error('API error fetching next tokens:', apiError);
-        return {
-          data: [
-            { 
-              id: 4, 
-              attributes: { 
-                nombre: "florkiño", 
-                descripcion: "Token próximo a lanzar",
-                estado: "proximo",
-                fechaLanzamiento: new Date(Date.now() + 7*24*60*60*1000).toISOString(),
-                imagen: { data: { attributes: { url: "/img/image-4.png" } } },
-                totalVotos: 12
-              } 
-            }
-          ],
-          meta: { pagination: { page: 1, pageSize: 10, pageCount: 1, total: 1 } }
-        };
-      }
-    } catch (error) {
-      console.error('Error in getNextTokens:', error);
-      return {
-        data: [],
-        meta: { pagination: { page: 1, pageSize: 10, pageCount: 0, total: 0 } }
-      };
-    }
+      }, this.getFallbackNextTokens(page, pageSize), 'TokenService.getNextTokens');
+    });
+  }
+
+  // Datos de fallback para próximos tokens
+  getFallbackNextTokens(page = 1, pageSize = 10) {
+    return {
+      data: [
+        { 
+          id: 4, 
+          attributes: { 
+            nombre: "florkiño", 
+            descripcion: "Token próximo a lanzar",
+            estado: "proximo",
+            fechaLanzamiento: new Date(Date.now() + 7*24*60*60*1000).toISOString(),
+            imagen: { data: { attributes: { url: "/img/image-4.png" } } },
+            totalVotos: 12
+          } 
+        },
+        { 
+          id: 5, 
+          attributes: { 
+            nombre: "anto", 
+            descripcion: "Token próximo a lanzar",
+            estado: "proximo",
+            fechaLanzamiento: new Date(Date.now() + 14*24*60*60*1000).toISOString(),
+            imagen: { data: { attributes: { url: "/img/image-3.png" } } },
+            totalVotos: 28
+          } 
+        }
+      ],
+      meta: { pagination: { page: page, pageSize: pageSize, pageCount: 1, total: 2 } }
+    };
   }
 
   // Get top 3 tokens for ranking
   async getTop3Tokens() {
-    try {
-      try {
+    const cacheKey = 'top3-tokens';
+    
+    return await this.getCachedData(cacheKey, async () => {
+      return await errorHandler.safeAsync(async () => {
         const response = await apiService.get('rankings', {
           'populate': 'token,token.imagen',
           'sort': 'posicion:asc',
           'filters[activo][$eq]': true
         });
         return response;
-      } catch (apiError) {
-        console.error('API error fetching top 3 tokens:', apiError);
-        // Retornar datos de ejemplo si la API falla
-        return {
-          data: [
-            {
-              id: 1,
-              attributes: {
-                posicion: 1,
-                totalVotos: 28,
-                fechaActualizacion: new Date().toISOString(),
-                token: {
-                  data: {
-                    id: 5,
-                    attributes: {
-                      nombre: "anto",
-                      descripcion: "Token más votado",
-                      imagen: { data: { attributes: { url: "/img/image-3.png" } } }
-                    }
-                  }
-                }
-              }
-            },
-            {
-              id: 2,
-              attributes: {
-                posicion: 2,
-                totalVotos: 12,
-                fechaActualizacion: new Date().toISOString(),
-                token: {
-                  data: {
-                    id: 4,
-                    attributes: {
-                      nombre: "florkiño",
-                      descripcion: "Token segundo más votado",
-                      imagen: { data: { attributes: { url: "/img/image-4.png" } } }
-                    }
-                  }
-                }
-              }
-            },
-            {
-              id: 3,
-              attributes: {
-                posicion: 3,
-                totalVotos: 6,
-                fechaActualizacion: new Date().toISOString(),
-                token: {
-                  data: {
-                    id: 6,
-                    attributes: {
-                      nombre: "nicolukas",
-                      descripcion: "Token tercer más votado",
-                      imagen: { data: { attributes: { url: "/img/image-1.png" } } }
-                    }
-                  }
+      }, this.getFallbackTop3Tokens(), 'TokenService.getTop3Tokens');
+    });
+  }
+
+  // Datos de fallback para top 3 tokens
+  getFallbackTop3Tokens() {
+    return {
+      data: [
+        {
+          id: 1,
+          attributes: {
+            posicion: 1,
+            totalVotos: 28,
+            fechaActualizacion: new Date().toISOString(),
+            activo: true,
+            token: {
+              data: {
+                id: 1,
+                attributes: {
+                  nombre: "Bukele",
+                  descripcion: "Token del presidente de El Salvador",
+                  imagen: { data: { attributes: { url: "/img/image-3.png" } } }
                 }
               }
             }
-          ]
-        };
-      }
-    } catch (error) {
-      console.error('Error in getTop3Tokens:', error);
-      return { data: [] };
-    }
+          }
+        },
+        {
+          id: 2,
+          attributes: {
+            posicion: 2,
+            totalVotos: 15,
+            fechaActualizacion: new Date().toISOString(),
+            activo: true,
+            token: {
+              data: {
+                id: 2,
+                attributes: {
+                  nombre: "Gustavo Petro Token",
+                  descripcion: "Token del presidente colombiano",
+                  imagen: { data: { attributes: { url: "/img/image-4.png" } } }
+                }
+              }
+            }
+          }
+        },
+        {
+          id: 3,
+          attributes: {
+            posicion: 3,
+            totalVotos: 8,
+            fechaActualizacion: new Date().toISOString(),
+            activo: true,
+            token: {
+              data: {
+                id: 3,
+                attributes: {
+                  nombre: "Barack Obama Coin",
+                  descripcion: "Token del expresidente estadounidense",
+                  imagen: { data: { attributes: { url: "/img/image-1.png" } } }
+                }
+              }
+            }
+          }
+        }
+      ]
+    };
   }
 
   // Transform token data for frontend use

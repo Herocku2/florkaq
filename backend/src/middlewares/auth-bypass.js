@@ -12,10 +12,18 @@ module.exports = (config, { strapi }) => {
       '/api/auth/custom-login',
       '/api/tokens',
       '/api/tokens/',
+      '/api/rankings',
+      '/api/rankings/',
       '/api/votos',
       '/api/votos/',
       '/api/foros',
-      '/api/foros/'
+      '/api/foros/',
+      '/api/swaps',
+      '/api/swaps/',
+      '/api/paquetes',
+      '/api/paquetes/',
+      '/api/solicitudes-token',
+      '/api/solicitudes-token/'
     ];
 
     // Si la ruta es pública, saltarse completamente la verificación de permisos

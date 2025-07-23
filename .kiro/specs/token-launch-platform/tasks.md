@@ -172,50 +172,220 @@
     - Validar comportamiento del CRON job en entorno dev y producción (modo dry-run vs real)
     - _Requirements: 12.4, 12.5_
 
-- [x] 6. Integración del frontend con el backend
-  - [x] 6.1 Implementar servicios de API en el frontend
+- [ ] 6. **SEPARACIÓN COMPLETA DE PÁGINAS PÚBLICAS Y ÁREAS ADMINISTRATIVAS**
+  **FLUJO DEL NEGOCIO: VOTACIONES → NEXT → HOME → DETALLES**
+  
+  - [x] 6.1 Implementar servicios de API base en el frontend
     - Crear servicios para consumir APIs REST/GraphQL
     - Implementar manejo de errores y reintentos
     - Crear interceptores para autenticación
     - _Requirements: 14.1, 14.3, 14.5_
 
-  - [ ] 6.2 Integrar página Home (Tokens Lanzados) con backend
-    - Conectar componente TarjetaProyectos con API de tokens
-    - Implementar filtros y paginación
-    - Añadir enlaces a foros correspondientes
-    - _Requirements: 16.1, 15.1, 15.2_
+  - [ ] 6.2 **SISTEMA VOTE (Candidatos de Votación) - INICIO DEL FLUJO**
+    - [ ] 6.2.1 Backend - API específica para CANDIDATOS DE VOTACIÓN
+      - Crear controlador específico `vote-candidates.js` para candidatos potenciales
+      - Implementar endpoints exclusivos: `/api/vote/candidates`, `/api/vote/submit`, `/api/vote/results`
+      - Crear servicio `voteCandidateService.js` con lógica específica de competencia
+      - Implementar sistema de votación con validaciones anti-duplicados por usuario
+      - Sistema automático para determinar ganadores al finalizar votación
+      - _Requirements: 16.3, 14.1, 14.3_
+    
+    - [ ] 6.2.2 Frontend - Página VOTE independiente
+      - Conectar componente TarjetaVotos con API específica de CANDIDATOS
+      - Implementar lógica para emitir votos con autenticación obligatoria
+      - Crear servicio frontend `voteService.js` completamente independiente
+      - Crear páginas de destino `/token/{nombre}/candidate` para cada candidato
+      - Mostrar información detallada del candidato aunque no esté en mainnet
+      - Añadir cálculo de porcentajes en tiempo real durante votación
+      - _Requirements: 16.3, 15.1, 15.2_
+    
+    - [ ] 6.2.3 Área Administrativa VOTE - "Voting System"
+      - Crear panel admin `/admin/vote-management` completamente separado
+      - Formulario de creación de candidatos para competir:
+        - Nombre del Token y Símbolo del Token
+        - Descripción del candidato para la votación
+        - Orden de visualización en la página pública
+        - Imagen del proyecto (upload JPG, PNG, WebP, GIF - máx 5MB)
+      - Tabla de gestión de candidatos existentes:
+        - Columnas: Token, Símbolo, Votos Totales, Estado (Activo/Inactivo), Acciones
+        - Botones: Eliminar, Editar, Visualizar por cada candidato
+      - Sistema de control de votaciones activas con fechas
+      - Botón "Crear Nuevo Candidato" prominente
+      - _Requirements: 16.3, 18.1_
 
-  - [ ] 6.3 Integrar página Next (Próximos Lanzamientos) con backend
-    - Conectar componentes con API de tokens próximos
-    - Implementar ordenación por fecha de lanzamiento
-    - Añadir funcionalidad "Recordarme"
-    - _Requirements: 16.2, 15.1, 15.2_
+  - [ ] 6.3 **SISTEMA NEXT (Próximos Lanzamientos) - GANADORES DE VOTACIÓN**
+    - [ ] 6.3.1 Backend - API específica para PRÓXIMOS LANZAMIENTOS
+      - Crear controlador específico `next-projects.js` para tokens ganadores
+      - Implementar endpoints exclusivos: `/api/next/projects`, `/api/next/countdown`
+      - Crear servicio `nextProjectService.js` con lógica de programación de lanzamientos
+      - Sistema automático que mueve ganadores de VOTE a NEXT con fecha programada
+      - Implementar countdown timer para cada token próximo a lanzar
+      - _Requirements: 16.2, 14.1, 14.3_
+    
+    - [ ] 6.3.2 Frontend - Página NEXT independiente
+      - Conectar componentes con API específica de PRÓXIMOS LANZAMIENTOS
+      - Mostrar 3 cards por línea estilo NFT con countdown timer
+      - Implementar ordenación por fecha de lanzamiento más cercana
+      - Crear servicio frontend `nextService.js` completamente independiente
+      - Crear páginas de destino `/token/{nombre}/next` para tokens próximos
+      - Mostrar información detallada con countdown y botón "Recordarme"
+      - Añadir funcionalidad "Recordarme" con notificaciones
+      - _Requirements: 16.2, 15.1, 15.2_
+    
+    - [ ] 6.3.3 Área Administrativa NEXT - "Next Projects"
+      - Crear panel admin `/admin/next-projects` completamente separado
+      - Formulario completo de gestión de proyectos NEXT:
+        - Información básica (nombre, símbolo, precio estimado, market cap)
+        - Descripción corta y enlaces sociales (Web, Telegram, Twitter, Discord)
+        - Imagen del proyecto (upload/URL manual)
+        - Configuración (estado, orden Top 3, progreso %, market cap estimado)
+        - Fecha y hora programada de lanzamiento
+      - Tabla de gestión con vista previa de cards como aparecerán públicamente
+      - Control de estado: Pendiente, Publicado, Top 3, Lanzado
+      - Botones: Eliminar, Editar, Visualizar, Programar Lanzamiento
+      - _Requirements: 16.2, 18.1_
 
-  - [ ] 6.4 Integrar página Votaciones con backend
-    - Conectar componente TarjetaVotos con API de votaciones
-    - Implementar lógica para emitir votos
-    - Añadir cálculo de porcentajes en tiempo real
-    - _Requirements: 16.3, 15.1, 15.2_
+  - [ ] 6.4 **SISTEMA HOME (Tokens Lanzados en Mainnet) - FINAL DEL FLUJO**
+    - [ ] 6.4.1 Backend - API específica para TOKENS LANZADOS
+      - Crear controlador específico `home-tokens.js` para tokens YA EN MAINNET
+      - Implementar endpoints exclusivos: `/api/home/tokens`, `/api/home/rankings`
+      - Crear servicio `homeTokenService.js` con integración a Birdeye API
+      - Sistema automático que mueve tokens de NEXT a HOME cuando se lanzan
+      - Integración con API de Birdeye para datos reales (precio, holders, supply, marketcap)
+      - Implementar cache independiente para datos de blockchain
+      - _Requirements: 16.1, 14.1, 14.3_
+    
+    - [ ] 6.4.2 Frontend - Página HOME independiente
+      - Conectar componente TarjetaProyectos con API específica de TOKENS LANZADOS
+      - Mostrar 3 cards por línea con datos reales de blockchain
+      - Implementar filtros y paginación exclusivos para tokens lanzados
+      - Crear servicio frontend `homeService.js` completamente independiente
+      - Crear páginas de destino `/token/{nombre}` para tokens lanzados
+      - Mostrar datos reales: precio actual, holders, supply, marketcap, progreso de venta
+      - Enlaces directos a foros correspondientes de cada token
+      - _Requirements: 16.1, 15.1, 15.2_
+    
+    - [ ] 6.4.3 Área Administrativa HOME - "Home Projects"
+      - Crear panel admin `/admin/home-projects` completamente separado
+      - Formulario de creación manual de tokens para HOME (casos especiales):
+        - Información completa del token lanzado
+        - Mint address de Solana
+        - Enlaces a datos de blockchain
+      - Tabla de gestión de tokens lanzados:
+        - Columnas: Token, Símbolo, Precio Actual, Market Cap, Holders, Estado, Acciones
+        - Botones: Eliminar, Editar, Visualizar, Destacar
+      - Sistema de aprobación para publicar tokens lanzados manualmente
+      - Control de Top 3 rankings independiente con datos reales
+      - Botón "Crear Nuevo Proyecto" para casos especiales
+      - _Requirements: 16.1, 18.1_
 
-  - [ ] 6.5 Integrar página Foros con backend
-    - Implementar componentes para listar y crear foros
-    - Conectar con API de foros y comentarios
-    - Añadir funcionalidades de moderación
-    - _Requirements: 16.5, 15.1, 15.2_
+  - [ ] 6.5 **SISTEMA DE PÁGINAS DE DESTINO DE TOKENS**
+    - [ ] 6.5.1 Backend - API para detalles de tokens
+      - Crear controlador `token-details.js` para páginas individuales
+      - Implementar endpoints: `/api/token/{nombre}/details`, `/api/token/{nombre}/stats`
+      - Diferentes endpoints según estado: candidate, next, launched
+      - Integración con Birdeye API para tokens lanzados
+      - _Requirements: 16.8, 14.1_
+    
+    - [ ] 6.5.2 Frontend - Páginas de destino dinámicas
+      - Crear componente `TokenDetail` para `/token/{nombre}`
+      - Crear componente `CandidateDetail` para `/token/{nombre}/candidate`
+      - Crear componente `NextTokenDetail` para `/token/{nombre}/next`
+      - Mostrar información específica según el estado del token
+      - Para tokens lanzados: datos reales de blockchain, gráficos, enlaces a DEX
+      - Para candidatos: información de votación, descripción, enlaces sociales
+      - Para próximos: countdown, información de lanzamiento, botón recordarme
+      - _Requirements: 16.8, 15.1_
 
-  - [ ] 6.6 Integrar página Creación de Token con backend
-    - Conectar formularios con API de paquetes y solicitudes
-    - Implementar lógica para enviar solicitudes
-    - Añadir simulación de pago
-    - _Requirements: 16.6, 15.1, 15.2_
+  - [ ] 6.6 **SISTEMA NEWS (Gestión de Noticias) - Proyecto Independiente**
+    - [ ] 6.5.1 Backend - API específica para NEWS
+      - Crear controlador específico `news-management.js` para noticias
+      - Implementar endpoints exclusivos: `/api/news/articles`, `/api/news/publish`
+      - Crear servicio `newsService.js` con lógica específica
+      - Implementar sistema de publicación y programación de noticias
+      - _Requirements: 16.4, 14.1, 14.3_
+    
+    - [ ] 6.5.2 Frontend - Página NEWS independiente
+      - Crear componentes para mostrar noticias
+      - Implementar filtros por categoría y fecha
+      - Crear servicio frontend `newsService.js` independiente
+      - Crear páginas de destino `/news/{slug}` para artículos
+      - _Requirements: 16.4, 15.1, 15.2_
+    
+    - [ ] 6.5.3 Área Administrativa NEWS
+      - Crear panel admin `/admin/news-management` (News Management)
+      - Formulario de creación y edición de noticias
+      - Sistema de gestión de artículos (crear, editar, publicar, archivar)
+      - Control de estado: Borrador, Publicado, Programado, Archivado
+      - _Requirements: 16.4, 18.1_
 
-  - [ ] 6.7 Integrar página Swap con backend
-    - Conectar componente Swap con API de operaciones
-    - Implementar cálculo de tasas y comisiones
-    - Añadir registro de transacciones
-    - _Requirements: 16.7, 15.1, 15.2_
+  - [ ] 6.6 **SISTEMA PUBLISH (Solicitudes de Publicación) - Proyecto Independiente**
+    - [ ] 6.6.1 Backend - API específica para PUBLISH
+      - Crear controlador específico `publication-requests.js` para solicitudes
+      - Implementar endpoints exclusivos: `/api/publish/requests`, `/api/publish/review`
+      - Crear servicio `publishService.js` con lógica específica
+      - Implementar sistema de revisión y aprobación de solicitudes
+      - _Requirements: 16.5, 14.1, 14.3_
+    
+    - [ ] 6.6.2 Frontend - Página PUBLISH independiente
+      - Crear formularios para solicitudes de publicación
+      - Implementar sistema de seguimiento de solicitudes
+      - Crear servicio frontend `publishService.js` independiente
+      - Sistema de notificaciones de estado de solicitudes
+      - _Requirements: 16.5, 15.1, 15.2_
+    
+    - [ ] 6.6.3 Área Administrativa PUBLISH
+      - Crear panel admin `/admin/publication-requests` (Publication Requests)
+      - Sistema de revisión de solicitudes de publicación
+      - Formularios de aprobación/rechazo con comentarios
+      - Control de flujo: Pendiente, En Revisión, Aprobado, Rechazado
+      - _Requirements: 16.5, 18.1_
 
-  - [x] 6.8 Implementar autenticación en el frontend
+  - [ ] 6.7 **SISTEMA CREATE (Creación de Tokens) - Proyecto Independiente**
+    - [ ] 6.7.1 Backend - API específica para CREATE
+      - Crear controlador específico `token-creation.js` para creación
+      - Implementar endpoints exclusivos: `/api/create/packages`, `/api/create/submit`
+      - Crear servicio `tokenCreationService.js` con lógica específica
+      - Implementar sistema de paquetes y procesamiento de pagos
+      - _Requirements: 16.6, 14.1, 14.3_
+    
+    - [ ] 6.7.2 Frontend - Página CREATE independiente
+      - Conectar formularios con API de paquetes y solicitudes
+      - Implementar lógica para enviar solicitudes
+      - Crear servicio frontend `createService.js` independiente
+      - Añadir simulación de pago y seguimiento de solicitudes
+      - _Requirements: 16.6, 15.1, 15.2_
+    
+    - [ ] 6.7.3 Área Administrativa CREATE
+      - Crear panel admin `/admin/token-creation` (Token Creation)
+      - Gestión de paquetes de creación de tokens
+      - Sistema de revisión de solicitudes de creación
+      - Control de pagos y procesamiento de tokens
+      - _Requirements: 16.6, 18.1_
+
+  - [ ] 6.8 **SISTEMA FORUM (Foros Comunitarios) - Proyecto Independiente**
+    - [ ] 6.8.1 Backend - API específica para FORUM
+      - Crear controlador específico `community-forum.js` para foros
+      - Implementar endpoints exclusivos: `/api/forum/topics`, `/api/forum/moderate`
+      - Crear servicio `forumService.js` con lógica específica
+      - Implementar sistema de moderación y gestión de usuarios
+      - _Requirements: 16.7, 14.1, 14.3_
+    
+    - [ ] 6.8.2 Frontend - Página FORUM independiente
+      - Implementar componentes para listar y crear foros
+      - Conectar con API de foros y comentarios
+      - Crear servicio frontend `forumService.js` independiente
+      - Añadir funcionalidades de moderación para moderadores
+      - _Requirements: 16.7, 15.1, 15.2_
+    
+    - [ ] 6.8.3 Área Administrativa FORUM
+      - Crear panel admin `/admin/community-forum` (Community Forum)
+      - Sistema de moderación de posts y usuarios
+      - Gestión de temas y categorías de foros
+      - Control de usuarios: aprobar, bloquear, asignar roles
+      - _Requirements: 16.7, 18.1_
+
+  - [x] 6.9 Implementar autenticación en el frontend
     - Crear componentes de registro e inicio de sesión
     - Implementar gestión de tokens JWT
     - Añadir protección de rutas según rol

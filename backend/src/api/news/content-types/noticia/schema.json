@@ -1,0 +1,87 @@
+{
+  "kind": "collectionType",
+  "collectionName": "noticias",
+  "info": {
+    "singularName": "noticia",
+    "pluralName": "noticias",
+    "displayName": "Noticia",
+    "description": "Artículos de noticias para el sistema NEWS"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "titulo": {
+      "type": "string",
+      "required": true,
+      "maxLength": 200
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "titulo",
+      "required": true
+    },
+    "contenido": {
+      "type": "richtext",
+      "required": true
+    },
+    "resumen": {
+      "type": "text",
+      "maxLength": 500
+    },
+    "categoria": {
+      "type": "enumeration",
+      "enum": ["mercado", "plataforma", "comunidad", "tecnologia", "general"],
+      "default": "general",
+      "required": true
+    },
+    "tags": {
+      "type": "json",
+      "default": []
+    },
+    "imagen": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "destacado": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "estado": {
+      "type": "enumeration",
+      "enum": ["borrador", "revision", "publicado", "archivado"],
+      "default": "borrador",
+      "required": true
+    },
+    "fechaCreacion": {
+      "type": "datetime",
+      "required": true
+    },
+    "fechaPublicacion": {
+      "type": "datetime"
+    },
+    "fechaActualizacion": {
+      "type": "datetime"
+    },
+    "autor": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "noticias"
+    },
+    "vistas": {
+      "type": "integer",
+      "default": 0,
+      "min": 0
+    },
+    "comentariosHabilitados": {
+      "type": "boolean",
+      "default": true,
+      "required": true
+    }
+  }
+}

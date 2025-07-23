@@ -234,3 +234,17 @@ Requirement 12: Automatizaciones y CRON Jobs
 3. WHEN se implementan relaciones entre entidades THEN el sistema SHALL prohibir relaciones automáticas que afecten otras vistas sin autorización.
 4. WHEN se trabaja con tokens THEN el sistema SHALL prohibir alterar metadatos o manipular tokens sin autorización explícita.
 5. WHEN se implementan cambios visuales THEN el sistema SHALL mantener la coherencia con el diseño existente y respetar la identidad visual de la plataforma.
+
+### Requirement 19: Módulos Separados e Independientes
+
+**User Story:** Como desarrollador y administrador, quiero que cada página pública tenga su propio sistema backend y área administrativa completamente separada para garantizar independencia funcional y facilitar el mantenimiento.
+
+#### Acceptance Criteria
+
+1. WHEN se implementa cada módulo THEN el sistema SHALL crear controladores, servicios y rutas específicas para cada página pública (Home, Next, Vote, News, Forum, Create, Publish).
+2. WHEN se accede a APIs específicas THEN el sistema SHALL usar endpoints exclusivos como `/api/home/tokens`, `/api/next/projects`, `/api/vote/candidates`, `/api/news/articles`.
+3. WHEN se administra contenido THEN el sistema SHALL proporcionar paneles administrativos separados como `/admin/home-projects`, `/admin/next-projects`, `/admin/vote-management`, `/admin/news-management`.
+4. WHEN se desarrollan servicios frontend THEN el sistema SHALL crear servicios independientes como `homeService.js`, `nextService.js`, `voteService.js`, `newsService.js`.
+5. WHEN se implementa cache THEN el sistema SHALL mantener cache independiente para cada módulo para evitar interferencias entre sistemas.
+6. WHEN se realizan cambios en un módulo THEN el sistema SHALL garantizar que no afecte el funcionamiento de otros módulos sin autorización explícita.
+7. WHEN se crean formularios administrativos THEN el sistema SHALL incluir todos los campos necesarios según las especificaciones de cada módulo (imagen upload, configuraciones específicas, estados independientes).
