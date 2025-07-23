@@ -1,7 +1,7 @@
 // API Service for FlorkaFun Platform
 // Handles communication with Strapi backend
 
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:1337/api';
+const API_BASE_URL = 'http://localhost:1337/api';
 
 class ApiService {
   constructor() {
@@ -34,16 +34,22 @@ class ApiService {
 
   // Generic request method
   async request(endpoint, options = {}) {
-    const url = `${this.baseURL}${endpoint}`;
+    // Construir URL - asegurar que no haya dobles barras
+    const cleanEndpoint = endpoint.replace(/^\/+/, '');
+    const url = `${this.baseURL}/${cleanEndpoint}`;
+    
     const config = {
       headers: this.getHeaders(),
       ...options,
     };
 
     try {
+      console.log('Requesting URL:', url);
+      
       const response = await fetch(url, config);
       
       if (!response.ok) {
+        console.error(`API error: ${response.status} for URL ${url}`);
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 

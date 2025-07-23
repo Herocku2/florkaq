@@ -4,7 +4,7 @@ class PackageService {
   // Get all available packages
   async getPackages() {
     try {
-      const response = await apiService.get('/paquetes', {
+      const response = await apiService.get('paquetes', {
         'populate': '*',
         'sort': 'precio:asc'
       });
@@ -18,7 +18,7 @@ class PackageService {
   // Get package by ID
   async getPackageById(id) {
     try {
-      const response = await apiService.get(`/paquetes/${id}`, {
+      const response = await apiService.get(`paquetes/${id}`, {
         'populate': '*'
       });
       return response;
@@ -31,7 +31,7 @@ class PackageService {
   // Create token request
   async createTokenRequest(requestData) {
     try {
-      const response = await apiService.post('/solicitudes-token', {
+      const response = await apiService.post('solicitudes-token', {
         data: requestData
       });
       return response;
@@ -44,7 +44,7 @@ class PackageService {
   // Get user token requests
   async getUserTokenRequests(userId) {
     try {
-      const response = await apiService.get('/solicitudes-token', {
+      const response = await apiService.get('solicitudes-token', {
         'filters[usuario][$eq]': userId,
         'populate': 'paquete',
         'sort': 'createdAt:desc'

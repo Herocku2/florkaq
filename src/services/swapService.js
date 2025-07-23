@@ -4,7 +4,7 @@ class SwapService {
   // Get all available tokens for swap
   async getAvailableTokens() {
     try {
-      const response = await apiService.get('/tokens', {
+      const response = await apiService.get('tokens', {
         'filters[estado][$eq]': 'lanzado',
         'populate': 'imagen',
         'sort': 'createdAt:desc'
@@ -74,7 +74,7 @@ class SwapService {
         }
       };
       
-      const response = await apiService.post('/swaps', swapData);
+      const response = await apiService.post('swaps', swapData);
       
       return {
         success: true,
@@ -93,7 +93,7 @@ class SwapService {
   // Get user swap history
   async getUserSwapHistory(userId) {
     try {
-      const response = await apiService.get('/swaps', {
+      const response = await apiService.get('swaps', {
         'filters[usuario][$eq]': userId,
         'populate': 'tokenOrigen,tokenDestino',
         'sort': 'createdAt:desc'
