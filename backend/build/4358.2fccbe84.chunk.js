@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkflorkafun_backend=self.webpackChunkflorkafun_backend||[]).push([[4358],{34358:(a,n,d)=>{d.r(n),d.d(n,{default:()=>e});const e={"plugin.description.long":"Dodaje GraphQL endpoint z domy\u015Blnymi metodami API.","plugin.description.short":"Dodaje GraphQL endpoint z domy\u015Blnymi metodami API.","plugin.name":"GraphQL"}}}]);

@@ -24,10 +24,10 @@ export const SwapForm = () => {
       try {
         setLoading(true);
         const response = await swapService.getAvailableTokens();
-        
+
         if (response && response.data) {
           setAvailableTokens(response.data);
-          
+
           // Seleccionar los primeros dos tokens por defecto
           if (response.data.length >= 2) {
             setFromToken(response.data[0]);
@@ -37,35 +37,35 @@ export const SwapForm = () => {
       } catch (err) {
         console.error("Error fetching available tokens:", err);
         setError("No se pudieron cargar los tokens disponibles. Usando datos de ejemplo.");
-        
+
         // Usar datos de ejemplo si falla
         const fallbackTokens = [
-          { 
-            id: 1, 
-            attributes: { 
-              nombre: "Solana", 
+          {
+            id: 1,
+            attributes: {
+              nombre: "Solana",
               symbol: "SOL",
               imagen: { data: { attributes: { url: "/img/solana-logo.png" } } }
-            } 
+            }
           },
-          { 
-            id: 2, 
-            attributes: { 
-              nombre: "Florkafun", 
+          {
+            id: 2,
+            attributes: {
+              nombre: "Florkafun",
               symbol: "FLK",
               imagen: { data: { attributes: { url: "/img/image-1.png" } } }
-            } 
+            }
           },
-          { 
-            id: 3, 
-            attributes: { 
-              nombre: "Bukele Coin", 
+          {
+            id: 3,
+            attributes: {
+              nombre: "Bukele Coin",
               symbol: "BUK",
               imagen: { data: { attributes: { url: "/img/image-3.png" } } }
-            } 
+            }
           }
         ];
-        
+
         setAvailableTokens(fallbackTokens);
         setFromToken(fallbackTokens[0]);
         setToToken(fallbackTokens[1]);
@@ -81,10 +81,10 @@ export const SwapForm = () => {
   useEffect(() => {
     const fetchSwapHistory = async () => {
       if (!isAuthenticated || !user) return;
-      
+
       try {
         const response = await swapService.getUserSwapHistory(user.id);
-        
+
         if (response && response.data) {
           setSwapHistory(response.data);
         }
@@ -105,21 +105,21 @@ export const SwapForm = () => {
         setToAmount('');
         return;
       }
-      
+
       try {
         setCalculating(true);
-        
+
         // Obtener precios de los tokens
         const fromPrice = await swapService.getTokenPrice(fromToken.id);
         const toPrice = await swapService.getTokenPrice(toToken.id);
-        
+
         // Calcular cantidad de salida
         const result = swapService.calculateSwapAmount(
           parseFloat(fromAmount),
           fromPrice.price,
           toPrice.price
         );
-        
+
         setToAmount(result.toAmount.toFixed(6));
       } catch (err) {
         console.error("Error calculating swap amount:", err);
@@ -136,7 +136,7 @@ export const SwapForm = () => {
   const handleFromTokenChange = (e) => {
     const tokenId = parseInt(e.target.value);
     const selectedToken = availableTokens.find(token => token.id === tokenId);
-    
+
     if (selectedToken) {
       // Evitar seleccionar el mismo token para origen y destino
       if (toToken && selectedToken.id === toToken.id) {
@@ -153,7 +153,7 @@ export const SwapForm = () => {
   const handleToTokenChange = (e) => {
     const tokenId = parseInt(e.target.value);
     const selectedToken = availableTokens.find(token => token.id === tokenId);
-    
+
     if (selectedToken) {
       // Evitar seleccionar el mismo token para origen y destino
       if (fromToken && selectedToken.id === fromToken.id) {
@@ -169,7 +169,7 @@ export const SwapForm = () => {
   // Manejar cambio de cantidad de origen
   const handleFromAmountChange = (e) => {
     const value = e.target.value;
-    
+
     // Validar que sea un número positivo
     if (value === '' || (/^\d*\.?\d*$/.test(value) && parseFloat(value) >= 0)) {
       setFromAmount(value);
@@ -181,7 +181,7 @@ export const SwapForm = () => {
     const temp = fromToken;
     setFromToken(toToken);
     setToToken(temp);
-    
+
     // Recalcular cantidades
     if (toAmount) {
       setFromAmount(toAmount);
@@ -195,17 +195,17 @@ export const SwapForm = () => {
       setError("Debes iniciar sesión para realizar un swap.");
       return;
     }
-    
+
     if (!fromToken || !toToken || !fromAmount || !toAmount) {
       setError("Por favor completa todos los campos.");
       return;
     }
-    
+
     try {
       setSwapping(true);
       setError(null);
       setSuccess(null);
-      
+
       const result = await swapService.executeSwap(
         fromToken.id,
         toToken.id,
@@ -213,7 +213,7 @@ export const SwapForm = () => {
         parseFloat(toAmount),
         user.id
       );
-      
+
       if (result.success) {
         setSuccess(`¡Swap completado con éxito! ID de transacción: ${result.transactionId}`);
         setFromAmount('');
@@ -232,7 +232,7 @@ export const SwapForm = () => {
   // Obtener URL de imagen del token
   const getTokenImageUrl = (token) => {
     if (!token) return "/img/token-placeholder.png";
-    
+
     const imageUrl = token.attributes.imagen?.data?.attributes?.url;
     return imageUrl ? `http://localhost:1337${imageUrl}` : "/img/token-placeholder.png";
   };
@@ -254,16 +254,16 @@ export const SwapForm = () => {
         <>
           <div className="swap-form">
             <h2>Swap de Tokens</h2>
-            
+
             {error && <div className="error-message">{error}</div>}
             {success && <div className="success-message">{success}</div>}
-            
+
             <div className="swap-inputs">
               <div className="swap-input-group">
                 <label>De:</label>
                 <div className="token-select-container">
-                  <select 
-                    value={fromToken?.id || ''} 
+                  <select
+                    value={fromToken?.id || ''}
                     onChange={handleFromTokenChange}
                     disabled={swapping}
                   >
@@ -274,9 +274,9 @@ export const SwapForm = () => {
                     ))}
                   </select>
                   {fromToken && (
-                    <img 
-                      src={getTokenImageUrl(fromToken)} 
-                      alt={fromToken.attributes.nombre} 
+                    <img
+                      src={getTokenImageUrl(fromToken)}
+                      alt={fromToken.attributes.nombre}
                       className="token-icon"
                     />
                   )}
@@ -289,20 +289,20 @@ export const SwapForm = () => {
                   disabled={swapping}
                 />
               </div>
-              
-              <button 
-                className="swap-direction-button" 
+
+              <button
+                className="swap-direction-button"
                 onClick={handleSwapTokens}
                 disabled={swapping}
               >
                 ↑↓
               </button>
-              
+
               <div className="swap-input-group">
                 <label>A:</label>
                 <div className="token-select-container">
-                  <select 
-                    value={toToken?.id || ''} 
+                  <select
+                    value={toToken?.id || ''}
                     onChange={handleToTokenChange}
                     disabled={swapping}
                   >
@@ -313,9 +313,9 @@ export const SwapForm = () => {
                     ))}
                   </select>
                   {toToken && (
-                    <img 
-                      src={getTokenImageUrl(toToken)} 
-                      alt={toToken.attributes.nombre} 
+                    <img
+                      src={getTokenImageUrl(toToken)}
+                      alt={toToken.attributes.nombre}
                       className="token-icon"
                     />
                   )}
@@ -328,7 +328,7 @@ export const SwapForm = () => {
                 />
               </div>
             </div>
-            
+
             <div className="swap-details">
               {fromAmount && toAmount && (
                 <div className="rate-info">
@@ -341,29 +341,29 @@ export const SwapForm = () => {
                 <span>1%</span>
               </div>
             </div>
-            
-            <button 
-              className="swap-button" 
+
+            <button
+              className="swap-button"
               onClick={handleExecuteSwap}
               disabled={!fromAmount || !toAmount || swapping || !isAuthenticated}
             >
               {swapping ? 'Procesando...' : isAuthenticated ? 'Realizar Swap' : 'Inicia sesión para hacer Swap'}
             </button>
           </div>
-          
+
           {isAuthenticated && (
             <div className="swap-history-section">
-              <button 
+              <button
                 className="history-toggle-button"
                 onClick={() => setShowHistory(!showHistory)}
               >
                 {showHistory ? 'Ocultar historial' : 'Mostrar historial de swaps'}
               </button>
-              
+
               {showHistory && (
                 <div className="swap-history">
                   <h3>Historial de Swaps</h3>
-                  
+
                   {swapHistory.length === 0 ? (
                     <p className="no-history">No hay transacciones en tu historial.</p>
                   ) : (
