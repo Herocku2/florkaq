@@ -224,4 +224,107 @@
     max-width: 100%;
     padding: 0 10px;
   }
+}/*
+ Estilos para mensajes de carga y error */
+.vote .loading-message,
+.vote .error-message,
+.vote .no-tokens-message {
+  text-align: center;
+  padding: 2rem;
+  border-radius: 8px;
+  margin: 1rem 0;
+  width: 100%;
+  font-family: "Orbitron", Helvetica;
+}
+
+.vote .loading-message {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+.vote .error-message {
+  background-color: rgba(255, 107, 107, 0.2);
+  color: #ff6b6b;
+}
+
+.vote .no-tokens-message {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #cccccc;
+}
+
+/* Estilos para la paginación */
+.vote .pagination-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 600px;
+  padding: 20px 0;
+  margin: 0 auto;
+}
+
+.vote .pagination-btn {
+  background: linear-gradient(135deg, #ff01a1, #ff69b4);
+  color: #ffffff;
+  font-family: "Orbitron", Helvetica;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 1, 161, 0.3);
+}
+
+.vote .pagination-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 1, 161, 0.4);
+}
+
+.vote .pagination-btn:disabled {
+  background: #333333;
+  color: #666666;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+.vote .pagination-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.vote .page-info {
+  font-family: "Orbitron", Helvetica;
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.vote .total-info {
+  font-family: "Orbitron", Helvetica;
+  font-size: 12px;
+  font-weight: 400;
+  color: #cccccc;
+}
+
+/* Estilos para la tarjeta de votos */
+.vote .token-card-item {
+  margin-bottom: 1.5rem;
+  transition: transform 0.3s ease;
+}
+
+.vote .token-card-item:hover {
+  transform: translateY(-5px);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .vote .pagination-controls {
+    flex-direction: column;
+    gap: 20px;
+  }
 }

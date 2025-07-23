@@ -1,23 +1,7 @@
-import { getApiBaseUrl } from '../config/environment';
+import apiService from './api.js';
 import { logger } from '../utils/logger';
 
-const API_BASE_URL = getApiBaseUrl();
-
 class ForumService {
-  // Obtener el token del usuario actual
-  getAuthToken() {
-    return localStorage.getItem('token');
-  }
-
-  // Obtener headers con autenticación
-  getAuthHeaders() {
-    const token = this.getAuthToken();
-    return {
-      'Content-Type': 'application/json',
-      ...(token && { 'Authorization': `Bearer ${token}` })
-    };
-  }
-
   // Verificar si el usuario es moderador
   async isUserModerator() {
     try {
@@ -37,13 +21,12 @@ class ForumService {
 
       // Intentar verificar en el backend si está disponible
       try {
-        const response = await fetch(`${API_BASE_URL}/usuarios?filters[email][$eq]=${user.email}`, {
-          headers: this.getAuthHeaders()
+        const response = await apiService.get('usuarios', {
+          'filters[email][$eq]': user.email
         });
 
-        if (response.ok) {
-          const data = await response.json();
-          const usuario = data.data?.[0];
+        if (response && response.data) {
+          const usuario = response.data[0];
           return usuario?.attributes?.rol === 'moderador';
         }
       } catch (backendError) {
@@ -61,13 +44,13 @@ class ForumService {
   // Obtener todos los foros
   async getForums() {
     try {
-      const response = await fetch(`${API_BASE_URL}/foros?populate=*&sort=createdAt:desc`, {
-        headers: this.getAuthHeaders()
+      const response = await apiService.get('foros', {
+        'populate': '*',
+        'sort': 'createdAt:desc'
       });
 
-      if (response.ok) {
-        const data = await response.json();
-        return { success: true, forums: data.data || [] };
+      if (response && response.data) {
+        return { success: true, forums: response.data };
       }
       
       // Si el backend no está disponible, usar datos de ejemplo
@@ -130,26 +113,21 @@ class ForumService {
     try {
       const user = JSON.parse(localStorage.getItem('user') || '{}');
       
-      const response = await fetch(`${API_BASE_URL}/foros`, {
-        method: 'POST',
-        headers: this.getAuthHeaders(),
-        body: JSON.stringify({
-          data: {
-            titulo: forumData.titulo,
-            descripcion: forumData.descripcion,
-            token_relacionado: forumData.tokenRelacionado || null,
-            creador: user.username || user.email,
-            moderado: true,
-            activo: true,
-            fecha_creacion: new Date().toISOString()
-          }
-        })
+      const response = await apiService.post('foros', {
+        data: {
+          titulo: forumData.titulo,
+          descripcion: forumData.descripcion,
+          token_relacionado: forumData.tokenRelacionado || null,
+          creador: user.username || user.email,
+          moderado: true,
+          activo: true,
+          fecha_creacion: new Date().toISOString()
+        }
       });
 
-      if (response.ok) {
-        const data = await response.json();
+      if (response && response.data) {
         logger.success('Foro creado exitosamente');
-        return { success: true, forum: data.data };
+        return { success: true, forum: response.data };
       }
       return { success: false, error: 'Error creando foro' };
     } catch (error) {
@@ -161,23 +139,18 @@ class ForumService {
   // Editar foro (solo moderadores)
   async updateForum(forumId, forumData) {
     try {
-      const response = await fetch(`${API_BASE_URL}/foros/${forumId}`, {
-        method: 'PUT',
-        headers: this.getAuthHeaders(),
-        body: JSON.stringify({
-          data: {
-            titulo: forumData.titulo,
-            descripcion: forumData.descripcion,
-            token_relacionado: forumData.tokenRelacionado || null,
-            moderado: true
-          }
-        })
+      const response = await apiService.put(`foros/${forumId}`, {
+        data: {
+          titulo: forumData.titulo,
+          descripcion: forumData.descripcion,
+          token_relacionado: forumData.tokenRelacionado || null,
+          moderado: true
+        }
       });
 
-      if (response.ok) {
-        const data = await response.json();
+      if (response && response.data) {
         logger.success('Foro actualizado exitosamente');
-        return { success: true, forum: data.data };
+        return { success: true, forum: response.data };
       }
       return { success: false, error: 'Error actualizando foro' };
     } catch (error) {
@@ -189,12 +162,9 @@ class ForumService {
   // Eliminar foro (solo moderadores)
   async deleteForum(forumId) {
     try {
-      const response = await fetch(`${API_BASE_URL}/foros/${forumId}`, {
-        method: 'DELETE',
-        headers: this.getAuthHeaders()
-      });
+      const response = await apiService.delete(`foros/${forumId}`);
 
-      if (response.ok) {
+      if (response) {
         logger.success('Foro eliminado exitosamente');
         return { success: true };
       }
@@ -208,13 +178,14 @@ class ForumService {
   // Obtener comentarios de un foro
   async getForumComments(forumId) {
     try {
-      const response = await fetch(`${API_BASE_URL}/comentarios?filters[foro_relacionado][$eq]=${forumId}&populate=*&sort=createdAt:asc`, {
-        headers: this.getAuthHeaders()
+      const response = await apiService.get('comentarios', {
+        'filters[foro_relacionado][$eq]': forumId,
+        'populate': '*',
+        'sort': 'createdAt:asc'
       });
 
-      if (response.ok) {
-        const data = await response.json();
-        return { success: true, comments: data.data || [] };
+      if (response && response.data) {
+        return { success: true, comments: response.data };
       }
       return { success: false, error: 'Error obteniendo comentarios' };
     } catch (error) {
@@ -228,24 +199,19 @@ class ForumService {
     try {
       const user = JSON.parse(localStorage.getItem('user') || '{}');
       
-      const response = await fetch(`${API_BASE_URL}/comentarios`, {
-        method: 'POST',
-        headers: this.getAuthHeaders(),
-        body: JSON.stringify({
-          data: {
-            texto: commentText,
-            usuario: user.username || user.email,
-            foro_relacionado: forumId.toString(),
-            aprobado: true,
-            fecha_creacion: new Date().toISOString()
-          }
-        })
+      const response = await apiService.post('comentarios', {
+        data: {
+          texto: commentText,
+          usuario: user.username || user.email,
+          foro_relacionado: forumId.toString(),
+          aprobado: true,
+          fecha_creacion: new Date().toISOString()
+        }
       });
 
-      if (response.ok) {
-        const data = await response.json();
+      if (response && response.data) {
         logger.success('Comentario creado exitosamente');
-        return { success: true, comment: data.data };
+        return { success: true, comment: response.data };
       }
       return { success: false, error: 'Error creando comentario' };
     } catch (error) {
@@ -257,12 +223,9 @@ class ForumService {
   // Eliminar comentario (solo moderadores)
   async deleteComment(commentId) {
     try {
-      const response = await fetch(`${API_BASE_URL}/comentarios/${commentId}`, {
-        method: 'DELETE',
-        headers: this.getAuthHeaders()
-      });
+      const response = await apiService.delete(`comentarios/${commentId}`);
 
-      if (response.ok) {
+      if (response) {
         logger.success('Comentario eliminado exitosamente');
         return { success: true };
       }

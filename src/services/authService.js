@@ -1,35 +1,29 @@
-const API_BASE_URL = 'http://localhost:1337/api';
+import apiService from './api.js';
 
 class AuthService {
   // Registrar nuevo usuario
   async register(userData) {
     try {
-      const response = await fetch(`${API_BASE_URL}/simple-auth/register`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          username: userData.nombre,
-          email: userData.email,
-          password: userData.password,
-        }),
+      const response = await apiService.post('simple-auth/register', {
+        username: userData.nombre,
+        email: userData.email,
+        password: userData.password,
       });
 
-      const data = await response.json();
-
-      if (data.success) {
+      if (response.success) {
         // Guardar token y datos del usuario de forma segura
-        localStorage.setItem('token', data.jwt);
-        localStorage.setItem('user', JSON.stringify(data.user));
-        return { success: true, user: data.user, token: data.jwt };
+        localStorage.setItem('token', response.jwt);
+        localStorage.setItem('user', JSON.stringify(response.user));
+        apiService.setToken(response.jwt);
+        return { success: true, user: response.user, token: response.jwt };
       } else {
         return { 
           success: false, 
-          error: data.error || 'Error en el registro' 
+          error: response.error || 'Error en el registro' 
         };
       }
     } catch (error) {
+      console.error('Error en registro:', error);
       return { 
         success: false, 
         error: 'Error de conexión. Verifica que el servidor esté funcionando.' 
@@ -40,31 +34,25 @@ class AuthService {
   // Iniciar sesión
   async login(credentials) {
     try {
-      const response = await fetch(`${API_BASE_URL}/simple-auth/login`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          identifier: credentials.email,
-          password: credentials.password,
-        }),
+      const response = await apiService.post('simple-auth/login', {
+        identifier: credentials.email,
+        password: credentials.password,
       });
 
-      const data = await response.json();
-
-      if (data.success) {
+      if (response.success) {
         // Guardar token y datos del usuario de forma segura
-        localStorage.setItem('token', data.jwt);
-        localStorage.setItem('user', JSON.stringify(data.user));
-        return { success: true, user: data.user, token: data.jwt };
+        localStorage.setItem('token', response.jwt);
+        localStorage.setItem('user', JSON.stringify(response.user));
+        apiService.setToken(response.jwt);
+        return { success: true, user: response.user, token: response.jwt };
       } else {
         return { 
           success: false, 
-          error: data.error || 'Credenciales incorrectas' 
+          error: response.error || 'Credenciales incorrectas' 
         };
       }
     } catch (error) {
+      console.error('Error en login:', error);
       return { 
         success: false, 
         error: 'Error de conexión. Verifica que el servidor esté funcionando.' 
@@ -76,6 +64,7 @@ class AuthService {
   logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
+    apiService.setToken(null);
     window.location.href = '/auth';
   }
 
@@ -101,17 +90,11 @@ class AuthService {
       const token = this.getToken();
       if (!token) return null;
 
-      const response = await fetch(`${API_BASE_URL}/simple-auth/me`, {
-        headers: {
-          'Authorization': `Bearer ${token}`,
-        },
-      });
+      const response = await apiService.get('simple-auth/me');
 
-      const data = await response.json();
-
-      if (data.success) {
-        localStorage.setItem('user', JSON.stringify(data.user));
-        return data.user;
+      if (response.success) {
+        localStorage.setItem('user', JSON.stringify(response.user));
+        return response.user;
       } else {
         // Token inválido, cerrar sesión
         this.logout();
@@ -126,33 +109,16 @@ class AuthService {
   // Actualizar perfil de usuario
   async updateProfile(userData) {
     try {
-      const token = this.getToken();
       const user = this.getCurrentUser();
       
-      if (!token || !user) {
+      if (!user) {
         return { success: false, error: 'No autenticado' };
       }
 
-      const response = await fetch(`${API_BASE_URL}/users/${user.id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
-        },
-        body: JSON.stringify(userData),
-      });
+      const response = await apiService.put(`users/${user.id}`, userData);
 
-      const data = await response.json();
-
-      if (response.ok) {
-        localStorage.setItem('user', JSON.stringify(data));
-        return { success: true, user: data };
-      } else {
-        return { 
-          success: false, 
-          error: data.error?.message || 'Error actualizando perfil' 
-        };
-      }
+      localStorage.setItem('user', JSON.stringify(response));
+      return { success: true, user: response };
     } catch (error) {
       console.error('Error actualizando perfil:', error);
       return { 

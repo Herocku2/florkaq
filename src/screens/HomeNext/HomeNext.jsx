@@ -1,36 +1,154 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Heder } from "../../components/Heder";
 import { MenuTabla } from "../../components/MenuTabla";
 import { Paginacion } from "../../components/Paginacion";
 import { TarjetaProyectos } from "../../components/TarjetaProyectos";
 import { TarjetaRanking } from "../../components/TarjetaRanking";
+import tokenService from "../../services/tokenService";
+import { useAuth } from "../../contexts/AuthContext";
 import "./style.css";
 
-// Datos de ejemplo para tokens Next
-const allNextTokens = [
+// Datos de ejemplo como fallback
+const fallbackNextTokens = [
   { tokenName: "florkiño", tokenSymbol: "flk", tokenImage: "/img/image-4.png", marketCap: "$22000", progress: "12%", progressValue: 12 },
   { tokenName: "anto", tokenSymbol: "ANT", tokenImage: "/img/image-3.png", marketCap: "$35000", progress: "28%", progressValue: 28 },
   { tokenName: "nicolukas", tokenSymbol: "NKL", tokenImage: "/img/image-1.png", marketCap: "$18000", progress: "6%", progressValue: 6 },
   { tokenName: "NEXT", tokenSymbol: "NXT", tokenImage: "/img/image-2.png", marketCap: "$42000", progress: "35%", progressValue: 35 },
   { tokenName: "FUTURE", tokenSymbol: "FUT", tokenImage: "/img/image-5.png", marketCap: "$15000", progress: "9%", progressValue: 9 },
-  { tokenName: "MOON", tokenSymbol: "MOON", tokenImage: "/img/image-6.png", marketCap: "$58000", progress: "41%", progressValue: 41 },
-  { tokenName: "ROCKET", tokenSymbol: "RKT", tokenImage: "/img/image-3.png", marketCap: "$73000", progress: "52%", progressValue: 52 },
-  { tokenName: "STAR", tokenSymbol: "STAR", tokenImage: "/img/image-4.png", marketCap: "$29000", progress: "17%", progressValue: 17 },
-  { tokenName: "NOVA", tokenSymbol: "NOVA", tokenImage: "/img/image-1.png", marketCap: "$46000", progress: "33%", progressValue: 33 },
-  { tokenName: "COMET", tokenSymbol: "CMT", tokenImage: "/img/image-2.png", marketCap: "$61000", progress: "38%", progressValue: 38 },
-  { tokenName: "GALAXY", tokenSymbol: "GLX", tokenImage: "/img/image-5.png", marketCap: "$84000", progress: "47%", progressValue: 47 },
-  { tokenName: "ORBIT", tokenSymbol: "ORB", tokenImage: "/img/image-6.png", marketCap: "$37000", progress: "21%", progressValue: 21 }
+  { tokenName: "MOON", tokenSymbol: "MOON", tokenImage: "/img/image-6.png", marketCap: "$58000", progress: "41%", progressValue: 41 }
 ];
 
 export const HomeNext = () => {
+  const [tokens, setTokens] = useState([]);
+  const [topVotedTokens, setTopVotedTokens] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [totalTokens, setTotalTokens] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [remindedTokens, setRemindedTokens] = useState([]);
+  const [sortOrder, setSortOrder] = useState('date'); // 'date' o 'votes'
+  const { isAuthenticated, user } = useAuth();
   const cardsPerPage = 6;
-  const totalPages = Math.ceil(allNextTokens.length / cardsPerPage);
 
-  // Calcular las cards para la página actual
-  const startIndex = (currentPage - 1) * cardsPerPage;
-  const endIndex = startIndex + cardsPerPage;
-  const currentTokens = allNextTokens.slice(startIndex, endIndex);
+  // Cargar tokens próximos desde el backend
+  useEffect(() => {
+    const fetchNextTokens = async () => {
+      try {
+        setLoading(true);
+        // Obtener tokens con estado "próximo"
+        const response = await tokenService.getNextTokens(currentPage, cardsPerPage, sortOrder);
+        
+        if (response && response.data) {
+          // Transformar datos para el formato que espera TarjetaProyectos
+          const transformedTokens = response.data.map(token => {
+            const tokenData = tokenService.transformTokenData(token);
+            return {
+              id: tokenData.id,
+              tokenName: tokenData.nombre,
+              tokenSymbol: tokenData.symbol,
+              tokenImage: tokenData.imagen?.data?.attributes?.url || "/img/image-placeholder.png",
+              marketCap: `$${tokenData.marketCap.toLocaleString()}`,
+              progress: `${tokenData.progress}%`,
+              progressValue: tokenData.progress,
+              launchDate: tokenData.fechaLanzamiento
+            };
+          });
+          
+          setTokens(transformedTokens);
+          setTotalTokens(response.meta?.pagination?.total || transformedTokens.length);
+        } else {
+          // Si no hay datos, usar fallback
+          setTokens(fallbackNextTokens);
+          setTotalTokens(fallbackNextTokens.length);
+        }
+      } catch (error) {
+        console.error("Error fetching next tokens:", error);
+        setError("Error al cargar los tokens próximos. Usando datos de ejemplo.");
+        setTokens(fallbackNextTokens);
+        setTotalTokens(fallbackNextTokens.length);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchNextTokens();
+  }, [currentPage, sortOrder]);
+
+  // Cargar top 3 tokens más votados para ranking
+  useEffect(() => {
+    const fetchTopVotedTokens = async () => {
+      try {
+        const response = await tokenService.getTopVotedTokens();
+        
+        if (response && response.data) {
+          // Transformar datos para el formato que espera TarjetaRanking
+          const transformedTopTokens = response.data.map((token, index) => {
+            const tokenData = tokenService.transformTokenData(token);
+            return {
+              id: tokenData.id,
+              position: index + 1,
+              tokenName: tokenData.nombre,
+              tokenSymbol: tokenData.symbol,
+              tokenImage: tokenData.imagen?.data?.attributes?.url || "/img/image-placeholder.png",
+              marketCap: `Votos: ${tokenData.totalVotos || 0}`
+            };
+          });
+          
+          setTopVotedTokens(transformedTopTokens);
+        }
+      } catch (error) {
+        console.error("Error fetching top voted tokens:", error);
+        // Usar datos de ejemplo si falla
+        setTopVotedTokens([
+          { position: 2, tokenName: "florkiño", tokenSymbol: "flk", tokenImage: "/img/image-4.png", marketCap: "Votos: 2" },
+          { position: 1, tokenName: "anto", tokenSymbol: "ANT", tokenImage: "/img/image-3.png", marketCap: "Votos: 4" },
+          { position: 3, tokenName: "nicolukas", tokenSymbol: "NKL", tokenImage: "/img/image-1.png", marketCap: "Votos: 1" }
+        ]);
+      }
+    };
+
+    fetchTopVotedTokens();
+  }, []);
+
+  // Cargar recordatorios guardados
+  useEffect(() => {
+    if (isAuthenticated) {
+      const savedReminders = localStorage.getItem(`remindedTokens_${user?.id}`);
+      if (savedReminders) {
+        setRemindedTokens(JSON.parse(savedReminders));
+      }
+    }
+  }, [isAuthenticated, user]);
+
+  // Función para recordar un token
+  const handleRemindMe = (tokenId) => {
+    if (!isAuthenticated) {
+      alert("Debes iniciar sesión para usar esta función");
+      return;
+    }
+
+    const updatedReminders = [...remindedTokens];
+    const index = updatedReminders.indexOf(tokenId);
+    
+    if (index === -1) {
+      // Añadir recordatorio
+      updatedReminders.push(tokenId);
+    } else {
+      // Quitar recordatorio
+      updatedReminders.splice(index, 1);
+    }
+    
+    setRemindedTokens(updatedReminders);
+    localStorage.setItem(`remindedTokens_${user?.id}`, JSON.stringify(updatedReminders));
+  };
+
+  // Función para cambiar el orden
+  const handleSortChange = (order) => {
+    setSortOrder(order);
+  };
+
+  // Calcular total de páginas
+  const totalPages = Math.ceil(totalTokens / cardsPerPage);
 
   // Funciones de navegación
   const goToNextPage = () => {
@@ -56,38 +174,77 @@ export const HomeNext = () => {
       </div>
 
       <div className="frame-67">
-        <div className="ranking-position">
-          <TarjetaRanking
-            className="tarjeta-ranking-2"
-            tokenName="florkiño"
-            tokenSymbol="flk"
-            marketCap="Votos: 2"
-            tokenImage="/img/image-4.png"
-          />
-          <div className="position-number position-2">2</div>
-        </div>
+        {topVotedTokens.length >= 3 ? (
+          <>
+            <div className="ranking-position">
+              <TarjetaRanking
+                className="tarjeta-ranking-2"
+                tokenName={topVotedTokens[1]?.tokenName || "florkiño"}
+                tokenSymbol={topVotedTokens[1]?.tokenSymbol || "flk"}
+                marketCap={topVotedTokens[1]?.marketCap || "Votos: 2"}
+                tokenImage={topVotedTokens[1]?.tokenImage || "/img/image-4.png"}
+              />
+              <div className="position-number position-2">2</div>
+            </div>
 
-        <div className="ranking-position">
-          <TarjetaRanking
-            className="tarjeta-ranking-3"
-            tokenName="anto"
-            tokenSymbol="ANT"
-            marketCap="Votos: 4"
-            tokenImage="/img/image-3.png"
-          />
-          <div className="position-number position-1">1</div>
-        </div>
+            <div className="ranking-position">
+              <TarjetaRanking
+                className="tarjeta-ranking-3"
+                tokenName={topVotedTokens[0]?.tokenName || "anto"}
+                tokenSymbol={topVotedTokens[0]?.tokenSymbol || "ANT"}
+                marketCap={topVotedTokens[0]?.marketCap || "Votos: 4"}
+                tokenImage={topVotedTokens[0]?.tokenImage || "/img/image-3.png"}
+              />
+              <div className="position-number position-1">1</div>
+            </div>
 
-        <div className="ranking-position">
-          <TarjetaRanking
-            className="tarjeta-ranking-4"
-            tokenName="nicolukas"
-            tokenSymbol="NKL"
-            marketCap="Votos: 1"
-            tokenImage="/img/image-1.png"
-          />
-          <div className="position-number position-3">3</div>
-        </div>
+            <div className="ranking-position">
+              <TarjetaRanking
+                className="tarjeta-ranking-4"
+                tokenName={topVotedTokens[2]?.tokenName || "nicolukas"}
+                tokenSymbol={topVotedTokens[2]?.tokenSymbol || "NKL"}
+                marketCap={topVotedTokens[2]?.marketCap || "Votos: 1"}
+                tokenImage={topVotedTokens[2]?.tokenImage || "/img/image-1.png"}
+              />
+              <div className="position-number position-3">3</div>
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="ranking-position">
+              <TarjetaRanking
+                className="tarjeta-ranking-2"
+                tokenName="florkiño"
+                tokenSymbol="flk"
+                marketCap="Votos: 2"
+                tokenImage="/img/image-4.png"
+              />
+              <div className="position-number position-2">2</div>
+            </div>
+
+            <div className="ranking-position">
+              <TarjetaRanking
+                className="tarjeta-ranking-3"
+                tokenName="anto"
+                tokenSymbol="ANT"
+                marketCap="Votos: 4"
+                tokenImage="/img/image-3.png"
+              />
+              <div className="position-number position-1">1</div>
+            </div>
+
+            <div className="ranking-position">
+              <TarjetaRanking
+                className="tarjeta-ranking-4"
+                tokenName="nicolukas"
+                tokenSymbol="NKL"
+                marketCap="Votos: 1"
+                tokenImage="/img/image-1.png"
+              />
+              <div className="position-number position-3">3</div>
+            </div>
+          </>
+        )}
       </div>
 
       {/* Sección promocional */}
@@ -119,21 +276,58 @@ export const HomeNext = () => {
         to1="/homeu47new"
         to2="/homeu47all"
       />
+      {/* Opciones de ordenación */}
+      <div className="sort-options">
+        <span className="sort-label">Ordenar por:</span>
+        <button 
+          className={`sort-button ${sortOrder === 'date' ? 'active' : ''}`}
+          onClick={() => handleSortChange('date')}
+        >
+          Fecha de lanzamiento
+        </button>
+        <button 
+          className={`sort-button ${sortOrder === 'votes' ? 'active' : ''}`}
+          onClick={() => handleSortChange('votes')}
+        >
+          Popularidad
+        </button>
+      </div>
+
       <div className="frame-68">
         {/* Grid de cards - 3 por fila */}
         <div className="cards-grid">
-          {currentTokens.map((token, index) => (
-            <TarjetaProyectos
-              key={`${token.tokenSymbol}-${index}`}
-              to={index === 0 ? "/homeu47detalletokenu47compra" : undefined}
-              tokenName={token.tokenName}
-              tokenSymbol={token.tokenSymbol}
-              tokenImage={token.tokenImage}
-              marketCap={token.marketCap}
-              progress={token.progress}
-              progressValue={token.progressValue}
-            />
-          ))}
+          {loading ? (
+            <div className="loading-message">Cargando tokens próximos...</div>
+          ) : error ? (
+            <div className="error-message">{error}</div>
+          ) : tokens.length > 0 ? (
+            tokens.map((token, index) => (
+              <div className="token-card-container" key={`${token.tokenSymbol}-${index}`}>
+                <TarjetaProyectos
+                  to={`/homeu47detalletokenu47compra?id=${token.id}`}
+                  tokenName={token.tokenName}
+                  tokenSymbol={token.tokenSymbol}
+                  tokenImage={token.tokenImage}
+                  marketCap={token.marketCap}
+                  progress={token.progress}
+                  progressValue={token.progressValue}
+                />
+                {token.launchDate && (
+                  <div className="launch-date">
+                    Lanzamiento: {new Date(token.launchDate).toLocaleDateString()}
+                  </div>
+                )}
+                <button 
+                  className={`remind-button ${remindedTokens.includes(token.id) ? 'reminded' : ''}`}
+                  onClick={() => handleRemindMe(token.id)}
+                >
+                  {remindedTokens.includes(token.id) ? '✓ Recordatorio activo' : '🔔 Recordarme'}
+                </button>
+              </div>
+            ))
+          ) : (
+            <div className="no-tokens-message">No hay tokens próximos disponibles.</div>
+          )}
         </div>
 
         {/* Controles de paginación personalizados */}
@@ -151,7 +345,7 @@ export const HomeNext = () => {
               Page {currentPage} of {totalPages}
             </span>
             <span className="total-info">
-              ({allNextTokens.length} total tokens)
+              ({totalTokens} total tokens)
             </span>
           </div>
           
