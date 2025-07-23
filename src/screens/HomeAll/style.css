@@ -289,3 +289,47 @@
     gap: 20px;
   }
 }
+/* Estilos para mensajes de carga y error */
+.home-all .loading-message,
+.home-all .error-message,
+.home-all .no-tokens-message {
+  grid-column: span 3;
+  text-align: center;
+  padding: 2rem;
+  border-radius: 8px;
+  margin: 1rem 0;
+  width: 100%;
+  font-family: "Orbitron", Helvetica;
+}
+
+.home-all .loading-message {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+.home-all .error-message {
+  background-color: rgba(255, 107, 107, 0.2);
+  color: #ff6b6b;
+}
+
+.home-all .no-tokens-message {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #cccccc;
+}
+
+/* Responsive para mensajes */
+@media (max-width: 1024px) {
+  .home-all .loading-message,
+  .home-all .error-message,
+  .home-all .no-tokens-message {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 768px) {
+  .home-all .loading-message,
+  .home-all .error-message,
+  .home-all .no-tokens-message {
+    grid-column: span 1;
+  }
+}
