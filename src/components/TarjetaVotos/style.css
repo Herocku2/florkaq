@@ -58,6 +58,9 @@
   background: #2a2a3e;
   box-shadow: 0 4px 15px rgba(255, 1, 161, 0.3);
   transition: transform 0.3s ease;
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 .token-image:hover {

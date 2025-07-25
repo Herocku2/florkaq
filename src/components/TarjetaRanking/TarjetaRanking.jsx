@@ -21,7 +21,18 @@ export const TarjetaRanking = ({
       <div className="frame-10">
         {/* Imagen del token en la parte superior */}
         <div className="token-image-container">
-          <img className="token-image" alt={tokenName} src={tokenImage} />
+          <img 
+            className="token-image" 
+            alt={tokenName} 
+            src={tokenImage}
+            onError={(e) => {
+              console.log('Error loading image in TarjetaRanking:', tokenImage);
+              e.target.src = "/img/image-4.png"; // Fallback image
+            }}
+            onLoad={() => {
+              console.log('Image loaded successfully in TarjetaRanking:', tokenImage);
+            }}
+          />
         </div>
 
         {/* Nombre del token */}

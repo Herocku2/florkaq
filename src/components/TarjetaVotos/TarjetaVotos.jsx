@@ -65,7 +65,18 @@ export const TarjetaVotos = ({
       <div className="token-card-container">
         <Link to={to} className="token-clickable-area">
           <div className="token-image-section">
-            <img className="token-image" alt={text} src={imagen} />
+            <img 
+              className="token-image" 
+              alt={text} 
+              src={imagen}
+              onError={(e) => {
+                console.log('Error loading image:', imagen);
+                e.target.src = "/img/image-4.png"; // Fallback image
+              }}
+              onLoad={() => {
+                console.log('Image loaded successfully:', imagen);
+              }}
+            />
           </div>
           
           <div className="token-info-section">

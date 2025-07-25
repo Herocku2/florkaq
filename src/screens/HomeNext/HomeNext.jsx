@@ -8,6 +8,16 @@ import tokenService from "../../services/tokenService";
 import { useAuth } from "../../contexts/AuthContext";
 import "./style.css";
 
+// Helper function para construir URLs de imágenes
+const buildImageUrl = (imageData) => {
+  if (!imageData?.data?.attributes?.url) {
+    return "/img/image-4.png";
+  }
+  
+  const url = imageData.data.attributes.url;
+  return url.startsWith('http') ? url : `http://localhost:1337${url}`;
+};
+
 // Datos de ejemplo como fallback
 const fallbackNextTokens = [
   { tokenName: "florkiño", tokenSymbol: "flk", tokenImage: "/img/image-4.png", marketCap: "$22000", progress: "12%", progressValue: 12 },
@@ -46,8 +56,8 @@ export const HomeNext = () => {
               id: tokenData.id,
               tokenName: tokenData.nombre,
               tokenSymbol: tokenData.symbol,
-              tokenImage: tokenData.imagen?.data?.attributes?.url || "/img/image-placeholder.png",
-              marketCap: `$${tokenData.marketCap.toLocaleString()}`,
+              tokenImage: buildImageUrl(tokenData.imagen),
+              marketCap: `${tokenData.marketCap.toLocaleString()}`,
               progress: `${tokenData.progress}%`,
               progressValue: tokenData.progress,
               launchDate: tokenData.fechaLanzamiento
@@ -89,7 +99,7 @@ export const HomeNext = () => {
               position: index + 1,
               tokenName: tokenData.nombre,
               tokenSymbol: tokenData.symbol,
-              tokenImage: tokenData.imagen?.data?.attributes?.url || "/img/image-placeholder.png",
+              tokenImage: buildImageUrl(tokenData.imagen),
               marketCap: `Votos: ${tokenData.totalVotos || 0}`
             };
           });

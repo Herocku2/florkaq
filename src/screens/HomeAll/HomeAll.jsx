@@ -7,6 +7,16 @@ import { TarjetaRanking } from "../../components/TarjetaRanking";
 import tokenService from "../../services/tokenService";
 import "./style.css";
 
+// Helper function para construir URLs de imágenes
+const buildImageUrl = (imageData) => {
+  if (!imageData?.data?.attributes?.url) {
+    return "/img/image-4.png";
+  }
+  
+  const url = imageData.data.attributes.url;
+  return url.startsWith('http') ? url : `http://localhost:1337${url}`;
+};
+
 // Datos de ejemplo como fallback
 const fallbackTokens = [
   { tokenName: "CAT", tokenSymbol: "CAT", tokenImage: "/img/image-3.png", marketCap: "$20000", progress: "15%", progressValue: 15 },
@@ -41,7 +51,7 @@ export const HomeAll = () => {
               id: tokenData.id,
               tokenName: tokenData.nombre,
               tokenSymbol: tokenData.symbol,
-              tokenImage: tokenData.imagen?.data?.attributes?.url || "/img/image-placeholder.png",
+              tokenImage: buildImageUrl(tokenData.imagen),
               marketCap: `$${tokenData.marketCap.toLocaleString()}`,
               progress: `${tokenData.progress}%`,
               progressValue: tokenData.progress
@@ -83,7 +93,7 @@ export const HomeAll = () => {
               position: rankingData.posicion,
               tokenName: rankingData.token?.nombre || "Token",
               tokenSymbol: rankingData.token?.symbol || "TKN",
-              tokenImage: rankingData.token?.imagen?.data?.attributes?.url || "/img/image-placeholder.png",
+              tokenImage: buildImageUrl(rankingData.token?.imagen),
               marketCap: `$${rankingData.token?.marketCap.toLocaleString() || "0"}`
             };
           });

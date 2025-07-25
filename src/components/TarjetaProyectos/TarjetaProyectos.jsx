@@ -24,7 +24,18 @@ export const TarjetaProyectos = ({
     <Link className="tarjeta-proyectos nft-card" to={to}>
       {/* Imagen principal del NFT */}
       <div className="nft-image-container">
-        <img className="nft-image" alt={tokenName} src={tokenImage} />
+        <img 
+          className="nft-image" 
+          alt={tokenName} 
+          src={tokenImage}
+          onError={(e) => {
+            console.log('Error loading image in TarjetaProyectos:', tokenImage);
+            e.target.src = "/img/image-4.png"; // Fallback image
+          }}
+          onLoad={() => {
+            console.log('Image loaded successfully in TarjetaProyectos:', tokenImage);
+          }}
+        />
       </div>
 
       {/* Información del token */}

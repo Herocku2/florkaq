@@ -8,6 +8,16 @@ import { useVoting } from "../../hooks/useVoting";
 import tokenService from "../../services/tokenService";
 import "./style.css";
 
+// Helper function para construir URLs de imágenes
+const buildImageUrl = (imageData) => {
+  if (!imageData?.data?.attributes?.url) {
+    return "/img/image-4.png";
+  }
+  
+  const url = imageData.data.attributes.url;
+  return url.startsWith('http') ? url : `http://localhost:1337${url}`;
+};
+
 export const Vote = () => {
   const [tokens, setTokens] = useState([]);
   const [topTokens, setTopTokens] = useState([]);
@@ -171,10 +181,10 @@ export const Vote = () => {
           <div className="error-message">{error}</div>
         ) : tokens.length > 0 ? (
           tokens.map((token, index) => {
-            // Construir URL de la imagen
-            const imagenUrl = token.attributes.imagen?.data?.attributes?.url 
-              ? `http://localhost:1337${token.attributes.imagen.data.attributes.url}`
-              : "/img/image-4.png"; // Imagen por defecto si no hay imagen
+            // Construir URL de la imagen usando helper function
+            const imagenUrl = buildImageUrl(token.attributes.imagen);
+            
+            console.log('Rendering token:', token.attributes.nombre, 'with image:', imagenUrl);
             
             return (
               <TarjetaVotos

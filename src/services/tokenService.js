@@ -47,12 +47,50 @@ class TokenService {
         
         const response = await apiService.get('tokens', params);
         return response;
-      }, this.getFallbackLaunchedTokens(page, pageSize), 'TokenService.getLaunchedTokens');
+      }, await this.getFallbackLaunchedTokens(page, pageSize), 'TokenService.getLaunchedTokens');
     });
   }
 
-  // Datos de fallback para tokens lanzados
-  getFallbackLaunchedTokens(page = 1, pageSize = 10) {
+  // Obtener candidatos reales del backend para usar como tokens lanzados
+  async getFallbackLaunchedTokens(page = 1, pageSize = 10) {
+    try {
+      // Intentar obtener candidatos reales del backend
+      const candidatosResponse = await apiService.get('candidatos', {
+        'populate': 'imagen',
+        'pagination[page]': page,
+        'pagination[pageSize]': pageSize
+      });
+      
+      if (candidatosResponse?.data?.length > 0) {
+        // Transformar candidatos a formato de tokens
+        const tokensFromCandidatos = candidatosResponse.data.map(candidato => ({
+          id: candidato.id,
+          attributes: {
+            nombre: candidato.attributes.nombre,
+            descripcion: candidato.attributes.descripcion,
+            estado: "lanzado",
+            fechaLanzamiento: new Date().toISOString(),
+            imagen: candidato.attributes.imagen
+          }
+        }));
+        
+        return {
+          data: tokensFromCandidatos,
+          meta: candidatosResponse.meta || {
+            pagination: {
+              page: page,
+              pageSize: pageSize,
+              pageCount: 1,
+              total: tokensFromCandidatos.length
+            }
+          }
+        };
+      }
+    } catch (error) {
+      console.error('Error fetching candidatos for fallback:', error);
+    }
+    
+    // Fallback estático si no se pueden obtener candidatos
     return {
       data: [
         { 
@@ -115,12 +153,51 @@ class TokenService {
         
         const response = await apiService.get('tokens', params);
         return response;
-      }, this.getFallbackNextTokens(page, pageSize), 'TokenService.getNextTokens');
+      }, await this.getFallbackNextTokens(page, pageSize), 'TokenService.getNextTokens');
     });
   }
 
-  // Datos de fallback para próximos tokens
-  getFallbackNextTokens(page = 1, pageSize = 10) {
+  // Obtener candidatos reales del backend para usar como próximos tokens
+  async getFallbackNextTokens(page = 1, pageSize = 10) {
+    try {
+      // Intentar obtener candidatos reales del backend
+      const candidatosResponse = await apiService.get('candidatos', {
+        'populate': 'imagen',
+        'pagination[page]': page,
+        'pagination[pageSize]': pageSize
+      });
+      
+      if (candidatosResponse?.data?.length > 0) {
+        // Transformar candidatos a formato de próximos tokens
+        const tokensFromCandidatos = candidatosResponse.data.map(candidato => ({
+          id: candidato.id,
+          attributes: {
+            nombre: candidato.attributes.nombre,
+            descripcion: candidato.attributes.descripcion,
+            estado: "proximo",
+            fechaLanzamiento: new Date(Date.now() + 7*24*60*60*1000).toISOString(),
+            imagen: candidato.attributes.imagen,
+            totalVotos: candidato.attributes.votos || 0
+          }
+        }));
+        
+        return {
+          data: tokensFromCandidatos,
+          meta: candidatosResponse.meta || {
+            pagination: {
+              page: page,
+              pageSize: pageSize,
+              pageCount: 1,
+              total: tokensFromCandidatos.length
+            }
+          }
+        };
+      }
+    } catch (error) {
+      console.error('Error fetching candidatos for next tokens fallback:', error);
+    }
+    
+    // Fallback estático si no se pueden obtener candidatos
     return {
       data: [
         { 
@@ -260,8 +337,23 @@ class TokenService {
     
     return await this.getCachedData(cacheKey, async () => {
       return await errorHandler.safeAsync(async () => {
-        // Obtener votaciones activas con sus candidatos
-        const params = {
+        // Primero intentar obtener candidatos activos directamente
+        const candidatosParams = {
+          'filters[activo][$eq]': true,
+          'populate': 'imagen',
+          'pagination[page]': page,
+          'pagination[pageSize]': pageSize,
+          'sort': 'votos:desc'
+        };
+        
+        const candidatosResponse = await apiService.get('candidatos', candidatosParams);
+        
+        if (candidatosResponse?.data?.length > 0) {
+          return candidatosResponse;
+        }
+        
+        // Si no hay candidatos, intentar obtener desde votaciones activas
+        const votacionesParams = {
           'filters[activa][$eq]': true,
           'populate': 'candidatos,candidatos.imagen',
           'pagination[page]': 1,
@@ -269,7 +361,7 @@ class TokenService {
           'sort': 'fechaInicio:desc'
         };
         
-        const votacionesResponse = await apiService.get('votaciones', params);
+        const votacionesResponse = await apiService.get('votaciones', votacionesParams);
         
         if (votacionesResponse?.data?.length > 0) {
           const votacionActiva = votacionesResponse.data[0];
@@ -305,9 +397,9 @@ class TokenService {
         { 
           id: 1, 
           attributes: { 
-            nombre: "Bukele", 
-            descripcion: "Token del presidente de El Salvador",
-            estado: "lanzado",
+            nombre: "Bukele Coin", 
+            descripcion: "Token inspirado en el presidente de El Salvador",
+            estado: "votacion",
             fechaLanzamiento: new Date().toISOString(),
             imagen: { data: { attributes: { url: "/img/image-4.png" } } }
           } 
@@ -315,9 +407,9 @@ class TokenService {
         { 
           id: 2, 
           attributes: { 
-            nombre: "Obama", 
-            descripcion: "Token del expresidente de USA",
-            estado: "lanzado",
+            nombre: "Obama Token", 
+            descripcion: "Token meme del expresidente estadounidense",
+            estado: "votacion",
             fechaLanzamiento: new Date().toISOString(),
             imagen: { data: { attributes: { url: "/img/image-3.png" } } }
           } 
@@ -325,9 +417,9 @@ class TokenService {
         { 
           id: 3, 
           attributes: { 
-            nombre: "Petro", 
-            descripcion: "Token del presidente de Colombia",
-            estado: "lanzado",
+            nombre: "Petro Coin", 
+            descripcion: "Token del presidente colombiano",
+            estado: "votacion",
             fechaLanzamiento: new Date().toISOString(),
             imagen: { data: { attributes: { url: "/img/image-1.png" } } }
           } 
