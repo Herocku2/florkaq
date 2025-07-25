@@ -7,7 +7,6 @@ module.exports = {
       path: '/auth/register',
       handler: 'auth.register',
       config: {
-        policies: [],
         middlewares: [],
       },
     },
@@ -16,7 +15,6 @@ module.exports = {
       path: '/auth/login',
       handler: 'auth.login',
       config: {
-        policies: [],
         middlewares: [],
       },
     },
@@ -25,7 +23,6 @@ module.exports = {
       path: '/auth/me',
       handler: 'auth.me',
       config: {
-        policies: [],
         middlewares: [],
       },
     },
@@ -34,7 +31,6 @@ module.exports = {
       path: '/auth/profile',
       handler: 'auth.updateProfile',
       config: {
-        policies: [],
         middlewares: [],
       },
     },
@@ -43,7 +39,6 @@ module.exports = {
       path: '/auth/change-password',
       handler: 'auth.changePassword',
       config: {
-        policies: [],
         middlewares: [],
       },
     },

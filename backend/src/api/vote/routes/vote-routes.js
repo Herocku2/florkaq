@@ -12,21 +12,11 @@ module.exports = {
       method: 'GET',
       path: '/vote/candidates',
       handler: 'vote-candidates.getVoteCandidates',
-      config: {
-        auth: false,
-        policies: [],
-        middlewares: [],
-      },
     },
     {
       method: 'GET',
       path: '/vote/stats/:votingId',
       handler: 'vote-candidates.getVotingStats',
-      config: {
-        auth: false,
-        policies: [],
-        middlewares: [],
-      },
     },
     
     // Rutas que requieren autenticación
@@ -34,19 +24,11 @@ module.exports = {
       method: 'POST',
       path: '/vote/submit',
       handler: 'vote-candidates.submitVote',
-      config: {
-        policies: [],
-        middlewares: [],
-      },
     },
     {
       method: 'GET',
       path: '/vote/check/:votingId',
       handler: 'vote-candidates.checkUserVote',
-      config: {
-        policies: [],
-        middlewares: [],
-      },
     },
   ],
 };

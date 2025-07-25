@@ -142,9 +142,9 @@ module.exports = {
       console.log(`💰 Creando solicitud de token: usuario ${userId}, paquete ${paqueteId}`);
       
       // Verificar que el paquete existe
-      const package = await strapi.entityService.findOne('api::paquete.paquete', paqueteId);
+      const paquete = await strapi.entityService.findOne('api::paquete.paquete', paqueteId);
       
-      if (!package || !package.activo) {
+      if (!paquete || !paquete.activo) {
         return ctx.badRequest('Paquete no válido');
       }
       

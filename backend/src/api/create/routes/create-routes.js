@@ -12,21 +12,11 @@ module.exports = {
       method: 'GET',
       path: '/create/packages',
       handler: 'token-creation.getCreationPackages',
-      config: {
-        auth: false,
-        policies: [],
-        middlewares: [],
-      },
     },
     {
       method: 'GET',
       path: '/create/templates',
       handler: 'token-creation.getTokenTemplates',
-      config: {
-        auth: false,
-        policies: [],
-        middlewares: [],
-      },
     },
     
     // Rutas que requieren autenticación
@@ -34,28 +24,16 @@ module.exports = {
       method: 'POST',
       path: '/create/submit',
       handler: 'token-creation.submitTokenRequest',
-      config: {
-        policies: [],
-        middlewares: [],
-      },
     },
     {
       method: 'GET',
       path: '/create/requests',
       handler: 'token-creation.getUserRequests',
-      config: {
-        policies: [],
-        middlewares: [],
-      },
     },
     {
       method: 'GET',
       path: '/create/request/:requestId/status',
       handler: 'token-creation.getRequestStatus',
-      config: {
-        policies: [],
-        middlewares: [],
-      },
     },
   ],
 };

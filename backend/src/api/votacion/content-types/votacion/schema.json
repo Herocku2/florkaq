@@ -43,11 +43,9 @@
       "default": 0
     },
     "candidatos": {
-      "type": "json",
-      "required": true
-    },
-    "resultados": {
-      "type": "json"
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::token.token"
     }
   }
 }

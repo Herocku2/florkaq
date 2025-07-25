@@ -254,6 +254,96 @@ class TokenService {
     };
   }
 
+  // Get tokens in voting (from active votaciones)
+  async getTokensInVoting(page = 1, pageSize = 10) {
+    const cacheKey = `tokens-voting-${page}-${pageSize}`;
+    
+    return await this.getCachedData(cacheKey, async () => {
+      return await errorHandler.safeAsync(async () => {
+        // Obtener votaciones activas con sus candidatos
+        const params = {
+          'filters[activa][$eq]': true,
+          'populate': 'candidatos,candidatos.imagen',
+          'pagination[page]': 1,
+          'pagination[pageSize]': 1,
+          'sort': 'fechaInicio:desc'
+        };
+        
+        const votacionesResponse = await apiService.get('votaciones', params);
+        
+        if (votacionesResponse?.data?.length > 0) {
+          const votacionActiva = votacionesResponse.data[0];
+          const candidatos = votacionActiva.attributes.candidatos?.data || [];
+          
+          // Paginar los candidatos
+          const startIndex = (page - 1) * pageSize;
+          const endIndex = startIndex + pageSize;
+          const paginatedCandidatos = candidatos.slice(startIndex, endIndex);
+          
+          return {
+            data: paginatedCandidatos,
+            meta: {
+              pagination: {
+                page: page,
+                pageSize: pageSize,
+                pageCount: Math.ceil(candidatos.length / pageSize),
+                total: candidatos.length
+              }
+            }
+          };
+        }
+        
+        return { data: [], meta: { pagination: { page: 1, pageSize: pageSize, pageCount: 0, total: 0 } } };
+      }, this.getFallbackTokensInVoting(page, pageSize), 'TokenService.getTokensInVoting');
+    });
+  }
+
+  // Datos de fallback para tokens en votación
+  getFallbackTokensInVoting(page = 1, pageSize = 10) {
+    return {
+      data: [
+        { 
+          id: 1, 
+          attributes: { 
+            nombre: "Bukele", 
+            descripcion: "Token del presidente de El Salvador",
+            estado: "lanzado",
+            fechaLanzamiento: new Date().toISOString(),
+            imagen: { data: { attributes: { url: "/img/image-4.png" } } }
+          } 
+        },
+        { 
+          id: 2, 
+          attributes: { 
+            nombre: "Obama", 
+            descripcion: "Token del expresidente de USA",
+            estado: "lanzado",
+            fechaLanzamiento: new Date().toISOString(),
+            imagen: { data: { attributes: { url: "/img/image-3.png" } } }
+          } 
+        },
+        { 
+          id: 3, 
+          attributes: { 
+            nombre: "Petro", 
+            descripcion: "Token del presidente de Colombia",
+            estado: "lanzado",
+            fechaLanzamiento: new Date().toISOString(),
+            imagen: { data: { attributes: { url: "/img/image-1.png" } } }
+          } 
+        }
+      ],
+      meta: {
+        pagination: {
+          page: page,
+          pageSize: pageSize,
+          pageCount: 1,
+          total: 3
+        }
+      }
+    };
+  }
+
   // Transform ranking data
   transformRankingData(strapiRanking) {
     if (!strapiRanking) return null;

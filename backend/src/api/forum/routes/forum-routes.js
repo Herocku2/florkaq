@@ -12,31 +12,16 @@ module.exports = {
       method: 'GET',
       path: '/forum/topics',
       handler: 'community-forum.getForumTopics',
-      config: {
-        auth: false,
-        policies: [],
-        middlewares: [],
-      },
     },
     {
       method: 'GET',
       path: '/forum/topic/:topicId',
       handler: 'community-forum.getForumTopic',
-      config: {
-        auth: false,
-        policies: [],
-        middlewares: [],
-      },
     },
     {
       method: 'GET',
       path: '/forum/categories',
       handler: 'community-forum.getForumCategories',
-      config: {
-        auth: false,
-        policies: [],
-        middlewares: [],
-      },
     },
     
     // Rutas que requieren autenticación
@@ -44,19 +29,11 @@ module.exports = {
       method: 'POST',
       path: '/forum/topics',
       handler: 'community-forum.createForumTopic',
-      config: {
-        policies: [],
-        middlewares: [],
-      },
     },
     {
       method: 'POST',
       path: '/forum/topic/:topicId/reply',
       handler: 'community-forum.createTopicReply',
-      config: {
-        policies: [],
-        middlewares: [],
-      },
     },
     
     // Rutas para moderadores/admins
@@ -64,10 +41,6 @@ module.exports = {
       method: 'PUT',
       path: '/forum/topic/:topicId/moderate',
       handler: 'community-forum.moderateTopic',
-      config: {
-        policies: ['admin::isOwner'],
-        middlewares: [],
-      },
     },
   ],
 };

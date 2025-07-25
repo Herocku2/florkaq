@@ -42,13 +42,8 @@ services:
     ports:
       - "1337:1337"
     environment:
-      - DATABASE_CLIENT=postgres
-      - DATABASE_HOST=postgres
-      - DATABASE_PORT=5432
-      - DATABASE_NAME=florkafun
-      - DATABASE_USERNAME=florkafun_user
-      - DATABASE_PASSWORD=florkafun_password
-      - DATABASE_SSL=false
+      - DATABASE_CLIENT=sqlite
+      - DATABASE_FILENAME=.tmp/data.db
       - APP_KEYS=florkafun1,florkafun2,florkafun3,florkafun4
       - API_TOKEN_SALT=florkafunsalt123456789
       - ADMIN_JWT_SECRET=florkafunadminjwtsecret

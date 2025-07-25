@@ -21,13 +21,19 @@
   border-color: #ff01a1;
 }
 
-/* Imagen principal del NFT */
+/* Imagen principal del NFT - CUADRADO MEJORADO */
 .tarjeta-proyectos .nft-image-container {
   width: 100%;
   height: 200px;
   border-radius: 12px 12px 0 0;
   overflow: hidden;
   position: relative;
+  border: 3px solid #ff69b4;
+  box-shadow: 0 4px 15px rgba(255, 105, 180, 0.3);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .tarjeta-proyectos .nft-image {
@@ -35,10 +41,11 @@
   height: 100%;
   object-fit: cover;
   transition: transform 0.3s ease;
+  border-radius: 8px;
 }
 
 .tarjeta-proyectos.nft-card:hover .nft-image {
-  transform: scale(1.05);
+  transform: scale(1.08);
 }
 
 /* Información del NFT */

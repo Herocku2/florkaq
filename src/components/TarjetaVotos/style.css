@@ -52,10 +52,16 @@
 .token-image {
   width: 80px;
   height: 80px;
-  border-radius: 12px;
+  border-radius: 50%;
   object-fit: cover;
-  border: 2px solid #ff01a1;
+  border: 3px solid #ff01a1;
   background: #2a2a3e;
+  box-shadow: 0 4px 15px rgba(255, 1, 161, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.token-image:hover {
+  transform: scale(1.05);
 }
 
 .token-info-section {

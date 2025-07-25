@@ -8,7 +8,6 @@ module.exports = {
       handler: 'simple-auth.register',
       config: {
         auth: false, // Desactivar autenticación para esta ruta
-        policies: [],
         middlewares: [],
       },
     },
@@ -18,7 +17,6 @@ module.exports = {
       handler: 'simple-auth.login',
       config: {
         auth: false, // Desactivar autenticación para esta ruta
-        policies: [],
         middlewares: [],
       },
     },
@@ -28,7 +26,6 @@ module.exports = {
       handler: 'simple-auth.me',
       config: {
         auth: false, // Desactivar autenticación para esta ruta
-        policies: [],
         middlewares: [],
       },
     },

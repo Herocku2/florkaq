@@ -8,7 +8,6 @@ module.exports = {
       path: '/usuario/register',
       handler: 'usuario.register',
       config: {
-        policies: [],
         middlewares: [],
       },
     },
@@ -17,7 +16,6 @@ module.exports = {
       path: '/usuario/login',
       handler: 'usuario.login',
       config: {
-        policies: [],
         middlewares: [],
       },
     },

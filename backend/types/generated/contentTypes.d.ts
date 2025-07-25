@@ -722,6 +722,59 @@ export interface ApiActividadActividad extends Schema.CollectionType {
   };
 }
 
+export interface ApiCandidatoCandidato extends Schema.CollectionType {
+  collectionName: 'candidatos';
+  info: {
+    singularName: 'candidato';
+    pluralName: 'candidatos';
+    displayName: 'Candidato';
+    description: 'Candidatos para votaciones de tokens';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    nombre: Attribute.String &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        maxLength: 100;
+      }>;
+    descripcion: Attribute.Text &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        maxLength: 500;
+      }>;
+    imagen: Attribute.Media;
+    votos: Attribute.Integer &
+      Attribute.SetMinMax<{
+        min: 0;
+      }> &
+      Attribute.DefaultTo<0>;
+    activo: Attribute.Boolean & Attribute.Required & Attribute.DefaultTo<true>;
+    fechaCreacion: Attribute.DateTime & Attribute.Required;
+    categoria: Attribute.Enumeration<['meme', 'utility', 'gaming', 'defi']> &
+      Attribute.DefaultTo<'meme'>;
+    mintAddress: Attribute.String &
+      Attribute.SetMinMaxLength<{
+        maxLength: 50;
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::candidato.candidato',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::candidato.candidato',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiComentarioComentario extends Schema.CollectionType {
   collectionName: 'comentarios';
   info: {
@@ -796,6 +849,77 @@ export interface ApiForoForo extends Schema.CollectionType {
   };
 }
 
+export interface ApiNewsNoticia extends Schema.CollectionType {
+  collectionName: 'noticias';
+  info: {
+    singularName: 'noticia';
+    pluralName: 'noticias';
+    displayName: 'Noticia';
+    description: 'Art\u00EDculos de noticias para el sistema NEWS';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    titulo: Attribute.String &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        maxLength: 200;
+      }>;
+    slug: Attribute.UID<'api::news.noticia', 'titulo'> & Attribute.Required;
+    contenido: Attribute.RichText & Attribute.Required;
+    resumen: Attribute.Text &
+      Attribute.SetMinMaxLength<{
+        maxLength: 500;
+      }>;
+    categoria: Attribute.Enumeration<
+      ['mercado', 'plataforma', 'comunidad', 'tecnologia', 'general']
+    > &
+      Attribute.Required &
+      Attribute.DefaultTo<'general'>;
+    tags: Attribute.JSON & Attribute.DefaultTo<[]>;
+    imagen: Attribute.Media;
+    destacado: Attribute.Boolean &
+      Attribute.Required &
+      Attribute.DefaultTo<false>;
+    estado: Attribute.Enumeration<
+      ['borrador', 'revision', 'publicado', 'archivado']
+    > &
+      Attribute.Required &
+      Attribute.DefaultTo<'borrador'>;
+    fechaCreacion: Attribute.DateTime & Attribute.Required;
+    fechaPublicacion: Attribute.DateTime;
+    fechaActualizacion: Attribute.DateTime;
+    autor: Attribute.Relation<
+      'api::news.noticia',
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+    vistas: Attribute.Integer &
+      Attribute.SetMinMax<{
+        min: 0;
+      }> &
+      Attribute.DefaultTo<0>;
+    comentariosHabilitados: Attribute.Boolean &
+      Attribute.Required &
+      Attribute.DefaultTo<true>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::news.noticia',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::news.noticia',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiPaquetePaquete extends Schema.CollectionType {
   collectionName: 'paquetes';
   info: {
@@ -833,6 +957,73 @@ export interface ApiPaquetePaquete extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::paquete.paquete',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiProyectoNextProyectoNext extends Schema.CollectionType {
+  collectionName: 'proyectos_next';
+  info: {
+    singularName: 'proyecto-next';
+    pluralName: 'proyectos-next';
+    displayName: 'Proyecto Next';
+    description: 'Pr\u00F3ximos proyectos de tokens a lanzar';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    nombre: Attribute.String &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        maxLength: 100;
+      }>;
+    descripcion: Attribute.Text &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        maxLength: 500;
+      }>;
+    imagen: Attribute.Media;
+    fechaLanzamiento: Attribute.DateTime & Attribute.Required;
+    estado: Attribute.Enumeration<
+      ['proximo', 'en-desarrollo', 'lanzado', 'cancelado']
+    > &
+      Attribute.Required &
+      Attribute.DefaultTo<'proximo'>;
+    destacado: Attribute.Boolean & Attribute.DefaultTo<false>;
+    progreso: Attribute.Integer &
+      Attribute.SetMinMax<{
+        min: 0;
+        max: 100;
+      }> &
+      Attribute.DefaultTo<0>;
+    categoria: Attribute.Enumeration<['meme', 'utility', 'gaming', 'defi']> &
+      Attribute.DefaultTo<'meme'>;
+    equipo: Attribute.String &
+      Attribute.SetMinMaxLength<{
+        maxLength: 200;
+      }>;
+    sitioWeb: Attribute.String &
+      Attribute.SetMinMaxLength<{
+        maxLength: 200;
+      }>;
+    twitter: Attribute.String &
+      Attribute.SetMinMaxLength<{
+        maxLength: 200;
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::proyecto-next.proyecto-next',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::proyecto-next.proyecto-next',
       'oneToOne',
       'admin::user'
     > &
@@ -1093,8 +1284,11 @@ export interface ApiVotacionVotacion extends Schema.CollectionType {
         maxLength: 100;
       }>;
     totalVotos: Attribute.Integer & Attribute.DefaultTo<0>;
-    candidatos: Attribute.JSON & Attribute.Required;
-    resultados: Attribute.JSON;
+    candidatos: Attribute.Relation<
+      'api::votacion.votacion',
+      'manyToMany',
+      'api::token.token'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -1155,9 +1349,12 @@ declare module '@strapi/types' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::i18n.locale': PluginI18NLocale;
       'api::actividad.actividad': ApiActividadActividad;
+      'api::candidato.candidato': ApiCandidatoCandidato;
       'api::comentario.comentario': ApiComentarioComentario;
       'api::foro.foro': ApiForoForo;
+      'api::news.noticia': ApiNewsNoticia;
       'api::paquete.paquete': ApiPaquetePaquete;
+      'api::proyecto-next.proyecto-next': ApiProyectoNextProyectoNext;
       'api::ranking.ranking': ApiRankingRanking;
       'api::solicitud-token.solicitud-token': ApiSolicitudTokenSolicitudToken;
       'api::swap.swap': ApiSwapSwap;

@@ -55,7 +55,7 @@ module.exports = {
       } = ctx.request.body.data;
       
       // Crear paquete
-      const package = await strapi.entityService.create('api::paquete.paquete', {
+      const paquete = await strapi.entityService.create('api::paquete.paquete', {
         data: {
           nombre,
           precio,
@@ -69,7 +69,7 @@ module.exports = {
         }
       });
       
-      return { success: true, package };
+      return { success: true, package: paquete };
     } catch (error) {
       console.error('Error en createPackage:', error);
       return ctx.badRequest('Error al crear paquete');
@@ -85,14 +85,14 @@ module.exports = {
       const updateData = ctx.request.body.data;
       
       // Actualizar paquete
-      const package = await strapi.entityService.update('api::paquete.paquete', packageId, {
+      const paqueteActualizado = await strapi.entityService.update('api::paquete.paquete', packageId, {
         data: {
           ...updateData,
           fechaActualizacion: new Date().toISOString()
         }
       });
       
-      return { success: true, package };
+      return { success: true, package: paqueteActualizado };
     } catch (error) {
       console.error('Error en updatePackage:', error);
       return ctx.badRequest('Error al actualizar paquete');
@@ -108,14 +108,14 @@ module.exports = {
       console.log(`📦🔄 Admin: ${activo ? 'Activando' : 'Desactivando'} paquete ${packageId}`);
       
       // Actualizar estado
-      const package = await strapi.entityService.update('api::paquete.paquete', packageId, {
+      const paqueteActualizado = await strapi.entityService.update('api::paquete.paquete', packageId, {
         data: {
           activo,
           fechaActualizacion: new Date().toISOString()
         }
       });
       
-      return { success: true, package };
+      return { success: true, package: paqueteActualizado };
     } catch (error) {
       console.error('Error en togglePackageStatus:', error);
       return ctx.badRequest('Error al cambiar estado del paquete');

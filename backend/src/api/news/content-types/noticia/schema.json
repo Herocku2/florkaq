@@ -70,8 +70,7 @@
     "autor": {
       "type": "relation",
       "relation": "manyToOne",
-      "target": "plugin::users-permissions.user",
-      "inversedBy": "noticias"
+      "target": "plugin::users-permissions.user"
     },
     "vistas": {
       "type": "integer",
