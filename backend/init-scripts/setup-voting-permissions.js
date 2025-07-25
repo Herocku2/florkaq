@@ -1,6 +1,6 @@
-const setupVotingPermissions = async () => {
+const setupAllPermissions = async () => {
   try {
-    console.log('🔧 Configurando permisos para votaciones...');
+    console.log('🔧 Configurando permisos públicos para todas las APIs...');
 
     // Obtener el rol Public
     const publicRole = await strapi.db.query('plugin::users-permissions.role').findOne({
@@ -14,13 +14,26 @@ const setupVotingPermissions = async () => {
 
     console.log('✅ Rol Public encontrado:', publicRole.id);
 
-    // Configurar permisos para votaciones
-    const votacionPermissions = [
+    // Configurar permisos para todas las APIs necesarias
+    const allPermissions = [
+      // Tokens
+      'api::token.token.find',
+      'api::token.token.findOne',
+      // Rankings
+      'api::ranking.ranking.find', 
+      'api::ranking.ranking.findOne',
+      // Votaciones
       'api::votacion.votacion.find',
-      'api::votacion.votacion.findOne'
+      'api::votacion.votacion.findOne',
+      // Candidatos
+      'api::candidato.candidato.find',
+      'api::candidato.candidato.findOne',
+      // Noticias
+      'api::noticia.noticia.find',
+      'api::noticia.noticia.findOne'
     ];
 
-    for (const permission of votacionPermissions) {
+    for (const permission of allPermissions) {
       try {
         const existingPermission = await strapi.db.query('plugin::users-permissions.permission').findOne({
           where: { 
@@ -51,11 +64,11 @@ const setupVotingPermissions = async () => {
       }
     }
 
-    console.log('🎉 Permisos de votaciones configurados!');
+    console.log('🎉 Todos los permisos configurados!');
 
   } catch (error) {
-    console.error('❌ Error configurando permisos de votaciones:', error);
+    console.error('❌ Error configurando permisos:', error);
   }
 };
 
-module.exports = setupVotingPermissions;
+module.exports = setupAllPermissions;
