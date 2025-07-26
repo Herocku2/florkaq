@@ -1287,7 +1287,7 @@ export interface ApiVotacionVotacion extends Schema.CollectionType {
     candidatos: Attribute.Relation<
       'api::votacion.votacion',
       'manyToMany',
-      'api::token.token'
+      'api::candidato.candidato'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;

@@ -69,10 +69,23 @@
 /* Aplicar a todas las páginas públicas para consistencia */
 
 /* Estructura base de páginas */
-.home-all, .home-next, .home-new, .vote, .news, .swap-screen,
-.create, .create-screen, .create-wrapper, .publish, .publish-screen, 
-.publish-wrapper, .screen15, .home-detalletoken, .vote-detalletoken,
-.div-wrapper, .auth {
+.home-all,
+.home-next,
+.home-new,
+.vote,
+.news,
+.swap-screen,
+.create,
+.create-screen,
+.create-wrapper,
+.publish,
+.publish-screen,
+.publish-wrapper,
+.screen15,
+.home-detalletoken,
+.vote-detalletoken,
+.div-wrapper,
+.auth {
   align-items: center;
   background-color: #020102;
   display: flex;
@@ -86,8 +99,12 @@
 }
 
 /* Tipografía consistente para títulos */
-.text-wrapper-42, .text-wrapper-43, 
-h1, h2, h3, .titulo-seccion {
+.text-wrapper-42,
+.text-wrapper-43,
+h1,
+h2,
+h3,
+.titulo-seccion {
   font-family: "Orbitron", Helvetica;
   font-size: 50px;
   font-weight: 400;
@@ -99,7 +116,9 @@ h1, h2, h3, .titulo-seccion {
 }
 
 /* Tipografía para texto de cuerpo */
-p, .text-content, .description-text {
+p,
+.text-content,
+.description-text {
   font-family: "Orbitron", Helvetica;
   font-size: 20px;
   font-weight: 400;
@@ -111,7 +130,12 @@ p, .text-content, .description-text {
 }
 
 /* Espaciado consistente para frames principales */
-.frame-60, .frame-66, .frame-70, .frame-58, .frame-64, .frame-65,
+.frame-60,
+.frame-66,
+.frame-70,
+.frame-58,
+.frame-64,
+.frame-65,
 .main-content-frame {
   align-items: center;
   display: flex;
@@ -124,29 +148,44 @@ p, .text-content, .description-text {
 }
 
 /* Imágenes principales consistentes */
-.fair-launches-the, .fair-launches-the-2, .fair-launches-the-3,
-.no-need-for-a, .no-need-for-a-2, .no-need-for-a-3,
-.element-launches-a-month, .element-launches-a-month-2, .element-launches-a-month-3 {
+.fair-launches-the,
+.fair-launches-the-2,
+.fair-launches-the-3,
+.no-need-for-a,
+.no-need-for-a-2,
+.no-need-for-a-3,
+.element-launches-a-month,
+.element-launches-a-month-2,
+.element-launches-a-month-3 {
   height: auto;
   position: relative;
   width: 100%;
   object-fit: contain;
 }
 
-.fair-launches-the, .fair-launches-the-2, .fair-launches-the-3 {
+.fair-launches-the,
+.fair-launches-the-2,
+.fair-launches-the-3 {
   max-width: 800px;
 }
 
-.no-need-for-a, .no-need-for-a-2, .no-need-for-a-3 {
+.no-need-for-a,
+.no-need-for-a-2,
+.no-need-for-a-3 {
   max-width: 700px;
 }
 
-.element-launches-a-month, .element-launches-a-month-2, .element-launches-a-month-3 {
+.element-launches-a-month,
+.element-launches-a-month-2,
+.element-launches-a-month-3 {
   max-width: 650px;
 }
 
 /* Logo isotipo consistente */
-.img-3, .img-4, .img-5, .logo-isotipo {
+.img-3,
+.img-4,
+.img-5,
+.logo-isotipo {
   flex: 0 0 auto;
   position: relative;
   width: 100%;
@@ -156,7 +195,10 @@ p, .text-content, .description-text {
 }
 
 /* Banners consistentes */
-.baner, .baner-2, .baner-3, .banner-main {
+.baner,
+.baner-2,
+.baner-3,
+.banner-main {
   flex: 0 0 auto;
   position: relative;
   width: 100%;
@@ -166,8 +208,12 @@ p, .text-content, .description-text {
 }
 
 /* Títulos de página consistentes */
-.titulo-pagina, .titulo-pagina-2, .titulo-pagina-3, .titulo-pagina-4, 
-.titulo-pagina-5, .titulo-pagina-10 {
+.titulo-pagina,
+.titulo-pagina-2,
+.titulo-pagina-3,
+.titulo-pagina-4,
+.titulo-pagina-5,
+.titulo-pagina-10 {
   align-items: center;
   display: flex;
   flex: 0 0 auto;

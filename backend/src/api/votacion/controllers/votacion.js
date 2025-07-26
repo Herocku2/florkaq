@@ -53,8 +53,8 @@ module.exports = createCoreController('api::votacion.votacion', ({ strapi }) => 
       }
 
       // Verificar que el candidato existe en la votación
-      const candidatos = votacion.candidatos || [];
-      const candidatoExiste = candidatos.find(c => c.nombre === candidato || c.id === candidato);
+      const candidatos = votacion.candidatos?.data || votacion.candidatos || [];
+      const candidatoExiste = candidatos.find(c => c.attributes?.nombre === candidato || c.id === candidato || c.nombre === candidato);
       
       if (!candidatoExiste) {
         return ctx.badRequest('Candidato no válido para esta votación');

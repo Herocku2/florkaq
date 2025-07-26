@@ -45,7 +45,7 @@
     "candidatos": {
       "type": "relation",
       "relation": "manyToMany",
-      "target": "api::token.token"
+      "target": "api::candidato.candidato"
     }
   }
 }

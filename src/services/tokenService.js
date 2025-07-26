@@ -352,7 +352,7 @@ class TokenService {
           return candidatosResponse;
         }
         
-        // Si no hay candidatos, intentar obtener desde votaciones activas
+        // Si no hay candidatos directos, obtener desde votaciones activas
         const votacionesParams = {
           'filters[activa][$eq]': true,
           'populate': 'candidatos,candidatos.imagen',
@@ -366,6 +366,8 @@ class TokenService {
         if (votacionesResponse?.data?.length > 0) {
           const votacionActiva = votacionesResponse.data[0];
           const candidatos = votacionActiva.attributes.candidatos?.data || [];
+          
+          console.log('Candidatos from votacion activa:', candidatos);
           
           // Paginar los candidatos
           const startIndex = (page - 1) * pageSize;
@@ -390,47 +392,16 @@ class TokenService {
     });
   }
 
-  // Datos de fallback para tokens en votación
+  // Sin datos de fallback - solo datos reales del backend
   getFallbackTokensInVoting(page = 1, pageSize = 10) {
     return {
-      data: [
-        { 
-          id: 1, 
-          attributes: { 
-            nombre: "Bukele Coin", 
-            descripcion: "Token inspirado en el presidente de El Salvador",
-            estado: "votacion",
-            fechaLanzamiento: new Date().toISOString(),
-            imagen: { data: { attributes: { url: "/img/image-4.png" } } }
-          } 
-        },
-        { 
-          id: 2, 
-          attributes: { 
-            nombre: "Obama Token", 
-            descripcion: "Token meme del expresidente estadounidense",
-            estado: "votacion",
-            fechaLanzamiento: new Date().toISOString(),
-            imagen: { data: { attributes: { url: "/img/image-3.png" } } }
-          } 
-        },
-        { 
-          id: 3, 
-          attributes: { 
-            nombre: "Petro Coin", 
-            descripcion: "Token del presidente colombiano",
-            estado: "votacion",
-            fechaLanzamiento: new Date().toISOString(),
-            imagen: { data: { attributes: { url: "/img/image-1.png" } } }
-          } 
-        }
-      ],
+      data: [],
       meta: {
         pagination: {
           page: page,
           pageSize: pageSize,
-          pageCount: 1,
-          total: 3
+          pageCount: 0,
+          total: 0
         }
       }
     };
