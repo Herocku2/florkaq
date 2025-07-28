@@ -37,6 +37,9 @@ class TokenService {
     
     return await this.getCachedData(cacheKey, async () => {
       return await errorHandler.safeAsync(async () => {
+        console.log('Trying to get launched tokens from backend...');
+        
+        // Primero intentar obtener tokens reales
         const params = {
           'filters[estado][$eq]': 'lanzado',
           'populate': 'imagen',
@@ -46,6 +49,14 @@ class TokenService {
         };
         
         const response = await apiService.get('tokens', params);
+        console.log('Tokens response:', response);
+        
+        // Si no hay tokens, usar candidatos como tokens lanzados
+        if (!response?.data || response.data.length === 0) {
+          console.log('No tokens found, using candidatos as launched tokens...');
+          return await this.getFallbackLaunchedTokens(page, pageSize);
+        }
+        
         return response;
       }, await this.getFallbackLaunchedTokens(page, pageSize), 'TokenService.getLaunchedTokens');
     });
