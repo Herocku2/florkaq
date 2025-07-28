@@ -54,12 +54,15 @@ class TokenService {
   // Obtener candidatos reales del backend para usar como tokens lanzados
   async getFallbackLaunchedTokens(page = 1, pageSize = 10) {
     try {
+      console.log('Fetching candidatos for launched tokens...');
       // Intentar obtener candidatos reales del backend
       const candidatosResponse = await apiService.get('candidatos', {
         'populate': 'imagen',
         'pagination[page]': page,
         'pagination[pageSize]': pageSize
       });
+      
+      console.log('Candidatos response for launched tokens:', candidatosResponse);
       
       if (candidatosResponse?.data?.length > 0) {
         // Transformar candidatos a formato de tokens
@@ -73,6 +76,8 @@ class TokenService {
             imagen: candidato.attributes.imagen
           }
         }));
+        
+        console.log('Transformed tokens from candidatos:', tokensFromCandidatos);
         
         return {
           data: tokensFromCandidatos,
@@ -160,12 +165,15 @@ class TokenService {
   // Obtener candidatos reales del backend para usar como próximos tokens
   async getFallbackNextTokens(page = 1, pageSize = 10) {
     try {
+      console.log('Fetching candidatos for next tokens...');
       // Intentar obtener candidatos reales del backend
       const candidatosResponse = await apiService.get('candidatos', {
         'populate': 'imagen',
         'pagination[page]': page,
         'pagination[pageSize]': pageSize
       });
+      
+      console.log('Candidatos response for next tokens:', candidatosResponse);
       
       if (candidatosResponse?.data?.length > 0) {
         // Transformar candidatos a formato de próximos tokens
@@ -180,6 +188,8 @@ class TokenService {
             totalVotos: candidato.attributes.votos || 0
           }
         }));
+        
+        console.log('Transformed next tokens from candidatos:', tokensFromCandidatos);
         
         return {
           data: tokensFromCandidatos,

@@ -10,12 +10,17 @@ import "./style.css";
 
 // Helper function para construir URLs de imágenes
 const buildImageUrl = (imageData) => {
+  console.log('buildImageUrl received:', imageData);
+  
   if (!imageData?.data?.attributes?.url) {
+    console.log('No image data found, using fallback');
     return "/img/image-4.png";
   }
   
   const url = imageData.data.attributes.url;
-  return url.startsWith('http') ? url : `http://localhost:1337${url}`;
+  const finalUrl = url.startsWith('http') ? url : `http://localhost:1337${url}`;
+  console.log('Final image URL:', finalUrl);
+  return finalUrl;
 };
 
 export const Vote = () => {
