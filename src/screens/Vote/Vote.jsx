@@ -9,18 +9,33 @@ import tokenService from "../../services/tokenService";
 import "./style.css";
 
 // Helper function para construir URLs de imágenes
-const buildImageUrl = (imageData) => {
-  console.log('buildImageUrl received:', imageData);
+const buildImageUrl = (imageData, tokenName = '') => {
+  console.log('buildImageUrl received:', imageData, 'for token:', tokenName);
   
-  if (!imageData?.data?.attributes?.url) {
-    console.log('No image data found, using fallback');
-    return "/img/image-4.png";
+  // PRIORIDAD 1: Si hay imagen real del backend, usarla
+  if (imageData?.data?.attributes?.url) {
+    const url = imageData.data.attributes.url;
+    const finalUrl = url.startsWith('http') ? url : `http://localhost:1337${url}`;
+    console.log('Using backend image URL:', finalUrl);
+    return finalUrl;
   }
   
-  const url = imageData.data.attributes.url;
-  const finalUrl = url.startsWith('http') ? url : `http://localhost:1337${url}`;
-  console.log('Final image URL:', finalUrl);
-  return finalUrl;
+  // PRIORIDAD 2: Mapeo específico para candidatos conocidos (fallback)
+  const candidateImageMap = {
+    'bukele': '/img/bukele.png',
+    'gustavo petro': '/img/petro.png',
+    'barack obama': '/img/obama.png'
+  };
+  
+  const normalizedName = tokenName.toLowerCase();
+  if (candidateImageMap[normalizedName]) {
+    console.log('Using mapped fallback image for candidate:', normalizedName, candidateImageMap[normalizedName]);
+    return candidateImageMap[normalizedName];
+  }
+  
+  // PRIORIDAD 3: Fallback genérico
+  console.log('No image data found, using generic fallback');
+  return "/img/image-4.png";
 };
 
 export const Vote = () => {
@@ -110,8 +125,8 @@ export const Vote = () => {
               position: rankingData.posicion,
               tokenName: rankingData.token?.nombre || "Token",
               tokenSymbol: rankingData.token?.symbol || "TKN",
-              tokenImage: rankingData.token?.imagen?.data?.attributes?.url || "/img/image-placeholder.png",
-              marketCap: `$${rankingData.token?.marketCap.toLocaleString() || "0"}`
+              tokenImage: buildImageUrl(rankingData.token?.imagen),
+              totalVotes: rankingData.totalVotos || 0
             };
           });
           
@@ -148,27 +163,55 @@ export const Vote = () => {
       <div className="titulo-pagina-10" />
 
       <div className="frame-135">
-        <TarjetaRanking
-          className="tarjeta-ranking-10"
-          tokenName="Shina inu"
-          tokenSymbol="SBH"
-          marketCap="$150000"
-          tokenImage="/img/image-4.png"
-        />
-        <TarjetaRanking
-          className="tarjeta-ranking-11"
-          tokenName="CAt"
-          tokenSymbol="CAT"
-          marketCap="$20000"
-          tokenImage="/img/image-3.png"
-        />
-        <TarjetaRanking
-          className="tarjeta-ranking-12"
-          tokenName="florka"
-          tokenSymbol="FLK"
-          marketCap="$25000"
-          tokenImage="/img/image-1.png"
-        />
+        {topTokens.length >= 3 ? (
+          <>
+            <TarjetaRanking
+              className="tarjeta-ranking-10"
+              tokenName={topTokens[1]?.tokenName || "Shina inu"}
+              tokenSymbol={topTokens[1]?.tokenSymbol || "SBH"}
+              marketCap={`Votos: ${topTokens[1]?.totalVotes || "15"}`}
+              tokenImage={topTokens[1]?.tokenImage || "/img/image-4.png"}
+            />
+            <TarjetaRanking
+              className="tarjeta-ranking-11"
+              tokenName={topTokens[0]?.tokenName || "CAT"}
+              tokenSymbol={topTokens[0]?.tokenSymbol || "CAT"}
+              marketCap={`Votos: ${topTokens[0]?.totalVotes || "28"}`}
+              tokenImage={topTokens[0]?.tokenImage || "/img/image-3.png"}
+            />
+            <TarjetaRanking
+              className="tarjeta-ranking-12"
+              tokenName={topTokens[2]?.tokenName || "florka"}
+              tokenSymbol={topTokens[2]?.tokenSymbol || "FLK"}
+              marketCap={`Votos: ${topTokens[2]?.totalVotes || "8"}`}
+              tokenImage={topTokens[2]?.tokenImage || "/img/image-1.png"}
+            />
+          </>
+        ) : (
+          <>
+            <TarjetaRanking
+              className="tarjeta-ranking-10"
+              tokenName="Shina inu"
+              tokenSymbol="SBH"
+              marketCap="Votos: 15"
+              tokenImage="/img/image-4.png"
+            />
+            <TarjetaRanking
+              className="tarjeta-ranking-11"
+              tokenName="CAT"
+              tokenSymbol="CAT"
+              marketCap="Votos: 28"
+              tokenImage="/img/image-3.png"
+            />
+            <TarjetaRanking
+              className="tarjeta-ranking-12"
+              tokenName="florka"
+              tokenSymbol="FLK"
+              marketCap="Votos: 8"
+              tokenImage="/img/image-1.png"
+            />
+          </>
+        )}
       </div>
 
       <BanerMovil
@@ -187,7 +230,7 @@ export const Vote = () => {
         ) : tokens.length > 0 ? (
           tokens.map((token, index) => {
             // Construir URL de la imagen usando helper function
-            const imagenUrl = buildImageUrl(token.attributes.imagen);
+            const imagenUrl = buildImageUrl(token.attributes.imagen, token.attributes.nombre);
             
             console.log('Rendering token:', token.attributes.nombre, 'with image:', imagenUrl);
             

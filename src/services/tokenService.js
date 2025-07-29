@@ -34,11 +34,11 @@ class TokenService {
   // Get all launched tokens for home page
   async getLaunchedTokens(page = 1, pageSize = 10) {
     const cacheKey = `launched-tokens-${page}-${pageSize}`;
-    
+
     return await this.getCachedData(cacheKey, async () => {
       return await errorHandler.safeAsync(async () => {
         console.log('Trying to get launched tokens from backend...');
-        
+
         // Primero intentar obtener tokens reales
         const params = {
           'filters[estado][$eq]': 'lanzado',
@@ -47,16 +47,16 @@ class TokenService {
           'pagination[pageSize]': pageSize,
           'sort': 'fechaLanzamiento:desc'
         };
-        
+
         const response = await apiService.get('tokens', params);
         console.log('Tokens response:', response);
-        
+
         // Si no hay tokens, usar candidatos como tokens lanzados
         if (!response?.data || response.data.length === 0) {
           console.log('No tokens found, using candidatos as launched tokens...');
           return await this.getFallbackLaunchedTokens(page, pageSize);
         }
-        
+
         return response;
       }, await this.getFallbackLaunchedTokens(page, pageSize), 'TokenService.getLaunchedTokens');
     });
@@ -72,9 +72,9 @@ class TokenService {
         'pagination[page]': page,
         'pagination[pageSize]': pageSize
       });
-      
+
       console.log('Candidatos response for launched tokens:', candidatosResponse);
-      
+
       if (candidatosResponse?.data?.length > 0) {
         // Transformar candidatos a formato de tokens
         const tokensFromCandidatos = candidatosResponse.data.map(candidato => ({
@@ -87,9 +87,9 @@ class TokenService {
             imagen: candidato.attributes.imagen
           }
         }));
-        
+
         console.log('Transformed tokens from candidatos:', tokensFromCandidatos);
-        
+
         return {
           data: tokensFromCandidatos,
           meta: candidatosResponse.meta || {
@@ -105,39 +105,39 @@ class TokenService {
     } catch (error) {
       console.error('Error fetching candidatos for fallback:', error);
     }
-    
+
     // Fallback estático si no se pueden obtener candidatos
     return {
       data: [
-        { 
-          id: 1, 
-          attributes: { 
-            nombre: "Bukele", 
+        {
+          id: 1,
+          attributes: {
+            nombre: "Bukele",
             descripcion: "Token del presidente de El Salvador",
             estado: "lanzado",
             fechaLanzamiento: new Date().toISOString(),
             imagen: { data: { attributes: { url: "/img/image-3.png" } } }
-          } 
+          }
         },
-        { 
-          id: 2, 
-          attributes: { 
-            nombre: "Gustavo Petro Token", 
+        {
+          id: 2,
+          attributes: {
+            nombre: "Gustavo Petro Token",
             descripcion: "Token del presidente colombiano",
             estado: "lanzado",
             fechaLanzamiento: new Date().toISOString(),
             imagen: { data: { attributes: { url: "/img/image-4.png" } } }
-          } 
+          }
         },
-        { 
-          id: 3, 
-          attributes: { 
-            nombre: "Barack Obama Coin", 
+        {
+          id: 3,
+          attributes: {
+            nombre: "Barack Obama Coin",
             descripcion: "Token del expresidente estadounidense",
             estado: "lanzado",
             fechaLanzamiento: new Date().toISOString(),
             imagen: { data: { attributes: { url: "/img/image-1.png" } } }
-          } 
+          }
         }
       ],
       meta: {
@@ -150,15 +150,15 @@ class TokenService {
       }
     };
   }
-  
+
   // Get next tokens for next page
   async getNextTokens(page = 1, pageSize = 10, sortOrder = 'date') {
     const cacheKey = `next-tokens-${page}-${pageSize}-${sortOrder}`;
-    
+
     return await this.getCachedData(cacheKey, async () => {
       return await errorHandler.safeAsync(async () => {
         const sortField = sortOrder === 'votes' ? 'totalVotos:desc' : 'fechaLanzamiento:asc';
-        
+
         const params = {
           'filters[estado][$eq]': 'proximo',
           'populate': 'imagen',
@@ -166,7 +166,7 @@ class TokenService {
           'pagination[pageSize]': pageSize,
           'sort': sortField
         };
-        
+
         const response = await apiService.get('tokens', params);
         return response;
       }, await this.getFallbackNextTokens(page, pageSize), 'TokenService.getNextTokens');
@@ -183,9 +183,9 @@ class TokenService {
         'pagination[page]': page,
         'pagination[pageSize]': pageSize
       });
-      
+
       console.log('Candidatos response for next tokens:', candidatosResponse);
-      
+
       if (candidatosResponse?.data?.length > 0) {
         // Transformar candidatos a formato de próximos tokens
         const tokensFromCandidatos = candidatosResponse.data.map(candidato => ({
@@ -194,14 +194,14 @@ class TokenService {
             nombre: candidato.attributes.nombre,
             descripcion: candidato.attributes.descripcion,
             estado: "proximo",
-            fechaLanzamiento: new Date(Date.now() + 7*24*60*60*1000).toISOString(),
+            fechaLanzamiento: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
             imagen: candidato.attributes.imagen,
             totalVotos: candidato.attributes.votos || 0
           }
         }));
-        
+
         console.log('Transformed next tokens from candidatos:', tokensFromCandidatos);
-        
+
         return {
           data: tokensFromCandidatos,
           meta: candidatosResponse.meta || {
@@ -217,66 +217,128 @@ class TokenService {
     } catch (error) {
       console.error('Error fetching candidatos for next tokens fallback:', error);
     }
-    
+
     // Fallback estático si no se pueden obtener candidatos
     return {
       data: [
-        { 
-          id: 4, 
-          attributes: { 
-            nombre: "florkiño", 
+        {
+          id: 4,
+          attributes: {
+            nombre: "florkiño",
             descripcion: "Token próximo a lanzar",
             estado: "proximo",
-            fechaLanzamiento: new Date(Date.now() + 7*24*60*60*1000).toISOString(),
+            fechaLanzamiento: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
             imagen: { data: { attributes: { url: "/img/image-4.png" } } },
             totalVotos: 12
-          } 
+          }
         },
-        { 
-          id: 5, 
-          attributes: { 
-            nombre: "anto", 
+        {
+          id: 5,
+          attributes: {
+            nombre: "anto",
             descripcion: "Token próximo a lanzar",
             estado: "proximo",
-            fechaLanzamiento: new Date(Date.now() + 14*24*60*60*1000).toISOString(),
+            fechaLanzamiento: new Date(Date.now() + 14 * 24 * 60 * 60 * 1000).toISOString(),
             imagen: { data: { attributes: { url: "/img/image-3.png" } } },
             totalVotos: 28
-          } 
+          }
         }
       ],
       meta: { pagination: { page: page, pageSize: pageSize, pageCount: 1, total: 2 } }
     };
   }
 
-  // Get top 3 tokens for ranking - HOME PAGE
+  // Get top 3 tokens for ranking - HOME PAGE (Market Cap based)
   async getTop3Tokens() {
     const cacheKey = 'top3-tokens-home';
-    
+
     return await this.getCachedData(cacheKey, async () => {
       return await errorHandler.safeAsync(async () => {
-        console.log('Fetching rankings for HOME page...');
-        const response = await apiService.get('rankings/page/home');
-        console.log('Home rankings response:', response);
-        return response;
+        console.log('Fetching rankings for HOME page (Market Cap based)...');
+
+        // Intentar obtener ranking específico para home
+        try {
+          const response = await apiService.get('rankings/page/home');
+          console.log('Home rankings response:', response);
+          if (response?.data?.length > 0) {
+            return response;
+          }
+        } catch (error) {
+          console.log('No specific home rankings, using launched tokens...');
+        }
+
+        // Si no hay rankings específicos, usar tokens lanzados ordenados por market cap
+        const launchedTokens = await this.getLaunchedTokens(1, 3);
+        if (launchedTokens?.data?.length > 0) {
+          // Convertir tokens a formato de ranking
+          const rankingData = launchedTokens.data.map((token, index) => ({
+            id: token.id,
+            attributes: {
+              posicion: index + 1,
+              totalVotos: Math.floor(Math.random() * 50) + 10, // Simular votos
+              fechaActualizacion: new Date().toISOString(),
+              activo: true,
+              pagina: "home",
+              token: {
+                data: token
+              }
+            }
+          }));
+
+          return { data: rankingData };
+        }
+
+        throw new Error('No data available');
       }, this.getFallbackTop3Tokens(), 'TokenService.getTop3Tokens');
     });
   }
 
-  // Get top 3 tokens for ranking - NEXT PAGE
+  // Get top 3 tokens for ranking - NEXT PAGE (Votes based)
   async getTop3TokensNext() {
     const cacheKey = 'top3-tokens-next';
-    
+
     return await this.getCachedData(cacheKey, async () => {
       return await errorHandler.safeAsync(async () => {
-        console.log('Fetching rankings for NEXT page...');
-        const response = await apiService.get('rankings/page/next');
-        console.log('Next rankings response:', response);
-        return response;
+        console.log('Fetching rankings for NEXT page (Votes based)...');
+
+        // Intentar obtener ranking específico para next
+        try {
+          const response = await apiService.get('rankings/page/next');
+          console.log('Next rankings response:', response);
+          if (response?.data?.length > 0) {
+            return response;
+          }
+        } catch (error) {
+          console.log('No specific next rankings, using next tokens...');
+        }
+
+        // Si no hay rankings específicos, usar próximos tokens ordenados por votos
+        const nextTokens = await this.getNextTokens(1, 3, 'votes');
+        if (nextTokens?.data?.length > 0) {
+          // Convertir tokens a formato de ranking
+          const rankingData = nextTokens.data.map((token, index) => ({
+            id: token.id,
+            attributes: {
+              posicion: index + 1,
+              totalVotos: token.attributes.totalVotos || Math.floor(Math.random() * 30) + 5,
+              fechaActualizacion: new Date().toISOString(),
+              activo: true,
+              pagina: "next",
+              token: {
+                data: token
+              }
+            }
+          }));
+
+          return { data: rankingData };
+        }
+
+        throw new Error('No data available');
       }, this.getFallbackTop3TokensNext(), 'TokenService.getTop3TokensNext');
     });
   }
 
-  // Datos de fallback para top 3 tokens - HOME
+  // Datos de fallback para top 3 tokens - HOME (Market Cap based)
   getFallbackTop3Tokens() {
     return {
       data: [
@@ -292,8 +354,9 @@ class TokenService {
               data: {
                 id: 1,
                 attributes: {
-                  nombre: "Bukele",
-                  descripcion: "Token del presidente de El Salvador",
+                  nombre: "CAT",
+                  symbol: "CAT",
+                  descripcion: "Top token by market cap",
                   imagen: { data: { attributes: { url: "/img/image-3.png" } } }
                 }
               }
@@ -312,8 +375,9 @@ class TokenService {
               data: {
                 id: 2,
                 attributes: {
-                  nombre: "Gustavo Petro Token",
-                  descripcion: "Token del presidente colombiano",
+                  nombre: "Shina inu",
+                  symbol: "SBH",
+                  descripcion: "Second by market cap",
                   imagen: { data: { attributes: { url: "/img/image-4.png" } } }
                 }
               }
@@ -332,8 +396,9 @@ class TokenService {
               data: {
                 id: 3,
                 attributes: {
-                  nombre: "Barack Obama Coin",
-                  descripcion: "Token del expresidente estadounidense",
+                  nombre: "florka",
+                  symbol: "FLK",
+                  descripcion: "Third by market cap",
                   imagen: { data: { attributes: { url: "/img/image-1.png" } } }
                 }
               }
@@ -344,7 +409,7 @@ class TokenService {
     };
   }
 
-  // Datos de fallback para top 3 tokens - NEXT
+  // Datos de fallback para top 3 tokens - NEXT (Votes based)
   getFallbackTop3TokensNext() {
     return {
       data: [
@@ -360,9 +425,10 @@ class TokenService {
               data: {
                 id: 4,
                 attributes: {
-                  nombre: "Next Token 1",
-                  descripcion: "Próximo token más votado",
-                  imagen: { data: { attributes: { url: "/img/image-1.png" } } }
+                  nombre: "anto",
+                  symbol: "ANT",
+                  descripcion: "Most voted next token",
+                  imagen: { data: { attributes: { url: "/img/image-3.png" } } }
                 }
               }
             }
@@ -380,9 +446,10 @@ class TokenService {
               data: {
                 id: 5,
                 attributes: {
-                  nombre: "Next Token 2",
-                  descripcion: "Segundo próximo token",
-                  imagen: { data: { attributes: { url: "/img/image-3.png" } } }
+                  nombre: "florkiño",
+                  symbol: "FLK",
+                  descripcion: "Second most voted",
+                  imagen: { data: { attributes: { url: "/img/image-4.png" } } }
                 }
               }
             }
@@ -400,9 +467,10 @@ class TokenService {
               data: {
                 id: 6,
                 attributes: {
-                  nombre: "Next Token 3",
-                  descripcion: "Tercer próximo token",
-                  imagen: { data: { attributes: { url: "/img/image-4.png" } } }
+                  nombre: "nicolukas",
+                  symbol: "NKL",
+                  descripcion: "Third most voted",
+                  imagen: { data: { attributes: { url: "/img/image-1.png" } } }
                 }
               }
             }
@@ -417,7 +485,7 @@ class TokenService {
     if (!strapiToken) return null;
 
     const attributes = strapiToken.attributes || strapiToken;
-    
+
     return {
       id: strapiToken.id,
       nombre: attributes.nombre,
@@ -427,7 +495,7 @@ class TokenService {
       fechaLanzamiento: attributes.fechaLanzamiento,
       estado: attributes.estado,
       red: attributes.red,
-      symbol: attributes.nombre?.substring(0, 3).toUpperCase() || 'TKN',
+      symbol: attributes.symbol || attributes.nombre?.substring(0, 3).toUpperCase() || 'TKN',
       marketCap: Math.floor(Math.random() * 1000000) + 10000,
       progress: Math.floor(Math.random() * 100),
       holders: Math.floor(Math.random() * 10000) + 100,
@@ -438,7 +506,7 @@ class TokenService {
   // Get tokens in voting (from active votaciones)
   async getTokensInVoting(page = 1, pageSize = 10) {
     const cacheKey = `tokens-voting-${page}-${pageSize}`;
-    
+
     return await this.getCachedData(cacheKey, async () => {
       return await errorHandler.safeAsync(async () => {
         // Primero intentar obtener candidatos activos directamente
@@ -449,13 +517,13 @@ class TokenService {
           'pagination[pageSize]': pageSize,
           'sort': 'votos:desc'
         };
-        
+
         const candidatosResponse = await apiService.get('candidatos', candidatosParams);
-        
+
         if (candidatosResponse?.data?.length > 0) {
           return candidatosResponse;
         }
-        
+
         // Si no hay candidatos directos, obtener desde votaciones activas
         const votacionesParams = {
           'filters[activa][$eq]': true,
@@ -464,20 +532,20 @@ class TokenService {
           'pagination[pageSize]': 1,
           'sort': 'fechaInicio:desc'
         };
-        
+
         const votacionesResponse = await apiService.get('votaciones', votacionesParams);
-        
+
         if (votacionesResponse?.data?.length > 0) {
           const votacionActiva = votacionesResponse.data[0];
           const candidatos = votacionActiva.attributes.candidatos?.data || [];
-          
+
           console.log('Candidatos from votacion activa:', candidatos);
-          
+
           // Paginar los candidatos
           const startIndex = (page - 1) * pageSize;
           const endIndex = startIndex + pageSize;
           const paginatedCandidatos = candidatos.slice(startIndex, endIndex);
-          
+
           return {
             data: paginatedCandidatos,
             meta: {
@@ -490,7 +558,7 @@ class TokenService {
             }
           };
         }
-        
+
         return { data: [], meta: { pagination: { page: 1, pageSize: pageSize, pageCount: 0, total: 0 } } };
       }, this.getFallbackTokensInVoting(page, pageSize), 'TokenService.getTokensInVoting');
     });
@@ -516,14 +584,19 @@ class TokenService {
     if (!strapiRanking) return null;
 
     const attributes = strapiRanking.attributes || strapiRanking;
-    const token = attributes.token?.data ? this.transformTokenData(attributes.token.data) : null;
-    
+    const tokenData = attributes.token?.data ? this.transformTokenData(attributes.token.data) : null;
+
+    // Asegurar que el token tenga symbol
+    if (tokenData && !tokenData.symbol) {
+      tokenData.symbol = tokenData.nombre?.substring(0, 3).toUpperCase() || 'TKN';
+    }
+
     return {
       id: strapiRanking.id,
       posicion: attributes.posicion,
       totalVotos: attributes.totalVotos,
       fechaActualizacion: attributes.fechaActualizacion,
-      token: token
+      token: tokenData
     };
   }
 }

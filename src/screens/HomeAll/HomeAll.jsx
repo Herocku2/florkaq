@@ -8,13 +8,32 @@ import tokenService from "../../services/tokenService";
 import "./style.css";
 
 // Helper function para construir URLs de imágenes
-const buildImageUrl = (imageData) => {
-  if (!imageData?.data?.attributes?.url) {
-    return "/img/image-4.png";
+const buildImageUrl = (imageData, tokenName = '') => {
+  // PRIORIDAD 1: Si hay imagen real del backend, usarla
+  if (imageData?.data?.attributes?.url) {
+    const url = imageData.data.attributes.url;
+    const finalUrl = url.startsWith('http') ? url : `http://localhost:1337${url}`;
+    console.log('Using backend image URL:', finalUrl);
+    return finalUrl;
   }
   
-  const url = imageData.data.attributes.url;
-  return url.startsWith('http') ? url : `http://localhost:1337${url}`;
+  // PRIORIDAD 2: Mapeo específico para candidatos conocidos (fallback)
+  const candidateImageMap = {
+    'bukele': '/img/bukele.png',
+    'gustavo petro': '/img/petro.png',
+    'gustavo petro token': '/img/petro.png',
+    'barack obama': '/img/obama.png',
+    'barack obama coin': '/img/obama.png'
+  };
+  
+  const normalizedName = tokenName.toLowerCase();
+  if (candidateImageMap[normalizedName]) {
+    console.log('Using mapped fallback image for token:', normalizedName, candidateImageMap[normalizedName]);
+    return candidateImageMap[normalizedName];
+  }
+  
+  // PRIORIDAD 3: Fallback genérico
+  return "/img/image-4.png";
 };
 
 // Datos de ejemplo como fallback
@@ -51,7 +70,7 @@ export const HomeAll = () => {
               id: tokenData.id,
               tokenName: tokenData.nombre,
               tokenSymbol: tokenData.symbol,
-              tokenImage: buildImageUrl(tokenData.imagen),
+              tokenImage: buildImageUrl(tokenData.imagen, tokenData.nombre),
               marketCap: `$${tokenData.marketCap.toLocaleString()}`,
               progress: `${tokenData.progress}%`,
               progressValue: tokenData.progress
@@ -93,7 +112,7 @@ export const HomeAll = () => {
               position: rankingData.posicion,
               tokenName: rankingData.token?.nombre || "Token",
               tokenSymbol: rankingData.token?.symbol || "TKN",
-              tokenImage: buildImageUrl(rankingData.token?.imagen),
+              tokenImage: buildImageUrl(rankingData.token?.imagen, rankingData.token?.nombre),
               marketCap: `$${rankingData.token?.marketCap.toLocaleString() || "0"}`
             };
           });
@@ -165,7 +184,7 @@ export const HomeAll = () => {
               className="tarjeta-ranking-2"
               tokenName={topTokens[1]?.tokenName || "Shina inu"}
               tokenSymbol={topTokens[1]?.tokenSymbol || "SBH"}
-              marketCap={topTokens[1]?.marketCap || "$150000"}
+              marketCap={`MC: ${topTokens[1]?.marketCap || "$150000"}`}
               tokenImage={topTokens[1]?.tokenImage || "/img/image-4.png"}
             />
 
@@ -173,7 +192,7 @@ export const HomeAll = () => {
               className="tarjeta-ranking-3"
               tokenName={topTokens[0]?.tokenName || "CAT"}
               tokenSymbol={topTokens[0]?.tokenSymbol || "CAT"}
-              marketCap={topTokens[0]?.marketCap || "$20000"}
+              marketCap={`MC: ${topTokens[0]?.marketCap || "$20000"}`}
               tokenImage={topTokens[0]?.tokenImage || "/img/image-3.png"}
             />
 
@@ -181,7 +200,7 @@ export const HomeAll = () => {
               className="tarjeta-ranking-4"
               tokenName={topTokens[2]?.tokenName || "florka"}
               tokenSymbol={topTokens[2]?.tokenSymbol || "FLK"}
-              marketCap={topTokens[2]?.marketCap || "$25000"}
+              marketCap={`MC: ${topTokens[2]?.marketCap || "$25000"}`}
               tokenImage={topTokens[2]?.tokenImage || "/img/image-1.png"}
             />
           </>
@@ -191,7 +210,7 @@ export const HomeAll = () => {
               className="tarjeta-ranking-2"
               tokenName="Shina inu"
               tokenSymbol="SBH"
-              marketCap="$150000"
+              marketCap="MC: $150000"
               tokenImage="/img/image-4.png"
             />
 
@@ -199,7 +218,7 @@ export const HomeAll = () => {
               className="tarjeta-ranking-3"
               tokenName="CAT"
               tokenSymbol="CAT"
-              marketCap="$20000"
+              marketCap="MC: $20000"
               tokenImage="/img/image-3.png"
             />
 
@@ -207,7 +226,7 @@ export const HomeAll = () => {
               className="tarjeta-ranking-4"
               tokenName="florka"
               tokenSymbol="FLK"
-              marketCap="$25000"
+              marketCap="MC: $25000"
               tokenImage="/img/image-1.png"
             />
           </>

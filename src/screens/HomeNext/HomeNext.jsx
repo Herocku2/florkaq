@@ -9,7 +9,26 @@ import { useAuth } from "../../contexts/AuthContext";
 import "./style.css";
 
 // Helper function para construir URLs de imágenes
-const buildImageUrl = (imageData) => {
+const buildImageUrl = (imageData, tokenName = '') => {
+  // Mapeo específico para candidatos conocidos
+  const candidateImageMap = {
+    'bukele': '/img/bukele.png',
+    'gustavo petro': '/img/petro.png',
+    'gustavo petro token': '/img/petro.png',
+    'barack obama': '/img/obama.png',
+    'barack obama coin': '/img/obama.png',
+    'next token 1': '/img/image-1.png',
+    'next token 2': '/img/image-3.png',
+    'next token 3': '/img/image-4.png'
+  };
+  
+  // Si tenemos un mapeo específico para este candidato, usarlo
+  const normalizedName = tokenName.toLowerCase();
+  if (candidateImageMap[normalizedName]) {
+    console.log('Using mapped image for token:', normalizedName, candidateImageMap[normalizedName]);
+    return candidateImageMap[normalizedName];
+  }
+  
   if (!imageData?.data?.attributes?.url) {
     return "/img/image-4.png";
   }
@@ -56,7 +75,7 @@ export const HomeNext = () => {
               id: tokenData.id,
               tokenName: tokenData.nombre,
               tokenSymbol: tokenData.symbol,
-              tokenImage: buildImageUrl(tokenData.imagen),
+              tokenImage: buildImageUrl(tokenData.imagen, tokenData.nombre),
               marketCap: `${tokenData.marketCap.toLocaleString()}`,
               progress: `${tokenData.progress}%`,
               progressValue: tokenData.progress,
@@ -100,7 +119,7 @@ export const HomeNext = () => {
               position: rankingData.posicion,
               tokenName: rankingData.token?.nombre || "Token",
               tokenSymbol: rankingData.token?.symbol || "TKN",
-              tokenImage: buildImageUrl(rankingData.token?.imagen),
+              tokenImage: buildImageUrl(rankingData.token?.imagen, rankingData.token?.nombre),
               marketCap: `Votos: ${rankingData.totalVotos || 0}`
             };
           });
