@@ -400,73 +400,73 @@
   border-radius: 18px;
 }
 
-/* Estilos específicos para página NEXT - AJUSTADOS PARA COINCIDIR CON HOME */
+/* Estilos específicos para página NEXT - 20% MÁS GRANDES */
 .home-next .tarjeta-ranking-instance .token-image-container,
 .home-next .tarjeta-ranking-6 .token-image-container {
-  width: 45px;
-  height: 45px;
+  width: 54px; /* 45px + 20% = 54px */
+  height: 54px;
   border: 2px solid #ffd700;
-  margin-bottom: 6px;
+  margin-bottom: 7px; /* 6px + 20% = 7px */
 }
 
 .home-next .tarjeta-ranking-instance .token-name,
 .home-next .tarjeta-ranking-6 .token-name {
-  font-size: 14px;
+  font-size: 17px; /* 14px + 20% = 17px */
   font-weight: 600;
-  margin-bottom: 3px;
+  margin-bottom: 4px; /* 3px + 20% = 4px */
 }
 
 .home-next .tarjeta-ranking-instance .token-symbol,
 .home-next .tarjeta-ranking-6 .token-symbol {
-  font-size: 11px;
-  margin-bottom: 6px;
+  font-size: 13px; /* 11px + 20% = 13px */
+  margin-bottom: 7px; /* 6px + 20% = 7px */
 }
 
 .home-next .tarjeta-ranking-instance .market-cap,
 .home-next .tarjeta-ranking-6 .market-cap {
-  font-size: 11px;
+  font-size: 13px; /* 11px + 20% = 13px */
   font-weight: 500;
-  margin-bottom: 8px;
+  margin-bottom: 10px; /* 8px + 20% = 10px */
 }
 
 .home-next .tarjeta-ranking-instance .view-details-button,
 .home-next .tarjeta-ranking-6 .view-details-button {
-  font-size: 10px;
+  font-size: 12px; /* 10px + 20% = 12px */
   font-weight: 500;
-  padding: 6px 12px;
-  border-radius: 15px;
+  padding: 7px 14px; /* 6px + 20% = 7px, 12px + 20% = 14px */
+  border-radius: 18px; /* 15px + 20% = 18px */
 }
 
-/* ESTRELLA DEL CENTRO EN NEXT - AJUSTADA PARA COINCIDIR CON HOME */
+/* ESTRELLA DEL CENTRO EN NEXT - 20% MÁS GRANDE */
 .home-next .tarjeta-ranking-5 .token-image-container {
-  width: 55px;
-  height: 55px;
+  width: 66px; /* 55px + 20% = 66px */
+  height: 66px;
   border: 3px solid #ffd700;
-  margin-bottom: 8px;
+  margin-bottom: 10px; /* 8px + 20% = 10px */
 }
 
 .home-next .tarjeta-ranking-5 .token-name {
-  font-size: 16px;
+  font-size: 19px; /* 16px + 20% = 19px */
   font-weight: 700;
-  margin-bottom: 4px;
+  margin-bottom: 5px; /* 4px + 20% = 5px */
 }
 
 .home-next .tarjeta-ranking-5 .token-symbol {
-  font-size: 13px;
-  margin-bottom: 8px;
+  font-size: 16px; /* 13px + 20% = 16px */
+  margin-bottom: 10px; /* 8px + 20% = 10px */
 }
 
 .home-next .tarjeta-ranking-5 .market-cap {
-  font-size: 13px;
+  font-size: 16px; /* 13px + 20% = 16px */
   font-weight: 600;
-  margin-bottom: 10px;
+  margin-bottom: 12px; /* 10px + 20% = 12px */
 }
 
 .home-next .tarjeta-ranking-5 .view-details-button {
-  font-size: 11px;
+  font-size: 13px; /* 11px + 20% = 13px */
   font-weight: 600;
-  padding: 7px 14px;
-  border-radius: 18px;
+  padding: 8px 17px; /* 7px + 20% = 8px, 14px + 20% = 17px */
+  border-radius: 22px; /* 18px + 20% = 22px */
 }
 
 /* Estilos específicos para página VOTE */
