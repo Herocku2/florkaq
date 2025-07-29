@@ -60,11 +60,11 @@
   display: flex;
   flex: 0 0 auto;
   justify-content: center;
-  padding: 30px 20px;
+  padding: 40px 30px; /* Más padding para estrellas más grandes */
   position: relative;
   width: 100%;
-  max-width: 800px;
-  gap: 30px;
+  max-width: 1200px; /* Mismo ancho que Home para más espacio */
+  gap: 50px; /* Más gap para separar las estrellas más grandes */
 }
 
 /* Contenedor para cada posición del ranking */
@@ -73,6 +73,8 @@
   flex-direction: column;
   align-items: center;
   position: relative;
+  min-width: 280px; /* Ancho mínimo para evitar que se corten las estrellas */
+  padding: 10px; /* Padding adicional para las puntas de las estrellas */
 }
 
 /* Números de posición */

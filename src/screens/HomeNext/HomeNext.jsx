@@ -10,7 +10,15 @@ import "./style.css";
 
 // Helper function para construir URLs de imágenes
 const buildImageUrl = (imageData, tokenName = '') => {
-  // Mapeo específico para candidatos conocidos
+  // PRIORIDAD 1: Si hay imagen real del backend, usarla
+  if (imageData?.data?.attributes?.url) {
+    const url = imageData.data.attributes.url;
+    const finalUrl = url.startsWith('http') ? url : `http://localhost:1337${url}`;
+    console.log('Using backend image URL:', finalUrl);
+    return finalUrl;
+  }
+  
+  // PRIORIDAD 2: Mapeo específico para candidatos conocidos (fallback)
   const candidateImageMap = {
     'bukele': '/img/bukele.png',
     'gustavo petro': '/img/petro.png',
@@ -19,22 +27,20 @@ const buildImageUrl = (imageData, tokenName = '') => {
     'barack obama coin': '/img/obama.png',
     'next token 1': '/img/image-1.png',
     'next token 2': '/img/image-3.png',
-    'next token 3': '/img/image-4.png'
+    'next token 3': '/img/image-4.png',
+    'anto': '/img/image-3.png',
+    'florkiño': '/img/image-4.png',
+    'nicolukas': '/img/image-1.png'
   };
   
-  // Si tenemos un mapeo específico para este candidato, usarlo
   const normalizedName = tokenName.toLowerCase();
   if (candidateImageMap[normalizedName]) {
-    console.log('Using mapped image for token:', normalizedName, candidateImageMap[normalizedName]);
+    console.log('Using mapped fallback image for token:', normalizedName, candidateImageMap[normalizedName]);
     return candidateImageMap[normalizedName];
   }
   
-  if (!imageData?.data?.attributes?.url) {
-    return "/img/image-4.png";
-  }
-  
-  const url = imageData.data.attributes.url;
-  return url.startsWith('http') ? url : `http://localhost:1337${url}`;
+  // PRIORIDAD 3: Fallback genérico
+  return "/img/image-4.png";
 };
 
 // Datos de ejemplo como fallback
@@ -120,6 +126,7 @@ export const HomeNext = () => {
               tokenName: rankingData.token?.nombre || "Token",
               tokenSymbol: rankingData.token?.symbol || "TKN",
               tokenImage: buildImageUrl(rankingData.token?.imagen, rankingData.token?.nombre),
+              totalVotes: rankingData.totalVotos || 0,
               marketCap: `Votos: ${rankingData.totalVotos || 0}`
             };
           });
@@ -209,10 +216,10 @@ export const HomeNext = () => {
           <>
             <div className="ranking-position">
               <TarjetaRanking
-                className="tarjeta-ranking-2"
+                className="tarjeta-ranking-instance"
                 tokenName={topVotedTokens[1]?.tokenName || "florkiño"}
                 tokenSymbol={topVotedTokens[1]?.tokenSymbol || "flk"}
-                marketCap={topVotedTokens[1]?.marketCap || "Votos: 2"}
+                marketCap={`Votos: ${topVotedTokens[1]?.totalVotes || 2}`}
                 tokenImage={topVotedTokens[1]?.tokenImage || "/img/image-4.png"}
               />
               <div className="position-number position-2">2</div>
@@ -220,10 +227,10 @@ export const HomeNext = () => {
 
             <div className="ranking-position">
               <TarjetaRanking
-                className="tarjeta-ranking-3"
+                className="tarjeta-ranking-5"
                 tokenName={topVotedTokens[0]?.tokenName || "anto"}
                 tokenSymbol={topVotedTokens[0]?.tokenSymbol || "ANT"}
-                marketCap={topVotedTokens[0]?.marketCap || "Votos: 4"}
+                marketCap={`Votos: ${topVotedTokens[0]?.totalVotes || 4}`}
                 tokenImage={topVotedTokens[0]?.tokenImage || "/img/image-3.png"}
               />
               <div className="position-number position-1">1</div>
@@ -231,10 +238,10 @@ export const HomeNext = () => {
 
             <div className="ranking-position">
               <TarjetaRanking
-                className="tarjeta-ranking-4"
+                className="tarjeta-ranking-6"
                 tokenName={topVotedTokens[2]?.tokenName || "nicolukas"}
                 tokenSymbol={topVotedTokens[2]?.tokenSymbol || "NKL"}
-                marketCap={topVotedTokens[2]?.marketCap || "Votos: 1"}
+                marketCap={`Votos: ${topVotedTokens[2]?.totalVotes || 1}`}
                 tokenImage={topVotedTokens[2]?.tokenImage || "/img/image-1.png"}
               />
               <div className="position-number position-3">3</div>
@@ -244,7 +251,7 @@ export const HomeNext = () => {
           <>
             <div className="ranking-position">
               <TarjetaRanking
-                className="tarjeta-ranking-2"
+                className="tarjeta-ranking-instance"
                 tokenName="florkiño"
                 tokenSymbol="flk"
                 marketCap="Votos: 2"
@@ -255,7 +262,7 @@ export const HomeNext = () => {
 
             <div className="ranking-position">
               <TarjetaRanking
-                className="tarjeta-ranking-3"
+                className="tarjeta-ranking-5"
                 tokenName="anto"
                 tokenSymbol="ANT"
                 marketCap="Votos: 4"
@@ -266,7 +273,7 @@ export const HomeNext = () => {
 
             <div className="ranking-position">
               <TarjetaRanking
-                className="tarjeta-ranking-4"
+                className="tarjeta-ranking-6"
                 tokenName="nicolukas"
                 tokenSymbol="NKL"
                 marketCap="Votos: 1"
