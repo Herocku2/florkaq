@@ -32,14 +32,16 @@ class PackageService {
   }
 
   // Obtener paquetes disponibles para creación de tokens
-  async getCreationPackages() {
+  async getPackages() {
     const cacheKey = 'creation-packages';
     
     return await this.getCachedData(cacheKey, async () => {
       return await errorHandler.safeAsync(async () => {
+        console.log('Fetching packages from API...');
         const response = await apiService.get('create/packages');
+        console.log('Packages response:', response);
         return response;
-      }, this.getFallbackCreationPackages(), 'PackageService.getCreationPackages');
+      }, this.getFallbackCreationPackages(), 'PackageService.getPackages');
     });
   }
 
@@ -476,6 +478,29 @@ class PackageService {
   // Verificar si se puede cancelar la solicitud
   canCancelRequest(status) {
     return ['pendiente', 'revision'].includes(status);
+  }
+
+  // Simular proceso de pago
+  async simulatePayment(amount, method = 'crypto') {
+    return await errorHandler.safeAsync(async () => {
+      console.log('Simulating payment...', { amount, method });
+      const response = await apiService.post('create/simulate-payment', {
+        amount: amount,
+        method: method
+      });
+      console.log('Payment simulation response:', response);
+      return response;
+    }, { success: false, error: 'Error en simulación de pago' }, 'PackageService.simulatePayment');
+  }
+
+  // Crear solicitud de token (método legacy para compatibilidad)
+  async createTokenRequest(tokenRequestData) {
+    return await this.submitTokenRequest(
+      tokenRequestData.paquete,
+      JSON.parse(tokenRequestData.datosToken),
+      tokenRequestData.metodoPago || 'crypto',
+      tokenRequestData.transaccionId
+    );
   }
 }
 

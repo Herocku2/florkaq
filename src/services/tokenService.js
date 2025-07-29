@@ -248,23 +248,35 @@ class TokenService {
     };
   }
 
-  // Get top 3 tokens for ranking
+  // Get top 3 tokens for ranking - HOME PAGE
   async getTop3Tokens() {
-    const cacheKey = 'top3-tokens';
+    const cacheKey = 'top3-tokens-home';
     
     return await this.getCachedData(cacheKey, async () => {
       return await errorHandler.safeAsync(async () => {
-        const response = await apiService.get('rankings', {
-          'populate': 'token,token.imagen',
-          'sort': 'posicion:asc',
-          'filters[activo][$eq]': true
-        });
+        console.log('Fetching rankings for HOME page...');
+        const response = await apiService.get('rankings/page/home');
+        console.log('Home rankings response:', response);
         return response;
       }, this.getFallbackTop3Tokens(), 'TokenService.getTop3Tokens');
     });
   }
 
-  // Datos de fallback para top 3 tokens
+  // Get top 3 tokens for ranking - NEXT PAGE
+  async getTop3TokensNext() {
+    const cacheKey = 'top3-tokens-next';
+    
+    return await this.getCachedData(cacheKey, async () => {
+      return await errorHandler.safeAsync(async () => {
+        console.log('Fetching rankings for NEXT page...');
+        const response = await apiService.get('rankings/page/next');
+        console.log('Next rankings response:', response);
+        return response;
+      }, this.getFallbackTop3TokensNext(), 'TokenService.getTop3TokensNext');
+    });
+  }
+
+  // Datos de fallback para top 3 tokens - HOME
   getFallbackTop3Tokens() {
     return {
       data: [
@@ -275,6 +287,7 @@ class TokenService {
             totalVotos: 28,
             fechaActualizacion: new Date().toISOString(),
             activo: true,
+            pagina: "home",
             token: {
               data: {
                 id: 1,
@@ -294,6 +307,7 @@ class TokenService {
             totalVotos: 15,
             fechaActualizacion: new Date().toISOString(),
             activo: true,
+            pagina: "home",
             token: {
               data: {
                 id: 2,
@@ -313,6 +327,7 @@ class TokenService {
             totalVotos: 8,
             fechaActualizacion: new Date().toISOString(),
             activo: true,
+            pagina: "home",
             token: {
               data: {
                 id: 3,
@@ -320,6 +335,74 @@ class TokenService {
                   nombre: "Barack Obama Coin",
                   descripcion: "Token del expresidente estadounidense",
                   imagen: { data: { attributes: { url: "/img/image-1.png" } } }
+                }
+              }
+            }
+          }
+        }
+      ]
+    };
+  }
+
+  // Datos de fallback para top 3 tokens - NEXT
+  getFallbackTop3TokensNext() {
+    return {
+      data: [
+        {
+          id: 4,
+          attributes: {
+            posicion: 1,
+            totalVotos: 45,
+            fechaActualizacion: new Date().toISOString(),
+            activo: true,
+            pagina: "next",
+            token: {
+              data: {
+                id: 4,
+                attributes: {
+                  nombre: "Next Token 1",
+                  descripcion: "Próximo token más votado",
+                  imagen: { data: { attributes: { url: "/img/image-1.png" } } }
+                }
+              }
+            }
+          }
+        },
+        {
+          id: 5,
+          attributes: {
+            posicion: 2,
+            totalVotos: 32,
+            fechaActualizacion: new Date().toISOString(),
+            activo: true,
+            pagina: "next",
+            token: {
+              data: {
+                id: 5,
+                attributes: {
+                  nombre: "Next Token 2",
+                  descripcion: "Segundo próximo token",
+                  imagen: { data: { attributes: { url: "/img/image-3.png" } } }
+                }
+              }
+            }
+          }
+        },
+        {
+          id: 6,
+          attributes: {
+            posicion: 3,
+            totalVotos: 18,
+            fechaActualizacion: new Date().toISOString(),
+            activo: true,
+            pagina: "next",
+            token: {
+              data: {
+                id: 6,
+                attributes: {
+                  nombre: "Next Token 3",
+                  descripcion: "Tercer próximo token",
+                  imagen: { data: { attributes: { url: "/img/image-4.png" } } }
                 }
               }
             }

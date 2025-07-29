@@ -38,6 +38,12 @@
       "type": "boolean",
       "default": true,
       "required": true
+    },
+    "pagina": {
+      "type": "enumeration",
+      "enum": ["home", "next"],
+      "required": true,
+      "default": "home"
     }
   }
 }

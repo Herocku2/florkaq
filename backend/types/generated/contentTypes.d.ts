@@ -1063,6 +1063,9 @@ export interface ApiRankingRanking extends Schema.CollectionType {
       Attribute.DefaultTo<0>;
     fechaActualizacion: Attribute.DateTime & Attribute.Required;
     activo: Attribute.Boolean & Attribute.Required & Attribute.DefaultTo<true>;
+    pagina: Attribute.Enumeration<['home', 'next']> &
+      Attribute.Required &
+      Attribute.DefaultTo<'home'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<

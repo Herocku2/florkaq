@@ -84,30 +84,32 @@ export const HomeNext = () => {
     fetchNextTokens();
   }, [currentPage, sortOrder]);
 
-  // Cargar top 3 tokens más votados para ranking
+  // Cargar top 3 tokens más votados para ranking - PÁGINA NEXT
   useEffect(() => {
     const fetchTopVotedTokens = async () => {
       try {
-        const response = await tokenService.getTopVotedTokens();
+        console.log('Fetching top tokens for NEXT page...');
+        const response = await tokenService.getTop3TokensNext();
         
         if (response && response.data) {
           // Transformar datos para el formato que espera TarjetaRanking
-          const transformedTopTokens = response.data.map((token, index) => {
-            const tokenData = tokenService.transformTokenData(token);
+          const transformedTopTokens = response.data.map(ranking => {
+            const rankingData = tokenService.transformRankingData(ranking);
             return {
-              id: tokenData.id,
-              position: index + 1,
-              tokenName: tokenData.nombre,
-              tokenSymbol: tokenData.symbol,
-              tokenImage: buildImageUrl(tokenData.imagen),
-              marketCap: `Votos: ${tokenData.totalVotos || 0}`
+              id: rankingData.id,
+              position: rankingData.posicion,
+              tokenName: rankingData.token?.nombre || "Token",
+              tokenSymbol: rankingData.token?.symbol || "TKN",
+              tokenImage: buildImageUrl(rankingData.token?.imagen),
+              marketCap: `Votos: ${rankingData.totalVotos || 0}`
             };
           });
           
+          console.log('Transformed top tokens for NEXT:', transformedTopTokens);
           setTopVotedTokens(transformedTopTokens);
         }
       } catch (error) {
-        console.error("Error fetching top voted tokens:", error);
+        console.error("Error fetching top voted tokens for NEXT:", error);
         // Usar datos de ejemplo si falla
         setTopVotedTokens([
           { position: 2, tokenName: "florkiño", tokenSymbol: "flk", tokenImage: "/img/image-4.png", marketCap: "Votos: 2" },
