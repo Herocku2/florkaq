@@ -8,7 +8,7 @@ import './style.css';
 
 export const Forum = () => {
   const { forums, loading, isModerator, loadForums, createForum, updateForum, deleteForum, createComment } = useForum();
-  const { isAuthenticated, user } = useAuth();
+  const { isAuthenticated, user, loading: authLoading } = useAuth();
   const [selectedForum, setSelectedForum] = useState(null);
   const [comments, setComments] = useState([]);
   const [newForumData, setNewForumData] = useState({ titulo: '', descripcion: '', tokenRelacionado: '' });
@@ -17,6 +17,34 @@ export const Forum = () => {
   const [editingForum, setEditingForum] = useState(null);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+
+  // Mostrar mensaje de autenticación requerida si no está logueado
+  if (!authLoading && !isAuthenticated) {
+    return (
+      <div className="forum-screen">
+        <Heder />
+        <div className="forum-container">
+          <div className="auth-required-message">
+            <h1>Acceso Restringido</h1>
+            <p>Debes iniciar sesión para acceder a los foros de discusión.</p>
+            <div className="auth-actions">
+              <a href="/auth" className="auth-button">
+                Iniciar Sesión / Registrarse
+              </a>
+            </div>
+            <div className="user-roles-info">
+              <h3>Tipos de Usuario:</h3>
+              <ul>
+                <li><strong>Usuario Estándar:</strong> Puede comentar en foros existentes</li>
+                <li><strong>Moderador:</strong> Puede crear y moderar foros, eliminar comentarios</li>
+                <li><strong>Administrador:</strong> Control total de la plataforma</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   // Cargar foros al montar el componente
   useEffect(() => {

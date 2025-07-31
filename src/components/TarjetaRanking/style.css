@@ -400,73 +400,73 @@
   border-radius: 18px;
 }
 
-/* Estilos específicos para página NEXT - 20% MÁS GRANDES */
+/* Estilos específicos para página NEXT - IGUALES A HOME */
 .home-next .tarjeta-ranking-instance .token-image-container,
 .home-next .tarjeta-ranking-6 .token-image-container {
-  width: 54px; /* 45px + 20% = 54px */
-  height: 54px;
+  width: 45px; /* Igual que Home */
+  height: 45px;
   border: 2px solid #ffd700;
-  margin-bottom: 7px; /* 6px + 20% = 7px */
+  margin-bottom: 6px;
 }
 
 .home-next .tarjeta-ranking-instance .token-name,
 .home-next .tarjeta-ranking-6 .token-name {
-  font-size: 17px; /* 14px + 20% = 17px */
+  font-size: 14px; /* Igual que Home */
   font-weight: 600;
-  margin-bottom: 4px; /* 3px + 20% = 4px */
+  margin-bottom: 3px;
 }
 
 .home-next .tarjeta-ranking-instance .token-symbol,
 .home-next .tarjeta-ranking-6 .token-symbol {
-  font-size: 13px; /* 11px + 20% = 13px */
-  margin-bottom: 7px; /* 6px + 20% = 7px */
+  font-size: 11px; /* Igual que Home */
+  margin-bottom: 6px;
 }
 
 .home-next .tarjeta-ranking-instance .market-cap,
 .home-next .tarjeta-ranking-6 .market-cap {
-  font-size: 13px; /* 11px + 20% = 13px */
+  font-size: 11px; /* Igual que Home */
   font-weight: 500;
-  margin-bottom: 10px; /* 8px + 20% = 10px */
+  margin-bottom: 8px;
 }
 
 .home-next .tarjeta-ranking-instance .view-details-button,
 .home-next .tarjeta-ranking-6 .view-details-button {
-  font-size: 12px; /* 10px + 20% = 12px */
+  font-size: 10px; /* Igual que Home */
   font-weight: 500;
-  padding: 7px 14px; /* 6px + 20% = 7px, 12px + 20% = 14px */
-  border-radius: 18px; /* 15px + 20% = 18px */
+  padding: 6px 12px;
+  border-radius: 15px;
 }
 
-/* ESTRELLA DEL CENTRO EN NEXT - 20% MÁS GRANDE */
+/* ESTRELLA DEL CENTRO EN NEXT - IGUAL QUE HOME */
 .home-next .tarjeta-ranking-5 .token-image-container {
-  width: 66px; /* 55px + 20% = 66px */
-  height: 66px;
+  width: 55px; /* Igual que Home */
+  height: 55px;
   border: 3px solid #ffd700;
-  margin-bottom: 10px; /* 8px + 20% = 10px */
+  margin-bottom: 8px;
 }
 
 .home-next .tarjeta-ranking-5 .token-name {
-  font-size: 19px; /* 16px + 20% = 19px */
+  font-size: 16px; /* Igual que Home */
   font-weight: 700;
-  margin-bottom: 5px; /* 4px + 20% = 5px */
+  margin-bottom: 4px;
 }
 
 .home-next .tarjeta-ranking-5 .token-symbol {
-  font-size: 16px; /* 13px + 20% = 16px */
-  margin-bottom: 10px; /* 8px + 20% = 10px */
+  font-size: 13px; /* Igual que Home */
+  margin-bottom: 8px;
 }
 
 .home-next .tarjeta-ranking-5 .market-cap {
-  font-size: 16px; /* 13px + 20% = 16px */
+  font-size: 13px; /* Igual que Home */
   font-weight: 600;
-  margin-bottom: 12px; /* 10px + 20% = 12px */
+  margin-bottom: 10px;
 }
 
 .home-next .tarjeta-ranking-5 .view-details-button {
-  font-size: 13px; /* 11px + 20% = 13px */
+  font-size: 11px; /* Igual que Home */
   font-weight: 600;
-  padding: 8px 17px; /* 7px + 20% = 8px, 14px + 20% = 17px */
-  border-radius: 22px; /* 18px + 20% = 22px */
+  padding: 7px 14px;
+  border-radius: 18px;
 }
 
 /* Estilos específicos para página VOTE */

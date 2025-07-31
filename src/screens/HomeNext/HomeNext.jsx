@@ -214,73 +214,55 @@ export const HomeNext = () => {
       <div className="frame-67">
         {topVotedTokens.length >= 3 ? (
           <>
-            <div className="ranking-position">
-              <TarjetaRanking
-                className="tarjeta-ranking-instance"
-                tokenName={topVotedTokens[1]?.tokenName || "florkiño"}
-                tokenSymbol={topVotedTokens[1]?.tokenSymbol || "flk"}
-                marketCap={`Votos: ${topVotedTokens[1]?.totalVotes || 2}`}
-                tokenImage={topVotedTokens[1]?.tokenImage || "/img/image-4.png"}
-              />
-              <div className="position-number position-2">2</div>
-            </div>
+            <TarjetaRanking
+              className="tarjeta-ranking-instance"
+              tokenName={topVotedTokens[1]?.tokenName || "florkiño"}
+              tokenSymbol={topVotedTokens[1]?.tokenSymbol || "flk"}
+              marketCap={`Votos: ${topVotedTokens[1]?.totalVotes || 2}`}
+              tokenImage={topVotedTokens[1]?.tokenImage || "/img/image-4.png"}
+            />
 
-            <div className="ranking-position">
-              <TarjetaRanking
-                className="tarjeta-ranking-5"
-                tokenName={topVotedTokens[0]?.tokenName || "anto"}
-                tokenSymbol={topVotedTokens[0]?.tokenSymbol || "ANT"}
-                marketCap={`Votos: ${topVotedTokens[0]?.totalVotes || 4}`}
-                tokenImage={topVotedTokens[0]?.tokenImage || "/img/image-3.png"}
-              />
-              <div className="position-number position-1">1</div>
-            </div>
+            <TarjetaRanking
+              className="tarjeta-ranking-5"
+              tokenName={topVotedTokens[0]?.tokenName || "anto"}
+              tokenSymbol={topVotedTokens[0]?.tokenSymbol || "ANT"}
+              marketCap={`Votos: ${topVotedTokens[0]?.totalVotes || 4}`}
+              tokenImage={topVotedTokens[0]?.tokenImage || "/img/image-3.png"}
+            />
 
-            <div className="ranking-position">
-              <TarjetaRanking
-                className="tarjeta-ranking-6"
-                tokenName={topVotedTokens[2]?.tokenName || "nicolukas"}
-                tokenSymbol={topVotedTokens[2]?.tokenSymbol || "NKL"}
-                marketCap={`Votos: ${topVotedTokens[2]?.totalVotes || 1}`}
-                tokenImage={topVotedTokens[2]?.tokenImage || "/img/image-1.png"}
-              />
-              <div className="position-number position-3">3</div>
-            </div>
+            <TarjetaRanking
+              className="tarjeta-ranking-6"
+              tokenName={topVotedTokens[2]?.tokenName || "nicolukas"}
+              tokenSymbol={topVotedTokens[2]?.tokenSymbol || "NKL"}
+              marketCap={`Votos: ${topVotedTokens[2]?.totalVotes || 1}`}
+              tokenImage={topVotedTokens[2]?.tokenImage || "/img/image-1.png"}
+            />
           </>
         ) : (
           <>
-            <div className="ranking-position">
-              <TarjetaRanking
-                className="tarjeta-ranking-instance"
-                tokenName="florkiño"
-                tokenSymbol="flk"
-                marketCap="Votos: 2"
-                tokenImage="/img/image-4.png"
-              />
-              <div className="position-number position-2">2</div>
-            </div>
+            <TarjetaRanking
+              className="tarjeta-ranking-instance"
+              tokenName="florkiño"
+              tokenSymbol="flk"
+              marketCap="Votos: 2"
+              tokenImage="/img/image-4.png"
+            />
 
-            <div className="ranking-position">
-              <TarjetaRanking
-                className="tarjeta-ranking-5"
-                tokenName="anto"
-                tokenSymbol="ANT"
-                marketCap="Votos: 4"
-                tokenImage="/img/image-3.png"
-              />
-              <div className="position-number position-1">1</div>
-            </div>
+            <TarjetaRanking
+              className="tarjeta-ranking-5"
+              tokenName="anto"
+              tokenSymbol="ANT"
+              marketCap="Votos: 4"
+              tokenImage="/img/image-3.png"
+            />
 
-            <div className="ranking-position">
-              <TarjetaRanking
-                className="tarjeta-ranking-6"
-                tokenName="nicolukas"
-                tokenSymbol="NKL"
-                marketCap="Votos: 1"
-                tokenImage="/img/image-1.png"
-              />
-              <div className="position-number position-3">3</div>
-            </div>
+            <TarjetaRanking
+              className="tarjeta-ranking-6"
+              tokenName="nicolukas"
+              tokenSymbol="NKL"
+              marketCap="Votos: 1"
+              tokenImage="/img/image-1.png"
+            />
           </>
         )}
       </div>

@@ -31,33 +31,49 @@ class ForumService {
     }
   }
 
-  // Obtener temas del foro
-  async getForumTopics(page = 1, pageSize = 10, filters = {}) {
-    const cacheKey = `forum-topics-${page}-${pageSize}-${JSON.stringify(filters)}`;
+  // Obtener foros
+  async getForums(page = 1, pageSize = 10, filters = {}) {
+    const cacheKey = `forums-${page}-${pageSize}-${JSON.stringify(filters)}`;
     
     return await this.getCachedData(cacheKey, async () => {
       return await errorHandler.safeAsync(async () => {
+        console.log('🔍 Obteniendo foros desde API...');
+        
         const params = {
-          page,
-          pageSize,
+          'pagination[page]': page,
+          'pagination[pageSize]': pageSize,
+          'sort': 'createdAt:desc',
           ...filters
         };
         
-        const response = await apiService.get('forum/topics', params);
-        return response;
-      }, this.getFallbackForumTopics(page, pageSize), 'ForumService.getForumTopics');
+        const response = await apiService.get('foros', params);
+        console.log('✅ Foros obtenidos:', response?.data?.length || 0);
+        
+        return {
+          success: true,
+          forums: response?.data || [],
+          meta: response?.meta || {}
+        };
+      }, this.getFallbackForums(page, pageSize), 'ForumService.getForums');
     });
   }
 
-  // Obtener tema específico con comentarios
-  async getForumTopic(topicId) {
-    const cacheKey = `forum-topic-${topicId}`;
+  // Obtener comentarios de un foro
+  async getForumComments(forumId) {
+    const cacheKey = `forum-comments-${forumId}`;
     
     return await this.getCachedData(cacheKey, async () => {
       return await errorHandler.safeAsync(async () => {
-        const response = await apiService.get(`forum/topic/${topicId}`);
-        return response;
-      }, this.getFallbackForumTopic(topicId), 'ForumService.getForumTopic');
+        console.log(`🔍 Obteniendo comentarios del foro ${forumId}...`);
+        
+        const response = await apiService.get(`foros/${forumId}/comentarios`);
+        console.log('✅ Comentarios obtenidos:', response?.data?.length || 0);
+        
+        return {
+          success: true,
+          comments: response?.data || []
+        };
+      }, { success: true, comments: [] }, 'ForumService.getForumComments');
     });
   }
 
@@ -73,30 +89,52 @@ class ForumService {
     });
   }
 
-  // Crear nuevo tema
-  async createForumTopic(topicData) {
+  // Crear nuevo foro
+  async createForum(forumData) {
     // Limpiar cache después de crear
-    this.clearTopicsCache();
+    this.clearForumsCache();
     
     return await errorHandler.safeAsync(async () => {
-      const response = await apiService.post('forum/topics', {
-        data: topicData
+      console.log('🔍 Creando nuevo foro...', forumData);
+      
+      const response = await apiService.post('foros', {
+        data: {
+          ...forumData,
+          creador: 'Usuario', // TODO: Obtener del contexto de autenticación
+          moderado: false,
+          activo: true,
+          fechaCreacion: new Date().toISOString()
+        }
       });
-      return response;
-    }, { success: false, error: 'Error al crear el tema' }, 'ForumService.createForumTopic');
+      
+      console.log('✅ Foro creado:', response?.data?.id);
+      
+      return {
+        success: true,
+        forum: response?.data
+      };
+    }, { success: false, error: 'Error al crear el foro' }, 'ForumService.createForum');
   }
 
-  // Crear respuesta a tema
-  async createTopicReply(topicId, replyText) {
-    // Limpiar cache del tema específico
-    this.cache.delete(`forum-topic-${topicId}`);
+  // Crear comentario en foro
+  async createComment(forumId, commentText) {
+    // Limpiar cache del foro específico
+    this.cache.delete(`forum-comments-${forumId}`);
     
     return await errorHandler.safeAsync(async () => {
-      const response = await apiService.post(`forum/topic/${topicId}/reply`, {
-        data: { texto: replyText }
+      console.log(`🔍 Creando comentario en foro ${forumId}...`);
+      
+      const response = await apiService.post(`foros/${forumId}/comentarios`, {
+        data: { texto: commentText }
       });
-      return response;
-    }, { success: false, error: 'Error al crear la respuesta' }, 'ForumService.createTopicReply');
+      
+      console.log('✅ Comentario creado:', response?.data?.id);
+      
+      return {
+        success: true,
+        comment: response?.data
+      };
+    }, { success: false, error: 'Error al crear el comentario' }, 'ForumService.createComment');
   }
 
   // Obtener temas por token
@@ -109,112 +147,106 @@ class ForumService {
     return await this.getForumTopics(page, pageSize, { category });
   }
 
-  // Limpiar cache de temas
-  clearTopicsCache() {
+  // Actualizar foro
+  async updateForum(forumId, forumData) {
+    this.clearForumsCache();
+    
+    return await errorHandler.safeAsync(async () => {
+      console.log(`🔍 Actualizando foro ${forumId}...`);
+      
+      const response = await apiService.put(`foros/${forumId}`, {
+        data: forumData
+      });
+      
+      console.log('✅ Foro actualizado:', response?.data?.id);
+      
+      return {
+        success: true,
+        forum: response?.data
+      };
+    }, { success: false, error: 'Error al actualizar el foro' }, 'ForumService.updateForum');
+  }
+
+  // Eliminar foro
+  async deleteForum(forumId) {
+    this.clearForumsCache();
+    
+    return await errorHandler.safeAsync(async () => {
+      console.log(`🔍 Eliminando foro ${forumId}...`);
+      
+      await apiService.delete(`foros/${forumId}`);
+      
+      console.log('✅ Foro eliminado');
+      
+      return {
+        success: true
+      };
+    }, { success: false, error: 'Error al eliminar el foro' }, 'ForumService.deleteForum');
+  }
+
+  // Verificar si el usuario es moderador
+  async isUserModerator() {
+    return await errorHandler.safeAsync(async () => {
+      console.log('🔍 Verificando si el usuario es moderador...');
+      
+      const response = await apiService.get('foros/check-moderator');
+      console.log('✅ Respuesta de verificación de moderador:', response);
+      
+      return response?.data?.isModerator || false;
+    }, false, 'ForumService.isUserModerator');
+  }
+
+  // Limpiar cache de foros
+  clearForumsCache() {
     for (const key of this.cache.keys()) {
-      if (key.startsWith('forum-topics-')) {
+      if (key.startsWith('forums-') || key.startsWith('forum-comments-')) {
         this.cache.delete(key);
       }
     }
   }
 
-  // Datos de fallback para temas del foro
-  getFallbackForumTopics(page = 1, pageSize = 10) {
+  // Datos de fallback para foros
+  getFallbackForums(page = 1, pageSize = 10) {
     return {
-      data: [
+      success: true,
+      forums: [
         {
           id: 1,
           attributes: {
-            titulo: "¿Qué opinan del nuevo token MAGA?",
-            contenido: "He visto que está ganando mucha tracción. ¿Creen que tiene potencial a largo plazo?",
-            categoria: "discusion",
-            fechaCreacion: new Date(Date.now() - 3600000).toISOString(),
+            titulo: "¿Qué opinan del nuevo token Bukele?",
+            descripcion: "He visto que está ganando mucha tracción. ¿Creen que tiene potencial a largo plazo?",
+            tokenRelacionado: "Bukele",
+            creador: "CryptoFan123",
             moderado: true,
-            fijado: false,
-            cerrado: false,
-            vistas: 45,
-            creador: {
-              data: {
-                attributes: {
-                  nombre: "CryptoFan123",
-                  email: "user@example.com"
-                }
-              }
-            },
-            tokenRelacionado: {
-              data: {
-                id: 1,
-                attributes: {
-                  nombre: "MAGA Token",
-                  imagen: {
-                    data: {
-                      attributes: {
-                        url: "/img/next-1.png",
-                        alternativeText: "MAGA Token"
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            respuestas: {
-              data: [
-                {
-                  id: 1,
-                  attributes: {
-                    texto: "Creo que tiene buen potencial, especialmente con el marketing que están haciendo",
-                    fechaCreacion: new Date(Date.now() - 1800000).toISOString(),
-                    usuario: {
-                      data: {
-                        attributes: {
-                          nombre: "TokenExpert"
-                        }
-                      }
-                    }
-                  }
-                }
-              ]
-            }
+            activo: true,
+            createdAt: new Date(Date.now() - 3600000).toISOString(),
+            updatedAt: new Date(Date.now() - 3600000).toISOString()
           }
         },
         {
           id: 2,
           attributes: {
-            titulo: "Análisis técnico de Pepe Classic",
-            contenido: "Comparto mi análisis técnico del próximo lanzamiento de Pepe Classic. Los indicadores se ven prometedores.",
-            categoria: "analisis",
-            fechaCreacion: new Date(Date.now() - 7200000).toISOString(),
+            titulo: "Análisis técnico de Gustavo Petro Token",
+            descripcion: "Comparto mi análisis técnico del token de Gustavo Petro. Los indicadores se ven prometedores.",
+            tokenRelacionado: "Gustavo Petro",
+            creador: "TechnicalAnalyst",
             moderado: true,
-            fijado: true,
-            cerrado: false,
-            vistas: 128,
-            creador: {
-              data: {
-                attributes: {
-                  nombre: "TechnicalAnalyst",
-                  email: "analyst@example.com"
-                }
-              }
-            },
-            tokenRelacionado: {
-              data: {
-                id: 2,
-                attributes: {
-                  nombre: "Pepe Classic",
-                  imagen: {
-                    data: {
-                      attributes: {
-                        url: "/img/next-2.png",
-                        alternativeText: "Pepe Classic"
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            respuestas: {
-              data: []
-            }
+            activo: true,
+            createdAt: new Date(Date.now() - 7200000).toISOString(),
+            updatedAt: new Date(Date.now() - 7200000).toISOString()
+          }
+        },
+        {
+          id: 3,
+          attributes: {
+            titulo: "Discusión sobre Barack Obama Coin",
+            descripcion: "¿Qué piensan sobre el potencial de este token? Parece tener una comunidad sólida.",
+            tokenRelacionado: "Barack Obama",
+            creador: "TokenExpert",
+            moderado: true,
+            activo: true,
+            createdAt: new Date(Date.now() - 10800000).toISOString(),
+            updatedAt: new Date(Date.now() - 10800000).toISOString()
           }
         }
       ],
@@ -223,7 +255,7 @@ class ForumService {
           page: page,
           pageSize: pageSize,
           pageCount: 1,
-          total: 2
+          total: 3
         }
       }
     };

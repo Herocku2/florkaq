@@ -51,6 +51,84 @@
   margin-bottom: 1rem;
 }
 
+/* Mensaje de autenticación requerida */
+.auth-required-message {
+  text-align: center;
+  padding: 3rem 2rem;
+  background: linear-gradient(135deg, rgba(255, 20, 147, 0.1), rgba(76, 205, 196, 0.1));
+  border-radius: 12px;
+  border: 1px solid rgba(255, 20, 147, 0.3);
+  margin: 2rem 0;
+}
+
+.auth-required-message h1 {
+  color: #ff1493;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.auth-required-message p {
+  color: #cccccc;
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.auth-actions {
+  margin: 2rem 0;
+}
+
+.auth-button {
+  display: inline-block;
+  background: linear-gradient(45deg, #ff1493, #4ecdc4);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.1rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.auth-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 20, 147, 0.3);
+  text-decoration: none;
+  color: white;
+}
+
+.user-roles-info {
+  margin-top: 3rem;
+  text-align: left;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.user-roles-info h3 {
+  color: #4ecdc4;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.user-roles-info ul {
+  list-style: none;
+  padding: 0;
+}
+
+.user-roles-info li {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+  border-radius: 6px;
+  border-left: 4px solid #4ecdc4;
+}
+
+.user-roles-info strong {
+  color: #ff1493;
+  margin-bottom: 1rem;
+}
+
 .forum-content {
   display: grid;
   grid-template-columns: 1fr 1fr;
