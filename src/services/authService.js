@@ -12,7 +12,7 @@ class AuthService {
 
       if (response.success) {
         // Guardar token y datos del usuario de forma segura
-        localStorage.setItem('token', response.jwt);
+        localStorage.setItem('authToken', response.jwt);
         localStorage.setItem('user', JSON.stringify(response.user));
         apiService.setToken(response.jwt);
         return { success: true, user: response.user, token: response.jwt };
@@ -41,7 +41,7 @@ class AuthService {
 
       if (response.success) {
         // Guardar token y datos del usuario de forma segura
-        localStorage.setItem('token', response.jwt);
+        localStorage.setItem('authToken', response.jwt);
         localStorage.setItem('user', JSON.stringify(response.user));
         apiService.setToken(response.jwt);
         return { success: true, user: response.user, token: response.jwt };
@@ -62,7 +62,7 @@ class AuthService {
 
   // Cerrar sesión
   logout() {
-    localStorage.removeItem('token');
+    localStorage.removeItem('authToken');
     localStorage.removeItem('user');
     apiService.setToken(null);
     window.location.href = '/auth';
@@ -76,7 +76,7 @@ class AuthService {
 
   // Obtener token
   getToken() {
-    return localStorage.getItem('token');
+    return localStorage.getItem('authToken');
   }
 
   // Verificar si está autenticado

@@ -1216,8 +1216,8 @@ export interface ApiUsuarioUsuario extends Schema.CollectionType {
   info: {
     singularName: 'usuario';
     pluralName: 'usuarios';
-    displayName: 'Usuario';
-    description: 'Usuarios de la plataforma FlorkaFun';
+    displayName: 'Moderadores';
+    description: 'Gesti\u00F3n de usuarios y moderadores de la plataforma FlorkaFun';
   };
   options: {
     draftAndPublish: false;
