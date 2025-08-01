@@ -19,16 +19,18 @@ export const AuthProvider = ({ children }) => {
 
   // Verificar autenticación al cargar la aplicación
   useEffect(() => {
+    let isMounted = true; // Flag para evitar actualizaciones después del desmontaje
+    
     const checkAuth = async () => {
       try {
         const token = authService.getToken();
-        if (token) {
+        if (token && isMounted) {
           const userData = await authService.getMe();
-          if (userData) {
+          if (userData && isMounted) {
             setUser(userData);
             setIsAuthenticated(true);
             logger.success('Usuario autenticado correctamente');
-          } else {
+          } else if (isMounted) {
             // Token inválido, limpiar
             authService.logout();
             setUser(null);
@@ -36,19 +38,29 @@ export const AuthProvider = ({ children }) => {
           }
         }
       } catch (error) {
-        logger.error('Error verificando autenticación', error);
-        setUser(null);
-        setIsAuthenticated(false);
+        if (isMounted) {
+          logger.error('Error verificando autenticación', error);
+          setUser(null);
+          setIsAuthenticated(false);
+        }
       } finally {
-        setLoading(false);
+        if (isMounted) {
+          setLoading(false);
+        }
       }
     };
 
     checkAuth();
+    
+    // Cleanup function
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   const login = async (credentials) => {
     try {
+      setLoading(true);
       const result = await authService.login(credentials);
       if (result.success) {
         setUser(result.user);
@@ -60,11 +72,14 @@ export const AuthProvider = ({ children }) => {
     } catch (error) {
       logger.error('Error en login', error);
       return { success: false, error: 'Error de conexión' };
+    } finally {
+      setLoading(false);
     }
   };
 
   const register = async (userData) => {
     try {
+      setLoading(true);
       const result = await authService.register(userData);
       if (result.success) {
         setUser(result.user);
@@ -76,14 +91,44 @@ export const AuthProvider = ({ children }) => {
     } catch (error) {
       logger.error('Error en registro', error);
       return { success: false, error: 'Error de conexión' };
+    } finally {
+      setLoading(false);
     }
   };
 
   const logout = () => {
-    authService.logout();
-    setUser(null);
-    setIsAuthenticated(false);
-    logger.info('Usuario desconectado');
+    try {
+      // Limpiar estado inmediatamente
+      setUser(null);
+      setIsAuthenticated(false);
+      setLoading(false);
+      
+      // Limpiar localStorage y token
+      localStorage.removeItem('authToken');
+      localStorage.removeItem('user');
+      
+      // Limpiar token del API service
+      if (typeof window !== 'undefined') {
+        const apiService = require('../services/api.js').default;
+        apiService.setToken(null);
+      }
+      
+      logger.info('Usuario desconectado');
+      
+      // Usar React Router para navegación en lugar de window.location
+      setTimeout(() => {
+        if (typeof window !== 'undefined') {
+          window.location.href = '/auth';
+        }
+      }, 100);
+      
+    } catch (error) {
+      console.error('Error en logout:', error);
+      // Fallback: forzar recarga de página
+      if (typeof window !== 'undefined') {
+        window.location.reload();
+      }
+    }
   };
 
   const updateUser = (userData) => {

@@ -6,10 +6,12 @@ Please share your feedback here: https://form.asana.com/?k=uvp-HPgd3_hyoXRBw1IcN
 import React from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
+import { useLogout } from "../../hooks/useLogout";
 import "./style.css";
 
 export const Boton = ({ className }) => {
-  const { isAuthenticated, user, logout, loading } = useAuth();
+  const { isAuthenticated, user, loading } = useAuth();
+  const handleLogout = useLogout();
 
   if (loading) {
     return (
@@ -23,11 +25,21 @@ export const Boton = ({ className }) => {
     return (
       <div className={`boton-user ${className}`}>
         <div className="user-info">
-          <span className="username">👋 {user.username}</span>
+          <span className="username">👋 {user.username || user.nombre || user.email}</span>
           <button 
             className="logout-btn" 
-            onClick={logout}
+            onClick={handleLogout}
             title="Cerrar sesión"
+            style={{
+              background: '#ef4444',
+              color: 'white',
+              border: 'none',
+              padding: '4px 8px',
+              borderRadius: '4px',
+              fontSize: '12px',
+              cursor: 'pointer',
+              marginLeft: '8px'
+            }}
           >
             Salir
           </button>

@@ -149,20 +149,47 @@ module.exports = createCoreController('api::foro.foro', ({ strapi }) => ({
       const { texto } = ctx.request.body.data || ctx.request.body;
       
       console.log(`🔍 Creando comentario en foro ${id}...`);
+      console.log(`📝 Datos recibidos:`, { id, texto });
       
-      const user = ctx.state.user;
-      if (!user) {
-        return ctx.unauthorized('Debes estar autenticado para comentar');
+      // Verificar autenticación usando nuestro sistema JWT personalizado
+      const token = ctx.request.header.authorization?.replace('Bearer ', '');
+      
+      if (!token) {
+        return ctx.unauthorized('Token de autenticación requerido para comentar');
+      }
+
+      // Verificar el token usando el mismo método que simple-auth
+      const jwt = require('jsonwebtoken');
+      const JWT_SECRET = process.env.JWT_SECRET || 'florkafun-secret-key-2024';
+      
+      let decoded;
+      try {
+        decoded = jwt.verify(token, JWT_SECRET);
+      } catch (jwtError) {
+        console.log('❌ Token inválido:', jwtError.message);
+        return ctx.unauthorized('Token inválido');
+      }
+
+      // Buscar usuario en la colección usuarios personalizada
+      const customUser = await strapi.entityService.findMany('api::usuario.usuario', {
+        filters: { email: decoded.email }
+      });
+
+      if (customUser.length === 0) {
+        console.log(`❌ Usuario personalizado no encontrado: ${decoded.email}`);
+        return ctx.unauthorized('Usuario no encontrado');
       }
 
       if (!texto || texto.trim().length === 0) {
         return ctx.badRequest('El texto del comentario es requerido');
       }
 
+      console.log(`✅ Usuario ${decoded.email} autorizado para comentar`);
+
       const comentario = await strapi.entityService.create('api::comentario.comentario', {
         data: {
           texto: texto.trim(),
-          usuario: user.email || user.username || 'Usuario',
+          usuario: customUser[0].nombre,
           foroRelacionado: id,
           aprobado: true,
           fechaCreacion: new Date()
@@ -173,7 +200,7 @@ module.exports = createCoreController('api::foro.foro', ({ strapi }) => ({
       return { data: comentario };
     } catch (error) {
       console.error(`❌ Error creando comentario en foro ${ctx.params.id}:`, error);
-      ctx.throw(500, 'Error interno del servidor');
+      ctx.throw(500, 'Error interno del servidor: ' + error.message);
     }
   },
 

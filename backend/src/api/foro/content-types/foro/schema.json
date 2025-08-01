@@ -30,7 +30,7 @@
     },
     "moderado": {
       "type": "boolean",
-      "default": false
+      "default": true
     },
     "activo": {
       "type": "boolean",

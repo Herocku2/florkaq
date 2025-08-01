@@ -837,7 +837,7 @@ export interface ApiForoForo extends Schema.CollectionType {
       }>;
     tokenRelacionado: Attribute.String & Attribute.Required;
     creador: Attribute.String & Attribute.Required;
-    moderado: Attribute.Boolean & Attribute.DefaultTo<false>;
+    moderado: Attribute.Boolean & Attribute.DefaultTo<true>;
     activo: Attribute.Boolean & Attribute.DefaultTo<true>;
     fechaCreacion: Attribute.DateTime & Attribute.DefaultTo<'now'>;
     imagen: Attribute.Media;

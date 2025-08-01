@@ -27,6 +27,7 @@ module.exports = {
       path: '/foros/:id/comentarios',
       handler: 'foro.createComment',
       config: {
+        auth: false,
         policies: [],
         middlewares: [],
       },

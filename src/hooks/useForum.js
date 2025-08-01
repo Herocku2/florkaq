@@ -20,9 +20,15 @@ export const useForum = () => {
         setIsModerator(moderatorStatus);
         console.log(`🛡️ Usuario es moderador: ${moderatorStatus}`);
         logger.info(`Usuario es moderador: ${moderatorStatus}`);
+        
+        // Recargar foros cuando cambia el estado de moderador
+        loadForums();
       } else {
         console.log('❌ Usuario no autenticado');
         setIsModerator(false);
+        
+        // También recargar foros cuando se desautentica
+        loadForums();
       }
     };
 
@@ -33,14 +39,20 @@ export const useForum = () => {
   const loadForums = async () => {
     setLoading(true);
     try {
+      // Siempre limpiar cache antes de cargar
+      forumService.clearForumsCache();
+      
       const result = await forumService.getForums();
       if (result.success) {
         setForums(result.forums);
+        console.log('✅ Foros cargados en useForum:', result.forums.length);
       } else {
         logger.error('Error cargando foros', result.error);
+        setForums([]);
       }
     } catch (error) {
       logger.error('Error cargando foros', error);
+      setForums([]);
     } finally {
       setLoading(false);
     }
@@ -48,20 +60,29 @@ export const useForum = () => {
 
   // Crear foro (solo moderadores)
   const createForum = async (forumData) => {
+    console.log('🔍 useForum.createForum - isModerator:', isModerator);
+    console.log('🔍 useForum.createForum - isAuthenticated:', isAuthenticated);
+    console.log('🔍 useForum.createForum - user:', user);
+    
     if (!isModerator) {
+      console.log('❌ Usuario no es moderador, rechazando creación');
       return { success: false, error: 'Solo los moderadores pueden crear foros' };
     }
 
     setLoading(true);
     try {
+      console.log('📤 Enviando datos al forumService:', forumData);
       const result = await forumService.createForum(forumData);
+      console.log('📥 Respuesta del forumService:', result);
+      
       if (result.success) {
         await loadForums(); // Recargar foros
       }
       return result;
     } catch (error) {
+      console.error('❌ Error en useForum.createForum:', error);
       logger.error('Error creando foro', error);
-      return { success: false, error: 'Error creando foro' };
+      return { success: false, error: 'Error creando foro: ' + error.message };
     } finally {
       setLoading(false);
     }

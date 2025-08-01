@@ -60,6 +60,8 @@ export const Forum = () => {
 
   // Cargar foros al montar el componente
   useEffect(() => {
+    // Limpiar cache antes de cargar
+    forumService.clearForumsCache();
     loadForums();
   }, []);
 
@@ -97,8 +99,12 @@ export const Forum = () => {
       return;
     }
 
+    console.log('📝 Datos del foro a crear:', newForumData);
+
     try {
       const result = await createForum(newForumData);
+      console.log('📋 Resultado de createForum:', result);
+      
       if (result.success) {
         setSuccess('Foro creado exitosamente');
         setNewForumData({ 
@@ -112,10 +118,12 @@ export const Forum = () => {
         });
         setShowNewForumForm(false);
       } else {
+        console.error('❌ Error del backend:', result.error);
         setError(result.error || 'Error al crear el foro');
       }
     } catch (error) {
-      setError('Error al crear el foro');
+      console.error('❌ Error en handleCreateForum:', error);
+      setError('Error al crear el foro: ' + error.message);
     }
   };
 
@@ -213,6 +221,21 @@ export const Forum = () => {
       <div className="forum-container">
         <div className="forum-header" style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '20px'}}>
           <h1>Foros de Discusión</h1>
+          
+          {/* Botón de recarga para debugging - remover en producción */}
+          {process.env.NODE_ENV === 'development' && (
+            <button 
+              onClick={async () => {
+                console.log('🔄 Forzando recarga de foros...');
+                forumService.clearForumsCache();
+                await loadForums();
+                console.log('✅ Foros recargados');
+              }}
+              style={{padding: '5px 10px', fontSize: '12px', background: '#28a745', color: 'white', border: 'none', borderRadius: '4px'}}
+            >
+              🔄 Recargar Foros
+            </button>
+          )}
           
           {/* Botón para crear nuevo foro - SOLO para moderadores */}
           {isModerator && (

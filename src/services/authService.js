@@ -62,10 +62,17 @@ class AuthService {
 
   // Cerrar sesión
   logout() {
-    localStorage.removeItem('authToken');
-    localStorage.removeItem('user');
-    apiService.setToken(null);
-    window.location.href = '/auth';
+    try {
+      localStorage.removeItem('authToken');
+      localStorage.removeItem('user');
+      apiService.setToken(null);
+      
+      // No usar window.location.href directamente desde el servicio
+      // Dejar que el contexto maneje la navegación
+      console.log('🚪 Logout completado desde authService');
+    } catch (error) {
+      console.error('Error en logout:', error);
+    }
   }
 
   // Obtener usuario actual

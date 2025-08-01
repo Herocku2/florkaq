@@ -43,11 +43,18 @@ class ForumService {
           'pagination[page]': page,
           'pagination[pageSize]': pageSize,
           'sort': 'createdAt:desc',
+          'filters[activo][$eq]': true,
+          'filters[moderado][$eq]': true,
           ...filters
         };
         
         const response = await apiService.get('foros', params);
         console.log('✅ Foros obtenidos:', response?.data?.length || 0);
+        
+        // Log detallado solo en desarrollo
+        if (process.env.NODE_ENV === 'development') {
+          console.log('📋 Foros:', response?.data?.map(f => f.attributes?.titulo));
+        }
         
         return {
           success: true,
@@ -99,6 +106,10 @@ class ForumService {
       
       let finalForumData = { ...forumData };
       
+      // Refrescar token antes de hacer la petición
+      apiService.refreshToken();
+      console.log('🔑 Token actual:', apiService.token ? 'PRESENTE' : 'AUSENTE');
+      
       // Si hay un archivo de imagen, subirlo primero
       if (forumData.imagenFile) {
         try {
@@ -129,9 +140,14 @@ class ForumService {
         delete finalForumData.imagenFile;
       }
       
+      console.log('📤 Enviando datos al backend:', { data: finalForumData });
+      console.log('🔑 Con token:', apiService.token ? apiService.token.substring(0, 20) + '...' : 'NO TOKEN');
+      
       const response = await apiService.post('foros', {
         data: finalForumData
       });
+      
+      console.log('📥 Respuesta del backend:', response);
       
       console.log('✅ Foro creado:', response?.data?.id);
       
@@ -149,6 +165,10 @@ class ForumService {
     
     return await errorHandler.safeAsync(async () => {
       console.log(`🔍 Creando comentario en foro ${forumId}...`);
+      
+      // Refrescar token antes de hacer la petición
+      apiService.refreshToken();
+      console.log('🔑 Token para comentario:', apiService.token ? 'PRESENTE' : 'AUSENTE');
       
       const response = await apiService.post(`foros/${forumId}/comentarios`, {
         data: { texto: commentText }
