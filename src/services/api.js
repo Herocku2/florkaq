@@ -9,6 +9,11 @@ class ApiService {
     this.token = localStorage.getItem('authToken');
   }
 
+  // Refresh token from localStorage
+  refreshToken() {
+    this.token = localStorage.getItem('authToken');
+  }
+
   // Set authentication token
   setToken(token) {
     this.token = token;

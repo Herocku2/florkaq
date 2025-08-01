@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug Moderador</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .result { margin: 10px 0; padding: 10px; border: 1px solid #ccc; }
+        .success { background-color: #d4edda; }
+        .error { background-color: #f8d7da; }
+        button { padding: 10px 20px; margin: 5px; }
+    </style>
+</head>
+<body>
+    <h1>🛡️ Debug Sistema de Moderadores</h1>
+    
+    <div>
+        <h2>1. Verificar Token en LocalStorage</h2>
+        <button onclick="checkToken()">Verificar Token</button>
+        <div id="tokenResult" class="result"></div>
+    </div>
+
+    <div>
+        <h2>2. Login como Moderador</h2>
+        <button onclick="loginModerator()">Login Moderador</button>
+        <div id="loginResult" class="result"></div>
+    </div>
+
+    <div>
+        <h2>3. Verificar Estado de Moderador</h2>
+        <button onclick="checkModerator()">Verificar Moderador</button>
+        <div id="moderatorResult" class="result"></div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:1337/api';
+
+        function checkToken() {
+            const token = localStorage.getItem('authToken');
+            const result = document.getElementById('tokenResult');
+            
+            if (token) {
+                result.className = 'result success';
+                result.innerHTML = `✅ Token encontrado: ${token.substring(0, 50)}...`;
+            } else {
+                result.className = 'result error';
+                result.innerHTML = '❌ No hay token en localStorage';
+            }
+        }
+
+        async function loginModerator() {
+            const result = document.getElementById('loginResult');
+            
+            try {
+                const response = await fetch(`${API_BASE}/simple-auth/login`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        identifier: 'moderator@test.com',
+                        password: '123456'
+                    })
+                });
+
+                const data = await response.json();
+                
+                if (data.success) {
+                    localStorage.setItem('authToken', data.jwt);
+                    result.className = 'result success';
+                    result.innerHTML = `✅ Login exitoso: ${data.user.email}`;
+                } else {
+                    result.className = 'result error';
+                    result.innerHTML = `❌ Error: ${data.error}`;
+                }
+            } catch (error) {
+                result.className = 'result error';
+                result.innerHTML = `❌ Error de conexión: ${error.message}`;
+            }
+        }
+
+        async function checkModerator() {
+            const result = document.getElementById('moderatorResult');
+            const token = localStorage.getItem('authToken');
+            
+            if (!token) {
+                result.className = 'result error';
+                result.innerHTML = '❌ No hay token. Haz login primero.';
+                return;
+            }
+
+            try {
+                const response = await fetch(`${API_BASE}/foros/check-moderator`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                const data = await response.json();
+                
+                if (data.data && data.data.isModerator) {
+                    result.className = 'result success';
+                    result.innerHTML = `✅ Es moderador: ${data.data.email} (${data.data.role})`;
+                } else {
+                    result.className = 'result error';
+                    result.innerHTML = `❌ No es moderador: ${JSON.stringify(data)}`;
+                }
+            } catch (error) {
+                result.className = 'result error';
+                result.innerHTML = `❌ Error: ${error.message}`;
+            }
+        }
+
+        // Auto-verificar al cargar
+        window.onload = function() {
+            checkToken();
+        };
+    </script>
+</body>
+</html>

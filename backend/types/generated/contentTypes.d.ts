@@ -840,6 +840,10 @@ export interface ApiForoForo extends Schema.CollectionType {
     moderado: Attribute.Boolean & Attribute.DefaultTo<false>;
     activo: Attribute.Boolean & Attribute.DefaultTo<true>;
     fechaCreacion: Attribute.DateTime & Attribute.DefaultTo<'now'>;
+    imagen: Attribute.Media;
+    imagenUrl: Attribute.String;
+    enlaceWeb: Attribute.String;
+    redesSociales: Attribute.JSON;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::foro.foro', 'oneToOne', 'admin::user'> &

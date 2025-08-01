@@ -49,41 +49,74 @@ module.exports = createCoreController('api::foro.foro', ({ strapi }) => ({
     try {
       console.log('🔍 Creando nuevo foro...');
       
-      // Verificar autenticación
-      const user = ctx.state.user;
-      if (!user) {
-        return ctx.unauthorized('Debes estar autenticado para crear foros');
+      // Verificar autenticación usando nuestro sistema JWT personalizado
+      const token = ctx.request.header.authorization?.replace('Bearer ', '');
+      
+      if (!token) {
+        return ctx.unauthorized('Token de autenticación requerido');
       }
 
-      // Verificar si el usuario es moderador o admin
-      const isModerator = await this.checkUserRole(user.id, ['moderador', 'admin']);
+      // Verificar el token usando el mismo método que simple-auth
+      const jwt = require('jsonwebtoken');
+      const JWT_SECRET = process.env.JWT_SECRET || 'florkafun-secret-key-2024';
+      
+      let decoded;
+      try {
+        decoded = jwt.verify(token, JWT_SECRET);
+      } catch (jwtError) {
+        console.log('❌ Token inválido:', jwtError.message);
+        return ctx.unauthorized('Token inválido');
+      }
+
+      // Buscar usuario en la colección usuarios personalizada
+      const customUser = await strapi.entityService.findMany('api::usuario.usuario', {
+        filters: { email: decoded.email }
+      });
+
+      if (customUser.length === 0) {
+        console.log(`❌ Usuario personalizado no encontrado: ${decoded.email}`);
+        return ctx.unauthorized('Usuario no encontrado');
+      }
+
+      const userRole = customUser[0].rol;
+      const isModerator = ['moderador', 'admin'].includes(userRole);
+      
       if (!isModerator) {
         return ctx.forbidden('Solo los moderadores y administradores pueden crear foros');
       }
 
-      // Obtener datos del usuario desde la colección usuarios
-      const userData = await strapi.entityService.findMany('api::usuario.usuario', {
-        filters: { email: user.email }
-      });
-
-      const creatorName = userData.length > 0 ? userData[0].nombre : user.username || user.email;
+      console.log(`✅ Usuario ${decoded.email} autorizado para crear foro (rol: ${userRole})`);
       
       // Crear el foro con datos adicionales
+      const requestData = ctx.request.body.data;
       const forumData = {
-        ...ctx.request.body.data,
-        creador: creatorName,
+        titulo: requestData.titulo,
+        descripcion: requestData.descripcion,
+        tokenRelacionado: requestData.tokenRelacionado,
+        enlaceWeb: requestData.enlaceWeb,
+        redesSociales: requestData.redesSociales,
+        creador: customUser[0].nombre,
         moderado: true,
         activo: true,
         fechaCreacion: new Date()
       };
 
-      const { data } = await super.create({ ...ctx, request: { ...ctx.request, body: { data: forumData } } });
+      // Si hay una URL de imagen, agregarla
+      if (requestData.imagen && typeof requestData.imagen === 'string') {
+        forumData.imagenUrl = requestData.imagen;
+      }
+
+      console.log('📝 Datos del foro a crear:', forumData);
+
+      const newForum = await strapi.entityService.create('api::foro.foro', {
+        data: forumData
+      });
       
-      console.log(`✅ Foro creado: ${data.id} por ${creatorName}`);
-      return { data };
+      console.log(`✅ Foro creado: ${newForum.id} por ${customUser[0].nombre}`);
+      return { data: newForum };
     } catch (error) {
       console.error('❌ Error creando foro:', error);
-      ctx.throw(500, 'Error interno del servidor');
+      ctx.throw(500, 'Error interno del servidor: ' + error.message);
     }
   },
 
@@ -181,23 +214,77 @@ module.exports = createCoreController('api::foro.foro', ({ strapi }) => ({
   // Verificar si el usuario es moderador (endpoint para frontend)
   async checkModerator(ctx) {
     try {
-      const user = ctx.state.user;
-      if (!user) {
-        return ctx.unauthorized('No autenticado');
+      // Intentar obtener el token del header Authorization
+      const token = ctx.request.header.authorization?.replace('Bearer ', '');
+      
+      if (!token) {
+        // Si no hay token, devolver false
+        return {
+          data: {
+            isModerator: false,
+            userId: null,
+            email: null
+          }
+        };
       }
 
-      const isModerator = await this.checkUserRole(user.id, ['moderador', 'admin']);
+      // Verificar el token usando el mismo método que simple-auth
+      const jwt = require('jsonwebtoken');
+      const JWT_SECRET = process.env.JWT_SECRET || 'florkafun-secret-key-2024';
+      
+      let decoded;
+      try {
+        decoded = jwt.verify(token, JWT_SECRET);
+      } catch (jwtError) {
+        console.log('❌ Token inválido:', jwtError.message);
+        return {
+          data: {
+            isModerator: false,
+            userId: null,
+            email: null
+          }
+        };
+      }
+
+      // Buscar usuario en la colección usuarios personalizada
+      const customUser = await strapi.entityService.findMany('api::usuario.usuario', {
+        filters: { email: decoded.email }
+      });
+
+      if (customUser.length === 0) {
+        console.log(`❌ Usuario personalizado no encontrado: ${decoded.email}`);
+        return {
+          data: {
+            isModerator: false,
+            userId: decoded.id,
+            email: decoded.email
+          }
+        };
+      }
+
+      const userRole = customUser[0].rol;
+      const isModerator = ['moderador', 'admin'].includes(userRole);
+      
+      console.log(`🔍 Usuario ${decoded.email} tiene rol: ${userRole}, es moderador: ${isModerator}`);
       
       return {
         data: {
           isModerator,
-          userId: user.id,
-          email: user.email
+          userId: decoded.id,
+          email: decoded.email,
+          role: userRole
         }
       };
     } catch (error) {
       console.error('❌ Error verificando moderador:', error);
-      ctx.throw(500, 'Error interno del servidor');
+      // En caso de error, devolver false en lugar de lanzar excepción
+      return {
+        data: {
+          isModerator: false,
+          userId: null,
+          email: null
+        }
+      };
     }
   }
 }));

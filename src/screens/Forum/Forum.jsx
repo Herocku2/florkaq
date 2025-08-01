@@ -11,7 +11,19 @@ export const Forum = () => {
   const { isAuthenticated, user, loading: authLoading } = useAuth();
   const [selectedForum, setSelectedForum] = useState(null);
   const [comments, setComments] = useState([]);
-  const [newForumData, setNewForumData] = useState({ titulo: '', descripcion: '', tokenRelacionado: '' });
+  const [newForumData, setNewForumData] = useState({ 
+    titulo: '', 
+    descripcion: '', 
+    tokenRelacionado: '',
+    imagen: '',
+    imagenFile: null,
+    enlaceWeb: '',
+    redesSociales: {
+      twitter: '',
+      telegram: '',
+      discord: ''
+    }
+  });
   const [newComment, setNewComment] = useState('');
   const [showNewForumForm, setShowNewForumForm] = useState(false);
   const [editingForum, setEditingForum] = useState(null);
@@ -51,6 +63,11 @@ export const Forum = () => {
     loadForums();
   }, []);
 
+  // Debug: Mostrar estado de autenticación
+  useEffect(() => {
+    console.log('🔍 Estado de autenticación en Forum:', { isAuthenticated, user });
+  }, [isAuthenticated, user]);
+
   // Cargar comentarios cuando se selecciona un foro
   const handleSelectForum = async (forum) => {
     setSelectedForum(forum);
@@ -84,7 +101,15 @@ export const Forum = () => {
       const result = await createForum(newForumData);
       if (result.success) {
         setSuccess('Foro creado exitosamente');
-        setNewForumData({ titulo: '', descripcion: '', tokenRelacionado: '' });
+        setNewForumData({ 
+          titulo: '', 
+          descripcion: '', 
+          tokenRelacionado: '',
+          imagen: '',
+          imagenFile: null,
+          enlaceWeb: '',
+          redesSociales: { twitter: '', telegram: '', discord: '' }
+        });
         setShowNewForumForm(false);
       } else {
         setError(result.error || 'Error al crear el foro');
@@ -186,21 +211,37 @@ export const Forum = () => {
       <Heder />
       
       <div className="forum-container">
-        <div className="forum-header">
+        <div className="forum-header" style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '20px'}}>
           <h1>Foros de Discusión</h1>
+          
+          {/* Botón para crear nuevo foro - SOLO para moderadores */}
           {isModerator && (
-            <Boton
+            <button
               className="create-forum-button"
               onClick={() => setShowNewForumForm(!showNewForumForm)}
-              text={showNewForumForm ? "Cancelar" : "Crear Nuevo Foro"}
-            />
+              style={{
+                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                color: 'white',
+                border: 'none',
+                padding: '12px 24px',
+                borderRadius: '8px',
+                fontSize: '14px',
+                fontWeight: '600',
+                cursor: 'pointer',
+                transition: 'all 0.3s ease'
+              }}
+              onMouseOver={(e) => e.target.style.transform = 'translateY(-2px)'}
+              onMouseOut={(e) => e.target.style.transform = 'translateY(0)'}
+            >
+              {showNewForumForm ? "Cancelar" : "Crear Nuevo Foro"}
+            </button>
           )}
         </div>
 
         {error && <div className="error-message">{error}</div>}
         {success && <div className="success-message">{success}</div>}
 
-        {/* Formulario para crear nuevo foro (solo moderadores) */}
+        {/* Formulario para crear nuevo foro - SOLO moderadores */}
         {showNewForumForm && isModerator && (
           <div className="new-forum-form-container">
             <h2>Crear Nuevo Foro</h2>
@@ -238,25 +279,137 @@ export const Forum = () => {
                   required
                 />
               </div>
+
+              <div className="form-group">
+                <label htmlFor="imagen">Imagen del Foro:</label>
+                <div style={{display: 'flex', flexDirection: 'column', gap: '10px'}}>
+                  <input
+                    type="file"
+                    id="imagenFile"
+                    accept="image/*"
+                    onChange={(e) => {
+                      const file = e.target.files[0];
+                      if (file) {
+                        // Crear URL temporal para preview
+                        const imageUrl = URL.createObjectURL(file);
+                        setNewForumData({...newForumData, imagen: imageUrl, imagenFile: file});
+                      }
+                    }}
+                    style={{
+                      padding: '10px',
+                      border: '2px dashed #ccc',
+                      borderRadius: '8px',
+                      cursor: 'pointer'
+                    }}
+                  />
+                  <span style={{fontSize: '12px', color: '#666'}}>
+                    O ingresa una URL de imagen:
+                  </span>
+                  <input
+                    type="url"
+                    id="imagen"
+                    value={newForumData.imagen}
+                    onChange={(e) => setNewForumData({...newForumData, imagen: e.target.value})}
+                    placeholder="https://ejemplo.com/imagen.jpg"
+                  />
+                  {newForumData.imagen && (
+                    <div style={{marginTop: '10px'}}>
+                      <img 
+                        src={newForumData.imagen} 
+                        alt="Preview" 
+                        style={{maxWidth: '200px', maxHeight: '150px', borderRadius: '8px'}}
+                        onError={(e) => {
+                          e.target.style.display = 'none';
+                        }}
+                      />
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="enlaceWeb">Enlace Web (opcional):</label>
+                <input
+                  type="url"
+                  id="enlaceWeb"
+                  value={newForumData.enlaceWeb}
+                  onChange={(e) => setNewForumData({...newForumData, enlaceWeb: e.target.value})}
+                  placeholder="https://ejemplo.com"
+                />
+              </div>
+
+              <div className="form-group">
+                <label>Redes Sociales (opcional):</label>
+                <div style={{display: 'grid', gap: '10px', gridTemplateColumns: '1fr 1fr 1fr'}}>
+                  <input
+                    type="text"
+                    placeholder="Twitter @usuario"
+                    value={newForumData.redesSociales.twitter}
+                    onChange={(e) => setNewForumData({
+                      ...newForumData, 
+                      redesSociales: {...newForumData.redesSociales, twitter: e.target.value}
+                    })}
+                  />
+                  <input
+                    type="text"
+                    placeholder="Telegram @canal"
+                    value={newForumData.redesSociales.telegram}
+                    onChange={(e) => setNewForumData({
+                      ...newForumData, 
+                      redesSociales: {...newForumData.redesSociales, telegram: e.target.value}
+                    })}
+                  />
+                  <input
+                    type="text"
+                    placeholder="Discord servidor"
+                    value={newForumData.redesSociales.discord}
+                    onChange={(e) => setNewForumData({
+                      ...newForumData, 
+                      redesSociales: {...newForumData.redesSociales, discord: e.target.value}
+                    })}
+                  />
+                </div>
+              </div>
               
               <div className="form-actions">
-                <Boton
+                <button
                   type="submit"
-                  text="Crear Foro"
-                  className="submit-button"
-                />
-                <Boton
+                  style={{
+                    background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
+                    color: 'white',
+                    border: 'none',
+                    padding: '12px 24px',
+                    borderRadius: '8px',
+                    fontSize: '14px',
+                    fontWeight: '600',
+                    cursor: 'pointer',
+                    marginRight: '10px'
+                  }}
+                >
+                  Crear Foro
+                </button>
+                <button
                   type="button"
-                  text="Cancelar"
-                  className="cancel-button"
                   onClick={() => setShowNewForumForm(false)}
-                />
+                  style={{
+                    background: '#6b7280',
+                    color: 'white',
+                    border: 'none',
+                    padding: '12px 24px',
+                    borderRadius: '8px',
+                    fontSize: '14px',
+                    fontWeight: '600',
+                    cursor: 'pointer'
+                  }}
+                >
+                  Cancelar
+                </button>
               </div>
             </form>
           </div>
         )}
 
-        {/* Formulario para editar foro (solo moderadores) */}
+        {/* Formulario para editar foro - SOLO moderadores */}
         {editingForum && isModerator && (
           <div className="edit-forum-form-container">
             <h2>Editar Foro</h2>
@@ -296,17 +449,38 @@ export const Forum = () => {
               </div>
               
               <div className="form-actions">
-                <Boton
+                <button
                   type="submit"
-                  text="Actualizar Foro"
-                  className="submit-button"
-                />
-                <Boton
+                  style={{
+                    background: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)',
+                    color: 'white',
+                    border: 'none',
+                    padding: '12px 24px',
+                    borderRadius: '8px',
+                    fontSize: '14px',
+                    fontWeight: '600',
+                    cursor: 'pointer',
+                    marginRight: '10px'
+                  }}
+                >
+                  Actualizar Foro
+                </button>
+                <button
                   type="button"
-                  text="Cancelar"
-                  className="cancel-button"
                   onClick={() => setEditingForum(null)}
-                />
+                  style={{
+                    background: '#6b7280',
+                    color: 'white',
+                    border: 'none',
+                    padding: '12px 24px',
+                    borderRadius: '8px',
+                    fontSize: '14px',
+                    fontWeight: '600',
+                    cursor: 'pointer'
+                  }}
+                >
+                  Cancelar
+                </button>
               </div>
             </form>
           </div>
@@ -393,8 +567,58 @@ export const Forum = () => {
                             <span className="comment-date">
                               {new Date(comment.attributes.createdAt).toLocaleDateString()}
                             </span>
+                            {isModerator && (
+                              <button 
+                                onClick={() => {
+                                  if (window.confirm('¿Eliminar este comentario?')) {
+                                    // TODO: Implementar eliminación de comentario
+                                    console.log('Eliminar comentario:', comment.id);
+                                  }
+                                }}
+                                style={{
+                                  background: '#ef4444',
+                                  color: 'white',
+                                  border: 'none',
+                                  padding: '4px 8px',
+                                  borderRadius: '4px',
+                                  fontSize: '12px',
+                                  cursor: 'pointer',
+                                  marginLeft: '10px'
+                                }}
+                              >
+                                Eliminar
+                              </button>
+                            )}
                           </div>
                           <p className="comment-text">{comment.attributes.texto}</p>
+                          
+                          {/* Sistema de reacciones */}
+                          <div className="comment-reactions" style={{marginTop: '10px', display: 'flex', gap: '10px', alignItems: 'center'}}>
+                            <button 
+                              onClick={() => console.log('Like:', comment.id)}
+                              style={{background: 'none', border: 'none', cursor: 'pointer', fontSize: '16px'}}
+                            >
+                              👍 0
+                            </button>
+                            <button 
+                              onClick={() => console.log('Dislike:', comment.id)}
+                              style={{background: 'none', border: 'none', cursor: 'pointer', fontSize: '16px'}}
+                            >
+                              👎 0
+                            </button>
+                            <button 
+                              onClick={() => console.log('Heart:', comment.id)}
+                              style={{background: 'none', border: 'none', cursor: 'pointer', fontSize: '16px'}}
+                            >
+                              ❤️ 0
+                            </button>
+                            <button 
+                              onClick={() => console.log('Laugh:', comment.id)}
+                              style={{background: 'none', border: 'none', cursor: 'pointer', fontSize: '16px'}}
+                            >
+                              😂 0
+                            </button>
+                          </div>
                         </li>
                       ))}
                     </ul>
@@ -413,11 +637,22 @@ export const Forum = () => {
                         rows={4}
                         required
                       />
-                      <Boton
+                      <button
                         type="submit"
-                        text="Enviar Comentario"
-                        className="submit-comment-button"
-                      />
+                        style={{
+                          background: 'linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)',
+                          color: 'white',
+                          border: 'none',
+                          padding: '10px 20px',
+                          borderRadius: '6px',
+                          fontSize: '14px',
+                          fontWeight: '600',
+                          cursor: 'pointer',
+                          marginTop: '10px'
+                        }}
+                      >
+                        Enviar Comentario
+                      </button>
                     </form>
                   ) : (
                     <p className="login-prompt">

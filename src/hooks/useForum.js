@@ -12,11 +12,16 @@ export const useForum = () => {
   // Verificar si el usuario es moderador
   useEffect(() => {
     const checkModeratorStatus = async () => {
+      console.log('🔍 Verificando estado de moderador...', { isAuthenticated, user });
+      
       if (isAuthenticated && user) {
+        console.log('👤 Usuario autenticado, verificando rol de moderador...');
         const moderatorStatus = await forumService.isUserModerator();
         setIsModerator(moderatorStatus);
+        console.log(`🛡️ Usuario es moderador: ${moderatorStatus}`);
         logger.info(`Usuario es moderador: ${moderatorStatus}`);
       } else {
+        console.log('❌ Usuario no autenticado');
         setIsModerator(false);
       }
     };

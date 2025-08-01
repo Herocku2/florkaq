@@ -97,14 +97,40 @@ class ForumService {
     return await errorHandler.safeAsync(async () => {
       console.log('🔍 Creando nuevo foro...', forumData);
       
-      const response = await apiService.post('foros', {
-        data: {
-          ...forumData,
-          creador: 'Usuario', // TODO: Obtener del contexto de autenticación
-          moderado: false,
-          activo: true,
-          fechaCreacion: new Date().toISOString()
+      let finalForumData = { ...forumData };
+      
+      // Si hay un archivo de imagen, subirlo primero
+      if (forumData.imagenFile) {
+        try {
+          const formData = new FormData();
+          formData.append('files', forumData.imagenFile);
+          
+          const uploadResponse = await fetch('http://localhost:1337/api/upload', {
+            method: 'POST',
+            headers: {
+              'Authorization': `Bearer ${apiService.token}`
+            },
+            body: formData
+          });
+          
+          if (uploadResponse.ok) {
+            const uploadData = await uploadResponse.json();
+            if (uploadData && uploadData.length > 0) {
+              finalForumData.imagen = `http://localhost:1337${uploadData[0].url}`;
+              console.log('✅ Imagen subida:', finalForumData.imagen);
+            }
+          }
+        } catch (uploadError) {
+          console.error('❌ Error subiendo imagen:', uploadError);
+          // Continuar sin imagen si falla la subida
         }
+        
+        // Remover el archivo del objeto de datos
+        delete finalForumData.imagenFile;
+      }
+      
+      const response = await apiService.post('foros', {
+        data: finalForumData
       });
       
       console.log('✅ Foro creado:', response?.data?.id);
@@ -188,6 +214,9 @@ class ForumService {
   async isUserModerator() {
     return await errorHandler.safeAsync(async () => {
       console.log('🔍 Verificando si el usuario es moderador...');
+      
+      // Refrescar token antes de hacer la petición
+      apiService.refreshToken();
       
       const response = await apiService.get('foros/check-moderator');
       console.log('✅ Respuesta de verificación de moderador:', response);
