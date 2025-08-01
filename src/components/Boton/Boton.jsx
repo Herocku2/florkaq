@@ -6,13 +6,27 @@ Please share your feedback here: https://form.asana.com/?k=uvp-HPgd3_hyoXRBw1IcN
 import React from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
-import { useLogout } from "../../hooks/useLogout";
 import "./style.css";
 
 export const Boton = ({ className }) => {
-  const { isAuthenticated, user, loading } = useAuth();
-  const handleLogout = useLogout();
+  const { isAuthenticated, user, loading, logout } = useAuth();
 
+  const handleLogout = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    try {
+      logout();
+    } catch (error) {
+      console.error('Error en logout:', error);
+      // Fallback directo
+      localStorage.removeItem('authToken');
+      localStorage.removeItem('user');
+      window.location.href = '/';
+    }
+  };
+
+  // Renderizar siempre la misma estructura para evitar problemas de hooks
   if (loading) {
     return (
       <div className={`boton ${className}`}>

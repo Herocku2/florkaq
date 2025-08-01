@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import authService from '../services/authService';
 import { logger } from '../utils/logger';
+import { safeNavigate, clearAuthState } from '../utils/navigation';
 
 const AuthContext = createContext();
 
@@ -103,9 +104,8 @@ export const AuthProvider = ({ children }) => {
       setIsAuthenticated(false);
       setLoading(false);
       
-      // Limpiar localStorage y token
-      localStorage.removeItem('authToken');
-      localStorage.removeItem('user');
+      // Limpiar completamente el estado de autenticación
+      clearAuthState();
       
       // Limpiar token del API service
       if (typeof window !== 'undefined') {
@@ -115,19 +115,13 @@ export const AuthProvider = ({ children }) => {
       
       logger.info('Usuario desconectado');
       
-      // Usar React Router para navegación en lugar de window.location
-      setTimeout(() => {
-        if (typeof window !== 'undefined') {
-          window.location.href = '/auth';
-        }
-      }, 100);
+      // Navegación segura a home
+      safeNavigate('/', 50);
       
     } catch (error) {
       console.error('Error en logout:', error);
-      // Fallback: forzar recarga de página
-      if (typeof window !== 'undefined') {
-        window.location.reload();
-      }
+      // Fallback: navegación directa
+      safeNavigate('/', 0);
     }
   };
 

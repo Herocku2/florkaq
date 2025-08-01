@@ -179,13 +179,13 @@ export const Forum = () => {
     }
   };
 
-  // Manejar creación de comentario
+  // Manejar creación de comentario - SIMPLIFICADO
   const handleCreateComment = async (e) => {
     e.preventDefault();
     setError('');
     setSuccess('');
 
-    if (!newComment) {
+    if (!newComment.trim()) {
       setError('El comentario no puede estar vacío');
       return;
     }
@@ -195,21 +195,32 @@ export const Forum = () => {
       return;
     }
 
+    if (!isAuthenticated) {
+      setError('Debes iniciar sesión para comentar');
+      return;
+    }
+
     try {
-      const result = await createComment(selectedForum.id, newComment);
+      console.log('📝 Enviando comentario:', newComment);
+      
+      const result = await forumService.createComment(selectedForum.id, newComment);
+      
       if (result.success) {
         setSuccess('Comentario enviado exitosamente');
         setNewComment('');
         
         // Recargar comentarios
-        const commentsResult = await forumService.getForumComments(selectedForum.id);
-        if (commentsResult.success) {
-          setComments(commentsResult.comments);
-        }
+        setTimeout(async () => {
+          const commentsResult = await forumService.getForumComments(selectedForum.id);
+          if (commentsResult.success) {
+            setComments(commentsResult.comments);
+          }
+        }, 500);
       } else {
         setError(result.error || 'Error al enviar el comentario');
       }
     } catch (error) {
+      console.error('Error en handleCreateComment:', error);
       setError('Error al enviar el comentario');
     }
   };

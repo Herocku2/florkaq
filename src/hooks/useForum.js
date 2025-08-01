@@ -9,26 +9,20 @@ export const useForum = () => {
   const [isModerator, setIsModerator] = useState(false);
   const { isAuthenticated, user } = useAuth();
 
-  // Verificar si el usuario es moderador
+  // Verificar si el usuario es moderador - SIMPLIFICADO
   useEffect(() => {
     const checkModeratorStatus = async () => {
-      console.log('🔍 Verificando estado de moderador...', { isAuthenticated, user });
-      
       if (isAuthenticated && user) {
-        console.log('👤 Usuario autenticado, verificando rol de moderador...');
-        const moderatorStatus = await forumService.isUserModerator();
-        setIsModerator(moderatorStatus);
-        console.log(`🛡️ Usuario es moderador: ${moderatorStatus}`);
-        logger.info(`Usuario es moderador: ${moderatorStatus}`);
-        
-        // Recargar foros cuando cambia el estado de moderador
-        loadForums();
+        try {
+          const moderatorStatus = await forumService.isUserModerator();
+          setIsModerator(moderatorStatus);
+          console.log(`🛡️ Usuario es moderador: ${moderatorStatus}`);
+        } catch (error) {
+          console.error('Error verificando moderador:', error);
+          setIsModerator(false);
+        }
       } else {
-        console.log('❌ Usuario no autenticado');
         setIsModerator(false);
-        
-        // También recargar foros cuando se desautentica
-        loadForums();
       }
     };
 

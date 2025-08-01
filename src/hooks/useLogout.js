@@ -4,27 +4,19 @@ import { useAuth } from '../contexts/AuthContext';
 export const useLogout = () => {
   const { logout } = useAuth();
 
-  const handleLogout = useCallback(async () => {
+  const handleLogout = useCallback(() => {
     try {
-      // Mostrar confirmación
-      const confirmed = window.confirm('¿Estás seguro de que quieres cerrar sesión?');
-      
-      if (!confirmed) {
-        return false;
-      }
-
-      // Ejecutar logout
-      await logout();
-      
+      // Ejecutar logout sin confirmación para evitar problemas de hooks
+      logout();
       return true;
     } catch (error) {
       console.error('Error durante logout:', error);
       
-      // Fallback: limpiar manualmente y recargar
+      // Fallback: limpiar manualmente y navegar
       try {
         localStorage.removeItem('authToken');
         localStorage.removeItem('user');
-        window.location.href = '/auth';
+        window.location.href = '/';
       } catch (fallbackError) {
         console.error('Error en fallback logout:', fallbackError);
         window.location.reload();

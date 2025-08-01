@@ -158,17 +158,10 @@ class ForumService {
     }, { success: false, error: 'Error al crear el foro' }, 'ForumService.createForum');
   }
 
-  // Crear comentario en foro
+  // Crear comentario en foro - SIMPLIFICADO
   async createComment(forumId, commentText) {
-    // Limpiar cache del foro específico
-    this.cache.delete(`forum-comments-${forumId}`);
-    
-    return await errorHandler.safeAsync(async () => {
+    try {
       console.log(`🔍 Creando comentario en foro ${forumId}...`);
-      
-      // Refrescar token antes de hacer la petición
-      apiService.refreshToken();
-      console.log('🔑 Token para comentario:', apiService.token ? 'PRESENTE' : 'AUSENTE');
       
       const response = await apiService.post(`foros/${forumId}/comentarios`, {
         data: { texto: commentText }
@@ -176,11 +169,20 @@ class ForumService {
       
       console.log('✅ Comentario creado:', response?.data?.id);
       
+      // Limpiar cache después de crear
+      this.cache.delete(`forum-comments-${forumId}`);
+      
       return {
         success: true,
         comment: response?.data
       };
-    }, { success: false, error: 'Error al crear el comentario' }, 'ForumService.createComment');
+    } catch (error) {
+      console.error('❌ Error creando comentario:', error);
+      return { 
+        success: false, 
+        error: 'Error al crear el comentario: ' + error.message 
+      };
+    }
   }
 
   // Obtener temas por token
