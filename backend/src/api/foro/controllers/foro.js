@@ -142,35 +142,38 @@ module.exports = createCoreController('api::foro.foro', ({ strapi }) => ({
     }
   },
 
-  // Crear comentario en un foro - SIMPLIFICADO
+  // Crear comentario en un foro - PÚBLICO PARA TODOS
   async createComment(ctx) {
     try {
       const { id } = ctx.params;
-      const { texto } = ctx.request.body.data || ctx.request.body;
+      const requestData = ctx.request.body.data || ctx.request.body;
       
       console.log(`🔍 Creando comentario en foro ${id}...`);
-      console.log(`📝 Datos recibidos:`, { id, texto });
+      console.log(`📝 Datos recibidos:`, requestData);
+      
+      const texto = requestData.texto;
+      const usuario = requestData.usuario || 'Usuario Anónimo';
       
       if (!texto || texto.trim().length === 0) {
         return ctx.badRequest('El texto del comentario es requerido');
       }
 
-      // Crear comentario sin verificación compleja de autenticación
-      // El frontend ya maneja la autenticación
+      // Crear comentario - ACCESO PÚBLICO
       const comentario = await strapi.entityService.create('api::comentario.comentario', {
         data: {
           texto: texto.trim(),
-          usuario: 'Usuario', // Nombre genérico por ahora
-          foroRelacionado: id,
+          usuario: usuario,
+          foroRelacionado: id.toString(),
           aprobado: true,
           fechaCreacion: new Date()
         }
       });
 
-      console.log(`✅ Comentario creado: ${comentario.id}`);
+      console.log(`✅ Comentario creado: ${comentario.id} por ${usuario}`);
       return { data: comentario };
     } catch (error) {
       console.error(`❌ Error creando comentario en foro ${ctx.params.id}:`, error);
+      console.error('Error details:', error);
       ctx.throw(500, 'Error interno del servidor: ' + error.message);
     }
   },

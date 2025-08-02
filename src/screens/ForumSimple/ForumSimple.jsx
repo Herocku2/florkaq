@@ -74,39 +74,49 @@ export const ForumSimple = () => {
     }
 
     setLoading(true);
-    setMessage('');
+    setMessage('Enviando comentario...');
 
     try {
+      const commentData = {
+        data: {
+          texto: newComment.trim(),
+          usuario: user?.username || user?.email || 'Usuario',
+          foroRelacionado: selectedForum.id.toString(),
+          aprobado: true,
+          fechaCreacion: new Date().toISOString()
+        }
+      };
+
+      console.log('Enviando comentario:', commentData);
+
       const response = await fetch(`http://localhost:1337/api/foros/${selectedForum.id}/comentarios`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          data: {
-            texto: newComment.trim(),
-            usuario: user?.username || user?.email || 'Usuario',
-            foroRelacionado: selectedForum.id.toString(),
-            aprobado: true,
-            fechaCreacion: new Date().toISOString()
-          }
-        })
+        body: JSON.stringify(commentData)
       });
 
+      console.log('Respuesta del servidor:', response.status, response.statusText);
+
       if (response.ok) {
-        setMessage('Comentario enviado exitosamente');
+        const result = await response.json();
+        console.log('Comentario creado:', result);
+        setMessage('¡Comentario enviado exitosamente!');
         setNewComment('');
         // Recargar comentarios
         setTimeout(() => {
           loadComments(selectedForum.id);
           setMessage('');
-        }, 1000);
+        }, 1500);
       } else {
-        setMessage('Error al enviar comentario');
+        const errorData = await response.text();
+        console.error('Error del servidor:', errorData);
+        setMessage(`Error al enviar comentario: ${response.status}`);
       }
     } catch (error) {
       console.error('Error enviando comentario:', error);
-      setMessage('Error al enviar comentario');
+      setMessage('Error de conexión. Verifica tu conexión a internet.');
     } finally {
       setLoading(false);
     }

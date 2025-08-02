@@ -4,21 +4,10 @@ module.exports = {
   routes: [
     {
       method: 'GET',
-      path: '/foros/check-moderator',
-      handler: 'foro.checkModerator',
-      config: {
-        auth: false,
-        policies: [],
-        middlewares: [],
-      },
-    },
-    {
-      method: 'GET',
       path: '/foros/:id/comentarios',
       handler: 'foro.getComments',
       config: {
         auth: false,
-        policies: [],
         middlewares: [],
       },
     },
@@ -28,9 +17,17 @@ module.exports = {
       handler: 'foro.createComment',
       config: {
         auth: false,
-        policies: [],
         middlewares: [],
       },
-    }
-  ]
+    },
+    {
+      method: 'GET',
+      path: '/foros/check-moderator',
+      handler: 'foro.checkModerator',
+      config: {
+        auth: false,
+        middlewares: [],
+      },
+    },
+  ],
 };
