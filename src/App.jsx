@@ -19,7 +19,7 @@ import { SwapScreen } from "./screens/SwapScreen";
 import { Vote } from "./screens/Vote";
 import { VoteDetalletoken } from "./screens/VoteDetalletoken";
 import { Auth } from "./screens/Auth/Auth";
-import { Forum } from "./screens/Forum/Forum";
+import { ForumSimple } from "./screens/ForumSimple/ForumSimple";
 
 const router = createBrowserRouter([
   {
@@ -40,7 +40,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/forum",
-    element: <Forum />,
+    element: <ForumSimple />,
   },
   {
     path: "/create",
