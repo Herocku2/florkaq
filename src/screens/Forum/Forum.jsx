@@ -597,9 +597,9 @@ export const Forum = () => {
                       {comments.map((comment) => (
                         <li key={comment.id} className="comment-item">
                           <div className="comment-header">
-                            <span className="comment-author">{comment.attributes.usuario}</span>
+                            <span className="comment-author">{comment.attributes?.usuario || comment.usuario}</span>
                             <span className="comment-date">
-                              {new Date(comment.attributes.createdAt).toLocaleDateString()}
+                              {new Date(comment.attributes?.createdAt || comment.createdAt).toLocaleDateString()}
                             </span>
                             {isModerator && (
                               <button 
@@ -624,7 +624,7 @@ export const Forum = () => {
                               </button>
                             )}
                           </div>
-                          <p className="comment-text">{comment.attributes.texto}</p>
+                          <p className="comment-text">{comment.attributes?.texto || comment.texto}</p>
                           
                           {/* Sistema de reacciones */}
                           <div className="comment-reactions" style={{marginTop: '10px', display: 'flex', gap: '10px', alignItems: 'center'}}>
