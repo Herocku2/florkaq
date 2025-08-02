@@ -11,6 +11,7 @@ export const ForumSimple = () => {
   const [newComment, setNewComment] = useState('');
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
+  const [reactions, setReactions] = useState({}); // {commentId: {like: 5, love: 2, laugh: 1, angry: 0}}
 
   // Cargar foros al iniciar
   useEffect(() => {
@@ -122,6 +123,42 @@ export const ForumSimple = () => {
     }
   };
 
+  // Función para manejar reacciones
+  const handleReaction = (commentId, reactionType) => {
+    if (!isAuthenticated) {
+      setMessage('Debes iniciar sesión para reaccionar');
+      setTimeout(() => setMessage(''), 3000);
+      return;
+    }
+
+    setReactions(prev => {
+      const commentReactions = prev[commentId] || { like: 0, love: 0, laugh: 0, angry: 0 };
+      const newReactions = {
+        ...prev,
+        [commentId]: {
+          ...commentReactions,
+          [reactionType]: commentReactions[reactionType] + 1
+        }
+      };
+      
+      // Simular persistencia local
+      localStorage.setItem('forum-reactions', JSON.stringify(newReactions));
+      return newReactions;
+    });
+  };
+
+  // Cargar reacciones desde localStorage al iniciar
+  useEffect(() => {
+    const savedReactions = localStorage.getItem('forum-reactions');
+    if (savedReactions) {
+      try {
+        setReactions(JSON.parse(savedReactions));
+      } catch (error) {
+        console.error('Error cargando reacciones:', error);
+      }
+    }
+  }, []);
+
   return (
     <div className="forum-simple">
       <Heder />
@@ -174,6 +211,38 @@ export const ForumSimple = () => {
                             </span>
                           </div>
                           <p className="comment-text">{comment.texto}</p>
+                          
+                          {/* Sistema de reacciones */}
+                          <div className="comment-reactions">
+                            <button 
+                              className="reaction-btn"
+                              onClick={() => handleReaction(comment.id, 'like')}
+                              disabled={!isAuthenticated}
+                            >
+                              👍 {reactions[comment.id]?.like || 0}
+                            </button>
+                            <button 
+                              className="reaction-btn"
+                              onClick={() => handleReaction(comment.id, 'love')}
+                              disabled={!isAuthenticated}
+                            >
+                              ❤️ {reactions[comment.id]?.love || 0}
+                            </button>
+                            <button 
+                              className="reaction-btn"
+                              onClick={() => handleReaction(comment.id, 'laugh')}
+                              disabled={!isAuthenticated}
+                            >
+                              😂 {reactions[comment.id]?.laugh || 0}
+                            </button>
+                            <button 
+                              className="reaction-btn"
+                              onClick={() => handleReaction(comment.id, 'angry')}
+                              disabled={!isAuthenticated}
+                            >
+                              😠 {reactions[comment.id]?.angry || 0}
+                            </button>
+                          </div>
                         </div>
                       ))
                     ) : (
