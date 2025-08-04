@@ -1,5 +1,3 @@
-'use strict';
-
 module.exports = {
   routes: [
     {
@@ -7,9 +5,9 @@ module.exports = {
       path: '/solicitud-tokens/stats',
       handler: 'solicitud-token.getStats',
       config: {
-        auth: false,
+        policies: [],
         middlewares: [],
       },
-    },
-  ],
+    }
+  ]
 };
