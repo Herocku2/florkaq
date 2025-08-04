@@ -1,47 +1,139 @@
 {
   "kind": "collectionType",
-  "collectionName": "solicitudes_token",
+  "collectionName": "solicitud_tokens",
   "info": {
     "singularName": "solicitud-token",
-    "pluralName": "solicitudes-token",
+    "pluralName": "solicitud-tokens",
     "displayName": "Solicitud Token",
-    "description": "Solicitudes de creación de tokens"
+    "description": "Solicitudes de creación de tokens de los usuarios"
   },
   "options": {
     "draftAndPublish": false
   },
+  "pluginOptions": {},
   "attributes": {
-    "usuario": {
+    "tokenName": {
       "type": "string",
       "required": true
     },
-    "paquete": {
+    "tokenSymbol": {
+      "type": "string",
+      "required": true,
+      "maxLength": 10
+    },
+    "tokenDescription": {
+      "type": "text"
+    },
+    "tokenImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "ownerWallet": {
       "type": "string",
       "required": true
     },
-    "estado": {
+    "contactEmail": {
+      "type": "email",
+      "required": true
+    },
+    "telegramUsername": {
+      "type": "string",
+      "required": true
+    },
+    "blockchainNetwork": {
       "type": "enumeration",
-      "enum": ["pendiente", "aprobado", "rechazado"],
-      "default": "pendiente",
+      "enum": ["solana", "ethereum", "binance", "polygon", "avalanche"],
+      "default": "solana",
       "required": true
     },
-    "datosToken": {
+    "blockExplorer": {
+      "type": "string"
+    },
+    "networkToHost": {
+      "type": "string"
+    },
+    "smartContract": {
+      "type": "text"
+    },
+    "initialSaleDuration": {
+      "type": "string"
+    },
+    "tokenDistribution": {
+      "type": "string"
+    },
+    "tokenDistributionPercentage": {
+      "type": "string"
+    },
+    "developmentTeamPercentage": {
+      "type": "string"
+    },
+    "marketingPercentage": {
+      "type": "string"
+    },
+    "partnersInvestorsPercentage": {
+      "type": "string"
+    },
+    "twitterUrl": {
+      "type": "string"
+    },
+    "telegramGroupUrl": {
+      "type": "string"
+    },
+    "linkedinUrl": {
+      "type": "string"
+    },
+    "discordUrl": {
+      "type": "string"
+    },
+    "websiteUrl": {
+      "type": "string"
+    },
+    "supportChannelUrl": {
+      "type": "string"
+    },
+    "socialChannelDescription": {
+      "type": "text"
+    },
+    "selectedPlan": {
       "type": "json",
       "required": true
     },
-    "fechaPago": {
+    "paymentHash": {
+      "type": "string"
+    },
+    "paymentStatus": {
+      "type": "enumeration",
+      "enum": ["pending", "completed", "failed", "cancelled"],
+      "default": "pending"
+    },
+    "requestStatus": {
+      "type": "enumeration",
+      "enum": ["pending_review", "approved", "in_progress", "completed", "rejected"],
+      "default": "pending_review"
+    },
+    "userId": {
+      "type": "string"
+    },
+    "adminNotes": {
+      "type": "text"
+    },
+    "completedAt": {
       "type": "datetime"
     },
-    "aprobado": {
-      "type": "boolean",
-      "default": false
+    "paymentId": {
+      "type": "string"
     },
-    "fechaCreacion": {
-      "type": "datetime",
-      "default": "now"
+    "paymentUrl": {
+      "type": "string"
     },
-    "notas": {
-      "type": "text"
+    "paymentCurrency": {
+      "type": "string",
+      "default": "btc"
+    },
+    "paymentAmount": {
+      "type": "decimal"
     }
   }
 }

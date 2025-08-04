@@ -1088,27 +1088,66 @@ export interface ApiRankingRanking extends Schema.CollectionType {
 }
 
 export interface ApiSolicitudTokenSolicitudToken extends Schema.CollectionType {
-  collectionName: 'solicitudes_token';
+  collectionName: 'solicitud_tokens';
   info: {
     singularName: 'solicitud-token';
-    pluralName: 'solicitudes-token';
+    pluralName: 'solicitud-tokens';
     displayName: 'Solicitud Token';
-    description: 'Solicitudes de creaci\u00F3n de tokens';
+    description: 'Solicitudes de creaci\u00F3n de tokens de los usuarios';
   };
   options: {
     draftAndPublish: false;
   };
   attributes: {
-    usuario: Attribute.String & Attribute.Required;
-    paquete: Attribute.String & Attribute.Required;
-    estado: Attribute.Enumeration<['pendiente', 'aprobado', 'rechazado']> &
+    tokenName: Attribute.String & Attribute.Required;
+    tokenSymbol: Attribute.String &
       Attribute.Required &
-      Attribute.DefaultTo<'pendiente'>;
-    datosToken: Attribute.JSON & Attribute.Required;
-    fechaPago: Attribute.DateTime;
-    aprobado: Attribute.Boolean & Attribute.DefaultTo<false>;
-    fechaCreacion: Attribute.DateTime & Attribute.DefaultTo<'now'>;
-    notas: Attribute.Text;
+      Attribute.SetMinMaxLength<{
+        maxLength: 10;
+      }>;
+    tokenDescription: Attribute.Text;
+    tokenImage: Attribute.Media;
+    ownerWallet: Attribute.String & Attribute.Required;
+    contactEmail: Attribute.Email & Attribute.Required;
+    telegramUsername: Attribute.String & Attribute.Required;
+    blockchainNetwork: Attribute.Enumeration<
+      ['solana', 'ethereum', 'binance', 'polygon', 'avalanche']
+    > &
+      Attribute.Required &
+      Attribute.DefaultTo<'solana'>;
+    blockExplorer: Attribute.String;
+    networkToHost: Attribute.String;
+    smartContract: Attribute.Text;
+    initialSaleDuration: Attribute.String;
+    tokenDistribution: Attribute.String;
+    tokenDistributionPercentage: Attribute.String;
+    developmentTeamPercentage: Attribute.String;
+    marketingPercentage: Attribute.String;
+    partnersInvestorsPercentage: Attribute.String;
+    twitterUrl: Attribute.String;
+    telegramGroupUrl: Attribute.String;
+    linkedinUrl: Attribute.String;
+    discordUrl: Attribute.String;
+    websiteUrl: Attribute.String;
+    supportChannelUrl: Attribute.String;
+    socialChannelDescription: Attribute.Text;
+    selectedPlan: Attribute.JSON & Attribute.Required;
+    paymentHash: Attribute.String;
+    paymentStatus: Attribute.Enumeration<
+      ['pending', 'completed', 'failed', 'cancelled']
+    > &
+      Attribute.DefaultTo<'pending'>;
+    requestStatus: Attribute.Enumeration<
+      ['pending_review', 'approved', 'in_progress', 'completed', 'rejected']
+    > &
+      Attribute.DefaultTo<'pending_review'>;
+    userId: Attribute.String;
+    adminNotes: Attribute.Text;
+    completedAt: Attribute.DateTime;
+    paymentId: Attribute.String;
+    paymentUrl: Attribute.String;
+    paymentCurrency: Attribute.String & Attribute.DefaultTo<'btc'>;
+    paymentAmount: Attribute.Decimal;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
