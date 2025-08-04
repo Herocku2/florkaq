@@ -12,19 +12,25 @@ Los moderadores pueden gestionar foros y comentarios desde el panel de administr
 ## 🛠️ Funcionalidades del Moderador
 
 ### **1. Gestión de Foros**
-- ✅ **Crear nuevos foros**
+- ✅ **Crear nuevos foros con imágenes**
 - ✅ **Editar foros existentes**
 - ✅ **Eliminar foros**
 - ✅ **Ver todos los foros**
+- ✅ **Subir imágenes para foros**
 
 ### **2. Gestión de Comentarios**
 - ✅ **Ver todos los comentarios**
 - ✅ **Eliminar comentarios inapropiados**
 - ❌ **NO puede crear comentarios desde admin** (solo desde el frontend público)
 
-### **3. Restricciones de Seguridad**
+### **3. Gestión de Usuarios**
+- ✅ **Ver usuarios registrados**
+- ✅ **Banear/desbanear usuarios**
+- ✅ **Cambiar estado de usuarios (activo/bloqueado)**
+
+### **4. Restricciones de Seguridad**
 - ❌ **NO tiene acceso a configuraciones del sistema**
-- ❌ **NO puede gestionar usuarios**
+- ❌ **NO puede crear/eliminar usuarios admin**
 - ❌ **NO puede cambiar configuraciones de la aplicación**
 - ❌ **NO puede acceder a otras colecciones sensibles**
 
@@ -40,9 +46,17 @@ Los moderadores pueden gestionar foros y comentarios desde el panel de administr
    - **Descripción:** Descripción del tema
    - **Token Relacionado:** Símbolo del token (ej: BTC, ETH)
    - **Creador:** Tu nombre de usuario
+   - **Imagen:** Haz clic en "Add new assets" para subir imagen
    - **Moderado:** ✅ (siempre activado)
    - **Activo:** ✅ (siempre activado)
 7. **Haz clic en "Save"**
+
+## 🖼️ Cómo Subir Imágenes
+
+1. **En el campo de imagen** haz clic en "Add new assets"
+2. **Arrastra y suelta** la imagen o haz clic para seleccionar
+3. **La imagen se subirá** automáticamente a la Media Library
+4. **Selecciona la imagen** y haz clic en "Finish"
 
 ## 🗑️ Cómo Eliminar Comentarios
 
@@ -51,6 +65,22 @@ Los moderadores pueden gestionar foros y comentarios desde el panel de administr
 3. **Haz clic en el comentario** para abrirlo
 4. **Haz clic en "Delete this entry"**
 5. **Confirma la eliminación**
+
+## 🚫 Cómo Banear Usuarios
+
+1. **Ve a "Content Manager" > "Usuario"**
+2. **Busca el usuario** que quieres banear
+3. **Haz clic en el usuario** para abrirlo
+4. **Cambia el campo "Activo"** a ❌ (desactivado)
+5. **Haz clic en "Save"**
+6. **El usuario no podrá** iniciar sesión ni comentar
+
+## ✅ Cómo Desbanear Usuarios
+
+1. **Ve a "Content Manager" > "Usuario"**
+2. **Busca el usuario baneado**
+3. **Cambia el campo "Activo"** a ✅ (activado)
+4. **Haz clic en "Save"**
 
 ## 📊 Vista del Frontend
 
