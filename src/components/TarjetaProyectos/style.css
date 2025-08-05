@@ -1,176 +1,157 @@
-/* Diseño NFT Card */
-.tarjeta-proyectos.nft-card {
-  background: linear-gradient(145deg, #1a1a2e, #16213e);
-  border: 1px solid #333;
-  border-radius: 16px;
+/* Diseño NFT Card HORIZONTAL - Como en las imágenes de referencia */
+.tarjeta-proyectos.nft-card-horizontal {
+  background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
+  border: 1px solid #444;
+  border-radius: 12px;
   display: flex;
-  flex-direction: column;
-  height: 400px;
-  width: 280px;
-  padding: 0;
+  flex-direction: row;
+  height: 120px;
+  width: 320px;
+  padding: 12px;
   position: relative;
   overflow: hidden;
   transition: all 0.3s ease;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
   text-decoration: none;
+  gap: 12px;
 }
 
-.tarjeta-proyectos.nft-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 40px rgba(255, 1, 161, 0.2);
-  border-color: #ff01a1;
+.tarjeta-proyectos.nft-card-horizontal:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.7);
+  border-color: #666;
 }
 
-/* Imagen principal del NFT - CUADRADO MEJORADO */
-.tarjeta-proyectos .nft-image-container {
-  width: 100%;
-  height: 200px;
-  border-radius: 12px 12px 0 0;
+/* Imagen principal del NFT - CUADRADA A LA IZQUIERDA */
+.tarjeta-proyectos .nft-image-container-horizontal {
+  width: 96px;
+  height: 96px;
+  border-radius: 8px;
   overflow: hidden;
   position: relative;
-  border: 3px solid #ff69b4;
-  box-shadow: 0 4px 15px rgba(255, 105, 180, 0.3);
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  background: #000;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 8px;
+  flex-shrink: 0;
 }
 
-.tarjeta-proyectos .nft-image {
-  max-width: 100%;
-  max-height: 100%;
-  width: auto;
-  height: auto;
-  object-fit: contain;
+.tarjeta-proyectos .nft-image-horizontal {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   object-position: center;
   transition: transform 0.3s ease;
-  border-radius: 8px;
+  border-radius: 6px;
 }
 
 .tarjeta-proyectos.nft-card:hover .nft-image {
   transform: scale(1.08);
 }
 
-/* Información del NFT */
-.tarjeta-proyectos .nft-info {
-  padding: 20px;
+/* Información del NFT HORIZONTAL - A la derecha */
+.tarjeta-proyectos .nft-info-horizontal {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 4px;
   flex: 1;
+  justify-content: space-between;
+  padding: 4px 0;
 }
 
-/* Header con nombre y badge */
-.tarjeta-proyectos .token-header {
+/* Header con nombre y badge HORIZONTAL */
+.tarjeta-proyectos .token-header-horizontal {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
 
-.tarjeta-proyectos .token-name {
+.tarjeta-proyectos .token-name-horizontal {
   font-family: "Orbitron", Helvetica;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 700;
   color: #ffffff;
   margin: 0;
   line-height: 1.2;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 140px;
 }
 
-.tarjeta-proyectos .approved-badge {
-  background: #00ff88;
-  color: #000000;
+.tarjeta-proyectos .approved-badge-horizontal {
+  background: rgba(255, 255, 255, 0.1);
+  color: #cccccc;
+  font-family: "Orbitron", Helvetica;
+  font-size: 8px;
+  font-weight: 400;
+  padding: 2px 4px;
+  border-radius: 3px;
+  text-transform: lowercase;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  flex-shrink: 0;
+}
+
+/* Símbolo del token HORIZONTAL */
+.tarjeta-proyectos .token-symbol-horizontal {
+  font-family: "Orbitron", Helvetica;
+  font-size: 11px;
+  font-weight: 400;
+  color: #888;
+  margin-bottom: 2px;
+}
+
+/* Tiempo HORIZONTAL */
+.tarjeta-proyectos .token-time-horizontal {
   font-family: "Orbitron", Helvetica;
   font-size: 10px;
-  font-weight: 600;
-  padding: 4px 8px;
-  border-radius: 12px;
-  text-transform: lowercase;
-}
-
-/* Símbolo del token */
-.tarjeta-proyectos .token-symbol {
-  font-family: "Orbitron", Helvetica;
-  font-size: 14px;
   font-weight: 400;
-  color: #cccccc;
-  margin-bottom: 8px;
+  color: #666;
+  margin-bottom: 6px;
 }
 
-/* Estadísticas */
-.tarjeta-proyectos .token-stats {
+/* Estadísticas HORIZONTAL */
+.tarjeta-proyectos .token-stats-horizontal {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  margin-bottom: 12px;
+  gap: 2px;
+  margin-bottom: 6px;
 }
 
-.tarjeta-proyectos .stat-row {
+.tarjeta-proyectos .stat-row-horizontal {
   display: flex;
-  justify-content: space-between;
   align-items: center;
 }
 
-.tarjeta-proyectos .stat-label {
-  font-family: "Orbitron", Helvetica;
-  font-size: 12px;
-  font-weight: 400;
-  color: #999999;
-}
-
-.tarjeta-proyectos .stat-value {
-  font-family: "Orbitron", Helvetica;
-  font-size: 14px;
-  font-weight: 600;
-  color: #ffffff;
-}
-
-/* Barra de progreso */
-.tarjeta-proyectos .progress-container {
-  margin-bottom: 16px;
-}
-
-.tarjeta-proyectos .progress-bar {
-  width: 100%;
-  height: 8px;
-  background-color: #333333;
-  border-radius: 4px;
-  overflow: hidden;
-}
-
-.tarjeta-proyectos .progress-fill {
-  height: 100%;
-  background: linear-gradient(90deg, #ff01a1, #ff69b4);
-  border-radius: 4px;
-  transition: width 0.3s ease;
-}
-
-/* Botón de acción */
-.tarjeta-proyectos .view-details-btn {
-  background: linear-gradient(135deg, #ff01a1, #ff69b4);
-  color: #ffffff;
+.tarjeta-proyectos .stat-value-horizontal {
   font-family: "Orbitron", Helvetica;
   font-size: 12px;
   font-weight: 600;
-  padding: 12px 16px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
+  color: #FFA500;
+}
+
+/* Barra de progreso HORIZONTAL */
+.tarjeta-proyectos .progress-container-horizontal {
   margin-top: auto;
 }
 
-.tarjeta-proyectos .view-details-btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(255, 1, 161, 0.4);
+.tarjeta-proyectos .progress-bar-horizontal {
+  width: 100%;
+  height: 4px;
+  background-color: #333;
+  border-radius: 2px;
+  overflow: hidden;
 }
 
-.tarjeta-proyectos .btn-icon {
-  font-size: 10px;
-  opacity: 0.8;
+.tarjeta-proyectos .progress-fill-horizontal {
+  height: 100%;
+  background: linear-gradient(90deg, #4CAF50, #8BC34A);
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+/* Hover effect para imagen horizontal */
+.tarjeta-proyectos.nft-card-horizontal:hover .nft-image-horizontal {
+  transform: scale(1.05);
 }

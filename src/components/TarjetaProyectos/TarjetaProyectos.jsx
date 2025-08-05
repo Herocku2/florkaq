@@ -21,11 +21,11 @@ export const TarjetaProyectos = ({
   progressValue = 15
 }) => {
   return (
-    <Link className="tarjeta-proyectos nft-card" to={to}>
-      {/* Imagen principal del NFT */}
-      <div className="nft-image-container">
+    <Link className="tarjeta-proyectos nft-card-horizontal" to={to}>
+      {/* Imagen principal del NFT - Cuadrada a la izquierda */}
+      <div className="nft-image-container-horizontal">
         <img 
-          className="nft-image" 
+          className="nft-image-horizontal" 
           alt={tokenName} 
           src={tokenImage}
           onError={(e) => {
@@ -38,42 +38,31 @@ export const TarjetaProyectos = ({
         />
       </div>
 
-      {/* Información del token */}
-      <div className="nft-info">
-        <div className="token-header">
-          <h3 className="token-name">{tokenName}</h3>
-          <span className="approved-badge">approved</span>
+      {/* Información del token - A la derecha */}
+      <div className="nft-info-horizontal">
+        <div className="token-header-horizontal">
+          <h3 className="token-name-horizontal">{tokenName}</h3>
+          <span className="approved-badge-horizontal">approved</span>
         </div>
         
-        <div className="token-symbol">{tokenSymbol}</div>
+        <div className="token-symbol-horizontal">CA: {tokenSymbol}...bonk 📋</div>
+        <div className="token-time-horizontal">4m ago</div>
         
-        <div className="token-stats">
-          <div className="stat-row">
-            <span className="stat-label">Market Cap</span>
-            <span className="stat-value">{marketCap}</span>
-          </div>
-          
-          <div className="stat-row">
-            <span className="stat-label">Progress</span>
-            <span className="stat-value">{progress}</span>
+        <div className="token-stats-horizontal">
+          <div className="stat-row-horizontal">
+            <span className="stat-value-horizontal">Market Cap: {marketCap}</span>
           </div>
         </div>
 
-        {/* Barra de progreso */}
-        <div className="progress-container">
-          <div className="progress-bar">
+        {/* Barra de progreso horizontal */}
+        <div className="progress-container-horizontal">
+          <div className="progress-bar-horizontal">
             <div 
-              className="progress-fill" 
+              className="progress-fill-horizontal" 
               style={{ width: `${progressValue}%` }}
             ></div>
           </div>
         </div>
-
-        {/* Botón de acción */}
-        <button className="view-details-btn">
-          View Project Details
-          <span className="btn-icon">/{tokenSymbol.toLowerCase()}</span>
-        </button>
       </div>
     </Link>
   );

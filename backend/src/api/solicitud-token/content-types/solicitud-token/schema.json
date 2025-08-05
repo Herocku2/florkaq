@@ -103,6 +103,23 @@
     "paymentHash": {
       "type": "string"
     },
+    "selectedLaunchDate": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::launch-calendar.launch-calendar",
+      "inversedBy": "tokenRequests"
+    },
+    "launchDateSelected": {
+      "type": "date"
+    },
+    "paymentId": {
+      "type": "string"
+    },
+    "paymentStatus": {
+      "type": "enumeration",
+      "enum": ["pending", "waiting", "confirming", "confirmed", "sending", "partially_paid", "finished", "failed", "refunded", "expired"],
+      "default": "pending"
+    },
     "paymentStatus": {
       "type": "enumeration",
       "enum": ["pending", "completed", "failed", "cancelled"],

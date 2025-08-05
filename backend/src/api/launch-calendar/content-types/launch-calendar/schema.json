@@ -1,0 +1,46 @@
+{
+  "kind": "collectionType",
+  "collectionName": "launch_calendars",
+  "info": {
+    "singularName": "launch-calendar",
+    "pluralName": "launch-calendars",
+    "displayName": "Launch Calendar",
+    "description": "Calendario de lanzamientos de tokens - Solo viernes, máximo 2 tokens por semana"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "launchDate": {
+      "type": "date",
+      "required": true,
+      "unique": true
+    },
+    "slotsUsed": {
+      "type": "integer",
+      "default": 0,
+      "min": 0,
+      "max": 2
+    },
+    "maxSlots": {
+      "type": "integer",
+      "default": 2,
+      "min": 1,
+      "max": 2
+    },
+    "available": {
+      "type": "boolean",
+      "default": true
+    },
+    "tokenRequests": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::solicitud-token.solicitud-token",
+      "mappedBy": "selectedLaunchDate"
+    },
+    "notes": {
+      "type": "text"
+    }
+  }
+}

@@ -1,7 +1,8 @@
 .create-token-wizard {
   min-height: 100vh;
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  background-color: #020102;
   color: white;
+  font-family: "Orbitron", Helvetica;
 }
 
 .wizard-container {
@@ -13,12 +14,11 @@
 .wizard-title {
   text-align: center;
   font-size: 2.5rem;
-  font-weight: bold;
+  font-weight: 700;
   margin-bottom: 40px;
-  background: linear-gradient(135deg, #ff6b9d, #c44569);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #ff01a1;
+  text-shadow: 0 2px 4px rgba(255, 1, 161, 0.3);
+  font-family: "Orbitron", Helvetica;
 }
 
 /* Progress Steps */
@@ -46,8 +46,8 @@
 }
 
 .step-indicator.active {
-  background: linear-gradient(135deg, #ff6b9d, #c44569);
-  border-color: #ff6b9d;
+  background: linear-gradient(135deg, #ff01a1, #ff69b4);
+  border-color: #ff01a1;
   transform: scale(1.1);
 }
 
@@ -94,11 +94,13 @@
 
 .section-title {
   font-size: 1.5rem;
-  color: #ff6b9d;
+  color: #ff01a1;
   margin-bottom: 20px;
   display: flex;
   align-items: center;
   gap: 10px;
+  font-family: "Orbitron", Helvetica;
+  font-weight: 600;
 }
 
 .form-row {
@@ -121,11 +123,12 @@
   font-weight: 600;
   color: rgba(255, 255, 255, 0.9);
   font-size: 0.9rem;
+  font-family: "Orbitron", Helvetica;
 }
 
 .form-label.required::after {
   content: ' *';
-  color: #ff6b9d;
+  color: #ff01a1;
 }
 
 .form-input,
@@ -144,8 +147,8 @@
 .form-textarea:focus,
 .form-select:focus {
   outline: none;
-  border-color: #ff6b9d;
-  box-shadow: 0 0 0 2px rgba(255, 107, 157, 0.2);
+  border-color: #ff01a1;
+  box-shadow: 0 0 0 2px rgba(255, 1, 161, 0.2);
 }
 
 .form-input::placeholder,
@@ -169,8 +172,8 @@
 }
 
 .image-upload:hover {
-  border-color: #ff6b9d;
-  background: rgba(255, 107, 157, 0.1);
+  border-color: #ff01a1;
+  background: rgba(255, 1, 161, 0.1);
 }
 
 .image-upload.has-image {
@@ -180,7 +183,7 @@
 
 .upload-icon {
   font-size: 2rem;
-  color: #ff6b9d;
+  color: #ff01a1;
   margin-bottom: 10px;
 }
 
@@ -190,7 +193,7 @@
 }
 
 .upload-button {
-  background: linear-gradient(135deg, #ff6b9d, #c44569);
+  background: linear-gradient(135deg, #ff01a1, #ff69b4);
   color: white;
   border: none;
   border-radius: 8px;
@@ -198,11 +201,12 @@
   cursor: pointer;
   font-weight: 600;
   transition: all 0.3s ease;
+  font-family: "Orbitron", Helvetica;
 }
 
 .upload-button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(255, 107, 157, 0.3);
+  box-shadow: 0 5px 15px rgba(255, 1, 161, 0.3);
 }
 
 /* Navigation Buttons */
@@ -222,6 +226,7 @@
   transition: all 0.3s ease;
   border: none;
   font-size: 0.9rem;
+  font-family: "Orbitron", Helvetica;
 }
 
 .nav-button.back {
@@ -235,13 +240,14 @@
 }
 
 .nav-button.next {
-  background: linear-gradient(135deg, #ff6b9d, #c44569);
+  background: linear-gradient(135deg, #ff01a1, #ff69b4);
   color: white;
+  font-family: "Orbitron", Helvetica;
 }
 
 .nav-button.next:hover {
   transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(255, 107, 157, 0.3);
+  box-shadow: 0 5px 15px rgba(255, 1, 161, 0.3);
 }
 
 .nav-button:disabled {
@@ -257,13 +263,15 @@
 }
 
 .auth-required h2 {
-  color: #ff6b9d;
+  color: #ff01a1;
   margin-bottom: 20px;
+  font-family: "Orbitron", Helvetica;
+  font-weight: 600;
 }
 
 .auth-link {
   display: inline-block;
-  background: linear-gradient(135deg, #ff6b9d, #c44569);
+  background: linear-gradient(135deg, #ff01a1, #ff69b4);
   color: white;
   text-decoration: none;
   padding: 12px 30px;
@@ -271,11 +279,12 @@
   font-weight: 600;
   margin-top: 20px;
   transition: all 0.3s ease;
+  font-family: "Orbitron", Helvetica;
 }
 
 .auth-link:hover {
   transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(255, 107, 157, 0.3);
+  box-shadow: 0 5px 15px rgba(255, 1, 161, 0.3);
 }
 
 /* Error Styles */

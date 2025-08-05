@@ -853,6 +853,55 @@ export interface ApiForoForo extends Schema.CollectionType {
   };
 }
 
+export interface ApiLaunchCalendarLaunchCalendar extends Schema.CollectionType {
+  collectionName: 'launch_calendars';
+  info: {
+    singularName: 'launch-calendar';
+    pluralName: 'launch-calendars';
+    displayName: 'Launch Calendar';
+    description: 'Calendario de lanzamientos de tokens - Solo viernes, m\u00E1ximo 2 tokens por semana';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    launchDate: Attribute.Date & Attribute.Required & Attribute.Unique;
+    slotsUsed: Attribute.Integer &
+      Attribute.SetMinMax<{
+        min: 0;
+        max: 2;
+      }> &
+      Attribute.DefaultTo<0>;
+    maxSlots: Attribute.Integer &
+      Attribute.SetMinMax<{
+        min: 1;
+        max: 2;
+      }> &
+      Attribute.DefaultTo<2>;
+    available: Attribute.Boolean & Attribute.DefaultTo<true>;
+    tokenRequests: Attribute.Relation<
+      'api::launch-calendar.launch-calendar',
+      'oneToMany',
+      'api::solicitud-token.solicitud-token'
+    >;
+    notes: Attribute.Text;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::launch-calendar.launch-calendar',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::launch-calendar.launch-calendar',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiNewsNoticia extends Schema.CollectionType {
   collectionName: 'noticias';
   info: {
@@ -1133,6 +1182,13 @@ export interface ApiSolicitudTokenSolicitudToken extends Schema.CollectionType {
     socialChannelDescription: Attribute.Text;
     selectedPlan: Attribute.JSON & Attribute.Required;
     paymentHash: Attribute.String;
+    selectedLaunchDate: Attribute.Relation<
+      'api::solicitud-token.solicitud-token',
+      'manyToOne',
+      'api::launch-calendar.launch-calendar'
+    >;
+    launchDateSelected: Attribute.Date;
+    paymentId: Attribute.String;
     paymentStatus: Attribute.Enumeration<
       ['pending', 'completed', 'failed', 'cancelled']
     > &
@@ -1144,7 +1200,6 @@ export interface ApiSolicitudTokenSolicitudToken extends Schema.CollectionType {
     userId: Attribute.String;
     adminNotes: Attribute.Text;
     completedAt: Attribute.DateTime;
-    paymentId: Attribute.String;
     paymentUrl: Attribute.String;
     paymentCurrency: Attribute.String & Attribute.DefaultTo<'btc'>;
     paymentAmount: Attribute.Decimal;
@@ -1398,6 +1453,7 @@ declare module '@strapi/types' {
       'api::candidato.candidato': ApiCandidatoCandidato;
       'api::comentario.comentario': ApiComentarioComentario;
       'api::foro.foro': ApiForoForo;
+      'api::launch-calendar.launch-calendar': ApiLaunchCalendarLaunchCalendar;
       'api::news.noticia': ApiNewsNoticia;
       'api::paquete.paquete': ApiPaquetePaquete;
       'api::proyecto-next.proyecto-next': ApiProyectoNextProyectoNext;

@@ -1,7 +1,8 @@
 .forum-simple {
   min-height: 100vh;
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  background-color: #020102;
   color: white;
+  font-family: "Orbitron", Helvetica;
 }
 
 .forum-container {
@@ -14,10 +15,10 @@
   text-align: center;
   font-size: 2.5rem;
   margin-bottom: 30px;
-  background: linear-gradient(135deg, #ff6b9d, #c44569);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  font-family: "Orbitron", Helvetica;
+  font-weight: 700;
+  color: #ff01a1;
+  text-shadow: 0 2px 4px rgba(255, 1, 161, 0.3);
 }
 
 .forum-layout {
@@ -38,8 +39,10 @@
 
 .forum-list h2 {
   margin-bottom: 20px;
-  color: #ff6b9d;
+  color: #ff01a1;
   font-size: 1.5rem;
+  font-family: "Orbitron", Helvetica;
+  font-weight: 600;
 }
 
 .forum-item {
@@ -55,18 +58,20 @@
 .forum-item:hover {
   background: rgba(255, 255, 255, 0.1);
   transform: translateY(-2px);
-  border-color: rgba(255, 107, 157, 0.3);
+  border-color: rgba(255, 1, 161, 0.3);
 }
 
 .forum-item.active {
-  background: rgba(255, 107, 157, 0.2);
-  border-color: #ff6b9d;
+  background: rgba(255, 1, 161, 0.2);
+  border-color: #ff01a1;
 }
 
 .forum-item h3 {
   margin: 0 0 8px 0;
-  color: #ff6b9d;
+  color: #ff01a1;
   font-size: 1.2rem;
+  font-family: "Orbitron", Helvetica;
+  font-weight: 600;
 }
 
 .forum-item p {
@@ -97,8 +102,10 @@
 
 .forum-header h2 {
   margin: 0 0 10px 0;
-  color: #ff6b9d;
+  color: #ff01a1;
   font-size: 1.8rem;
+  font-family: "Orbitron", Helvetica;
+  font-weight: 700;
 }
 
 .forum-header p {
@@ -112,8 +119,10 @@
 }
 
 .no-forum-selected h2 {
-  color: #ff6b9d;
+  color: #ff01a1;
   margin-bottom: 15px;
+  font-family: "Orbitron", Helvetica;
+  font-weight: 600;
 }
 
 .no-forum-selected p {
@@ -122,9 +131,11 @@
 
 /* Comentarios */
 .comments-section h3 {
-  color: #ff6b9d;
+  color: #ff01a1;
   margin-bottom: 20px;
   font-size: 1.3rem;
+  font-family: "Orbitron", Helvetica;
+  font-weight: 600;
 }
 
 .comments-list {
@@ -138,7 +149,7 @@
   border-radius: 8px;
   padding: 15px;
   margin-bottom: 15px;
-  border-left: 3px solid #ff6b9d;
+  border-left: 3px solid #ff01a1;
 }
 
 .comment-header {
@@ -149,8 +160,10 @@
 }
 
 .comment-header strong {
-  color: #ff6b9d;
+  color: #ff01a1;
   font-size: 0.9rem;
+  font-family: "Orbitron", Helvetica;
+  font-weight: 600;
 }
 
 .comment-date {
@@ -181,8 +194,10 @@
 
 .comment-form h4 {
   margin: 0 0 15px 0;
-  color: #ff6b9d;
+  color: #ff01a1;
   font-size: 1.1rem;
+  font-family: "Orbitron", Helvetica;
+  font-weight: 600;
 }
 
 .comment-form textarea {
@@ -200,8 +215,8 @@
 
 .comment-form textarea:focus {
   outline: none;
-  border-color: #ff6b9d;
-  box-shadow: 0 0 0 2px rgba(255, 107, 157, 0.2);
+  border-color: #ff01a1;
+  box-shadow: 0 0 0 2px rgba(255, 1, 161, 0.2);
 }
 
 .comment-form textarea::placeholder {
@@ -209,7 +224,7 @@
 }
 
 .comment-form button {
-  background: linear-gradient(135deg, #ff6b9d, #c44569);
+  background: linear-gradient(135deg, #ff01a1, #ff69b4);
   color: white;
   border: none;
   border-radius: 8px;
@@ -219,11 +234,12 @@
   cursor: pointer;
   transition: all 0.3s ease;
   margin-top: 10px;
+  font-family: "Orbitron", Helvetica;
 }
 
 .comment-form button:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(255, 107, 157, 0.3);
+  box-shadow: 0 5px 15px rgba(255, 1, 161, 0.3);
 }
 
 .comment-form button:disabled {
@@ -242,9 +258,10 @@
 }
 
 .login-prompt a {
-  color: #ff6b9d;
+  color: #ff01a1;
   text-decoration: none;
   font-weight: 600;
+  font-family: "Orbitron", Helvetica;
 }
 
 .login-prompt a:hover {
@@ -324,8 +341,8 @@
 }
 
 .reaction-btn:hover:not(:disabled) {
-  background: rgba(255, 107, 157, 0.3);
-  border-color: #ff6b9d;
+  background: rgba(255, 1, 161, 0.3);
+  border-color: #ff01a1;
   transform: translateY(-1px);
 }
 

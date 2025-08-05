@@ -1,4 +1,6 @@
 const API_BASE_URL = 'http://localhost:1337/api';
+const NOWPAYMENTS_API_URL = 'https://api-sandbox.nowpayments.io/v1';
+const NOWPAYMENTS_API_KEY = '1MC0CNF-B8S4P19-HKH216N-36RNNF9';
 
 class TokenRequestService {
   // Crear nueva solicitud de token
@@ -96,76 +98,118 @@ class TokenRequestService {
     }
   }
 
-  // Simular integración con NOWPayments
+  // Integración real con NOWPayments Sandbox
   async processPayment(paymentData) {
     try {
-      console.log('💳 Procesando pago con NOWPayments:', paymentData);
+      console.log('💳 Procesando pago con NOWPayments Sandbox:', paymentData);
       
-      // Simular llamada a NOWPayments API
       const nowPaymentsRequest = {
         price_amount: paymentData.amount,
         price_currency: 'USD',
-        pay_currency: paymentData.currency || 'btc',
+        pay_currency: 'usdtsol', // USDT en Solana
         order_id: paymentData.orderId,
-        order_description: paymentData.description,
-        success_url: paymentData.successUrl,
-        cancel_url: paymentData.cancelUrl,
+        order_description: paymentData.description || `Token Creation - ${paymentData.tokenName}`,
+        ipn_callback_url: `${API_BASE_URL}/payment-webhook`,
+        success_url: paymentData.successUrl || window.location.origin + '/payment-success',
+        cancel_url: paymentData.cancelUrl || window.location.origin + '/payment-cancel',
       };
-      
-      // Simular respuesta exitosa
-      return new Promise((resolve) => {
-        setTimeout(() => {
-          resolve({
-            success: true,
-            payment_id: 'np_' + Math.random().toString(36).substring(2, 15),
-            payment_status: 'waiting',
-            pay_address: '1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa',
-            price_amount: paymentData.amount,
-            price_currency: 'USD',
-            pay_amount: (paymentData.amount / 45000).toFixed(8), // Simular conversión BTC
-            pay_currency: paymentData.currency || 'btc',
-            order_id: paymentData.orderId,
-            payment_url: `https://nowpayments.io/payment/?iid=np_${Math.random().toString(36).substring(2, 15)}`
-          });
-        }, 1000);
+
+      const response = await fetch(`${NOWPAYMENTS_API_URL}/payment`, {
+        method: 'POST',
+        headers: {
+          'x-api-key': NOWPAYMENTS_API_KEY,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(nowPaymentsRequest),
       });
+
+      if (!response.ok) {
+        const errorData = await response.text();
+        console.error('NOWPayments API Error:', errorData);
+        throw new Error(`NOWPayments API error: ${response.status}`);
+      }
+
+      const result = await response.json();
+      console.log('✅ Pago creado en NOWPayments:', result);
+      return result;
     } catch (error) {
       console.error('❌ Error procesando pago:', error);
       throw error;
     }
   }
 
-  // Verificar estado del pago
+  // Verificar estado del pago con NOWPayments
   async checkPaymentStatus(paymentId) {
     try {
       console.log('🔍 Verificando estado del pago:', paymentId);
       
-      // Simular verificación de pago
-      return new Promise((resolve) => {
-        setTimeout(() => {
-          const statuses = ['waiting', 'confirming', 'confirmed', 'sending', 'partially_paid', 'finished'];
-          const randomStatus = statuses[Math.floor(Math.random() * statuses.length)];
-          
-          resolve({
-            payment_id: paymentId,
-            payment_status: randomStatus,
-            pay_address: '1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa',
-            price_amount: 50,
-            price_currency: 'USD',
-            pay_amount: '0.00111111',
-            pay_currency: 'btc',
-            order_id: 'order_' + Date.now(),
-            order_description: 'Token Creation Service',
-            purchase_id: 'purchase_' + Date.now(),
-            outcome_amount: randomStatus === 'finished' ? '0.00111111' : '0',
-            outcome_currency: 'btc'
-          });
-        }, 1500);
+      const response = await fetch(`${NOWPAYMENTS_API_URL}/payment/${paymentId}`, {
+        headers: {
+          'x-api-key': NOWPAYMENTS_API_KEY,
+        },
       });
+
+      if (!response.ok) {
+        throw new Error(`Error checking payment status: ${response.status}`);
+      }
+
+      const result = await response.json();
+      console.log('✅ Estado del pago obtenido:', result);
+      return result;
     } catch (error) {
-      console.error('❌ Error verificando pago:', error);
+      console.error('❌ Error verificando estado del pago:', error);
       throw error;
     }
+  }
+
+  // Obtener fechas disponibles para lanzamiento (solo viernes)
+  async getAvailableLaunchDates() {
+    try {
+      const response = await fetch(`${API_BASE_URL}/launch-calendar/available-dates`);
+      if (!response.ok) {
+        throw new Error(`Error getting launch dates: ${response.status}`);
+      }
+      const result = await response.json();
+      return result;
+    } catch (error) {
+      console.error('❌ Error obteniendo fechas de lanzamiento:', error);
+      // Fallback: generar fechas localmente
+      return this.generateFridayDates();
+    }
+  }
+
+  // Generar fechas de viernes disponibles (fallback)
+  generateFridayDates() {
+    const dates = [];
+    const today = new Date();
+    const currentDate = new Date(today);
+    
+    // Buscar los próximos 12 viernes
+    for (let i = 0; i < 84; i++) { // 12 semanas
+      const dayOfWeek = currentDate.getDay();
+      const daysUntilFriday = (5 - dayOfWeek + 7) % 7;
+      
+      if (daysUntilFriday === 0 && i === 0) {
+        // Si hoy es viernes, empezar desde el próximo viernes
+        currentDate.setDate(currentDate.getDate() + 7);
+      } else if (daysUntilFriday > 0 && i === 0) {
+        currentDate.setDate(currentDate.getDate() + daysUntilFriday);
+      }
+      
+      if (currentDate.getDay() === 5) { // Viernes
+        dates.push({
+          date: new Date(currentDate).toISOString().split('T')[0],
+          available: Math.random() > 0.3, // 70% disponibilidad simulada
+          slotsUsed: Math.floor(Math.random() * 2), // 0-1 slots usados
+          maxSlots: 2
+        });
+        currentDate.setDate(currentDate.getDate() + 7); // Siguiente viernes
+      } else {
+        currentDate.setDate(currentDate.getDate() + 1);
+      }
+    }
+    
+    return { data: dates };
   }
 }
 

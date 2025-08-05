@@ -346,14 +346,45 @@
   max-width: 1200px;
 }
 
-/* Grid de cards - 3 por fila */
+/* Grid de cards HORIZONTAL - 1 por fila como en las referencias */
 .home-next .cards-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
+  grid-template-columns: 1fr;
+  gap: 16px;
   width: 100%;
-  max-width: 900px;
+  max-width: 400px;
   margin-bottom: 40px;
+  justify-items: center;
+  padding: 0 20px;
+}
+
+/* Cards horizontales específicamente para HomeNext */
+.home-next .tarjeta-proyectos.nft-card-horizontal {
+  height: 120px !important;
+  width: 320px !important;
+  max-width: 320px;
+}
+
+/* Ajustes específicos para cards horizontales en HomeNext */
+.home-next .tarjeta-proyectos .nft-image-container-horizontal {
+  width: 96px !important;
+  height: 96px !important;
+}
+
+.home-next .tarjeta-proyectos .token-name-horizontal {
+  font-size: 16px !important;
+}
+
+.home-next .tarjeta-proyectos .token-symbol-horizontal {
+  font-size: 11px !important;
+}
+
+.home-next .tarjeta-proyectos .token-time-horizontal {
+  font-size: 10px !important;
+}
+
+.home-next .tarjeta-proyectos .stat-value-horizontal {
+  font-size: 12px !important;
 }
 
 /* Controles de paginación */
@@ -414,18 +445,14 @@
   color: #cccccc;
 }
 
-/* Responsive design */
-@media (max-width: 1024px) {
-  .home-next .cards-grid {
-    grid-template-columns: repeat(2, 1fr);
-    max-width: 600px;
-  }
-}
-
+/* Responsive design para cards horizontales */
 @media (max-width: 768px) {
   .home-next .cards-grid {
-    grid-template-columns: 1fr;
     max-width: 300px;
+  }
+  
+  .home-next .tarjeta-proyectos.nft-card-horizontal {
+    width: 280px !important;
   }
   
   .home-next .pagination-controls {
@@ -437,7 +464,6 @@
 .home-next .loading-message,
 .home-next .error-message,
 .home-next .no-tokens-message {
-  grid-column: span 3;
   text-align: center;
   padding: 2rem;
   border-radius: 8px;
@@ -467,6 +493,7 @@
   flex-direction: column;
   align-items: center;
   margin-bottom: 1rem;
+  width: 100%;
 }
 
 /* Estilos para la fecha de lanzamiento */
@@ -541,22 +568,8 @@
   border: none;
 }
 
-/* Responsive para mensajes */
-@media (max-width: 1024px) {
-  .home-next .loading-message,
-  .home-next .error-message,
-  .home-next .no-tokens-message {
-    grid-column: span 2;
-  }
-}
-
+/* Responsive para opciones de ordenación */
 @media (max-width: 768px) {
-  .home-next .loading-message,
-  .home-next .error-message,
-  .home-next .no-tokens-message {
-    grid-column: span 1;
-  }
-  
   .home-next .sort-options {
     flex-direction: column;
     gap: 0.5rem;
