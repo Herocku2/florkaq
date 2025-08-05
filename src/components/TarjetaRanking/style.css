@@ -341,22 +341,25 @@
 
 .tarjeta-ranking-2 .token-name,
 .tarjeta-ranking-4 .token-name {
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 600;
-  margin-bottom: 3px;
+  margin-bottom: 1px;
+  margin-top: -6px;
+  line-height: 1.1;
 }
 
 .tarjeta-ranking-2 .token-symbol,
 .tarjeta-ranking-4 .token-symbol {
   font-size: 11px;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
+  margin-top: 2px;
 }
 
 .tarjeta-ranking-2 .market-cap,
 .tarjeta-ranking-4 .market-cap {
   font-size: 11px;
   font-weight: 500;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
 }
 
 .tarjeta-ranking-2 .view-details-button,
@@ -411,22 +414,25 @@
 
 .home-next .tarjeta-ranking-instance .token-name,
 .home-next .tarjeta-ranking-6 .token-name {
-  font-size: 14px; /* Igual que Home */
+  font-size: 12px; /* Igual que Home */
   font-weight: 600;
-  margin-bottom: 3px;
+  margin-bottom: 1px;
+  margin-top: -6px;
+  line-height: 1.1;
 }
 
 .home-next .tarjeta-ranking-instance .token-symbol,
 .home-next .tarjeta-ranking-6 .token-symbol {
   font-size: 11px; /* Igual que Home */
-  margin-bottom: 6px;
+  margin-bottom: 8px;
+  margin-top: 2px;
 }
 
 .home-next .tarjeta-ranking-instance .market-cap,
 .home-next .tarjeta-ranking-6 .market-cap {
   font-size: 11px; /* Igual que Home */
   font-weight: 500;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
 }
 
 .home-next .tarjeta-ranking-instance .view-details-button,

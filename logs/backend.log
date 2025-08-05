@@ -1406,3 +1406,107 @@ Error: ENOENT: no such file or directory, open '/Users/anto/Documents/florkaproj
 ✅ Foros encontrados: 3
 [2025-08-05 13:07:58.495] [32mhttp[39m: GET /api/foros (3 ms) 200
 [2025-08-05 18:32:17.980] [32mhttp[39m: GET /admin (32 ms) 200
+[2025-08-05 18:36:24.427] [32mhttp[39m: OPTIONS /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=9 (2 ms) 204
+[2025-08-05 18:36:24.431] [32mhttp[39m: OPTIONS /api/rankings/page/home (1 ms) 204
+[2025-08-05 18:36:24.453] [32mhttp[39m: OPTIONS /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=9 (0 ms) 204
+🔓 Permitiendo acceso público a: /api/rankings/page/home
+[2025-08-05 18:36:24.458] [32mhttp[39m: OPTIONS /api/rankings/page/home (1 ms) 204
+[2025-08-05 18:36:24.461] [32mhttp[39m: GET /api/rankings/page/home (6 ms) 200
+🔓 Permitiendo acceso público a: /api/rankings/page/home
+[2025-08-05 18:36:24.468] [32mhttp[39m: GET /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=9 (28 ms) 200
+[2025-08-05 18:36:24.470] [32mhttp[39m: OPTIONS /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3 (0 ms) 204
+[2025-08-05 18:36:24.475] [32mhttp[39m: GET /api/rankings/page/home (9 ms) 200
+🔓 Acceso público permitido: /api/tokens
+[2025-08-05 18:36:24.476] [32mhttp[39m: OPTIONS /api/tokens?filters%5Bestado%5D%5B%24eq%5D=lanzado&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=9&sort=fechaLanzamiento%3Adesc (0 ms) 204
+🔓 Acceso público permitido: /api/tokens
+🔓 Permitiendo acceso público a: /api/tokens
+[2025-08-05 18:36:24.491] [32mhttp[39m: GET /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=9 (18 ms) 200
+[2025-08-05 18:36:24.493] [32mhttp[39m: GET /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3 (14 ms) 200
+🔓 Acceso público permitido: /api/tokens
+[2025-08-05 18:36:24.497] [32mhttp[39m: OPTIONS /api/tokens?filters%5Bestado%5D%5B%24eq%5D=lanzado&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3&sort=fechaLanzamiento%3Adesc (0 ms) 204
+🔓 Acceso público permitido: /api/tokens
+🔓 Permitiendo acceso público a: /api/tokens
+[2025-08-05 18:36:24.507] [32mhttp[39m: GET /api/tokens?filters%5Bestado%5D%5B%24eq%5D=lanzado&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=9&sort=fechaLanzamiento%3Adesc (25 ms) 200
+🔓 Acceso público permitido: /api/tokens
+🔓 Permitiendo acceso público a: /api/tokens
+[2025-08-05 18:36:24.523] [32mhttp[39m: GET /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3 (27 ms) 200
+[2025-08-05 18:36:24.534] [32mhttp[39m: GET /uploads/capitrana_marvel_edcd6c169e.jpeg (12 ms) 200
+[2025-08-05 18:36:24.535] [32mhttp[39m: GET /uploads/superman_1066d0438e.jpeg (8 ms) 200
+[2025-08-05 18:36:24.536] [32mhttp[39m: GET /uploads/4_fantasticos_327f5082df.jpeg (4 ms) 200
+[2025-08-05 18:36:24.537] [32mhttp[39m: GET /uploads/Donald_Trump_a9b7e8c58d.jpeg (3 ms) 200
+[2025-08-05 18:36:24.546] [32mhttp[39m: GET /api/tokens?filters%5Bestado%5D%5B%24eq%5D=lanzado&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3&sort=fechaLanzamiento%3Adesc (43 ms) 200
+[2025-08-05 18:36:24.548] [32mhttp[39m: GET /uploads/pump_fun_fd078a89d2.png (5 ms) 200
+[2025-08-05 18:36:24.549] [32mhttp[39m: GET /uploads/Captura_de_pantalla_2025_07_14_a_la_s_4_18_22_p_m_a3a51c80d2.png (6 ms) 200
+[2025-08-05 18:36:24.554] [32mhttp[39m: GET /api/tokens?filters%5Bestado%5D%5B%24eq%5D=lanzado&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=9&sort=fechaLanzamiento%3Adesc (39 ms) 200
+🔓 Acceso público permitido: /api/tokens
+🔓 Permitiendo acceso público a: /api/tokens
+[2025-08-05 18:36:24.574] [32mhttp[39m: GET /api/tokens?filters%5Bestado%5D%5B%24eq%5D=lanzado&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3&sort=fechaLanzamiento%3Adesc (13 ms) 200
+[2025-08-05 18:46:27.294] [32mhttp[39m: OPTIONS /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=6 (11 ms) 204
+[2025-08-05 18:46:27.329] [32mhttp[39m: OPTIONS /api/rankings/page/next (1 ms) 204
+[2025-08-05 18:46:27.332] [32mhttp[39m: OPTIONS /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=6 (1 ms) 204
+🔓 Permitiendo acceso público a: /api/rankings/page/next
+[2025-08-05 18:46:27.340] [32mhttp[39m: OPTIONS /api/rankings/page/next (0 ms) 204
+[2025-08-05 18:46:27.343] [32mhttp[39m: GET /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=6 (32 ms) 200
+[2025-08-05 18:46:27.344] [32mhttp[39m: GET /api/rankings/page/next (7 ms) 200
+🔓 Permitiendo acceso público a: /api/rankings/page/next
+🔓 Acceso público permitido: /api/tokens
+[2025-08-05 18:46:27.354] [32mhttp[39m: OPTIONS /api/tokens?filters%5Bestado%5D%5B%24eq%5D=proximo&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=6&sort=fechaLanzamiento%3Aasc (0 ms) 204
+🔓 Acceso público permitido: /api/tokens
+🔓 Permitiendo acceso público a: /api/tokens
+[2025-08-05 18:46:27.361] [32mhttp[39m: GET /api/rankings/page/next (11 ms) 200
+[2025-08-05 18:46:27.369] [32mhttp[39m: GET /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=6 (22 ms) 200
+[2025-08-05 18:46:27.370] [32mhttp[39m: GET /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3 (14 ms) 200
+🔓 Acceso público permitido: /api/tokens
+[2025-08-05 18:46:27.376] [32mhttp[39m: OPTIONS /api/tokens?filters%5Bestado%5D%5B%24eq%5D=proximo&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3&sort=totalVotos%3Adesc (0 ms) 204
+🔓 Acceso público permitido: /api/tokens
+🔓 Permitiendo acceso público a: /api/tokens
+[2025-08-05 18:46:27.383] [32mhttp[39m: GET /api/tokens?filters%5Bestado%5D%5B%24eq%5D=proximo&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=6&sort=fechaLanzamiento%3Aasc (25 ms) 200
+[2025-08-05 18:46:27.388] [32mhttp[39m: GET /api/tokens?filters%5Bestado%5D%5B%24eq%5D=proximo&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3&sort=totalVotos%3Adesc (7 ms) 400
+🔓 Acceso público permitido: /api/tokens
+🔓 Permitiendo acceso público a: /api/tokens
+[2025-08-05 18:46:27.400] [32mhttp[39m: GET /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3 (27 ms) 200
+🔓 Acceso público permitido: /api/tokens
+🔓 Permitiendo acceso público a: /api/tokens
+[2025-08-05 18:46:27.418] [32mhttp[39m: GET /uploads/Captura_de_pantalla_2025_07_17_a_la_s_2_55_53_p_m_981798021b.png (16 ms) 200
+[2025-08-05 18:46:27.422] [32mhttp[39m: GET /api/tokens?filters%5Bestado%5D%5B%24eq%5D=proximo&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3&sort=totalVotos%3Adesc (9 ms) 400
+[2025-08-05 18:46:27.424] [32mhttp[39m: GET /uploads/Captura_de_pantalla_2025_07_17_a_la_s_1_51_55_p_m_2_f6524a0006.png (9 ms) 200
+[2025-08-05 18:46:27.426] [32mhttp[39m: GET /uploads/bukele_6d74dc5176.jpeg (9 ms) 200
+[2025-08-05 18:46:27.427] [32mhttp[39m: GET /uploads/petro_d089b78116.jpeg (7 ms) 200
+[2025-08-05 18:46:27.429] [32mhttp[39m: GET /uploads/barack_obama_7dadbe7170.jpeg (6 ms) 200
+[2025-08-05 18:46:27.431] [32mhttp[39m: GET /api/tokens?filters%5Bestado%5D%5B%24eq%5D=proximo&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=6&sort=fechaLanzamiento%3Aasc (34 ms) 200
+🔓 Acceso público permitido: /api/foros
+🔓 Permitiendo acceso público a: /api/foros
+🔍 Obteniendo foros...
+✅ Foros encontrados: 3
+[2025-08-05 18:46:39.896] [32mhttp[39m: GET /api/foros (7 ms) 200
+🔓 Acceso público permitido: /api/foros
+🔓 Permitiendo acceso público a: /api/foros
+🔍 Obteniendo foros...
+✅ Foros encontrados: 3
+[2025-08-05 18:46:39.901] [32mhttp[39m: GET /api/foros (2 ms) 200
+🔓 Permitiendo acceso público a: /api/rankings/page/home
+[2025-08-05 18:46:47.383] [32mhttp[39m: GET /api/rankings/page/home (6 ms) 200
+[2025-08-05 18:46:47.385] [32mhttp[39m: GET /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=9 (16 ms) 200
+🔓 Permitiendo acceso público a: /api/rankings/page/home
+[2025-08-05 18:46:47.397] [32mhttp[39m: GET /api/rankings/page/home (7 ms) 200
+🔓 Acceso público permitido: /api/tokens
+🔓 Permitiendo acceso público a: /api/tokens
+[2025-08-05 18:46:47.409] [32mhttp[39m: GET /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3 (15 ms) 200
+[2025-08-05 18:46:47.410] [32mhttp[39m: GET /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=9 (11 ms) 200
+🔓 Acceso público permitido: /api/tokens
+🔓 Permitiendo acceso público a: /api/tokens
+[2025-08-05 18:46:47.423] [32mhttp[39m: GET /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3 (9 ms) 200
+[2025-08-05 18:46:47.428] [32mhttp[39m: GET /api/tokens?filters%5Bestado%5D%5B%24eq%5D=lanzado&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=9&sort=fechaLanzamiento%3Adesc (25 ms) 200
+🔓 Acceso público permitido: /api/tokens
+🔓 Permitiendo acceso público a: /api/tokens
+[2025-08-05 18:46:47.441] [32mhttp[39m: GET /api/tokens?filters%5Bestado%5D%5B%24eq%5D=lanzado&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3&sort=fechaLanzamiento%3Adesc (23 ms) 200
+🔓 Acceso público permitido: /api/tokens
+🔓 Permitiendo acceso público a: /api/tokens
+[2025-08-05 18:46:47.447] [32mhttp[39m: GET /uploads/superman_1066d0438e.jpeg (9 ms) 200
+[2025-08-05 18:46:47.448] [32mhttp[39m: GET /uploads/4_fantasticos_327f5082df.jpeg (6 ms) 200
+[2025-08-05 18:46:47.452] [32mhttp[39m: GET /uploads/capitrana_marvel_edcd6c169e.jpeg (4 ms) 200
+[2025-08-05 18:46:47.457] [32mhttp[39m: GET /uploads/Donald_Trump_a9b7e8c58d.jpeg (8 ms) 200
+[2025-08-05 18:46:47.462] [32mhttp[39m: GET /api/tokens?filters%5Bestado%5D%5B%24eq%5D=lanzado&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=9&sort=fechaLanzamiento%3Adesc (31 ms) 200
+[2025-08-05 18:46:47.462] [32mhttp[39m: GET /uploads/pump_fun_fd078a89d2.png (5 ms) 200
+[2025-08-05 18:46:47.463] [32mhttp[39m: GET /uploads/Captura_de_pantalla_2025_07_14_a_la_s_4_18_22_p_m_a3a51c80d2.png (4 ms) 200
+[2025-08-05 18:46:47.469] [32mhttp[39m: GET /api/tokens?filters%5Bestado%5D%5B%24eq%5D=lanzado&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3&sort=fechaLanzamiento%3Adesc (24 ms) 200

@@ -85,3 +85,9 @@ Files in the public directory are served at the root path.
 Instead of /static/img/rectangle-6.png, use /img/rectangle-6.png.
 Files in the public directory are served at the root path.
 Instead of /static/img/tarjeta-ranking.png, use /img/tarjeta-ranking.png.
+6:35:39 PM [vite] (client) hmr update /src/components/Heder/style.css
+6:41:14 PM [vite] (client) hmr update /src/components/TarjetaRanking/style.css
+6:41:30 PM [vite] (client) hmr update /src/screens/HomeNext/style.css
+6:42:42 PM [vite] (client) hmr update /src/components/TarjetaRanking/style.css
+6:45:51 PM [vite] (client) hmr update /src/components/TarjetaRanking/style.css
+6:46:01 PM [vite] (client) hmr update /src/components/TarjetaRanking/style.css
