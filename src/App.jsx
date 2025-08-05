@@ -20,6 +20,7 @@ import { Vote } from "./screens/Vote";
 import { VoteDetalletoken } from "./screens/VoteDetalletoken";
 import { Auth } from "./screens/Auth/Auth";
 import { ForumSimple } from "./screens/ForumSimple/ForumSimple";
+import { TokenDetail } from "./screens/TokenDetail";
 
 const router = createBrowserRouter([
   {
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
   {
     path: "/auth",
     element: <Auth />,
+  },
+  {
+    path: "/token/:tokenName",
+    element: <TokenDetail />,
   },
   // Rutas adicionales existentes
   {

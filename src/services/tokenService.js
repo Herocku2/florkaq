@@ -499,7 +499,28 @@ class TokenService {
       marketCap: Math.floor(Math.random() * 1000000) + 10000,
       progress: Math.floor(Math.random() * 100),
       holders: Math.floor(Math.random() * 10000) + 100,
-      supply: Math.floor(Math.random() * 1000000000) + 1000000
+      supply: Math.floor(Math.random() * 1000000000) + 1000000,
+      // Datos adicionales para página de detalles
+      precio: Math.random() * 1000 + 50,
+      volumen24h: Math.floor(Math.random() * 100000) + 1000,
+      swaps: Math.floor(Math.random() * 500) + 50,
+      maxSupply: Math.floor(Math.random() * 10000) + 1000,
+      tokensEnSwap: (Math.random() * 1000).toFixed(12),
+      tokensConHolders: Math.floor(Math.random() * 5000) + 1000,
+      solEnLiquidez: Math.floor(Math.random() * 100000) + 10000,
+      tokenEnPoolSol: (Math.random() * 100).toFixed(3),
+      warEnLiquidez: Math.floor(Math.random() * 100000) + 10000,
+      tokenEnPoolWar: (Math.random() * 100).toFixed(3),
+      bloqueados: (Math.random() * 1000).toFixed(9),
+      valorBloqueados: Math.floor(Math.random() * 100000) + 10000,
+      porcentajeBloqueados: (Math.random() * 10).toFixed(5) + '%',
+      locked: Math.floor(Math.random() * 10000) + 1000,
+      valorLocked: Math.floor(Math.random() * 2000000) + 100000,
+      porcentajeLocked: (Math.random() * 80 + 10).toFixed(5) + '%',
+      usuariosLocked: Math.floor(Math.random() * 2000) + 100,
+      tvl: Math.floor(Math.random() * 10000) + 1000,
+      vol24h: Math.floor(Math.random() * 1000) + 50,
+      yield365d: '+' + (Math.random() * 20 + 1).toFixed(2) + '%'
     };
   }
 
@@ -577,6 +598,110 @@ class TokenService {
         }
       }
     };
+  }
+
+  // Get token by name for detail page
+  async getTokenByName(tokenName) {
+    const cacheKey = `token-detail-${tokenName}`;
+
+    return await this.getCachedData(cacheKey, async () => {
+      return await errorHandler.safeAsync(async () => {
+        console.log('Fetching token by name:', tokenName);
+
+        // Buscar en tokens lanzados
+        const tokensParams = {
+          'filters[nombre][$containsi]': tokenName,
+          'populate': 'imagen',
+          'pagination[pageSize]': 1
+        };
+
+        const tokensResponse = await apiService.get('tokens', tokensParams);
+        
+        if (tokensResponse?.data?.length > 0) {
+          return tokensResponse;
+        }
+
+        // Si no se encuentra en tokens, buscar en candidatos
+        const candidatosParams = {
+          'filters[nombre][$containsi]': tokenName,
+          'populate': 'imagen',
+          'pagination[pageSize]': 1
+        };
+
+        const candidatosResponse = await apiService.get('candidatos', candidatosParams);
+        
+        if (candidatosResponse?.data?.length > 0) {
+          // Transformar candidato a formato de token
+          const candidato = candidatosResponse.data[0];
+          const tokenFromCandidato = {
+            id: candidato.id,
+            attributes: {
+              ...candidato.attributes,
+              estado: "lanzado",
+              fechaLanzamiento: new Date().toISOString()
+            }
+          };
+
+          return { data: [tokenFromCandidato] };
+        }
+
+        return { data: [] };
+      }, this.getFallbackTokenByName(tokenName), 'TokenService.getTokenByName');
+    });
+  }
+
+  // Fallback data for token detail
+  getFallbackTokenByName(tokenName) {
+    const fallbackTokens = {
+      'bukele': {
+        id: 1,
+        attributes: {
+          nombre: "Bukele",
+          symbol: "BUK",
+          descripcion: "Token del presidente de El Salvador, Nayib Bukele. Conocido por sus políticas innovadoras en Bitcoin y tecnología blockchain.",
+          estado: "lanzado",
+          fechaLanzamiento: new Date().toISOString(),
+          imagen: { data: { attributes: { url: "/img/bukele.png" } } }
+        }
+      },
+      'gustavo petro': {
+        id: 2,
+        attributes: {
+          nombre: "Gustavo Petro",
+          symbol: "GPT",
+          descripcion: "Token del presidente colombiano Gustavo Petro. Enfocado en políticas progresistas y cambio social.",
+          estado: "lanzado",
+          fechaLanzamiento: new Date().toISOString(),
+          imagen: { data: { attributes: { url: "/img/petro.png" } } }
+        }
+      },
+      'barack obama': {
+        id: 3,
+        attributes: {
+          nombre: "Barack Obama",
+          symbol: "OBM",
+          descripcion: "Token del 44º Presidente de Estados Unidos (2009-2017). Conocido por sus políticas progresistas y liderazgo inspirador.",
+          estado: "lanzado",
+          fechaLanzamiento: new Date().toISOString(),
+          imagen: { data: { attributes: { url: "/img/obama.png" } } }
+        }
+      }
+    };
+
+    const normalizedName = tokenName.toLowerCase();
+    const token = fallbackTokens[normalizedName] || {
+      id: 999,
+      attributes: {
+        nombre: tokenName,
+        symbol: tokenName.substring(0, 3).toUpperCase(),
+        descripcion: `${tokenName} es un token innovador en el ecosistema de criptomonedas.`,
+        estado: "lanzado",
+        fechaLanzamiento: new Date().toISOString(),
+        imagen: { data: { attributes: { url: "/img/image-4.png" } } }
+      }
+    };
+
+    return { data: [token] };
   }
 
   // Transform ranking data

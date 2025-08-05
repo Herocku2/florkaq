@@ -5,15 +5,15 @@
   border-radius: 12px;
   display: flex;
   flex-direction: row;
-  height: 120px;
-  width: 320px;
-  padding: 12px;
+  height: 150px;
+  width: 380px;
+  padding: 15px;
   position: relative;
   overflow: hidden;
   transition: all 0.3s ease;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
   text-decoration: none;
-  gap: 12px;
+  gap: 15px;
 }
 
 .tarjeta-proyectos.nft-card-horizontal:hover {
@@ -24,8 +24,8 @@
 
 /* Imagen principal del NFT - CUADRADA A LA IZQUIERDA */
 .tarjeta-proyectos .nft-image-container-horizontal {
-  width: 96px;
-  height: 96px;
+  width: 110px;
+  height: 110px;
   border-radius: 8px;
   overflow: hidden;
   position: relative;

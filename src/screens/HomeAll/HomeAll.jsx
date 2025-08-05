@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Heder } from "../../components/Heder";
-import { MenuTabla } from "../../components/MenuTabla";
+{/* import { MenuTabla } from "../../components/MenuTabla"; */}
 import { Paginacion } from "../../components/Paginacion";
 import { TarjetaProyectos } from "../../components/TarjetaProyectos";
 import { TarjetaRanking } from "../../components/TarjetaRanking";
@@ -53,7 +53,7 @@ export const HomeAll = () => {
   const [totalTokens, setTotalTokens] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const cardsPerPage = 6;
+  const cardsPerPage = 9; // Cambiar a 9 para grid 3x3
 
   // Cargar tokens lanzados desde el backend
   useEffect(() => {
@@ -233,16 +233,7 @@ export const HomeAll = () => {
         )}
       </div>
 
-      <MenuTabla
-        className="menu-tabla-1"
-        divClassName="menu-tabla-instance"
-        divClassNameOverride="menu-tabla-1-instance"
-        img="/img/line-2-3.svg"
-        line="/img/line-1-3.svg"
-        line1="/img/line-3-3.svg"
-        to="/homeu47next"
-        to1="/homeu47new"
-      />
+{/* MenuTabla removido según solicitud del usuario */}
       <div className="frame-62">
         {/* Grid de cards - 3 por fila */}
         <div className="cards-grid">
@@ -254,7 +245,7 @@ export const HomeAll = () => {
             tokens.map((token, index) => (
               <TarjetaProyectos
                 key={`${token.tokenSymbol}-${index}`}
-                to={`/homeu47detalletokenu47compra?id=${token.id}`}
+                to={`/token/${token.tokenName}`}
                 tokenName={token.tokenName}
                 tokenSymbol={token.tokenSymbol}
                 tokenImage={token.tokenImage}

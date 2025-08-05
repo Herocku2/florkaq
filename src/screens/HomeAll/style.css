@@ -134,20 +134,7 @@
   filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
 }
 
-.home-all .menu-tabla-1 {
-  display: flex !important;
-  flex: 0 0 auto !important;
-  padding: 24px 0px 0px !important;
-  width: 1277px !important;
-}
-
-.home-all .menu-tabla-instance {
-  color: var(--color-primario) !important;
-}
-
-.home-all .menu-tabla-1-instance {
-  color: var(--color-secundario) !important;
-}
+/* Estilos de MenuTabla removidos según solicitud del usuario */
 
 .home-all .frame-62 {
   align-items: center;
@@ -159,29 +146,29 @@
   max-width: 1200px;
 }
 
-/* Grid de cards HORIZONTAL - 1 por fila como en las referencias */
+/* Grid de cards 3x3 - Desktop */
 .home-all .cards-grid {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 16px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
   width: 100%;
-  max-width: 400px;
+  max-width: 1200px;
   margin-bottom: 40px;
   justify-items: center;
   padding: 0 20px;
 }
 
-/* Cards horizontales específicamente para HomeAll */
+/* Cards más grandes para grid 3x3 */
 .home-all .tarjeta-proyectos.nft-card-horizontal {
-  height: 120px !important;
-  width: 320px !important;
-  max-width: 320px;
+  height: 150px !important;
+  width: 380px !important;
+  max-width: 380px;
 }
 
 /* Ajustes específicos para cards horizontales en HomeAll */
 .home-all .tarjeta-proyectos .nft-image-container-horizontal {
-  width: 96px !important;
-  height: 96px !important;
+  width: 110px !important;
+  height: 110px !important;
 }
 
 .home-all .tarjeta-proyectos .token-name-horizontal {
@@ -258,14 +245,22 @@
   color: #cccccc;
 }
 
-/* Responsive design para cards horizontales */
+/* Responsive design para grid 3x3 */
+@media (max-width: 1200px) {
+  .home-all .cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 800px;
+  }
+}
+
 @media (max-width: 768px) {
   .home-all .cards-grid {
-    max-width: 300px;
+    grid-template-columns: 1fr;
+    max-width: 400px;
   }
   
   .home-all .tarjeta-proyectos.nft-card-horizontal {
-    width: 280px !important;
+    width: 320px !important;
   }
   
   .home-all .pagination-controls {

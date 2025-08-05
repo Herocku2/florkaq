@@ -1,0 +1,252 @@
+.token-detail {
+  background-color: #020102;
+  min-height: 100vh;
+  color: #ffffff;
+  font-family: "Orbitron", Helvetica;
+}
+
+/* Header del token */
+.token-header {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.token-main-info {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 30px;
+  align-items: flex-start;
+}
+
+.token-image-large {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #ff01a1;
+  box-shadow: 0 0 20px rgba(255, 1, 161, 0.3);
+}
+
+.token-title-section {
+  flex: 1;
+}
+
+.token-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 10px 0;
+  font-family: "Orbitron", Helvetica;
+}
+
+.token-price {
+  font-size: 24px;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 15px;
+}
+
+.price-change {
+  font-size: 18px;
+  color: #ff4444;
+  margin-left: 10px;
+}
+
+.token-description {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #cccccc;
+  margin: 0;
+  max-width: 600px;
+}
+
+/* Botones de acción */
+.action-buttons {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.action-btn {
+  background: linear-gradient(135deg, #ff01a1, #ff69b4);
+  color: #ffffff;
+  font-family: "Orbitron", Helvetica;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 1, 161, 0.3);
+}
+
+.action-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 1, 161, 0.4);
+}
+
+.action-btn.verify {
+  background: linear-gradient(135deg, #4CAF50, #8BC34A);
+  box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+}
+
+.action-btn.verify:hover {
+  box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+}
+
+/* Grid de datos */
+.token-data-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px 40px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.data-section {
+  background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
+  border: 1px solid #444;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.section-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0 0 20px 0;
+  font-family: "Orbitron", Helvetica;
+}
+
+.data-items {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.data-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.data-item:last-child {
+  border-bottom: none;
+}
+
+.data-label {
+  font-size: 14px;
+  color: #cccccc;
+  font-weight: 400;
+}
+
+.data-value {
+  font-size: 14px;
+  color: #ffffff;
+  font-weight: 600;
+  text-align: right;
+}
+
+/* Fee tabs */
+.fee-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.fee-tab {
+  background: rgba(255, 255, 255, 0.1);
+  color: #cccccc;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.fee-tab.active {
+  background: linear-gradient(135deg, #ff01a1, #ff69b4);
+  color: #ffffff;
+}
+
+/* Sección de botón volver */
+.back-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.back-button {
+  background: linear-gradient(135deg, #333333, #555555);
+  color: #ffffff;
+  font-family: "Orbitron", Helvetica;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.back-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  background: linear-gradient(135deg, #555555, #777777);
+}
+
+/* Estados de carga y error */
+.loading-container,
+.error-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.loading-message {
+  font-size: 18px;
+  color: #ffffff;
+  font-family: "Orbitron", Helvetica;
+}
+
+.error-message {
+  font-size: 18px;
+  color: #ff4444;
+  font-family: "Orbitron", Helvetica;
+  margin-bottom: 20px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .token-main-info {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .token-title {
+    font-size: 24px;
+  }
+  
+  .token-price {
+    font-size: 20px;
+  }
+  
+  .action-buttons {
+    justify-content: center;
+  }
+  
+  .token-data-grid {
+    grid-template-columns: 1fr;
+  }
+}
