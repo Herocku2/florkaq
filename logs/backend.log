@@ -776,3 +776,633 @@ Error: ENOENT: no such file or directory, open '/Users/anto/Documents/florkaproj
 🔓 Permitiendo acceso público a: /api/tokens
 [2025-08-05 12:39:52.248] [32mhttp[39m: GET /api/tokens?filters%5Bestado%5D%5B%24eq%5D=lanzado&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=9&sort=fechaLanzamiento%3Adesc (64 ms) 200
 [2025-08-05 12:39:52.270] [32mhttp[39m: GET /api/tokens?filters%5Bestado%5D%5B%24eq%5D=lanzado&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3&sort=fechaLanzamiento%3Adesc (45 ms) 200
+[2025-08-05 12:44:34.204] [32mhttp[39m: OPTIONS /api/rankings/page/next (0 ms) 204
+[2025-08-05 12:44:34.222] [32mhttp[39m: OPTIONS /api/rankings/page/next (1 ms) 204
+🔓 Permitiendo acceso público a: /api/rankings/page/next
+[2025-08-05 12:44:34.269] [32mhttp[39m: GET /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=6 (127 ms) 200
+[2025-08-05 12:44:34.272] [32mhttp[39m: GET /api/rankings/page/next (19 ms) 200
+🔓 Permitiendo acceso público a: /api/rankings/page/next
+[2025-08-05 12:44:34.299] [32mhttp[39m: GET /api/rankings/page/next (10 ms) 200
+[2025-08-05 12:44:34.302] [32mhttp[39m: GET /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=6 (24 ms) 200
+🔓 Acceso público permitido: /api/tokens
+[2025-08-05 12:44:34.439] [32mhttp[39m: OPTIONS /api/tokens?filters%5Bestado%5D%5B%24eq%5D=proximo&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=6&sort=fechaLanzamiento%3Aasc (1 ms) 204
+🔓 Acceso público permitido: /api/tokens
+🔓 Permitiendo acceso público a: /api/tokens
+[2025-08-05 12:44:34.582] [32mhttp[39m: GET /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3 (137 ms) 200
+🔓 Acceso público permitido: /api/tokens
+[2025-08-05 12:44:34.612] [32mhttp[39m: OPTIONS /api/tokens?filters%5Bestado%5D%5B%24eq%5D=proximo&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3&sort=totalVotos%3Adesc (0 ms) 204
+🔓 Acceso público permitido: /api/tokens
+🔓 Permitiendo acceso público a: /api/tokens
+[2025-08-05 12:44:34.635] [32mhttp[39m: GET /api/tokens?filters%5Bestado%5D%5B%24eq%5D=proximo&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=6&sort=fechaLanzamiento%3Aasc (152 ms) 200
+🔓 Acceso público permitido: /api/tokens
+🔓 Permitiendo acceso público a: /api/tokens
+[2025-08-05 12:44:34.718] [32mhttp[39m: GET /api/tokens?filters%5Bestado%5D%5B%24eq%5D=proximo&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3&sort=totalVotos%3Adesc (92 ms) 400
+[2025-08-05 12:44:34.769] [32mhttp[39m: GET /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3 (163 ms) 200
+🔓 Acceso público permitido: /api/tokens
+🔓 Permitiendo acceso público a: /api/tokens
+[2025-08-05 12:44:34.795] [32mhttp[39m: GET /uploads/Captura_de_pantalla_2025_07_17_a_la_s_2_55_53_p_m_46099b91b9.png (32 ms) 404
+[2025-08-05 12:44:34.802] [32mhttp[39m: GET /uploads/petro_195aecb4f0.jpeg (28 ms) 404
+[2025-08-05 12:44:34.803] [32mhttp[39m: GET /uploads/bukele_5c63c714b5.jpeg (20 ms) 404
+[2025-08-05 12:44:34.811] [32mhttp[39m: GET /api/tokens?filters%5Bestado%5D%5B%24eq%5D=proximo&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3&sort=totalVotos%3Adesc (31 ms) 400
+[2025-08-05 12:44:34.816] [32mhttp[39m: GET /uploads/barack_obama_3ac7cdb406.jpeg (17 ms) 404
+[2025-08-05 12:44:34.836] [32mhttp[39m: GET /api/tokens?filters%5Bestado%5D%5B%24eq%5D=proximo&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=6&sort=fechaLanzamiento%3Aasc (174 ms) 200
+🔓 Permitiendo acceso público a: /api/rankings/page/home
+[2025-08-05 12:45:26.969] [32mhttp[39m: GET /api/rankings/page/home (7 ms) 200
+[2025-08-05 12:45:26.972] [32mhttp[39m: GET /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=9 (24 ms) 200
+🔓 Permitiendo acceso público a: /api/rankings/page/home
+[2025-08-05 12:45:26.998] [32mhttp[39m: GET /api/rankings/page/home (18 ms) 200
+🔓 Acceso público permitido: /api/tokens
+🔓 Permitiendo acceso público a: /api/tokens
+[2025-08-05 12:45:27.016] [32mhttp[39m: GET /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=9 (28 ms) 200
+[2025-08-05 12:45:27.018] [32mhttp[39m: GET /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3 (22 ms) 200
+🔓 Acceso público permitido: /api/tokens
+🔓 Permitiendo acceso público a: /api/tokens
+[2025-08-05 12:45:27.070] [32mhttp[39m: GET /api/tokens?filters%5Bestado%5D%5B%24eq%5D=lanzado&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=9&sort=fechaLanzamiento%3Adesc (66 ms) 200
+[2025-08-05 12:45:27.074] [32mhttp[39m: GET /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3 (49 ms) 200
+🔓 Acceso público permitido: /api/tokens
+🔓 Permitiendo acceso público a: /api/tokens
+[2025-08-05 12:45:27.125] [32mhttp[39m: GET /uploads/superman_1066d0438e.jpeg (27 ms) 200
+[2025-08-05 12:45:27.142] [32mhttp[39m: GET /uploads/capitrana_marvel_edcd6c169e.jpeg (31 ms) 200
+[2025-08-05 12:45:27.150] [32mhttp[39m: GET /uploads/4_fantasticos_327f5082df.jpeg (34 ms) 200
+[2025-08-05 12:45:27.159] [32mhttp[39m: GET /uploads/Donald_Trump_a9b7e8c58d.jpeg (31 ms) 200
+[2025-08-05 12:45:27.177] [32mhttp[39m: GET /api/tokens?filters%5Bestado%5D%5B%24eq%5D=lanzado&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3&sort=fechaLanzamiento%3Adesc (133 ms) 200
+🔓 Acceso público permitido: /api/tokens
+🔓 Permitiendo acceso público a: /api/tokens
+[2025-08-05 12:45:27.239] [32mhttp[39m: GET /uploads/pump_fun_fd078a89d2.png (49 ms) 200
+[2025-08-05 12:45:27.264] [32mhttp[39m: GET /uploads/Captura_de_pantalla_2025_07_14_a_la_s_4_18_22_p_m_a3a51c80d2.png (46 ms) 200
+[2025-08-05 12:45:27.277] [32mhttp[39m: GET /api/tokens?filters%5Bestado%5D%5B%24eq%5D=lanzado&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=9&sort=fechaLanzamiento%3Adesc (192 ms) 200
+[2025-08-05 12:45:27.318] [32mhttp[39m: GET /api/tokens?filters%5Bestado%5D%5B%24eq%5D=lanzado&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3&sort=fechaLanzamiento%3Adesc (104 ms) 200
+🔓 Permitiendo acceso público a: /api/rankings/page/next
+[2025-08-05 12:45:33.981] [32mhttp[39m: GET /api/rankings/page/next (35 ms) 200
+🔓 Permitiendo acceso público a: /api/rankings/page/next
+[2025-08-05 12:45:34.002] [32mhttp[39m: GET /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=6 (74 ms) 200
+[2025-08-05 12:45:34.019] [32mhttp[39m: GET /api/rankings/page/next (27 ms) 200
+🔓 Acceso público permitido: /api/tokens
+🔓 Permitiendo acceso público a: /api/tokens
+[2025-08-05 12:45:34.037] [32mhttp[39m: GET /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=6 (27 ms) 200
+[2025-08-05 12:45:34.039] [32mhttp[39m: GET /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3 (25 ms) 200
+🔓 Acceso público permitido: /api/tokens
+🔓 Permitiendo acceso público a: /api/tokens
+[2025-08-05 12:45:34.087] [32mhttp[39m: GET /api/tokens?filters%5Bestado%5D%5B%24eq%5D=proximo&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3&sort=totalVotos%3Adesc (30 ms) 400
+[2025-08-05 12:45:34.094] [32mhttp[39m: GET /api/tokens?filters%5Bestado%5D%5B%24eq%5D=proximo&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=6&sort=fechaLanzamiento%3Aasc (68 ms) 200
+[2025-08-05 12:45:34.099] [32mhttp[39m: GET /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3 (52 ms) 200
+🔓 Acceso público permitido: /api/tokens
+🔓 Permitiendo acceso público a: /api/tokens
+🔓 Acceso público permitido: /api/tokens
+🔓 Permitiendo acceso público a: /api/tokens
+[2025-08-05 12:45:34.167] [32mhttp[39m: GET /uploads/petro_195aecb4f0.jpeg (66 ms) 404
+[2025-08-05 12:45:34.182] [32mhttp[39m: GET /api/tokens?filters%5Bestado%5D%5B%24eq%5D=proximo&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3&sort=totalVotos%3Adesc (38 ms) 400
+[2025-08-05 12:45:34.184] [32mhttp[39m: GET /uploads/bukele_5c63c714b5.jpeg (36 ms) 404
+[2025-08-05 12:45:34.188] [32mhttp[39m: GET /uploads/barack_obama_3ac7cdb406.jpeg (26 ms) 404
+[2025-08-05 12:45:34.192] [32mhttp[39m: GET /uploads/Captura_de_pantalla_2025_07_17_a_la_s_2_55_53_p_m_46099b91b9.png (22 ms) 404
+[2025-08-05 12:45:34.200] [32mhttp[39m: GET /api/tokens?filters%5Bestado%5D%5B%24eq%5D=proximo&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=6&sort=fechaLanzamiento%3Aasc (75 ms) 200
+[2025-08-05 12:45:49.163] [32mhttp[39m: GET /uploads/petro_195aecb4f0.jpeg (20 ms) 404
+[2025-08-05 12:45:49.168] [32mhttp[39m: GET /uploads/bukele_5c63c714b5.jpeg (23 ms) 404
+[2025-08-05 12:45:49.184] [32mhttp[39m: GET /uploads/barack_obama_3ac7cdb406.jpeg (37 ms) 404
+[2025-08-05 12:45:49.198] [32mhttp[39m: GET /uploads/Captura_de_pantalla_2025_07_17_a_la_s_2_55_53_p_m_46099b91b9.png (40 ms) 404
+🔓 Permitiendo acceso público a: /api/rankings/page/next
+[2025-08-05 12:46:07.139] [32mhttp[39m: GET /api/rankings/page/next (7 ms) 200
+[2025-08-05 12:46:07.142] [32mhttp[39m: GET /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=6 (27 ms) 200
+🔓 Acceso público permitido: /api/tokens
+🔓 Permitiendo acceso público a: /api/tokens
+[2025-08-05 12:46:07.174] [32mhttp[39m: GET /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3 (25 ms) 200
+🔓 Acceso público permitido: /api/tokens
+🔓 Permitiendo acceso público a: /api/tokens
+[2025-08-05 12:46:07.273] [32mhttp[39m: GET /api/tokens?filters%5Bestado%5D%5B%24eq%5D=proximo&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3&sort=totalVotos%3Adesc (63 ms) 400
+[2025-08-05 12:46:07.275] [32mhttp[39m: GET /api/tokens?filters%5Bestado%5D%5B%24eq%5D=proximo&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=6&sort=fechaLanzamiento%3Aasc (118 ms) 200
+[2025-08-05 12:46:07.427] [32mhttp[39m: GET /uploads/Captura_de_pantalla_2025_07_17_a_la_s_2_55_53_p_m_46099b91b9.png (2 ms) 404
+🔓 Permitiendo acceso público a: /api/rankings/page/next
+[2025-08-05 12:56:23.305] [32mhttp[39m: GET /api/rankings/page/next (11 ms) 200
+[2025-08-05 12:56:23.307] [32mhttp[39m: GET /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=6 (23 ms) 200
+🔓 Permitiendo acceso público a: /api/rankings/page/next
+[2025-08-05 12:56:23.326] [32mhttp[39m: GET /api/rankings/page/next (15 ms) 200
+🔓 Acceso público permitido: /api/tokens
+🔓 Permitiendo acceso público a: /api/tokens
+[2025-08-05 12:56:23.338] [32mhttp[39m: GET /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3 (24 ms) 200
+[2025-08-05 12:56:23.341] [32mhttp[39m: GET /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=6 (18 ms) 200
+🔓 Acceso público permitido: /api/tokens
+🔓 Permitiendo acceso público a: /api/tokens
+[2025-08-05 12:56:23.353] [32mhttp[39m: GET /api/tokens?filters%5Bestado%5D%5B%24eq%5D=proximo&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3&sort=totalVotos%3Adesc (4 ms) 400
+[2025-08-05 12:56:23.357] [32mhttp[39m: GET /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3 (12 ms) 200
+[2025-08-05 12:56:23.360] [32mhttp[39m: GET /api/tokens?filters%5Bestado%5D%5B%24eq%5D=proximo&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=6&sort=fechaLanzamiento%3Aasc (31 ms) 200
+🔓 Acceso público permitido: /api/tokens
+🔓 Permitiendo acceso público a: /api/tokens
+🔓 Acceso público permitido: /api/tokens
+🔓 Permitiendo acceso público a: /api/tokens
+[2025-08-05 12:56:23.386] [32mhttp[39m: GET /api/tokens?filters%5Bestado%5D%5B%24eq%5D=proximo&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3&sort=totalVotos%3Adesc (10 ms) 400
+[2025-08-05 12:56:23.389] [32mhttp[39m: GET /uploads/petro_195aecb4f0.jpeg (11 ms) 404
+[2025-08-05 12:56:23.390] [32mhttp[39m: GET /uploads/bukele_5c63c714b5.jpeg (6 ms) 404
+[2025-08-05 12:56:23.392] [32mhttp[39m: GET /uploads/barack_obama_3ac7cdb406.jpeg (5 ms) 404
+[2025-08-05 12:56:23.393] [32mhttp[39m: GET /uploads/Captura_de_pantalla_2025_07_17_a_la_s_2_55_53_p_m_46099b91b9.png (3 ms) 404
+[2025-08-05 12:56:23.395] [32mhttp[39m: GET /api/tokens?filters%5Bestado%5D%5B%24eq%5D=proximo&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=6&sort=fechaLanzamiento%3Aasc (33 ms) 200
+[2025-08-05 12:56:33.568] [31merror[39m: ENOENT: no such file or directory, open '/Users/anto/Documents/florkaproject2/kiroflorka/backend/favicon.ico'
+Error: ENOENT: no such file or directory, open '/Users/anto/Documents/florkaproject2/kiroflorka/backend/favicon.ico'
+    at Object.openSync (node:fs:562:18)
+    at Object.readFileSync (node:fs:446:35)
+    at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-favicon/index.js:50:28
+    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
+    at dummyMiddleware (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/services/server/middleware.js:25:39)
+    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
+    at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/middlewares/body.js:45:15
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/middlewares/powered-by.js:9:5
+    at async cors (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@koa/cors/index.js:61:32)
+[2025-08-05 12:56:33.569] [32mhttp[39m: GET /favicon.ico (2 ms) 500
+[2025-08-05 12:56:33.583] [32mhttp[39m: GET /content-manager/collection-types/api::token.token/1 (19 ms) 200
+[2025-08-05 12:56:33.677] [32mhttp[39m: GET /uploads/thumbnail_Captura_de_pantalla_2025_07_17_a_la_s_2_55_53_p_m_46099b91b9.png (2 ms) 404
+[2025-08-05 12:56:35.249] [32mhttp[39m: GET /upload/configuration (27 ms) 200
+[2025-08-05 12:56:35.253] [32mhttp[39m: GET /upload/files?page=1&sort=updatedAt:DESC&pageSize=10&filters[$and][0][folderPath][$eq]=/&folder= (26 ms) 200
+[2025-08-05 12:56:35.269] [32mhttp[39m: GET /upload/files?page=1&sort=createdAt:DESC&pageSize=10&filters[$and][0][folderPath][$eq]=/&folder= (12 ms) 200
+[2025-08-05 12:56:35.286] [32mhttp[39m: GET /upload/folders?page=1&sort=createdAt:DESC&pageSize=10&filters[$and][0][parent][id][$null]=true&pagination[pageSize]=-1 (10 ms) 200
+[2025-08-05 12:56:35.295] [32mhttp[39m: GET /uploads/thumbnail_Captura_de_pantalla_2025_07_17_a_la_s_2_55_53_p_m_46099b91b9.png?updatedAt=2025-07-29T18%3A46%3A26.601Z (2 ms) 404
+[2025-08-05 12:56:42.966] [32mhttp[39m: POST /upload (336 ms) 200
+[2025-08-05 12:56:43.003] [32mhttp[39m: GET /upload/configuration (18 ms) 200
+[2025-08-05 12:56:43.046] [32mhttp[39m: GET /upload/files?page=1&sort=updatedAt:DESC&pageSize=10&filters[$and][0][folderPath][$eq]=/&folder= (56 ms) 200
+[2025-08-05 12:56:43.049] [32mhttp[39m: GET /upload/files?page=1&sort=createdAt:DESC&pageSize=10&filters[$and][0][folderPath][$eq]=/&folder= (56 ms) 200
+[2025-08-05 12:56:43.066] [32mhttp[39m: GET /upload/folders?page=1&sort=createdAt:DESC&pageSize=10&filters[$and][0][parent][id][$null]=true&pagination[pageSize]=-1 (11 ms) 200
+[2025-08-05 12:56:43.074] [32mhttp[39m: GET /uploads/thumbnail_Captura_de_pantalla_2025_07_17_a_la_s_2_55_53_p_m_981798021b.png?updatedAt=2025-08-05T17%3A56%3A42.961Z (1 ms) 200
+[2025-08-05 12:56:43.965] [32mhttp[39m: GET /uploads/thumbnail_Captura_de_pantalla_2025_07_17_a_la_s_2_55_53_p_m_981798021b.png (2 ms) 200
+[2025-08-05 12:56:45.323] [32mhttp[39m: PUT /content-manager/collection-types/api::token.token/1 (23 ms) 200
+🔓 Permitiendo acceso público a: /api/rankings/page/next
+[2025-08-05 12:56:53.431] [32mhttp[39m: GET /api/rankings/page/next (4 ms) 200
+[2025-08-05 12:56:53.433] [32mhttp[39m: GET /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=6 (9 ms) 200
+🔓 Permitiendo acceso público a: /api/rankings/page/next
+[2025-08-05 12:56:53.440] [32mhttp[39m: GET /api/rankings/page/next (5 ms) 200
+[2025-08-05 12:56:53.442] [32mhttp[39m: GET /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=6 (4 ms) 200
+🔓 Acceso público permitido: /api/tokens
+🔓 Permitiendo acceso público a: /api/tokens
+[2025-08-05 12:56:53.499] [32mhttp[39m: GET /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3 (10 ms) 200
+🔓 Acceso público permitido: /api/tokens
+🔓 Permitiendo acceso público a: /api/tokens
+[2025-08-05 12:56:53.507] [32mhttp[39m: GET /api/tokens?filters%5Bestado%5D%5B%24eq%5D=proximo&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=6&sort=fechaLanzamiento%3Aasc (13 ms) 200
+[2025-08-05 12:56:53.508] [32mhttp[39m: GET /api/tokens?filters%5Bestado%5D%5B%24eq%5D=proximo&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3&sort=totalVotos%3Adesc (3 ms) 400
+🔓 Acceso público permitido: /api/tokens
+🔓 Permitiendo acceso público a: /api/tokens
+[2025-08-05 12:56:53.512] [32mhttp[39m: GET /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3 (11 ms) 200
+[2025-08-05 12:56:53.520] [32mhttp[39m: GET /uploads/Captura_de_pantalla_2025_07_17_a_la_s_2_55_53_p_m_981798021b.png (6 ms) 200
+🔓 Acceso público permitido: /api/tokens
+🔓 Permitiendo acceso público a: /api/tokens
+[2025-08-05 12:56:53.524] [32mhttp[39m: GET /uploads/petro_195aecb4f0.jpeg (6 ms) 404
+[2025-08-05 12:56:53.526] [32mhttp[39m: GET /api/tokens?filters%5Bestado%5D%5B%24eq%5D=proximo&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=6&sort=fechaLanzamiento%3Aasc (16 ms) 200
+[2025-08-05 12:56:53.526] [32mhttp[39m: GET /uploads/bukele_5c63c714b5.jpeg (6 ms) 404
+[2025-08-05 12:56:53.527] [32mhttp[39m: GET /uploads/barack_obama_3ac7cdb406.jpeg (3 ms) 404
+[2025-08-05 12:56:53.529] [32mhttp[39m: GET /api/tokens?filters%5Bestado%5D%5B%24eq%5D=proximo&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3&sort=totalVotos%3Adesc (6 ms) 400
+[2025-08-05 12:57:05.043] [31merror[39m: ENOENT: no such file or directory, open '/Users/anto/Documents/florkaproject2/kiroflorka/backend/favicon.ico'
+Error: ENOENT: no such file or directory, open '/Users/anto/Documents/florkaproject2/kiroflorka/backend/favicon.ico'
+    at Object.openSync (node:fs:562:18)
+    at Object.readFileSync (node:fs:446:35)
+    at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-favicon/index.js:50:28
+    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
+    at dummyMiddleware (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/services/server/middleware.js:25:39)
+    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
+    at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/middlewares/body.js:45:15
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/middlewares/powered-by.js:9:5
+    at async cors (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@koa/cors/index.js:61:32)
+[2025-08-05 12:57:05.044] [32mhttp[39m: GET /favicon.ico (1 ms) 500
+[2025-08-05 12:57:05.070] [32mhttp[39m: GET /content-manager/collection-types/api::token.token?page=1&pageSize=10&sort=nombre:ASC (58 ms) 200
+[2025-08-05 12:57:06.766] [31merror[39m: ENOENT: no such file or directory, open '/Users/anto/Documents/florkaproject2/kiroflorka/backend/favicon.ico'
+Error: ENOENT: no such file or directory, open '/Users/anto/Documents/florkaproject2/kiroflorka/backend/favicon.ico'
+    at Object.openSync (node:fs:562:18)
+    at Object.readFileSync (node:fs:446:35)
+    at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-favicon/index.js:50:28
+    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
+    at dummyMiddleware (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/services/server/middleware.js:25:39)
+    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
+    at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/middlewares/body.js:45:15
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/middlewares/powered-by.js:9:5
+    at async cors (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@koa/cors/index.js:61:32)
+[2025-08-05 12:57:06.766] [32mhttp[39m: GET /favicon.ico (1 ms) 500
+[2025-08-05 12:57:11.073] [31merror[39m: ENOENT: no such file or directory, open '/Users/anto/Documents/florkaproject2/kiroflorka/backend/favicon.ico'
+Error: ENOENT: no such file or directory, open '/Users/anto/Documents/florkaproject2/kiroflorka/backend/favicon.ico'
+    at Object.openSync (node:fs:562:18)
+    at Object.readFileSync (node:fs:446:35)
+    at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-favicon/index.js:50:28
+    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
+    at dummyMiddleware (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/services/server/middleware.js:25:39)
+    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
+    at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/middlewares/body.js:45:15
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/middlewares/powered-by.js:9:5
+    at async cors (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@koa/cors/index.js:61:32)
+[2025-08-05 12:57:11.073] [32mhttp[39m: GET /favicon.ico (1 ms) 500
+[2025-08-05 12:57:11.091] [32mhttp[39m: GET /content-manager/collection-types/api::token.token?page=1&pageSize=10&sort=nombre:ASC (22 ms) 200
+[2025-08-05 12:57:16.659] [31merror[39m: ENOENT: no such file or directory, open '/Users/anto/Documents/florkaproject2/kiroflorka/backend/favicon.ico'
+Error: ENOENT: no such file or directory, open '/Users/anto/Documents/florkaproject2/kiroflorka/backend/favicon.ico'
+    at Object.openSync (node:fs:562:18)
+    at Object.readFileSync (node:fs:446:35)
+    at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-favicon/index.js:50:28
+    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
+    at dummyMiddleware (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/services/server/middleware.js:25:39)
+    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
+    at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/middlewares/body.js:45:15
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/middlewares/powered-by.js:9:5
+    at async cors (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@koa/cors/index.js:61:32)
+[2025-08-05 12:57:16.659] [32mhttp[39m: GET /favicon.ico (0 ms) 500
+[2025-08-05 12:57:16.673] [32mhttp[39m: GET /content-manager/collection-types/api::token.token/2 (17 ms) 200
+[2025-08-05 12:57:16.736] [32mhttp[39m: GET /uploads/thumbnail_Captura_de_pantalla_2025_07_14_a_la_s_4_18_22_p_m_a3a51c80d2.png (2 ms) 200
+[2025-08-05 12:57:20.468] [31merror[39m: ENOENT: no such file or directory, open '/Users/anto/Documents/florkaproject2/kiroflorka/backend/favicon.ico'
+Error: ENOENT: no such file or directory, open '/Users/anto/Documents/florkaproject2/kiroflorka/backend/favicon.ico'
+    at Object.openSync (node:fs:562:18)
+    at Object.readFileSync (node:fs:446:35)
+    at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-favicon/index.js:50:28
+    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
+    at dummyMiddleware (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/services/server/middleware.js:25:39)
+    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
+    at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/middlewares/body.js:45:15
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/middlewares/powered-by.js:9:5
+    at async cors (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@koa/cors/index.js:61:32)
+[2025-08-05 12:57:20.468] [32mhttp[39m: GET /favicon.ico (1 ms) 500
+[2025-08-05 12:57:20.485] [32mhttp[39m: GET /content-manager/collection-types/api::token.token?page=1&pageSize=10&sort=nombre:ASC (21 ms) 200
+[2025-08-05 12:57:25.094] [31merror[39m: ENOENT: no such file or directory, open '/Users/anto/Documents/florkaproject2/kiroflorka/backend/favicon.ico'
+Error: ENOENT: no such file or directory, open '/Users/anto/Documents/florkaproject2/kiroflorka/backend/favicon.ico'
+    at Object.openSync (node:fs:562:18)
+    at Object.readFileSync (node:fs:446:35)
+    at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-favicon/index.js:50:28
+    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
+    at dummyMiddleware (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/services/server/middleware.js:25:39)
+    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
+    at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/middlewares/body.js:45:15
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/middlewares/powered-by.js:9:5
+    at async cors (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@koa/cors/index.js:61:32)
+[2025-08-05 12:57:25.095] [32mhttp[39m: GET /favicon.ico (1 ms) 500
+[2025-08-05 12:57:25.108] [32mhttp[39m: GET /content-manager/collection-types/api::token.token/3 (17 ms) 200
+[2025-08-05 12:57:25.167] [32mhttp[39m: GET /uploads/thumbnail_Captura_de_pantalla_2025_07_17_a_la_s_1_51_55_p_m_2_af1ac897bd.png (2 ms) 404
+[2025-08-05 12:57:29.985] [32mhttp[39m: GET /upload/configuration (27 ms) 200
+[2025-08-05 12:57:29.996] [32mhttp[39m: GET /upload/files?page=1&sort=updatedAt:DESC&pageSize=10&filters[$and][0][folderPath][$eq]=/&folder= (33 ms) 200
+[2025-08-05 12:57:29.999] [32mhttp[39m: GET /upload/files?page=1&sort=createdAt:DESC&pageSize=10&filters[$and][0][folderPath][$eq]=/&folder= (32 ms) 200
+[2025-08-05 12:57:30.015] [32mhttp[39m: GET /upload/folders?page=1&sort=createdAt:DESC&pageSize=10&filters[$and][0][parent][id][$null]=true&pagination[pageSize]=-1 (10 ms) 200
+[2025-08-05 12:57:30.026] [32mhttp[39m: GET /uploads/thumbnail_Captura_de_pantalla_2025_07_17_a_la_s_1_51_55_p_m_2_af1ac897bd.png?updatedAt=2025-07-29T18%3A46%3A02.613Z (1 ms) 404
+[2025-08-05 12:57:38.764] [32mhttp[39m: POST /upload (1451 ms) 200
+[2025-08-05 12:57:38.836] [32mhttp[39m: GET /upload/configuration (54 ms) 200
+[2025-08-05 12:57:38.848] [32mhttp[39m: GET /upload/files?page=1&sort=updatedAt:DESC&pageSize=10&filters[$and][0][folderPath][$eq]=/&folder= (56 ms) 200
+[2025-08-05 12:57:38.850] [32mhttp[39m: GET /upload/files?page=1&sort=createdAt:DESC&pageSize=10&filters[$and][0][folderPath][$eq]=/&folder= (42 ms) 200
+[2025-08-05 12:57:38.866] [32mhttp[39m: GET /upload/folders?page=1&sort=createdAt:DESC&pageSize=10&filters[$and][0][parent][id][$null]=true&pagination[pageSize]=-1 (10 ms) 200
+[2025-08-05 12:57:38.874] [32mhttp[39m: GET /uploads/thumbnail_Captura_de_pantalla_2025_07_17_a_la_s_1_51_55_p_m_2_f6524a0006.png?updatedAt=2025-08-05T17%3A57%3A38.757Z (1 ms) 200
+[2025-08-05 12:57:39.993] [32mhttp[39m: GET /uploads/thumbnail_Captura_de_pantalla_2025_07_17_a_la_s_1_51_55_p_m_2_f6524a0006.png (1 ms) 200
+[2025-08-05 12:57:51.183] [32mhttp[39m: PUT /content-manager/collection-types/api::token.token/3 (24 ms) 200
+[2025-08-05 12:57:58.291] [32mhttp[39m: PUT /content-manager/collection-types/api::token.token/3 (24 ms) 200
+🔓 Permitiendo acceso público a: /api/rankings/page/next
+[2025-08-05 12:58:05.486] [32mhttp[39m: GET /api/rankings/page/next (4 ms) 200
+[2025-08-05 12:58:05.487] [32mhttp[39m: GET /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=6 (10 ms) 200
+🔓 Permitiendo acceso público a: /api/rankings/page/next
+[2025-08-05 12:58:05.495] [32mhttp[39m: GET /api/rankings/page/next (6 ms) 200
+[2025-08-05 12:58:05.497] [32mhttp[39m: GET /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=6 (5 ms) 200
+🔓 Acceso público permitido: /api/tokens
+🔓 Permitiendo acceso público a: /api/tokens
+[2025-08-05 12:58:05.526] [32mhttp[39m: GET /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3 (15 ms) 200
+🔓 Acceso público permitido: /api/tokens
+🔓 Permitiendo acceso público a: /api/tokens
+[2025-08-05 12:58:05.538] [32mhttp[39m: GET /api/tokens?filters%5Bestado%5D%5B%24eq%5D=proximo&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=6&sort=fechaLanzamiento%3Aasc (20 ms) 200
+[2025-08-05 12:58:05.541] [32mhttp[39m: GET /api/tokens?filters%5Bestado%5D%5B%24eq%5D=proximo&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3&sort=totalVotos%3Adesc (7 ms) 400
+🔓 Acceso público permitido: /api/tokens
+🔓 Permitiendo acceso público a: /api/tokens
+[2025-08-05 12:58:05.550] [32mhttp[39m: GET /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3 (21 ms) 200
+🔓 Acceso público permitido: /api/tokens
+🔓 Permitiendo acceso público a: /api/tokens
+[2025-08-05 12:58:05.564] [32mhttp[39m: GET /uploads/Captura_de_pantalla_2025_07_17_a_la_s_2_55_53_p_m_981798021b.png (8 ms) 200
+[2025-08-05 12:58:05.566] [32mhttp[39m: GET /api/tokens?filters%5Bestado%5D%5B%24eq%5D=proximo&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3&sort=totalVotos%3Adesc (7 ms) 400
+[2025-08-05 12:58:05.571] [32mhttp[39m: GET /uploads/Captura_de_pantalla_2025_07_17_a_la_s_1_51_55_p_m_2_f6524a0006.png (8 ms) 200
+[2025-08-05 12:58:05.572] [32mhttp[39m: GET /uploads/petro_195aecb4f0.jpeg (8 ms) 404
+[2025-08-05 12:58:05.573] [32mhttp[39m: GET /uploads/bukele_5c63c714b5.jpeg (4 ms) 404
+[2025-08-05 12:58:05.577] [32mhttp[39m: GET /api/tokens?filters%5Bestado%5D%5B%24eq%5D=proximo&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=6&sort=fechaLanzamiento%3Aasc (31 ms) 200
+[2025-08-05 12:58:05.578] [32mhttp[39m: GET /uploads/barack_obama_3ac7cdb406.jpeg (8 ms) 404
+🔓 Permitiendo acceso público a: /api/rankings/page/next
+[2025-08-05 13:03:13.298] [32mhttp[39m: GET /api/rankings/page/next (12 ms) 200
+[2025-08-05 13:03:13.302] [32mhttp[39m: GET /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=6 (167 ms) 200
+🔓 Acceso público permitido: /api/tokens
+🔓 Permitiendo acceso público a: /api/tokens
+[2025-08-05 13:03:13.346] [32mhttp[39m: GET /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3 (37 ms) 200
+🔓 Acceso público permitido: /api/tokens
+🔓 Permitiendo acceso público a: /api/tokens
+[2025-08-05 13:03:13.365] [32mhttp[39m: GET /api/tokens?filters%5Bestado%5D%5B%24eq%5D=proximo&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3&sort=totalVotos%3Adesc (10 ms) 400
+[2025-08-05 13:03:13.381] [32mhttp[39m: GET /api/tokens?filters%5Bestado%5D%5B%24eq%5D=proximo&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=6&sort=fechaLanzamiento%3Aasc (57 ms) 200
+🔓 Permitiendo acceso público a: /api/rankings/page/next
+[2025-08-05 13:05:07.259] [32mhttp[39m: GET /api/rankings/page/next (34 ms) 200
+🔓 Permitiendo acceso público a: /api/rankings/page/next
+[2025-08-05 13:05:07.285] [32mhttp[39m: GET /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=6 (87 ms) 200
+[2025-08-05 13:05:07.327] [32mhttp[39m: GET /api/rankings/page/next (55 ms) 200
+🔓 Acceso público permitido: /api/tokens
+🔓 Permitiendo acceso público a: /api/tokens
+[2025-08-05 13:05:07.377] [32mhttp[39m: GET /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=6 (75 ms) 200
+[2025-08-05 13:05:07.382] [32mhttp[39m: GET /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3 (64 ms) 200
+🔓 Acceso público permitido: /api/tokens
+🔓 Permitiendo acceso público a: /api/tokens
+[2025-08-05 13:05:07.426] [32mhttp[39m: GET /api/tokens?filters%5Bestado%5D%5B%24eq%5D=proximo&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3&sort=totalVotos%3Adesc (24 ms) 400
+[2025-08-05 13:05:07.432] [32mhttp[39m: GET /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3 (40 ms) 200
+[2025-08-05 13:05:07.444] [32mhttp[39m: GET /api/tokens?filters%5Bestado%5D%5B%24eq%5D=proximo&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=6&sort=fechaLanzamiento%3Aasc (99 ms) 200
+🔓 Acceso público permitido: /api/tokens
+🔓 Permitiendo acceso público a: /api/tokens
+🔓 Acceso público permitido: /api/tokens
+🔓 Permitiendo acceso público a: /api/tokens
+[2025-08-05 13:05:07.966] [32mhttp[39m: GET /api/tokens?filters%5Bestado%5D%5B%24eq%5D=proximo&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3&sort=totalVotos%3Adesc (516 ms) 400
+[2025-08-05 13:05:07.971] [32mhttp[39m: GET /uploads/petro_195aecb4f0.jpeg (321 ms) 404
+[2025-08-05 13:05:07.980] [32mhttp[39m: GET /uploads/bukele_5c63c714b5.jpeg (22 ms) 404
+[2025-08-05 13:05:07.983] [32mhttp[39m: GET /uploads/barack_obama_3ac7cdb406.jpeg (15 ms) 404
+[2025-08-05 13:05:07.999] [32mhttp[39m: GET /api/tokens?filters%5Bestado%5D%5B%24eq%5D=proximo&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=6&sort=fechaLanzamiento%3Aasc (78 ms) 200
+[2025-08-05 13:05:22.581] [32mhttp[39m: GET /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=6 (4 ms) 200
+🔓 Acceso público permitido: /api/tokens
+[2025-08-05 13:05:22.584] [32mhttp[39m: OPTIONS /api/tokens?filters%5Bestado%5D%5B%24eq%5D=proximo&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=6&sort=totalVotos%3Adesc (0 ms) 204
+🔓 Acceso público permitido: /api/tokens
+🔓 Permitiendo acceso público a: /api/tokens
+[2025-08-05 13:05:22.589] [32mhttp[39m: GET /api/tokens?filters%5Bestado%5D%5B%24eq%5D=proximo&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=6&sort=totalVotos%3Adesc (2 ms) 400
+[2025-08-05 13:05:22.598] [32mhttp[39m: GET /uploads/bukele_5c63c714b5.jpeg (3 ms) 404
+[2025-08-05 13:05:22.598] [32mhttp[39m: GET /uploads/petro_195aecb4f0.jpeg (2 ms) 404
+[2025-08-05 13:05:22.599] [32mhttp[39m: GET /uploads/barack_obama_3ac7cdb406.jpeg (2 ms) 404
+[2025-08-05 13:05:26.998] [32mhttp[39m: GET /uploads/bukele_5c63c714b5.jpeg (6 ms) 404
+[2025-08-05 13:05:27.001] [32mhttp[39m: GET /uploads/petro_195aecb4f0.jpeg (7 ms) 404
+[2025-08-05 13:05:27.003] [32mhttp[39m: GET /uploads/barack_obama_3ac7cdb406.jpeg (7 ms) 404
+🔓 Permitiendo acceso público a: /api/rankings/page/next
+[2025-08-05 13:05:38.251] [32mhttp[39m: GET /api/rankings/page/next (22 ms) 200
+🔓 Permitiendo acceso público a: /api/rankings/page/next
+[2025-08-05 13:05:38.269] [32mhttp[39m: GET /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=6 (60 ms) 200
+[2025-08-05 13:05:38.292] [32mhttp[39m: GET /api/rankings/page/next (31 ms) 200
+🔓 Acceso público permitido: /api/tokens
+🔓 Permitiendo acceso público a: /api/tokens
+[2025-08-05 13:05:38.337] [32mhttp[39m: GET /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=6 (59 ms) 200
+[2025-08-05 13:05:38.350] [32mhttp[39m: GET /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3 (62 ms) 200
+🔓 Acceso público permitido: /api/tokens
+🔓 Permitiendo acceso público a: /api/tokens
+[2025-08-05 13:05:38.398] [32mhttp[39m: GET /api/tokens?filters%5Bestado%5D%5B%24eq%5D=proximo&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3&sort=totalVotos%3Adesc (21 ms) 400
+[2025-08-05 13:05:38.408] [32mhttp[39m: GET /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3 (50 ms) 200
+🔓 Acceso público permitido: /api/tokens
+🔓 Permitiendo acceso público a: /api/tokens
+[2025-08-05 13:05:38.430] [32mhttp[39m: GET /api/tokens?filters%5Bestado%5D%5B%24eq%5D=proximo&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=6&sort=fechaLanzamiento%3Aasc (126 ms) 200
+[2025-08-05 13:05:38.444] [32mhttp[39m: GET /api/tokens?filters%5Bestado%5D%5B%24eq%5D=proximo&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3&sort=totalVotos%3Adesc (23 ms) 400
+🔓 Acceso público permitido: /api/tokens
+🔓 Permitiendo acceso público a: /api/tokens
+[2025-08-05 13:05:38.553] [32mhttp[39m: GET /api/tokens?filters%5Bestado%5D%5B%24eq%5D=proximo&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=6&sort=fechaLanzamiento%3Aasc (40 ms) 200
+🔓 Permitiendo acceso público a: /api/rankings/page/next
+[2025-08-05 13:06:13.124] [32mhttp[39m: GET /api/rankings/page/next (9 ms) 200
+[2025-08-05 13:06:13.137] [32mhttp[39m: GET /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=6 (31 ms) 200
+🔓 Acceso público permitido: /api/tokens
+🔓 Permitiendo acceso público a: /api/tokens
+[2025-08-05 13:06:13.167] [32mhttp[39m: GET /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3 (36 ms) 200
+🔓 Acceso público permitido: /api/tokens
+🔓 Permitiendo acceso público a: /api/tokens
+[2025-08-05 13:06:13.189] [32mhttp[39m: GET /api/tokens?filters%5Bestado%5D%5B%24eq%5D=proximo&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3&sort=totalVotos%3Adesc (11 ms) 400
+[2025-08-05 13:06:13.194] [32mhttp[39m: GET /api/tokens?filters%5Bestado%5D%5B%24eq%5D=proximo&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=6&sort=fechaLanzamiento%3Aasc (50 ms) 200
+[2025-08-05 13:06:24.936] [32mhttp[39m: OPTIONS /api/candidatos?filters%5Bactivo%5D%5B%24eq%5D=true&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=5&sort=votos%3Adesc (1 ms) 204
+🔓 Permitiendo acceso público a: /api/rankings/page/home
+[2025-08-05 13:06:24.949] [32mhttp[39m: OPTIONS /api/candidatos?filters%5Bactivo%5D%5B%24eq%5D=true&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=5&sort=votos%3Adesc (0 ms) 204
+[2025-08-05 13:06:24.951] [32mhttp[39m: GET /api/rankings/page/home (11 ms) 200
+🔓 Permitiendo acceso público a: /api/rankings/page/home
+[2025-08-05 13:06:24.966] [32mhttp[39m: GET /api/candidatos?filters%5Bactivo%5D%5B%24eq%5D=true&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=5&sort=votos%3Adesc (19 ms) 200
+[2025-08-05 13:06:24.969] [32mhttp[39m: GET /api/rankings/page/home (11 ms) 200
+🔓 Acceso público permitido: /api/votos/candidato/4
+[2025-08-05 13:06:24.977] [32mhttp[39m: OPTIONS /api/votos/candidato/4 (0 ms) 204
+[2025-08-05 13:06:24.980] [32mhttp[39m: GET /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3 (16 ms) 200
+[2025-08-05 13:06:24.982] [32mhttp[39m: GET /api/candidatos?filters%5Bactivo%5D%5B%24eq%5D=true&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=5&sort=votos%3Adesc (9 ms) 200
+🔓 Acceso público permitido: /api/votos/candidato/4
+🔓 Permitiendo acceso público a: /api/votos/candidato/4
+🔓 Acceso público permitido: /api/tokens
+🔓 Permitiendo acceso público a: /api/tokens
+[2025-08-05 13:06:24.998] [32mhttp[39m: GET /api/votos/candidato/4 (7 ms) 404
+🔓 Acceso público permitido: /api/votos/candidato/4
+🔓 Permitiendo acceso público a: /api/votos/candidato/4
+🔓 Acceso público permitido: /api/votos/candidato/5
+[2025-08-05 13:06:25.009] [32mhttp[39m: OPTIONS /api/votos/candidato/5 (0 ms) 204
+[2025-08-05 13:06:25.011] [32mhttp[39m: GET /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3 (24 ms) 200
+🔓 Acceso público permitido: /api/votos/candidato/5
+🔓 Permitiendo acceso público a: /api/votos/candidato/5
+[2025-08-05 13:06:25.018] [32mhttp[39m: GET /api/votos/candidato/4 (11 ms) 404
+[2025-08-05 13:06:25.024] [32mhttp[39m: GET /api/votos/candidato/5 (8 ms) 404
+🔓 Acceso público permitido: /api/votos/candidato/5
+🔓 Permitiendo acceso público a: /api/votos/candidato/5
+🔓 Acceso público permitido: /api/votos/candidato/6
+[2025-08-05 13:06:25.039] [32mhttp[39m: OPTIONS /api/votos/candidato/6 (1 ms) 204
+[2025-08-05 13:06:25.043] [32mhttp[39m: GET /api/tokens?filters%5Bestado%5D%5B%24eq%5D=lanzado&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3&sort=fechaLanzamiento%3Adesc (49 ms) 200
+🔓 Acceso público permitido: /api/votos/candidato/6
+🔓 Permitiendo acceso público a: /api/votos/candidato/6
+[2025-08-05 13:06:25.049] [32mhttp[39m: GET /api/votos/candidato/5 (20 ms) 404
+🔓 Acceso público permitido: /api/tokens
+🔓 Permitiendo acceso público a: /api/tokens
+[2025-08-05 13:06:25.063] [32mhttp[39m: GET /api/votos/candidato/6 (16 ms) 404
+🔓 Acceso público permitido: /api/votos/candidato/6
+🔓 Permitiendo acceso público a: /api/votos/candidato/6
+[2025-08-05 13:06:25.159] [32mhttp[39m: GET /api/tokens?filters%5Bestado%5D%5B%24eq%5D=lanzado&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3&sort=fechaLanzamiento%3Adesc (105 ms) 200
+[2025-08-05 13:06:25.216] [32mhttp[39m: GET /api/votos/candidato/6 (143 ms) 404
+[2025-08-05 13:06:25.235] [32mhttp[39m: GET /uploads/bukele_5c63c714b5.jpeg (26 ms) 404
+[2025-08-05 13:06:25.266] [32mhttp[39m: GET /uploads/4_fantasticos_327f5082df.jpeg (38 ms) 200
+[2025-08-05 13:06:25.287] [32mhttp[39m: GET /uploads/capitrana_marvel_edcd6c169e.jpeg (56 ms) 200
+[2025-08-05 13:06:25.291] [32mhttp[39m: GET /uploads/superman_1066d0438e.jpeg (53 ms) 200
+[2025-08-05 13:06:25.295] [32mhttp[39m: GET /uploads/petro_195aecb4f0.jpeg (16 ms) 404
+[2025-08-05 13:06:25.298] [32mhttp[39m: GET /uploads/barack_obama_3ac7cdb406.jpeg (10 ms) 404
+[2025-08-05 13:06:37.730] [31merror[39m: ENOENT: no such file or directory, open '/Users/anto/Documents/florkaproject2/kiroflorka/backend/favicon.ico'
+Error: ENOENT: no such file or directory, open '/Users/anto/Documents/florkaproject2/kiroflorka/backend/favicon.ico'
+    at Object.openSync (node:fs:562:18)
+    at Object.readFileSync (node:fs:446:35)
+    at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-favicon/index.js:50:28
+    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
+    at dummyMiddleware (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/services/server/middleware.js:25:39)
+    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
+    at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/middlewares/body.js:45:15
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/middlewares/powered-by.js:9:5
+    at async cors (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@koa/cors/index.js:61:32)
+[2025-08-05 13:06:37.762] [32mhttp[39m: GET /favicon.ico (38 ms) 500
+[2025-08-05 13:06:37.841] [32mhttp[39m: GET /content-manager/content-types/api::votacion.votacion/configuration (69 ms) 200
+[2025-08-05 13:06:37.970] [32mhttp[39m: GET /content-manager/collection-types/api::votacion.votacion?page=1&pageSize=10&sort=titulo:ASC (83 ms) 200
+[2025-08-05 13:06:40.531] [31merror[39m: ENOENT: no such file or directory, open '/Users/anto/Documents/florkaproject2/kiroflorka/backend/favicon.ico'
+Error: ENOENT: no such file or directory, open '/Users/anto/Documents/florkaproject2/kiroflorka/backend/favicon.ico'
+    at Object.openSync (node:fs:562:18)
+    at Object.readFileSync (node:fs:446:35)
+    at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-favicon/index.js:50:28
+    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
+    at dummyMiddleware (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/services/server/middleware.js:25:39)
+    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
+    at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/middlewares/body.js:45:15
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/middlewares/powered-by.js:9:5
+    at async cors (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@koa/cors/index.js:61:32)
+[2025-08-05 13:06:40.531] [32mhttp[39m: GET /favicon.ico (1 ms) 500
+[2025-08-05 13:06:40.563] [32mhttp[39m: GET /content-manager/content-types/api::candidato.candidato/configuration (80 ms) 200
+[2025-08-05 13:06:40.699] [32mhttp[39m: GET /content-manager/collection-types/api::candidato.candidato?page=1&pageSize=10&sort=nombre:ASC (87 ms) 200
+[2025-08-05 13:06:40.727] [32mhttp[39m: GET /uploads/thumbnail_barack_obama_3ac7cdb406.jpeg (6 ms) 404
+[2025-08-05 13:06:40.730] [32mhttp[39m: GET /uploads/thumbnail_bukele_5c63c714b5.jpeg (8 ms) 404
+[2025-08-05 13:06:40.731] [32mhttp[39m: GET /uploads/thumbnail_petro_195aecb4f0.jpeg (7 ms) 404
+[2025-08-05 13:06:42.410] [31merror[39m: ENOENT: no such file or directory, open '/Users/anto/Documents/florkaproject2/kiroflorka/backend/favicon.ico'
+Error: ENOENT: no such file or directory, open '/Users/anto/Documents/florkaproject2/kiroflorka/backend/favicon.ico'
+    at Object.openSync (node:fs:562:18)
+    at Object.readFileSync (node:fs:446:35)
+    at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-favicon/index.js:50:28
+    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
+    at dummyMiddleware (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/services/server/middleware.js:25:39)
+    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
+    at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/middlewares/body.js:45:15
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/middlewares/powered-by.js:9:5
+    at async cors (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@koa/cors/index.js:61:32)
+[2025-08-05 13:06:42.411] [32mhttp[39m: GET /favicon.ico (2 ms) 500
+[2025-08-05 13:06:42.466] [32mhttp[39m: GET /content-manager/collection-types/api::candidato.candidato/6 (73 ms) 200
+[2025-08-05 13:06:42.655] [32mhttp[39m: GET /uploads/thumbnail_barack_obama_3ac7cdb406.jpeg (10 ms) 404
+[2025-08-05 13:06:45.097] [32mhttp[39m: GET /upload/configuration (100 ms) 200
+[2025-08-05 13:06:45.138] [32mhttp[39m: GET /upload/files?page=1&sort=updatedAt:DESC&pageSize=10&filters[$and][0][folderPath][$eq]=/&folder= (132 ms) 200
+[2025-08-05 13:06:45.309] [32mhttp[39m: GET /upload/files?page=1&sort=createdAt:DESC&pageSize=10&filters[$and][0][folderPath][$eq]=/&folder= (166 ms) 200
+[2025-08-05 13:06:45.360] [32mhttp[39m: GET /upload/folders?page=1&sort=createdAt:DESC&pageSize=10&filters[$and][0][parent][id][$null]=true&pagination[pageSize]=-1 (36 ms) 200
+[2025-08-05 13:06:45.380] [32mhttp[39m: GET /uploads/thumbnail_barack_obama_3ac7cdb406.jpeg?updatedAt=2025-07-29T18%3A44%3A02.929Z (3 ms) 404
+[2025-08-05 13:06:53.365] [32mhttp[39m: POST /upload (76 ms) 200
+[2025-08-05 13:06:53.529] [32mhttp[39m: GET /upload/configuration (141 ms) 200
+[2025-08-05 13:06:53.567] [32mhttp[39m: GET /upload/files?page=1&sort=updatedAt:DESC&pageSize=10&filters[$and][0][folderPath][$eq]=/&folder= (168 ms) 200
+[2025-08-05 13:06:53.577] [32mhttp[39m: GET /upload/files?page=1&sort=createdAt:DESC&pageSize=10&filters[$and][0][folderPath][$eq]=/&folder= (162 ms) 200
+[2025-08-05 13:06:53.620] [32mhttp[39m: GET /upload/folders?page=1&sort=createdAt:DESC&pageSize=10&filters[$and][0][parent][id][$null]=true&pagination[pageSize]=-1 (30 ms) 200
+[2025-08-05 13:06:53.635] [32mhttp[39m: GET /uploads/thumbnail_barack_obama_7dadbe7170.jpeg?updatedAt=2025-08-05T18%3A06%3A53.357Z (3 ms) 200
+[2025-08-05 13:06:54.462] [32mhttp[39m: GET /uploads/thumbnail_barack_obama_7dadbe7170.jpeg (4 ms) 200
+[2025-08-05 13:06:55.798] [32mhttp[39m: PUT /content-manager/collection-types/api::candidato.candidato/6 (48 ms) 200
+[2025-08-05 13:06:58.449] [31merror[39m: ENOENT: no such file or directory, open '/Users/anto/Documents/florkaproject2/kiroflorka/backend/favicon.ico'
+Error: ENOENT: no such file or directory, open '/Users/anto/Documents/florkaproject2/kiroflorka/backend/favicon.ico'
+    at Object.openSync (node:fs:562:18)
+    at Object.readFileSync (node:fs:446:35)
+    at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-favicon/index.js:50:28
+    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
+    at dummyMiddleware (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/services/server/middleware.js:25:39)
+    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
+    at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/middlewares/body.js:45:15
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/middlewares/powered-by.js:9:5
+    at async cors (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@koa/cors/index.js:61:32)
+[2025-08-05 13:06:58.449] [32mhttp[39m: GET /favicon.ico (1 ms) 500
+[2025-08-05 13:06:58.483] [32mhttp[39m: GET /content-manager/collection-types/api::candidato.candidato?page=1&pageSize=10&sort=nombre:ASC (42 ms) 200
+[2025-08-05 13:06:58.503] [32mhttp[39m: GET /uploads/thumbnail_bukele_5c63c714b5.jpeg (6 ms) 404
+[2025-08-05 13:06:58.505] [32mhttp[39m: GET /uploads/thumbnail_petro_195aecb4f0.jpeg (5 ms) 404
+[2025-08-05 13:07:01.791] [31merror[39m: ENOENT: no such file or directory, open '/Users/anto/Documents/florkaproject2/kiroflorka/backend/favicon.ico'
+Error: ENOENT: no such file or directory, open '/Users/anto/Documents/florkaproject2/kiroflorka/backend/favicon.ico'
+    at Object.openSync (node:fs:562:18)
+    at Object.readFileSync (node:fs:446:35)
+    at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-favicon/index.js:50:28
+    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
+    at dummyMiddleware (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/services/server/middleware.js:25:39)
+    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
+    at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/middlewares/body.js:45:15
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/middlewares/powered-by.js:9:5
+    at async cors (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@koa/cors/index.js:61:32)
+[2025-08-05 13:07:01.791] [32mhttp[39m: GET /favicon.ico (1 ms) 500
+[2025-08-05 13:07:01.834] [32mhttp[39m: GET /content-manager/collection-types/api::candidato.candidato/4 (57 ms) 200
+[2025-08-05 13:07:01.929] [32mhttp[39m: GET /uploads/thumbnail_bukele_5c63c714b5.jpeg (2 ms) 404
+[2025-08-05 13:07:03.342] [32mhttp[39m: GET /upload/configuration (54 ms) 200
+[2025-08-05 13:07:03.353] [32mhttp[39m: GET /upload/files?page=1&sort=updatedAt:DESC&pageSize=10&filters[$and][0][folderPath][$eq]=/&folder= (61 ms) 200
+[2025-08-05 13:07:03.357] [32mhttp[39m: GET /upload/files?page=1&sort=createdAt:DESC&pageSize=10&filters[$and][0][folderPath][$eq]=/&folder= (61 ms) 200
+[2025-08-05 13:07:03.406] [32mhttp[39m: GET /upload/folders?page=1&sort=createdAt:DESC&pageSize=10&filters[$and][0][parent][id][$null]=true&pagination[pageSize]=-1 (33 ms) 200
+[2025-08-05 13:07:03.418] [32mhttp[39m: GET /uploads/thumbnail_bukele_5c63c714b5.jpeg?updatedAt=2025-07-29T18%3A44%3A59.303Z (2 ms) 404
+[2025-08-05 13:07:10.385] [32mhttp[39m: POST /upload (35 ms) 200
+[2025-08-05 13:07:10.447] [32mhttp[39m: GET /upload/configuration (50 ms) 200
+[2025-08-05 13:07:10.458] [32mhttp[39m: GET /upload/files?page=1&sort=updatedAt:DESC&pageSize=10&filters[$and][0][folderPath][$eq]=/&folder= (46 ms) 200
+[2025-08-05 13:07:10.460] [32mhttp[39m: GET /upload/files?page=1&sort=createdAt:DESC&pageSize=10&filters[$and][0][folderPath][$eq]=/&folder= (36 ms) 200
+[2025-08-05 13:07:10.476] [32mhttp[39m: GET /upload/folders?page=1&sort=createdAt:DESC&pageSize=10&filters[$and][0][parent][id][$null]=true&pagination[pageSize]=-1 (9 ms) 200
+[2025-08-05 13:07:10.484] [32mhttp[39m: GET /uploads/thumbnail_bukele_6d74dc5176.jpeg?updatedAt=2025-08-05T18%3A07%3A10.380Z (1 ms) 200
+[2025-08-05 13:07:11.346] [32mhttp[39m: GET /uploads/thumbnail_bukele_6d74dc5176.jpeg (2 ms) 200
+[2025-08-05 13:07:15.437] [32mhttp[39m: PUT /content-manager/collection-types/api::candidato.candidato/4 (22 ms) 200
+[2025-08-05 13:07:17.013] [31merror[39m: ENOENT: no such file or directory, open '/Users/anto/Documents/florkaproject2/kiroflorka/backend/favicon.ico'
+Error: ENOENT: no such file or directory, open '/Users/anto/Documents/florkaproject2/kiroflorka/backend/favicon.ico'
+    at Object.openSync (node:fs:562:18)
+    at Object.readFileSync (node:fs:446:35)
+    at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-favicon/index.js:50:28
+    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
+    at dummyMiddleware (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/services/server/middleware.js:25:39)
+    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
+    at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/middlewares/body.js:45:15
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/middlewares/powered-by.js:9:5
+    at async cors (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@koa/cors/index.js:61:32)
+[2025-08-05 13:07:17.013] [32mhttp[39m: GET /favicon.ico (1 ms) 500
+[2025-08-05 13:07:17.017] [32mhttp[39m: GET /content-manager/collection-types/api::candidato.candidato?page=1&pageSize=10&sort=nombre:ASC (23 ms) 200
+[2025-08-05 13:07:17.028] [32mhttp[39m: GET /uploads/thumbnail_petro_195aecb4f0.jpeg (2 ms) 404
+[2025-08-05 13:07:17.029] [32mhttp[39m: GET /uploads/thumbnail_barack_obama_7dadbe7170.jpeg (2 ms) 200
+[2025-08-05 13:07:19.776] [31merror[39m: ENOENT: no such file or directory, open '/Users/anto/Documents/florkaproject2/kiroflorka/backend/favicon.ico'
+Error: ENOENT: no such file or directory, open '/Users/anto/Documents/florkaproject2/kiroflorka/backend/favicon.ico'
+    at Object.openSync (node:fs:562:18)
+    at Object.readFileSync (node:fs:446:35)
+    at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-favicon/index.js:50:28
+    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
+    at dummyMiddleware (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/services/server/middleware.js:25:39)
+    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
+    at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/middlewares/body.js:45:15
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/middlewares/powered-by.js:9:5
+    at async cors (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@koa/cors/index.js:61:32)
+[2025-08-05 13:07:19.776] [32mhttp[39m: GET /favicon.ico (1 ms) 500
+[2025-08-05 13:07:19.790] [32mhttp[39m: GET /content-manager/collection-types/api::candidato.candidato/5 (37 ms) 200
+[2025-08-05 13:07:19.848] [32mhttp[39m: GET /uploads/thumbnail_petro_195aecb4f0.jpeg (2 ms) 404
+[2025-08-05 13:07:21.389] [32mhttp[39m: GET /upload/configuration (32 ms) 200
+[2025-08-05 13:07:21.393] [32mhttp[39m: GET /upload/files?page=1&sort=updatedAt:DESC&pageSize=10&filters[$and][0][folderPath][$eq]=/&folder= (30 ms) 200
+[2025-08-05 13:07:21.395] [32mhttp[39m: GET /upload/files?page=1&sort=createdAt:DESC&pageSize=10&filters[$and][0][folderPath][$eq]=/&folder= (29 ms) 200
+[2025-08-05 13:07:21.420] [32mhttp[39m: GET /upload/folders?page=1&sort=createdAt:DESC&pageSize=10&filters[$and][0][parent][id][$null]=true&pagination[pageSize]=-1 (16 ms) 200
+[2025-08-05 13:07:21.433] [32mhttp[39m: GET /uploads/thumbnail_petro_195aecb4f0.jpeg?updatedAt=2025-07-29T18%3A45%3A18.615Z (2 ms) 404
+[2025-08-05 13:07:32.028] [32mhttp[39m: POST /upload (36 ms) 200
+[2025-08-05 13:07:32.069] [32mhttp[39m: GET /upload/configuration (27 ms) 200
+[2025-08-05 13:07:32.080] [32mhttp[39m: GET /upload/files?page=1&sort=updatedAt:DESC&pageSize=10&filters[$and][0][folderPath][$eq]=/&folder= (33 ms) 200
+[2025-08-05 13:07:32.083] [32mhttp[39m: GET /upload/files?page=1&sort=createdAt:DESC&pageSize=10&filters[$and][0][folderPath][$eq]=/&folder= (32 ms) 200
+[2025-08-05 13:07:32.098] [32mhttp[39m: GET /upload/folders?page=1&sort=createdAt:DESC&pageSize=10&filters[$and][0][parent][id][$null]=true&pagination[pageSize]=-1 (10 ms) 200
+[2025-08-05 13:07:32.105] [32mhttp[39m: GET /uploads/thumbnail_petro_d089b78116.jpeg?updatedAt=2025-08-05T18%3A07%3A32.023Z (0 ms) 200
+[2025-08-05 13:07:32.826] [32mhttp[39m: GET /uploads/thumbnail_petro_d089b78116.jpeg (2 ms) 200
+[2025-08-05 13:07:34.279] [32mhttp[39m: PUT /content-manager/collection-types/api::candidato.candidato/5 (56 ms) 200
+[2025-08-05 13:07:36.468] [31merror[39m: ENOENT: no such file or directory, open '/Users/anto/Documents/florkaproject2/kiroflorka/backend/favicon.ico'
+Error: ENOENT: no such file or directory, open '/Users/anto/Documents/florkaproject2/kiroflorka/backend/favicon.ico'
+    at Object.openSync (node:fs:562:18)
+    at Object.readFileSync (node:fs:446:35)
+    at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-favicon/index.js:50:28
+    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
+    at dummyMiddleware (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/services/server/middleware.js:25:39)
+    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
+    at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/middlewares/body.js:45:15
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/middlewares/powered-by.js:9:5
+    at async cors (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@koa/cors/index.js:61:32)
+[2025-08-05 13:07:36.469] [32mhttp[39m: GET /favicon.ico (1 ms) 500
+[2025-08-05 13:07:36.482] [32mhttp[39m: GET /content-manager/collection-types/api::candidato.candidato?page=1&pageSize=10&sort=nombre:ASC (19 ms) 200
+[2025-08-05 13:07:36.495] [32mhttp[39m: GET /uploads/thumbnail_barack_obama_7dadbe7170.jpeg (2 ms) 200
+[2025-08-05 13:07:36.495] [32mhttp[39m: GET /uploads/thumbnail_bukele_6d74dc5176.jpeg (1 ms) 200
+🔓 Permitiendo acceso público a: /api/rankings/page/home
+[2025-08-05 13:07:41.279] [32mhttp[39m: GET /api/rankings/page/home (3 ms) 200
+[2025-08-05 13:07:41.279] [32mhttp[39m: GET /api/candidatos?filters%5Bactivo%5D%5B%24eq%5D=true&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=5&sort=votos%3Adesc (6 ms) 200
+🔓 Permitiendo acceso público a: /api/rankings/page/home
+[2025-08-05 13:07:41.289] [32mhttp[39m: GET /api/rankings/page/home (8 ms) 200
+[2025-08-05 13:07:41.291] [32mhttp[39m: GET /api/candidatos?filters%5Bactivo%5D%5B%24eq%5D=true&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=5&sort=votos%3Adesc (8 ms) 200
+🔓 Acceso público permitido: /api/votos/candidato/4
+🔓 Permitiendo acceso público a: /api/votos/candidato/4
+[2025-08-05 13:07:41.299] [32mhttp[39m: GET /api/votos/candidato/4 (2 ms) 404
+[2025-08-05 13:07:41.300] [32mhttp[39m: GET /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3 (5 ms) 200
+🔓 Acceso público permitido: /api/votos/candidato/4
+🔓 Permitiendo acceso público a: /api/votos/candidato/4
+[2025-08-05 13:07:41.305] [32mhttp[39m: GET /api/votos/candidato/4 (3 ms) 404
+[2025-08-05 13:07:41.306] [32mhttp[39m: GET /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3 (2 ms) 200
+🔓 Acceso público permitido: /api/votos/candidato/5
+🔓 Permitiendo acceso público a: /api/votos/candidato/5
+🔓 Acceso público permitido: /api/tokens
+🔓 Permitiendo acceso público a: /api/tokens
+[2025-08-05 13:07:41.353] [32mhttp[39m: GET /api/votos/candidato/5 (7 ms) 404
+🔓 Acceso público permitido: /api/votos/candidato/5
+🔓 Permitiendo acceso público a: /api/votos/candidato/5
+🔓 Acceso público permitido: /api/votos/candidato/6
+🔓 Permitiendo acceso público a: /api/votos/candidato/6
+[2025-08-05 13:07:41.362] [32mhttp[39m: GET /api/votos/candidato/5 (4 ms) 404
+[2025-08-05 13:07:41.363] [32mhttp[39m: GET /api/votos/candidato/6 (3 ms) 404
+🔓 Acceso público permitido: /api/votos/candidato/6
+🔓 Permitiendo acceso público a: /api/votos/candidato/6
+[2025-08-05 13:07:41.375] [32mhttp[39m: GET /api/tokens?filters%5Bestado%5D%5B%24eq%5D=lanzado&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3&sort=fechaLanzamiento%3Adesc (25 ms) 200
+🔓 Acceso público permitido: /api/tokens
+🔓 Permitiendo acceso público a: /api/tokens
+[2025-08-05 13:07:41.379] [32mhttp[39m: GET /api/votos/candidato/6 (11 ms) 404
+[2025-08-05 13:07:41.379] [32mhttp[39m: GET /uploads/bukele_6d74dc5176.jpeg (8 ms) 200
+[2025-08-05 13:07:41.379] [32mhttp[39m: GET /uploads/petro_d089b78116.jpeg (7 ms) 200
+[2025-08-05 13:07:41.380] [32mhttp[39m: GET /uploads/barack_obama_7dadbe7170.jpeg (5 ms) 200
+[2025-08-05 13:07:41.391] [32mhttp[39m: GET /uploads/capitrana_marvel_edcd6c169e.jpeg (3 ms) 200
+[2025-08-05 13:07:41.392] [32mhttp[39m: GET /api/tokens?filters%5Bestado%5D%5B%24eq%5D=lanzado&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3&sort=fechaLanzamiento%3Adesc (15 ms) 200
+[2025-08-05 13:07:41.392] [32mhttp[39m: GET /uploads/superman_1066d0438e.jpeg (3 ms) 200
+[2025-08-05 13:07:41.393] [32mhttp[39m: GET /uploads/4_fantasticos_327f5082df.jpeg (3 ms) 200
+🔓 Acceso público permitido: /api/foros
+🔓 Permitiendo acceso público a: /api/foros
+🔍 Obteniendo foros...
+✅ Foros encontrados: 3
+[2025-08-05 13:07:58.488] [32mhttp[39m: GET /api/foros (6 ms) 200
+🔓 Acceso público permitido: /api/foros
+🔓 Permitiendo acceso público a: /api/foros
+🔍 Obteniendo foros...
+✅ Foros encontrados: 3
+[2025-08-05 13:07:58.495] [32mhttp[39m: GET /api/foros (3 ms) 200
+[2025-08-05 18:32:17.980] [32mhttp[39m: GET /admin (32 ms) 200

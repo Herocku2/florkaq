@@ -122,9 +122,9 @@ export const CreateTokenWizard = () => {
       <div className="create-token-wizard">
         <Heder />
         <div className="auth-required">
-          <h2>Autenticación Requerida</h2>
-          <p>Debes iniciar sesión para crear un token.</p>
-          <a href="/auth" className="auth-link">Iniciar Sesión</a>
+          <h2>Authentication Required</h2>
+          <p>You must log in to create a token.</p>
+          <a href="/auth" className="auth-link">Log In</a>
         </div>
       </div>
     );

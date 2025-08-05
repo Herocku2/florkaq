@@ -256,10 +256,17 @@
   transform: none !important;
 }
 
-/* Auth Required */
+/* Auth Required - Centrado perfecto */
 .auth-required {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
+  min-height: 60vh;
   padding: 100px 20px;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 .auth-required h2 {
@@ -267,6 +274,15 @@
   margin-bottom: 20px;
   font-family: "Orbitron", Helvetica;
   font-weight: 600;
+  font-size: 2rem;
+}
+
+.auth-required p {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.1rem;
+  margin-bottom: 30px;
+  font-family: "Orbitron", Helvetica;
+  font-weight: 400;
 }
 
 .auth-link {
@@ -274,17 +290,18 @@
   background: linear-gradient(135deg, #ff01a1, #ff69b4);
   color: white;
   text-decoration: none;
-  padding: 12px 30px;
-  border-radius: 8px;
+  padding: 15px 40px;
+  border-radius: 25px;
   font-weight: 600;
-  margin-top: 20px;
+  font-size: 1rem;
   transition: all 0.3s ease;
   font-family: "Orbitron", Helvetica;
+  box-shadow: 0 4px 15px rgba(255, 1, 161, 0.3);
 }
 
 .auth-link:hover {
   transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(255, 1, 161, 0.3);
+  box-shadow: 0 6px 20px rgba(255, 1, 161, 0.4);
 }
 
 /* Error Styles */

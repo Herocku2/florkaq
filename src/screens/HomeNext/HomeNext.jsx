@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Heder } from "../../components/Heder";
-import { MenuTabla } from "../../components/MenuTabla";
-import { Paginacion } from "../../components/Paginacion";
+{/* import { MenuTabla } from "../../components/MenuTabla"; */}
+{/* import { Paginacion } from "../../components/Paginacion"; */}
 import { TarjetaProyectos } from "../../components/TarjetaProyectos";
 import { TarjetaRanking } from "../../components/TarjetaRanking";
 import tokenService from "../../services/tokenService";
@@ -54,6 +55,7 @@ const fallbackNextTokens = [
 ];
 
 export const HomeNext = () => {
+  const navigate = useNavigate();
   const [tokens, setTokens] = useState([]);
   const [topVotedTokens, setTopVotedTokens] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -98,7 +100,7 @@ export const HomeNext = () => {
         }
       } catch (error) {
         console.error("Error fetching next tokens:", error);
-        setError("Error al cargar los tokens próximos. Usando datos de ejemplo.");
+        setError("Error loading next tokens. Using sample data.");
         setTokens(fallbackNextTokens);
         setTotalTokens(fallbackNextTokens.length);
       } finally {
@@ -161,7 +163,7 @@ export const HomeNext = () => {
   // Función para recordar un token
   const handleRemindMe = (tokenId) => {
     if (!isAuthenticated) {
-      alert("Debes iniciar sesión para usar esta función");
+      alert("You must log in to use this feature");
       return;
     }
 
@@ -183,6 +185,11 @@ export const HomeNext = () => {
   // Función para cambiar el orden
   const handleSortChange = (order) => {
     setSortOrder(order);
+  };
+
+  // Función para manejar el click del botón "Click Here"
+  const handleClickHere = () => {
+    navigate('/create');
   };
 
   // Calcular total de páginas
@@ -272,7 +279,7 @@ export const HomeNext = () => {
         <p className="promo-text">
           From just $50, create your token with a free promo video and guaranteed exposure.
         </p>
-        <button className="click-here-button">Click Here</button>
+        <button className="click-here-button" onClick={handleClickHere}>Click Here</button>
         <p className="promo-subtext">
           Launch your token for just $50 and go viral from day one
         </p>
@@ -288,28 +295,21 @@ export const HomeNext = () => {
         <span className="star-icon">⭐</span>
       </div>
 
-      <MenuTabla
-        className="menu-tabla-2"
-        img="/img/line-1-3.svg"
-        line="/img/line-3-3.svg"
-        line1="/img/line-3-3.svg"
-        to1="/homeu47new"
-        to2="/homeu47all"
-      />
+{/* MenuTabla removido según solicitud del usuario */}
       {/* Opciones de ordenación */}
       <div className="sort-options">
-        <span className="sort-label">Ordenar por:</span>
+        <span className="sort-label">Sort by:</span>
         <button 
           className={`sort-button ${sortOrder === 'date' ? 'active' : ''}`}
           onClick={() => handleSortChange('date')}
         >
-          Fecha de lanzamiento
+          Launch Date
         </button>
         <button 
           className={`sort-button ${sortOrder === 'votes' ? 'active' : ''}`}
           onClick={() => handleSortChange('votes')}
         >
-          Popularidad
+          Popularity
         </button>
       </div>
 
@@ -317,14 +317,14 @@ export const HomeNext = () => {
         {/* Grid de cards - 3 por fila */}
         <div className="cards-grid">
           {loading ? (
-            <div className="loading-message">Cargando tokens próximos...</div>
+            <div className="loading-message">Loading next tokens...</div>
           ) : error ? (
             <div className="error-message">{error}</div>
           ) : tokens.length > 0 ? (
             tokens.map((token, index) => (
               <div className="token-card-container" key={`${token.tokenSymbol}-${index}`}>
                 <TarjetaProyectos
-                  to={`/homeu47detalletokenu47compra?id=${token.id}`}
+                  to={`/token/${token.tokenName}`}
                   tokenName={token.tokenName}
                   tokenSymbol={token.tokenSymbol}
                   tokenImage={token.tokenImage}
@@ -334,19 +334,19 @@ export const HomeNext = () => {
                 />
                 {token.launchDate && (
                   <div className="launch-date">
-                    Lanzamiento: {new Date(token.launchDate).toLocaleDateString()}
+                    Launch: {new Date(token.launchDate).toLocaleDateString()}
                   </div>
                 )}
                 <button 
                   className={`remind-button ${remindedTokens.includes(token.id) ? 'reminded' : ''}`}
                   onClick={() => handleRemindMe(token.id)}
                 >
-                  {remindedTokens.includes(token.id) ? '✓ Recordatorio activo' : '🔔 Recordarme'}
+                  {remindedTokens.includes(token.id) ? '✓ Reminder Active' : '🔔 Remind Me'}
                 </button>
               </div>
             ))
           ) : (
-            <div className="no-tokens-message">No hay tokens próximos disponibles.</div>
+            <div className="no-tokens-message">No next tokens available.</div>
           )}
         </div>
 
