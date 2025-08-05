@@ -1,0 +1,337 @@
+/* Reutilizar estilos del CreateTokenWizard pero específicos para Publish */
+.publish-wizard {
+  min-height: 100vh;
+  background-color: #020102;
+  color: white;
+  font-family: "Orbitron", Helvetica;
+}
+
+.publish-wizard .wizard-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.publish-wizard .wizard-title {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 40px;
+  color: #ff01a1;
+  text-shadow: 0 2px 4px rgba(255, 1, 161, 0.3);
+  font-family: "Orbitron", Helvetica;
+}
+
+/* Progress Steps */
+.publish-wizard .progress-steps {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 40px;
+  gap: 20px;
+}
+
+.publish-wizard .step-indicator {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.publish-wizard .step-indicator.active {
+  background: linear-gradient(135deg, #ff01a1, #ff69b4);
+  border-color: #ff01a1;
+  transform: scale(1.1);
+}
+
+.publish-wizard .step-indicator.completed {
+  background: rgba(34, 197, 94, 0.8);
+  border-color: #22c55e;
+}
+
+.publish-wizard .step-indicator:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: -30px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.publish-wizard .step-indicator.completed:not(:last-child)::after {
+  background: #22c55e;
+}
+
+/* Step Content */
+.publish-wizard .step-content {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 40px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  min-height: 500px;
+}
+
+/* Form Styles */
+.publish-wizard .step-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.publish-wizard .form-section {
+  margin-bottom: 30px;
+}
+
+.publish-wizard .section-title {
+  font-size: 1.5rem;
+  color: #ff01a1;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: "Orbitron", Helvetica;
+  font-weight: 600;
+}
+
+.publish-wizard .form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.publish-wizard .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.publish-wizard .form-group.full-width {
+  grid-column: 1 / -1;
+}
+
+.publish-wizard .form-label {
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.9rem;
+  font-family: "Orbitron", Helvetica;
+}
+
+.publish-wizard .form-label.required::after {
+  content: ' *';
+  color: #ff01a1;
+}
+
+.publish-wizard .form-input,
+.publish-wizard .form-textarea,
+.publish-wizard .form-select {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  padding: 12px 16px;
+  color: white;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.publish-wizard .form-input:focus,
+.publish-wizard .form-textarea:focus,
+.publish-wizard .form-select:focus {
+  outline: none;
+  border-color: #ff01a1;
+  box-shadow: 0 0 0 2px rgba(255, 1, 161, 0.2);
+}
+
+.publish-wizard .form-input::placeholder,
+.publish-wizard .form-textarea::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.publish-wizard .form-textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* Image Upload */
+.publish-wizard .image-upload {
+  border: 2px dashed rgba(255, 255, 255, 0.3);
+  border-radius: 12px;
+  padding: 40px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.publish-wizard .image-upload:hover {
+  border-color: #ff01a1;
+  background: rgba(255, 1, 161, 0.1);
+}
+
+.publish-wizard .image-upload.has-image {
+  border-style: solid;
+  border-color: #22c55e;
+}
+
+.publish-wizard .upload-icon {
+  font-size: 2rem;
+  color: #ff01a1;
+  margin-bottom: 10px;
+}
+
+.publish-wizard .upload-text {
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 10px;
+}
+
+.publish-wizard .upload-button {
+  background: linear-gradient(135deg, #ff01a1, #ff69b4);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  font-family: "Orbitron", Helvetica;
+}
+
+.publish-wizard .upload-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 1, 161, 0.3);
+}
+
+/* Navigation Buttons */
+.publish-wizard .step-navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.publish-wizard .nav-button {
+  padding: 12px 30px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  font-size: 0.9rem;
+  font-family: "Orbitron", Helvetica;
+}
+
+.publish-wizard .nav-button.back {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.publish-wizard .nav-button.back:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.publish-wizard .nav-button.next {
+  background: linear-gradient(135deg, #ff01a1, #ff69b4);
+  color: white;
+  font-family: "Orbitron", Helvetica;
+}
+
+.publish-wizard .nav-button.next:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 1, 161, 0.3);
+}
+
+.publish-wizard .nav-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+/* Auth Required */
+.publish-wizard .auth-required {
+  text-align: center;
+  padding: 100px 20px;
+}
+
+.publish-wizard .auth-required h2 {
+  color: #ff01a1;
+  margin-bottom: 20px;
+  font-family: "Orbitron", Helvetica;
+  font-weight: 600;
+}
+
+.publish-wizard .auth-link {
+  display: inline-block;
+  background: linear-gradient(135deg, #ff01a1, #ff69b4);
+  color: white;
+  text-decoration: none;
+  padding: 12px 30px;
+  border-radius: 8px;
+  font-weight: 600;
+  margin-top: 20px;
+  transition: all 0.3s ease;
+  font-family: "Orbitron", Helvetica;
+}
+
+.publish-wizard .auth-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 1, 161, 0.3);
+}
+
+/* Error Styles */
+.publish-wizard .form-input.error,
+.publish-wizard .form-textarea.error,
+.publish-wizard .form-select.error {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.2);
+}
+
+.publish-wizard .error-text {
+  color: #ef4444;
+  font-size: 0.8rem;
+  margin-top: 4px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .publish-wizard .wizard-container {
+    padding: 20px 15px;
+  }
+  
+  .publish-wizard .wizard-title {
+    font-size: 2rem;
+  }
+  
+  .publish-wizard .step-content {
+    padding: 20px;
+  }
+  
+  .publish-wizard .form-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .publish-wizard .progress-steps {
+    gap: 10px;
+  }
+  
+  .publish-wizard .step-indicator {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+  
+  .publish-wizard .step-indicator:not(:last-child)::after {
+    right: -20px;
+    width: 10px;
+  }
+}
