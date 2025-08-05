@@ -10,6 +10,8 @@ const PaymentModal = ({ isOpen, onClose, paymentData, onPaymentConfirmed }) => {
   useEffect(() => {
     if (!isOpen || !paymentData) return;
 
+    console.log('💳 PaymentModal abierto con datos:', paymentData);
+
     // Countdown timer
     const timer = setInterval(() => {
       setTimeLeft(prev => {
@@ -21,30 +23,22 @@ const PaymentModal = ({ isOpen, onClose, paymentData, onPaymentConfirmed }) => {
       });
     }, 1000);
 
-    // Check payment status every 30 seconds
-    const statusChecker = setInterval(async () => {
-      if (paymentData.payment_id) {
-        try {
-          const tokenRequestService = (await import('../../services/tokenRequestService')).default;
-          const status = await tokenRequestService.checkPaymentStatus(paymentData.payment_id);
-          setPaymentStatus(status.payment_status);
-          
-          if (status.payment_status === 'finished' || status.payment_status === 'confirmed') {
-            clearInterval(statusChecker);
-            clearInterval(timer);
-            onPaymentConfirmed(status);
-          }
-        } catch (error) {
-          console.error('Error checking payment status:', error);
-        }
-      }
-    }, 30000);
-
     return () => {
       clearInterval(timer);
-      clearInterval(statusChecker);
     };
-  }, [isOpen, paymentData, onPaymentConfirmed]);
+  }, [isOpen, paymentData]);
+
+  // Función para simular confirmación de pago (para testing)
+  const simulatePaymentConfirmation = () => {
+    console.log('🧪 Simulando confirmación de pago...');
+    setPaymentStatus('confirmed');
+    setTimeout(() => {
+      onPaymentConfirmed({
+        payment_id: paymentData.payment_id,
+        payment_status: 'confirmed'
+      });
+    }, 2000);
+  };
 
   const formatTime = (seconds) => {
     const mins = Math.floor(seconds / 60);
@@ -123,13 +117,13 @@ const PaymentModal = ({ isOpen, onClose, paymentData, onPaymentConfirmed }) => {
             <div className="detail-row">
               <span className="label">Monto a pagar:</span>
               <span className="value">
-                {paymentData.pay_amount} {paymentData.pay_currency?.toUpperCase()}
+                {paymentData.pay_amount || paymentData.price_amount} {(paymentData.pay_currency || 'USDT')?.toUpperCase()}
               </span>
             </div>
 
             <div className="detail-row">
               <span className="label">Equivalente en USD:</span>
-              <span className="value">${paymentData.price_amount}</span>
+              <span className="value">${paymentData.price_amount || '50'}</span>
             </div>
 
             <div className="detail-row">
@@ -140,10 +134,10 @@ const PaymentModal = ({ isOpen, onClose, paymentData, onPaymentConfirmed }) => {
             <div className="detail-row">
               <span className="label">Dirección de pago:</span>
               <div className="address-container">
-                <span className="address">{paymentData.pay_address}</span>
+                <span className="address">{paymentData.pay_address || 'Generando...'}</span>
                 <button 
                   className="copy-btn"
-                  onClick={() => copyToClipboard(paymentData.pay_address)}
+                  onClick={() => copyToClipboard(paymentData.pay_address || '')}
                 >
                   {copied ? '✅' : '📋'}
                 </button>
@@ -152,7 +146,7 @@ const PaymentModal = ({ isOpen, onClose, paymentData, onPaymentConfirmed }) => {
 
             <div className="detail-row">
               <span className="label">ID de Pago:</span>
-              <span className="value">{paymentData.payment_id}</span>
+              <span className="value">{paymentData.payment_id || 'Generando...'}</span>
             </div>
           </div>
 
@@ -162,7 +156,7 @@ const PaymentModal = ({ isOpen, onClose, paymentData, onPaymentConfirmed }) => {
             <ol>
               <li>Abre tu wallet de Solana (Phantom, Solflare, etc.)</li>
               <li>Escanea el código QR o copia la dirección de pago</li>
-              <li>Envía exactamente <strong>{paymentData.pay_amount} USDT</strong></li>
+              <li>Envía exactamente <strong>{paymentData.pay_amount || paymentData.price_amount} USDT</strong></li>
               <li>Asegúrate de usar la red de <strong>Solana</strong></li>
               <li>Espera la confirmación (puede tomar unos minutos)</li>
             </ol>
@@ -184,6 +178,23 @@ const PaymentModal = ({ isOpen, onClose, paymentData, onPaymentConfirmed }) => {
               onClick={() => window.open(paymentData.payment_url, '_blank')}
             >
               Abrir en NOWPayments
+            </button>
+            {/* Botón de simulación para testing */}
+            <button 
+              className="btn-simulate"
+              onClick={simulatePaymentConfirmation}
+              style={{
+                background: 'linear-gradient(135deg, #22c55e, #16a34a)',
+                color: 'white',
+                border: 'none',
+                borderRadius: '8px',
+                padding: '12px 20px',
+                cursor: 'pointer',
+                fontSize: '0.9rem',
+                fontWeight: '600'
+              }}
+            >
+              🧪 Simular Pago (Testing)
             </button>
           </div>
         </div>

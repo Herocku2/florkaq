@@ -18,21 +18,21 @@ const Step3SocialContact = ({ formData, updateFormData, nextStep, prevStep }) =>
     
     // Validate required fields from previous steps (should already be filled)
     if (!formData.ownerWallet.trim()) {
-      newErrors.ownerWallet = 'La wallet del propietario es obligatoria';
+      newErrors.ownerWallet = 'Owner wallet is required';
     }
     
     if (!formData.contactEmail.trim()) {
-      newErrors.contactEmail = 'El email del peticionario es obligatorio';
+      newErrors.contactEmail = 'Applicant email is required';
     } else if (!/\S+@\S+\.\S+/.test(formData.contactEmail)) {
-      newErrors.contactEmail = 'Por favor ingresa un email válido';
+      newErrors.contactEmail = 'Please enter a valid email';
     }
     
     if (!formData.telegramUsername.trim()) {
-      newErrors.telegramUsername = 'El Telegram del peticionario es obligatorio';
+      newErrors.telegramUsername = 'Applicant Telegram is required';
     }
     
     if (!formData.blockchainNetwork) {
-      newErrors.blockchainNetwork = 'Debes seleccionar una red blockchain';
+      newErrors.blockchainNetwork = 'You must select a blockchain network';
     }
     
     setErrors(newErrors);
@@ -49,12 +49,12 @@ const Step3SocialContact = ({ formData, updateFormData, nextStep, prevStep }) =>
     <div className="step-form">
       <div className="form-section">
         <h2 className="section-title">
-          📋 Información del Peticionario
+          📋 Applicant Information
         </h2>
         
         <div className="form-row">
           <div className="form-group">
-            <label className="form-label required">Wallet del Propietario del Token</label>
+            <label className="form-label required">Token Owner Wallet</label>
             <input
               type="text"
               name="ownerWallet"
@@ -68,7 +68,7 @@ const Step3SocialContact = ({ formData, updateFormData, nextStep, prevStep }) =>
           </div>
           
           <div className="form-group">
-            <label className="form-label required">Email del Peticionario</label>
+            <label className="form-label required">Applicant Email</label>
             <input
               type="email"
               name="contactEmail"
@@ -84,7 +84,7 @@ const Step3SocialContact = ({ formData, updateFormData, nextStep, prevStep }) =>
         
         <div className="form-row">
           <div className="form-group">
-            <label className="form-label required">Telegram del Peticionario</label>
+            <label className="form-label required">Applicant Telegram</label>
             <input
               type="text"
               name="telegramUsername"
@@ -98,14 +98,14 @@ const Step3SocialContact = ({ formData, updateFormData, nextStep, prevStep }) =>
           </div>
           
           <div className="form-group">
-            <label className="form-label required">Red Blockchain</label>
+            <label className="form-label required">Blockchain Network</label>
             <select
               name="blockchainNetwork"
               value={formData.blockchainNetwork}
               onChange={handleInputChange}
               className={`form-select ${errors.blockchainNetwork ? 'error' : ''}`}
             >
-              <option value="">Seleccionar Red</option>
+              <option value="">Select Network</option>
               <option value="solana">Solana (SOL)</option>
               <option value="ethereum">Ethereum (ETH)</option>
               <option value="binance">Binance Smart Chain (BNB)</option>
@@ -119,7 +119,7 @@ const Step3SocialContact = ({ formData, updateFormData, nextStep, prevStep }) =>
       
       <div className="form-section">
         <h2 className="section-title">
-          🌐 Redes Sociales del Proyecto
+          🌐 Project Social Networks
         </h2>
         
         <div className="form-row">
@@ -216,7 +216,7 @@ const Step3SocialContact = ({ formData, updateFormData, nextStep, prevStep }) =>
             name="socialChannelDescription"
             value={formData.socialChannelDescription}
             onChange={handleInputChange}
-            placeholder="Describe los canales sociales de tu proyecto..."
+            placeholder="Describe your project's social channels..."
             className="form-textarea"
             rows={4}
           />

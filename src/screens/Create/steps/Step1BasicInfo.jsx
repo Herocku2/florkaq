@@ -18,13 +18,13 @@ const Step1BasicInfo = ({ formData, updateFormData, nextStep }) => {
     if (file) {
       // Validate file type
       if (!file.type.startsWith('image/')) {
-        setErrors(prev => ({ ...prev, tokenImage: 'Por favor selecciona una imagen válida' }));
+        setErrors(prev => ({ ...prev, tokenImage: 'Please select a valid image' }));
         return;
       }
       
       // Validate file size (max 5MB)
       if (file.size > 5 * 1024 * 1024) {
-        setErrors(prev => ({ ...prev, tokenImage: 'La imagen debe ser menor a 5MB' }));
+        setErrors(prev => ({ ...prev, tokenImage: 'Image must be smaller than 5MB' }));
         return;
       }
       
@@ -37,27 +37,27 @@ const Step1BasicInfo = ({ formData, updateFormData, nextStep }) => {
     const newErrors = {};
     
     if (!formData.tokenName.trim()) {
-      newErrors.tokenName = 'El nombre del token es obligatorio';
+      newErrors.tokenName = 'Token name is required';
     }
     
     if (!formData.tokenSymbol.trim()) {
-      newErrors.tokenSymbol = 'El símbolo del token es obligatorio';
+      newErrors.tokenSymbol = 'Token symbol is required';
     } else if (formData.tokenSymbol.length < 2 || formData.tokenSymbol.length > 10) {
-      newErrors.tokenSymbol = 'El símbolo debe tener entre 2 y 10 caracteres';
+      newErrors.tokenSymbol = 'Symbol must be between 2 and 10 characters';
     }
     
     if (!formData.ownerWallet.trim()) {
-      newErrors.ownerWallet = 'La wallet del propietario es obligatoria';
+      newErrors.ownerWallet = 'Owner wallet is required';
     }
     
     if (!formData.contactEmail.trim()) {
-      newErrors.contactEmail = 'El email de contacto es obligatorio';
+      newErrors.contactEmail = 'Contact email is required';
     } else if (!/\S+@\S+\.\S+/.test(formData.contactEmail)) {
-      newErrors.contactEmail = 'Por favor ingresa un email válido';
+      newErrors.contactEmail = 'Please enter a valid email';
     }
     
     if (!formData.telegramUsername.trim()) {
-      newErrors.telegramUsername = 'El usuario de Telegram es obligatorio';
+      newErrors.telegramUsername = 'Telegram username is required';
     }
     
     setErrors(newErrors);
@@ -74,31 +74,31 @@ const Step1BasicInfo = ({ formData, updateFormData, nextStep }) => {
     <div className="step-form">
       <div className="form-section">
         <h2 className="section-title">
-          📝 Información Básica del Token
+          📝 Basic Token Information
         </h2>
         
         <div className="form-row">
           <div className="form-group">
-            <label className="form-label required">Nombre del Token</label>
+            <label className="form-label required">Token Name</label>
             <input
               type="text"
               name="tokenName"
               value={formData.tokenName}
               onChange={handleInputChange}
-              placeholder="Ej: Florka Token"
+              placeholder="e.g: Florka Token"
               className={`form-input ${errors.tokenName ? 'error' : ''}`}
             />
             {errors.tokenName && <span className="error-text">{errors.tokenName}</span>}
           </div>
           
           <div className="form-group">
-            <label className="form-label required">Símbolo del Token</label>
+            <label className="form-label required">Token Symbol</label>
             <input
               type="text"
               name="tokenSymbol"
               value={formData.tokenSymbol}
               onChange={handleInputChange}
-              placeholder="Ej: FLK"
+              placeholder="e.g: FLK"
               maxLength={10}
               className={`form-input ${errors.tokenSymbol ? 'error' : ''}`}
               style={{ textTransform: 'uppercase' }}
@@ -108,19 +108,19 @@ const Step1BasicInfo = ({ formData, updateFormData, nextStep }) => {
         </div>
         
         <div className="form-group full-width">
-          <label className="form-label">Descripción del Token</label>
+          <label className="form-label">Token Description</label>
           <textarea
             name="tokenDescription"
             value={formData.tokenDescription}
             onChange={handleInputChange}
-            placeholder="Describe tu proyecto de token..."
+            placeholder="Describe your token project..."
             className="form-textarea"
             rows={4}
           />
         </div>
         
         <div className="form-group full-width">
-          <label className="form-label">Imagen del Token</label>
+          <label className="form-label">Token Image</label>
           <div className={`image-upload ${formData.tokenImage ? 'has-image' : ''}`}>
             <input
               type="file"
@@ -134,17 +134,17 @@ const Step1BasicInfo = ({ formData, updateFormData, nextStep }) => {
                 <div>
                   <div className="upload-icon">✅</div>
                   <div className="upload-text">
-                    Imagen seleccionada: {formData.tokenImage.name}
+                    Selected image: {formData.tokenImage.name}
                   </div>
-                  <div className="upload-button">Cambiar Imagen</div>
+                  <div className="upload-button">Change Image</div>
                 </div>
               ) : (
                 <div>
                   <div className="upload-icon">📁</div>
                   <div className="upload-text">
-                    Arrastra y suelta una imagen o GIF
+                    Drag and drop an image or GIF
                   </div>
-                  <div className="upload-button">Seleccionar archivo</div>
+                  <div className="upload-button">Select file</div>
                 </div>
               )}
             </label>
@@ -155,17 +155,17 @@ const Step1BasicInfo = ({ formData, updateFormData, nextStep }) => {
       
       <div className="form-section">
         <h2 className="section-title">
-          ⚠️ Información Requerida
+          ⚠️ Required Information
         </h2>
         
         <div className="form-group full-width">
-          <label className="form-label required">Wallet del Propietario</label>
+          <label className="form-label required">Owner Wallet</label>
           <input
             type="text"
             name="ownerWallet"
             value={formData.ownerWallet}
             onChange={handleInputChange}
-            placeholder="Tu dirección de wallet de Solana donde se enviarán los tokens"
+            placeholder="Your Solana wallet address where tokens will be sent"
             className={`form-input ${errors.ownerWallet ? 'error' : ''}`}
           />
           {errors.ownerWallet && <span className="error-text">{errors.ownerWallet}</span>}
@@ -173,7 +173,7 @@ const Step1BasicInfo = ({ formData, updateFormData, nextStep }) => {
         
         <div className="form-row">
           <div className="form-group">
-            <label className="form-label required">Red Blockchain</label>
+            <label className="form-label required">Blockchain Network</label>
             <select
               name="blockchainNetwork"
               value={formData.blockchainNetwork}
@@ -189,13 +189,13 @@ const Step1BasicInfo = ({ formData, updateFormData, nextStep }) => {
           </div>
           
           <div className="form-group">
-            <label className="form-label required">Email de Contacto</label>
+            <label className="form-label required">Contact Email</label>
             <input
               type="email"
               name="contactEmail"
               value={formData.contactEmail}
               onChange={handleInputChange}
-              placeholder="tu.email@ejemplo.com"
+              placeholder="your.email@example.com"
               className={`form-input ${errors.contactEmail ? 'error' : ''}`}
             />
             {errors.contactEmail && <span className="error-text">{errors.contactEmail}</span>}
@@ -203,13 +203,13 @@ const Step1BasicInfo = ({ formData, updateFormData, nextStep }) => {
         </div>
         
         <div className="form-group">
-          <label className="form-label required">Usuario de Telegram</label>
+          <label className="form-label required">Telegram Username</label>
           <input
             type="text"
             name="telegramUsername"
             value={formData.telegramUsername}
             onChange={handleInputChange}
-            placeholder="@tuusuario"
+            placeholder="@yourusername"
             className={`form-input ${errors.telegramUsername ? 'error' : ''}`}
           />
           {errors.telegramUsername && <span className="error-text">{errors.telegramUsername}</span>}
@@ -218,7 +218,7 @@ const Step1BasicInfo = ({ formData, updateFormData, nextStep }) => {
       
       <div className="form-note">
         <p style={{ color: '#fbbf24', fontSize: '0.9rem', fontStyle: 'italic' }}>
-          Nota: Los datos del token no se pueden cambiar después de la creación
+          Note: Token data cannot be changed after creation
         </p>
       </div>
       

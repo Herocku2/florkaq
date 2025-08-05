@@ -88,7 +88,7 @@ const Step4PlanSelection = ({ formData, updateFormData, nextStep, prevStep }) =>
     <div className="step-form">
       <div className="form-section">
         <h2 className="section-title">
-          💎 Selecciona tu Plan
+          💎 Select Your Plan
         </h2>
         
         <div className="wallet-connection" style={{ 
@@ -99,7 +99,7 @@ const Step4PlanSelection = ({ formData, updateFormData, nextStep, prevStep }) =>
           marginBottom: '30px'
         }}>
           <h3 style={{ color: '#ff6b9d', marginBottom: '15px' }}>
-            Conecta tu Wallet de Solana
+            Connect Your Solana Wallet
           </h3>
           <button style={{
             background: 'linear-gradient(135deg, #9333ea, #7c3aed)',

@@ -6,6 +6,11 @@ import LaunchCalendar from '../../../components/LaunchCalendar/LaunchCalendar';
 const Step5PaymentSummary = ({ formData, updateFormData, prevStep, user }) => {
   const [paymentStep, setPaymentStep] = useState('summary'); // 'summary', 'payment', 'success'
   const [loading, setLoading] = useState(false);
+  const [paymentModal, setPaymentModal] = useState({ isOpen: false, data: null });
+  const [calendarModal, setCalendarModal] = useState({ isOpen: false, tokenRequestId: null });
+  const [paymentCompleted, setPaymentCompleted] = useState(false);
+  const [selectedLaunchDate, setSelectedLaunchDate] = useState(null);
+  const [tokenRequestId, setTokenRequestId] = useState(null);
   const [paymentData, setPaymentData] = useState({
     btc: '0.002309 BTC',
     eth: '0.03915 ETH',
@@ -21,84 +26,112 @@ const Step5PaymentSummary = ({ formData, updateFormData, prevStep, user }) => {
 
   const handlePaymentProcess = async () => {
     setLoading(true);
-    setPaymentStep('payment');
     
     try {
-      // Integración real con NOWPayments
+      console.log('🚀 Iniciando proceso de pago...');
+      console.log('📋 Datos del formulario:', formData);
+      
+      // Crear pago directamente con NOWPayments
       const paymentRequest = {
-        amount: formData.selectedPlan.price,
-        currency: 'btc',
+        amount: formData.selectedPlan?.price || 50,
+        tokenName: formData.tokenName || 'Token',
         orderId: `TOKEN_${Date.now()}`,
-        description: `Token Creation - ${formData.selectedPlan.name}`,
+        description: `Token Creation - ${formData.tokenName || 'Token'} (${formData.selectedPlan?.name || 'Plan'})`,
         successUrl: window.location.origin + '/create/success',
         cancelUrl: window.location.origin + '/create/cancel'
       };
       
-      console.log('🚀 Procesando pago:', paymentRequest);
-      
-      // Llamar al servicio de pago
+      console.log('💳 Creando pago con NOWPayments:', paymentRequest);
       const paymentResult = await tokenRequestService.processPayment(paymentRequest);
       
-      if (paymentResult.success) {
-        const paymentHash = paymentResult.payment_id;
-        updateFormData({ 
-          paymentHash: paymentHash,
-          paymentStatus: 'completed',
-          paymentId: paymentResult.payment_id,
-          paymentUrl: paymentResult.payment_url
+      console.log('✅ Resultado del pago:', paymentResult);
+      
+      if (paymentResult && paymentResult.payment_id) {
+        // Mostrar modal de pago con QR
+        setPaymentModal({
+          isOpen: true,
+          data: paymentResult
         });
-        setPaymentStep('success');
+        
+        // Actualizar datos del formulario
+        updateFormData({ 
+          paymentHash: paymentResult.payment_id,
+          paymentStatus: 'waiting',
+          paymentId: paymentResult.payment_id,
+          paymentUrl: paymentResult.payment_url || paymentResult.invoice_url
+        });
       } else {
-        throw new Error('Error en el procesamiento del pago');
+        throw new Error('No se recibió respuesta válida de NOWPayments');
       }
       
     } catch (error) {
-      console.error('❌ Error en el pago:', error);
-      alert('Error procesando el pago. Por favor, inténtalo de nuevo.');
-      setPaymentStep('summary');
+      console.error('❌ Error en el proceso de pago:', error);
+      alert(`Error procesando el pago: ${error.message}`);
     } finally {
       setLoading(false);
     }
+  };
+
+  // Manejar confirmación de pago
+  const handlePaymentConfirmed = async (paymentStatus) => {
+    try {
+      console.log('✅ Pago confirmado:', paymentStatus);
+      setPaymentCompleted(true);
+      setPaymentModal({ isOpen: false, data: null });
+      
+      // Crear solicitud de token después del pago confirmado
+      const requestData = {
+        ...formData,
+        userId: user?.id || 'anonymous',
+        requestStatus: 'pending_review',
+        paymentStatus: 'confirmed',
+        paymentHash: formData.paymentHash
+      };
+      
+      console.log('📤 Creando solicitud de token:', requestData);
+      const tokenResult = await tokenRequestService.createTokenRequest(requestData);
+      
+      if (tokenResult && tokenResult.data) {
+        setTokenRequestId(tokenResult.data.id);
+        // Mostrar calendario para seleccionar fecha de lanzamiento
+        setCalendarModal({ isOpen: true, tokenRequestId: tokenResult.data.id });
+      }
+      
+    } catch (error) {
+      console.error('❌ Error confirmando pago:', error);
+      alert('Error al procesar la confirmación del pago.');
+    }
+  };
+
+  // Manejar selección de fecha de lanzamiento
+  const handleDateSelected = (dateInfo) => {
+    setSelectedLaunchDate(dateInfo);
+    setCalendarModal({ isOpen: false, tokenRequestId: null });
+    setPaymentStep('success');
   };
 
   const submitTokenRequest = async () => {
     try {
       setLoading(true);
       
-      // Preparar datos para envío
-      const requestData = {
-        ...formData,
-        userId: user?.id || 'anonymous',
-        requestStatus: 'pending_review',
-        createdAt: new Date().toISOString()
-      };
-      
-      console.log('📤 Enviando solicitud de token:', requestData);
-      
-      // Enviar solicitud al backend
-      const result = await tokenRequestService.createTokenRequest(requestData);
-      
-      if (result && result.data) {
-        alert(`¡Solicitud enviada exitosamente! 
-        
-ID de Solicitud: ${result.data.id}
-Hash de Pago: ${formData.paymentHash}
-Plan: ${formData.selectedPlan.name}
-Token: ${formData.tokenName} (${formData.tokenSymbol})
+      alert(`¡Token solicitado exitosamente! 🎉
 
-Recibirás un email de confirmación pronto.`);
-        
-        // Redirigir al home después de 3 segundos
-        setTimeout(() => {
-          window.location.href = '/';
-        }, 3000);
-      } else {
-        throw new Error('Respuesta inválida del servidor');
-      }
+ID de Solicitud: ${tokenRequestId || 'Generado'}
+Hash de Pago: ${formData.paymentHash}
+Plan: ${formData.selectedPlan?.name || 'Plan seleccionado'}
+Token: ${formData.tokenName} (${formData.tokenSymbol})
+Fecha de Lanzamiento: ${selectedLaunchDate ? new Date(selectedLaunchDate.date).toLocaleDateString() : 'Por definir'}
+
+Recibirás un email de confirmación pronto. Nuestro equipo revisará tu solicitud.`);
+      
+      // Redirigir al home después de 3 segundos
+      setTimeout(() => {
+        window.location.href = '/';
+      }, 3000);
       
     } catch (error) {
-      console.error('❌ Error enviando solicitud:', error);
-      alert('Error al enviar la solicitud. Por favor, inténtalo de nuevo.');
+      console.error('❌ Error finalizando solicitud:', error);
+      alert('Error al finalizar la solicitud. Por favor, inténtalo de nuevo.');
     } finally {
       setLoading(false);
     }
@@ -323,31 +356,20 @@ Recibirás un email de confirmación pronto.`);
         </div>
         
         <div style={{
-          background: 'rgba(255, 107, 157, 0.1)',
-          border: '1px solid rgba(255, 107, 157, 0.3)',
+          background: 'rgba(255, 1, 161, 0.1)',
+          border: '1px solid rgba(255, 1, 161, 0.3)',
           borderRadius: '12px',
           padding: '20px',
           textAlign: 'center',
           marginBottom: '30px'
         }}>
-          <div style={{ fontSize: '1.5rem', marginBottom: '10px' }}>🚀</div>
-          <div style={{ color: '#ff6b9d', fontWeight: 'bold', marginBottom: '10px' }}>
-            Complete Payment on Solana Mainnet
+          <div style={{ fontSize: '1.5rem', marginBottom: '10px' }}>💳</div>
+          <div style={{ color: '#ff01a1', fontWeight: 'bold', marginBottom: '10px' }}>
+            Payment with NOWPayments
           </div>
           <p style={{ marginBottom: '15px', fontSize: '0.9rem' }}>
-            Connect your Solana wallet to proceed with payment
+            Pay securely with USDT on Solana network
           </p>
-          <button style={{
-            background: 'linear-gradient(135deg, #9333ea, #7c3aed)',
-            color: 'white',
-            border: 'none',
-            borderRadius: '8px',
-            padding: '12px 24px',
-            fontWeight: '600',
-            cursor: 'pointer'
-          }}>
-            Select Wallet
-          </button>
         </div>
       </div>
       
@@ -361,15 +383,32 @@ Recibirás un email de confirmación pronto.`);
         <button
           className="nav-button next"
           onClick={handlePaymentProcess}
+          disabled={loading}
           style={{
-            background: 'linear-gradient(135deg, #ff6b9d, #c44569)',
+            background: 'linear-gradient(135deg, #ff01a1, #ff69b4)',
             fontSize: '1.1rem',
             padding: '15px 30px'
           }}
         >
-          Process Payment
+          {loading ? 'Procesando...' : 'Pagar con NOWPayments'}
         </button>
       </div>
+
+      {/* Modal de Pago con QR */}
+      <PaymentModal
+        isOpen={paymentModal.isOpen}
+        onClose={() => setPaymentModal({ isOpen: false, data: null })}
+        paymentData={paymentModal.data}
+        onPaymentConfirmed={handlePaymentConfirmed}
+      />
+
+      {/* Modal de Calendario de Lanzamiento */}
+      <LaunchCalendar
+        isOpen={calendarModal.isOpen}
+        onClose={() => setCalendarModal({ isOpen: false, tokenRequestId: null })}
+        onDateSelected={handleDateSelected}
+        tokenRequestId={calendarModal.tokenRequestId}
+      />
     </div>
   );
 };

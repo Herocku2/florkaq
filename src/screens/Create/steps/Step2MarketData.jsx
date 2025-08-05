@@ -13,7 +13,7 @@ const Step2MarketData = ({ formData, updateFormData, nextStep, prevStep }) => {
           📊 Market Data
         </h2>
         <p style={{ color: 'rgba(255, 255, 255, 0.7)', marginBottom: '30px' }}>
-          Esta información es opcional. Si no tienes estos datos, puedes dejarlos en blanco.
+          This information is optional. If you don't have this data, you can leave it blank.
         </p>
         
         <div className="form-row">
@@ -45,7 +45,7 @@ const Step2MarketData = ({ formData, updateFormData, nextStep, prevStep }) => {
                 name="tokenDistributionPercentage"
                 value={formData.tokenDistributionPercentage}
                 onChange={handleInputChange}
-                placeholder="Ejemplo: 40% public sale, 30% team..."
+                placeholder="Example: 40% public sale, 30% team..."
                 className="form-input"
               />
             </div>
@@ -54,7 +54,7 @@ const Step2MarketData = ({ formData, updateFormData, nextStep, prevStep }) => {
         
         <div className="form-row">
           <div className="form-group">
-            <label className="form-label">¿En qué red quieres alojar tu proyecto?</label>
+            <label className="form-label">Which network do you want to host your project on?</label>
             <input
               type="text"
               name="networkToHost"
@@ -66,7 +66,7 @@ const Step2MarketData = ({ formData, updateFormData, nextStep, prevStep }) => {
           </div>
           
           <div className="form-group">
-            <label className="form-label">¿Cuántos tokens serán para el equipo de desarrollo?</label>
+            <label className="form-label">How many tokens will be for the development team?</label>
             <input
               type="text"
               name="developmentTeamPercentage"
@@ -80,19 +80,19 @@ const Step2MarketData = ({ formData, updateFormData, nextStep, prevStep }) => {
         
         <div className="form-row">
           <div className="form-group">
-            <label className="form-label">¿Tienes algún Smart Contract escrito?</label>
+            <label className="form-label">Do you have any Smart Contract written?</label>
             <textarea
               name="smartContract"
               value={formData.smartContract}
               onChange={handleInputChange}
-              placeholder="Sí/No, detalles..."
+              placeholder="Yes/No, details..."
               className="form-textarea"
               rows={3}
             />
           </div>
           
           <div className="form-group">
-            <label className="form-label">Porcentaje de Marketing</label>
+            <label className="form-label">Marketing Percentage</label>
             <input
               type="text"
               name="marketingPercentage"
@@ -106,19 +106,19 @@ const Step2MarketData = ({ formData, updateFormData, nextStep, prevStep }) => {
         
         <div className="form-row">
           <div className="form-group">
-            <label className="form-label">¿Cuánto tiempo durará la venta inicial?</label>
+            <label className="form-label">How long will the initial sale last?</label>
             <input
               type="text"
               name="initialSaleDuration"
               value={formData.initialSaleDuration}
               onChange={handleInputChange}
-              placeholder="30 días, 60 días, etc."
+              placeholder="30 days, 60 days, etc."
               className="form-input"
             />
           </div>
           
           <div className="form-group">
-            <label className="form-label">Porcentaje de Socios e Inversores</label>
+            <label className="form-label">Partners and Investors Percentage</label>
             <input
               type="text"
               name="partnersInvestorsPercentage"
