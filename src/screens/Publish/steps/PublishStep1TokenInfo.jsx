@@ -56,6 +56,16 @@ const PublishStep1TokenInfo = ({ formData, updateFormData, nextStep, user }) => 
       newErrors.contractAddress = 'Contract address is required';
     }
     
+    if (!formData.ownerEmail.trim()) {
+      newErrors.ownerEmail = 'Owner email is required';
+    } else if (!/\S+@\S+\.\S+/.test(formData.ownerEmail)) {
+      newErrors.ownerEmail = 'Please enter a valid email';
+    }
+    
+    if (!formData.telegramUsername.trim()) {
+      newErrors.telegramUsername = 'Telegram username is required';
+    }
+    
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -230,6 +240,66 @@ const PublishStep1TokenInfo = ({ formData, updateFormData, nextStep, user }) => 
             className="form-textarea"
             rows={4}
           />
+        </div>
+      </div>
+      
+      <div className="form-section">
+        <h2 className="section-title">
+          📞 Owner Contact Information
+        </h2>
+        
+        <div className="form-row">
+          <div className="form-group">
+            <label className="form-label required">Owner Email</label>
+            <input
+              type="email"
+              name="ownerEmail"
+              value={formData.ownerEmail}
+              onChange={handleInputChange}
+              placeholder="your.email@example.com"
+              className={`form-input ${errors.ownerEmail ? 'error' : ''}`}
+            />
+            {errors.ownerEmail && <span className="error-text">{errors.ownerEmail}</span>}
+          </div>
+          
+          <div className="form-group">
+            <label className="form-label required">Telegram Username</label>
+            <input
+              type="text"
+              name="telegramUsername"
+              value={formData.telegramUsername}
+              onChange={handleInputChange}
+              placeholder="@yourusername"
+              className={`form-input ${errors.telegramUsername ? 'error' : ''}`}
+            />
+            {errors.telegramUsername && <span className="error-text">{errors.telegramUsername}</span>}
+          </div>
+        </div>
+        
+        <div className="form-row">
+          <div className="form-group">
+            <label className="form-label">Twitter/X Profile</label>
+            <input
+              type="url"
+              name="twitterUrl"
+              value={formData.twitterUrl}
+              onChange={handleInputChange}
+              placeholder="https://twitter.com/yourusername"
+              className="form-input"
+            />
+          </div>
+          
+          <div className="form-group">
+            <label className="form-label">Project Website</label>
+            <input
+              type="url"
+              name="websiteUrl"
+              value={formData.websiteUrl}
+              onChange={handleInputChange}
+              placeholder="https://yourproject.com"
+              className="form-input"
+            />
+          </div>
         </div>
       </div>
       

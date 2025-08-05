@@ -105,6 +105,14 @@ const PublishStep3Payment = ({ formData, updateFormData, prevStep, user, setPaym
               <span>Selected Plan:</span>
               <span style={{ fontWeight: 'bold' }}>{formData.selectedPlan?.name}</span>
             </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <span>Owner Email:</span>
+              <span style={{ fontWeight: 'bold' }}>{formData.ownerEmail}</span>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <span>Telegram:</span>
+              <span style={{ fontWeight: 'bold' }}>{formData.telegramUsername}</span>
+            </div>
           </div>
         </div>
         

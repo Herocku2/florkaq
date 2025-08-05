@@ -23,6 +23,12 @@ const PublishWizard = () => {
     contractAddress: '',
     blockExplorerUrl: '',
     
+    // Contact Information
+    ownerEmail: '',
+    telegramUsername: '',
+    twitterUrl: '',
+    websiteUrl: '',
+    
     // Step 2 - Plan Selection
     selectedPlan: null,
     
