@@ -52,16 +52,16 @@ jobs:
           # Limpiar archivos anteriores (excepto datos persistentes)
           rm -rf frontend backend package*.json *.js *.json public src .env* || true
           
-          # Clonar el repositorio directamente
-          if [ ! -d ".git" ]; then
-            git clone https://github.com/Herocku2/kiroflorka.git temp-repo
-            mv temp-repo/* .
-            mv temp-repo/.* . 2>/dev/null || true
-            rm -rf temp-repo
-          else
-            git fetch origin
-            git reset --hard origin/feat/ui-uniformity
-          fi
+          # Limpiar completamente y clonar la rama correcta
+          rm -rf .git || true
+          git clone -b feat/ui-uniformity https://github.com/Herocku2/kiroflorka.git temp-repo
+          mv temp-repo/* . 2>/dev/null || true
+          mv temp-repo/.* . 2>/dev/null || true
+          rm -rf temp-repo
+          
+          # Verificar que tenemos la versión correcta
+          echo "Current commit: $(git rev-parse HEAD)"
+          echo "Latest commit should be: 747cddce"
         
     - name: Setup and deploy on server
       uses: appleboy/ssh-action@v1.0.0
