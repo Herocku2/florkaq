@@ -34,25 +34,6 @@ jobs:
       run: |
         npm run build
         
-    - name: Create deployment package
-      run: |
-        # Limpiar archivos temporales primero
-        rm -rf node_modules backend/node_modules || true
-        rm -rf .git/objects/pack/*.tmp || true
-        
-        # Crear el paquete excluyendo archivos innecesarios
-        tar -czf florka-deployment.tar.gz \
-          --exclude=node_modules \
-          --exclude=backend/node_modules \
-          --exclude=.git \
-          --exclude=.github \
-          --exclude='*.log' \
-          --exclude=.env.local \
-          --exclude=.DS_Store \
-          --exclude='*.tmp' \
-          --exclude=backup_comparison \
-          .
-          
     - name: Deploy to Contabo VPS
       uses: appleboy/ssh-action@v1.0.0
       with:
@@ -71,17 +52,18 @@ jobs:
           # Limpiar archivos anteriores (excepto datos persistentes)
           rm -rf frontend backend package*.json *.js *.json public src .env* || true
           
-    - name: Copy files to server
-      uses: appleboy/scp-action@v0.1.4
-      with:
-        host: ${{ secrets.CONTABO_HOST }}
-        username: ${{ secrets.CONTABO_USERNAME }}
-        password: ${{ secrets.CONTABO_PASSWORD }}
-        port: ${{ secrets.CONTABO_PORT }}
-        source: "florka-deployment.tar.gz"
-        target: "/opt/florka-fun/"
+          # Clonar el repositorio directamente
+          if [ ! -d ".git" ]; then
+            git clone https://github.com/Herocku2/kiroflorka.git temp-repo
+            mv temp-repo/* .
+            mv temp-repo/.* . 2>/dev/null || true
+            rm -rf temp-repo
+          else
+            git fetch origin
+            git reset --hard origin/feat/ui-uniformity
+          fi
         
-    - name: Extract and setup on server
+    - name: Setup and deploy on server
       uses: appleboy/ssh-action@v1.0.0
       with:
         host: ${{ secrets.CONTABO_HOST }}
@@ -90,10 +72,6 @@ jobs:
         port: ${{ secrets.CONTABO_PORT }}
         script: |
           cd /opt/florka-fun
-          
-          # Extraer archivos
-          tar -xzf florka-deployment.tar.gz
-          rm florka-deployment.tar.gz
           
           # Crear archivo .env para producción si no existe
           if [ ! -f .env ]; then
