@@ -36,12 +36,21 @@ jobs:
         
     - name: Create deployment package
       run: |
+        # Limpiar archivos temporales primero
+        rm -rf node_modules backend/node_modules || true
+        rm -rf .git/objects/pack/*.tmp || true
+        
+        # Crear el paquete excluyendo archivos innecesarios
         tar -czf florka-deployment.tar.gz \
           --exclude=node_modules \
+          --exclude=backend/node_modules \
           --exclude=.git \
           --exclude=.github \
-          --exclude=*.log \
+          --exclude='*.log' \
           --exclude=.env.local \
+          --exclude=.DS_Store \
+          --exclude='*.tmp' \
+          --exclude=backup_comparison \
           .
           
     - name: Deploy to Contabo VPS
