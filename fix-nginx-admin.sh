@@ -208,4 +208,3 @@ echo "🔧 Para verificar:"
 echo "   curl -I https://florkafun.online/admin/"
 echo "   systemctl status nginx"
 echo ""
-EOF

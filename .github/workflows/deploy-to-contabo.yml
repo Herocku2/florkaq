@@ -193,7 +193,6 @@ jobs:
                 - WATCHTOWER_NOTIFICATION_EMAIL_FROM=noreply@florka.fun
                 - WATCHTOWER_NOTIFICATION_EMAIL_TO=admin@florka.fun
           EOF
-          fi
           
           # Crear/actualizar Dockerfile para frontend (FORZAR ACTUALIZACIÓN)
           cat > Dockerfile.frontend << 'EOF'

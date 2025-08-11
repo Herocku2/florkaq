@@ -1,0 +1,36 @@
+name: Simple Deploy to Contabo VPS
+
+on:
+  push:
+    branches: [ main, master, feat/ui-uniformity ]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: production
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Deploy to Contabo VPS
+      uses: appleboy/ssh-action@v1.0.0
+      with:
+        host: ${{ secrets.CONTABO_HOST }}
+        username: ${{ secrets.CONTABO_USERNAME }}
+        password: ${{ secrets.CONTABO_PASSWORD }}
+        port: ${{ secrets.CONTABO_PORT }}
+        script: |
+          # Ir al directorio del proyecto
+          cd /opt/florka-fun || exit 1
+          
+          # Actualizar código
+          git fetch origin
+          git reset --hard origin/feat/ui-uniformity
+          
+          # Ejecutar script de recuperación
+          chmod +x emergency-recovery.sh
+          bash emergency-recovery.sh
+          
+          echo "✅ Deployment simple completado"
