@@ -27,10 +27,30 @@ jobs:
           
           # Actualizar código
           git fetch origin
-          git reset --hard origin/feat/ui-uniformity
+          git reset --hard origin/main
+          
+          # Instalar certificados SSL si existen
+          if [ -f "ssl/florkafun.crt" ] && [ -f "ssl/florkafun.key" ]; then
+            echo "🔐 Instalando certificados SSL..."
+            sudo mkdir -p /etc/ssl/certs /etc/ssl/private
+            sudo cp ssl/florkafun.crt /etc/ssl/certs/florkafun.crt
+            sudo cp ssl/florkafun.key /etc/ssl/private/florkafun.key
+            sudo chmod 644 /etc/ssl/certs/florkafun.crt
+            sudo chmod 600 /etc/ssl/private/florkafun.key
+            sudo chown root:root /etc/ssl/certs/florkafun.crt
+            sudo chown root:root /etc/ssl/private/florkafun.key
+            echo "✅ Certificados SSL instalados"
+            
+            # Configurar nginx con SSL
+            if [ -f "setup-nginx-cloudflare-ssl.sh" ]; then
+              chmod +x setup-nginx-cloudflare-ssl.sh
+              sudo bash setup-nginx-cloudflare-ssl.sh
+              echo "✅ Nginx configurado con SSL"
+            fi
+          fi
           
           # Ejecutar script de recuperación
           chmod +x emergency-recovery.sh
           bash emergency-recovery.sh
           
-          echo "✅ Deployment simple completado"
+          echo "✅ Deployment con SSL completado"
