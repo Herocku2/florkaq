@@ -57,3 +57,45 @@ http://localhost:1337
 ✅ Permiso API actualizado: api::voto.voto.create
 ✅ Permiso API actualizado: api::voto.voto.delete
 🎉 Configuración de permisos completada!
+[2025-08-11 12:05:37.004] [32mhttp[39m: OPTIONS /api/simple-auth/me (5 ms) 204
+❌ Error obteniendo usuario: JsonWebTokenError: invalid signature
+    at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/jsonwebtoken/verify.js:171:19
+    at getSecret (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/jsonwebtoken/verify.js:97:14)
+    at module.exports [as verify] (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/jsonwebtoken/verify.js:101:10)
+    at Object.me (/Users/anto/Documents/florkaproject2/kiroflorka/backend/src/api/simple-auth/controllers/simple-auth.js:225:27)
+    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
+    at returnBodyMiddleware (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/services/server/compose-endpoint.js:42:24)
+    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
+    at policiesMiddleware (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/services/server/policy.js:15:11)
+    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
+    at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/services/server/compose-endpoint.js:27:18
+[2025-08-11 12:05:37.038] [32mhttp[39m: GET /api/simple-auth/me (21 ms) 200
+[2025-08-11 12:05:37.041] [32mhttp[39m: OPTIONS /api/simple-auth/me (1 ms) 204
+❌ Error obteniendo usuario: JsonWebTokenError: invalid signature
+    at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/jsonwebtoken/verify.js:171:19
+    at getSecret (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/jsonwebtoken/verify.js:97:14)
+    at module.exports [as verify] (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/jsonwebtoken/verify.js:101:10)
+    at Object.me (/Users/anto/Documents/florkaproject2/kiroflorka/backend/src/api/simple-auth/controllers/simple-auth.js:225:27)
+    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
+    at returnBodyMiddleware (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/services/server/compose-endpoint.js:42:24)
+    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
+    at policiesMiddleware (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/services/server/policy.js:15:11)
+    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
+    at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/services/server/compose-endpoint.js:27:18
+[2025-08-11 12:05:37.098] [32mhttp[39m: GET /api/simple-auth/me (40 ms) 200
+[2025-08-11 12:07:32.664] [32mhttp[39m: OPTIONS /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=6 (6 ms) 500
+[2025-08-11 12:07:32.675] [32mhttp[39m: OPTIONS /api/rankings/page/next (2 ms) 500
+🔓 Acceso público permitido: /api/tokens
+[2025-08-11 12:07:32.681] [32mhttp[39m: OPTIONS /api/tokens?filters%5Bestado%5D%5B%24eq%5D=proximo&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=6&sort=fechaLanzamiento%3Aasc (1 ms) 500
+[2025-08-11 12:07:32.683] [32mhttp[39m: OPTIONS /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=6 (1 ms) 500
+[2025-08-11 12:07:32.692] [32mhttp[39m: OPTIONS /api/rankings/page/next (5 ms) 500
+[2025-08-11 12:07:32.739] [32mhttp[39m: OPTIONS /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3 (2 ms) 500
+🔓 Acceso público permitido: /api/tokens
+[2025-08-11 12:07:32.752] [32mhttp[39m: OPTIONS /api/tokens?filters%5Bestado%5D%5B%24eq%5D=proximo&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=6&sort=fechaLanzamiento%3Aasc (1 ms) 500
+[2025-08-11 12:07:32.757] [32mhttp[39m: OPTIONS /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3 (3 ms) 500
+🔓 Acceso público permitido: /api/tokens
+[2025-08-11 12:07:32.763] [32mhttp[39m: OPTIONS /api/tokens?filters%5Bestado%5D%5B%24eq%5D=proximo&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3&sort=totalVotos%3Adesc (4 ms) 500
+🔓 Acceso público permitido: /api/tokens
+[2025-08-11 12:07:32.783] [32mhttp[39m: OPTIONS /api/tokens?filters%5Bestado%5D%5B%24eq%5D=proximo&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3&sort=totalVotos%3Adesc (1 ms) 500
+[2025-08-11 12:07:32.800] [32mhttp[39m: GET /img/image-4.png (10 ms) 404
+[2025-08-11 12:07:32.801] [32mhttp[39m: GET /img/image-3.png (2 ms) 404
