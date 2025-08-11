@@ -7,4 +7,12 @@ module.exports = ({ env }) => ({
   webhooks: {
     populateRelations: env.bool('WEBHOOKS_POPULATE_RELATIONS', false),
   },
+  // Configuración adicional para evitar errores
+  admin: {
+    auth: {
+      secret: env('ADMIN_JWT_SECRET'),
+    },
+  },
+  // Deshabilitar telemetría
+  telemetry: false,
 });
