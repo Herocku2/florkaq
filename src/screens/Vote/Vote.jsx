@@ -15,7 +15,8 @@ const buildImageUrl = (imageData, tokenName = '') => {
   // PRIORIDAD 1: Si hay imagen real del backend, usarla
   if (imageData?.data?.attributes?.url) {
     const url = imageData.data.attributes.url;
-    const finalUrl = url.startsWith('http') ? url : `http://localhost:1337${url}`;
+    const baseUrl = import.meta.env.VITE_API_URL?.replace('/api', '') || 'http://localhost:1337';
+    const finalUrl = url.startsWith('http') ? url : `${baseUrl}${url}`;
     console.log('Using backend image URL:', finalUrl);
     return finalUrl;
   }

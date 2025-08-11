@@ -1,7 +1,7 @@
 // API Service for FlorkaFun Platform
 // Handles communication with Strapi backend
 
-const API_BASE_URL = 'http://localhost:1337/api';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:1337/api';
 
 class ApiService {
   constructor() {
