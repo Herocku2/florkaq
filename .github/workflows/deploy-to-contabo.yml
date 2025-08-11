@@ -73,9 +73,8 @@ jobs:
         script: |
           cd /opt/florka-fun
           
-          # Crear archivo .env para producción si no existe
-          if [ ! -f .env ]; then
-            cat > .env << EOF
+          # Crear/actualizar archivo .env para producción (FORZAR ACTUALIZACIÓN)
+          cat > .env << EOF
           NODE_ENV=production
           VITE_API_URL=https://florkafun.online:1337/api
           REACT_APP_API_URL=https://florkafun.online:1337/api
@@ -87,7 +86,15 @@ jobs:
           API_TOKEN_SALT=${{ secrets.API_TOKEN_SALT }}
           TRANSFER_TOKEN_SALT=${{ secrets.TRANSFER_TOKEN_SALT }}
           EOF
-          fi
+          
+          # Crear archivo .env.production específico para el build
+          cat > .env.production << EOF
+          NODE_ENV=production
+          VITE_API_URL=https://florkafun.online:1337/api
+          VITE_LOG_LEVEL=error
+          VITE_ENABLE_LOGGING=false
+          VITE_HIDE_SENSITIVE_DATA=true
+          EOF
           
           # Crear archivo docker-compose.yml si no existe
           if [ ! -f docker-compose.yml ]; then
@@ -188,9 +195,8 @@ jobs:
           EOF
           fi
           
-          # Crear Dockerfile para frontend si no existe
-          if [ ! -f Dockerfile.frontend ]; then
-            cat > Dockerfile.frontend << 'EOF'
+          # Crear/actualizar Dockerfile para frontend (FORZAR ACTUALIZACIÓN)
+          cat > Dockerfile.frontend << 'EOF'
           FROM node:18-alpine
           
           # Instalar curl para healthchecks
@@ -202,10 +208,18 @@ jobs:
           COPY package*.json ./
           RUN npm ci --only=production
           
+          # Copiar archivos de configuración
+          COPY .env* ./
+          
           # Copiar código fuente
           COPY . .
           
-          # Build de la aplicación
+          # Configurar variables de entorno para el build
+          ENV NODE_ENV=production
+          ENV VITE_API_URL=https://florkafun.online:1337/api
+          ENV REACT_APP_API_URL=https://florkafun.online:1337/api
+          
+          # Build de la aplicación con variables de entorno
           RUN npm run build
           
           # Instalar serve para servir archivos estáticos
@@ -226,8 +240,7 @@ jobs:
           EOF
           fi
           
-          # Crear Dockerfile para backend si no existe
-          if [ ! -f backend/Dockerfile ]; then
+          # Crear/actualizar Dockerfile para backend (FORZAR ACTUALIZACIÓN)
             cat > backend/Dockerfile << 'EOF'
           FROM node:18-alpine
           
@@ -265,10 +278,8 @@ jobs:
           
           CMD ["npm", "start"]
           EOF
-          fi
           
-          # Crear configuración de nginx si no existe
-          if [ ! -f nginx.conf ]; then
+          # Crear/actualizar configuración de nginx (FORZAR ACTUALIZACIÓN)
             cat > nginx.conf << 'EOF'
           events {
               worker_connections 1024;
@@ -328,7 +339,10 @@ jobs:
               }
           }
           EOF
-          fi
+          
+          # Limpiar contenedores e imágenes anteriores
+          docker-compose down --remove-orphans || true
+          docker system prune -f || true
           
           # Construir y levantar contenedores con restart automático
           docker-compose build --no-cache

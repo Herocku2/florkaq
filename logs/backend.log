@@ -99,3 +99,39 @@ http://localhost:1337
 [2025-08-11 12:07:32.783] [32mhttp[39m: OPTIONS /api/tokens?filters%5Bestado%5D%5B%24eq%5D=proximo&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3&sort=totalVotos%3Adesc (1 ms) 500
 [2025-08-11 12:07:32.800] [32mhttp[39m: GET /img/image-4.png (10 ms) 404
 [2025-08-11 12:07:32.801] [32mhttp[39m: GET /img/image-3.png (2 ms) 404
+[2025-08-11 12:11:50.543] [32mhttp[39m: OPTIONS /candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=6 (3 ms) 500
+[2025-08-11 12:11:50.545] [32mhttp[39m: OPTIONS /rankings/page/next (1 ms) 500
+[2025-08-11 12:11:50.546] [32mhttp[39m: OPTIONS /candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=6 (1 ms) 500
+[2025-08-11 12:11:50.546] [32mhttp[39m: OPTIONS /rankings/page/next (0 ms) 500
+[2025-08-11 12:11:50.556] [32mhttp[39m: OPTIONS /tokens?filters%5Bestado%5D%5B%24eq%5D=proximo&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=6&sort=fechaLanzamiento%3Aasc (0 ms) 500
+[2025-08-11 12:11:50.557] [32mhttp[39m: OPTIONS /candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3 (1 ms) 500
+[2025-08-11 12:11:50.557] [32mhttp[39m: OPTIONS /tokens?filters%5Bestado%5D%5B%24eq%5D=proximo&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=6&sort=fechaLanzamiento%3Aasc (0 ms) 500
+[2025-08-11 12:11:50.558] [32mhttp[39m: OPTIONS /candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3 (1 ms) 500
+[2025-08-11 12:11:50.560] [32mhttp[39m: OPTIONS /tokens?filters%5Bestado%5D%5B%24eq%5D=proximo&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3&sort=totalVotos%3Adesc (0 ms) 500
+[2025-08-11 12:11:50.561] [32mhttp[39m: OPTIONS /tokens?filters%5Bestado%5D%5B%24eq%5D=proximo&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3&sort=totalVotos%3Adesc (0 ms) 500
+[2025-08-11 12:11:50.889] [32mhttp[39m: GET /img/image-4.png (5 ms) 404
+[2025-08-11 12:11:50.890] [32mhttp[39m: GET /img/image-3.png (2 ms) 404
+[2025-08-11 12:14:22.842] [32mhttp[39m: GET /api/rankings/page/home (352 ms) 200
+[2025-08-11 12:14:22.968] [32mhttp[39m: GET /api/rankings/page/home (68 ms) 200
+[2025-08-11 12:14:22.990] [32mhttp[39m: GET /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=9 (244 ms) 200
+🔓 Acceso público permitido: /api/tokens
+[2025-08-11 12:14:23.063] [32mhttp[39m: GET /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3 (115 ms) 200
+🔓 Acceso público permitido: /api/tokens
+[2025-08-11 12:14:23.249] [32mhttp[39m: GET /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=9 (240 ms) 200
+[2025-08-11 12:14:23.318] [32mhttp[39m: GET /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3 (226 ms) 200
+[2025-08-11 12:14:23.397] [32mhttp[39m: GET /api/tokens?filters%5Bestado%5D%5B%24eq%5D=lanzado&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=9&sort=fechaLanzamiento%3Adesc (364 ms) 200
+🔓 Acceso público permitido: /api/tokens
+[2025-08-11 12:14:23.557] [32mhttp[39m: GET /api/tokens?filters%5Bestado%5D%5B%24eq%5D=lanzado&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3&sort=fechaLanzamiento%3Adesc (443 ms) 200
+[2025-08-11 12:14:23.825] [32mhttp[39m: OPTIONS /uploads/superman_1066d0438e.jpeg (3 ms) 204
+[2025-08-11 12:14:23.828] [32mhttp[39m: OPTIONS /uploads/capitrana_marvel_edcd6c169e.jpeg (1 ms) 204
+[2025-08-11 12:14:23.842] [32mhttp[39m: OPTIONS /uploads/Donald_Trump_a9b7e8c58d.jpeg (1 ms) 204
+[2025-08-11 12:14:23.986] [32mhttp[39m: GET /uploads/superman_1066d0438e.jpeg (85 ms) 200
+[2025-08-11 12:14:23.991] [32mhttp[39m: OPTIONS /uploads/4_fantasticos_327f5082df.jpeg (1 ms) 204
+[2025-08-11 12:14:23.995] [32mhttp[39m: GET /uploads/capitrana_marvel_edcd6c169e.jpeg (46 ms) 200
+🔓 Acceso público permitido: /api/tokens
+[2025-08-11 12:14:24.011] [32mhttp[39m: GET /uploads/4_fantasticos_327f5082df.jpeg (43 ms) 200
+[2025-08-11 12:14:24.116] [32mhttp[39m: GET /api/tokens?filters%5Bestado%5D%5B%24eq%5D=lanzado&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=9&sort=fechaLanzamiento%3Adesc (638 ms) 200
+[2025-08-11 12:14:24.124] [32mhttp[39m: GET /uploads/Donald_Trump_a9b7e8c58d.jpeg (98 ms) 200
+[2025-08-11 12:14:24.125] [32mhttp[39m: GET /uploads/pump_fun_fd078a89d2.png (63 ms) 200
+[2025-08-11 12:14:24.127] [32mhttp[39m: GET /uploads/Captura_de_pantalla_2025_07_14_a_la_s_4_18_22_p_m_a3a51c80d2.png (59 ms) 200
+[2025-08-11 12:14:24.171] [32mhttp[39m: GET /api/tokens?filters%5Bestado%5D%5B%24eq%5D=lanzado&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3&sort=fechaLanzamiento%3Adesc (171 ms) 200
