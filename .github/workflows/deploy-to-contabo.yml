@@ -443,14 +443,22 @@ jobs:
           # Limpiar imágenes no utilizadas
           docker system prune -f
           
+          # Arreglar configuración de Nginx
+          echo "🔧 Arreglando configuración de Nginx..."
+          if [ -f "fix-nginx-admin.sh" ]; then
+              chmod +x fix-nginx-admin.sh
+              bash fix-nginx-admin.sh
+          fi
+          
           # Verificación final
           echo "🔍 Verificación final de servicios..."
           sleep 10
           
           if docker-compose ps | grep -q "Up"; then
               echo "✅ Deployment completed successfully!"
-              echo "🌐 Frontend: http://$(curl -s ifconfig.me):3000"
-              echo "🔧 Backend: http://$(curl -s ifconfig.me):1337/admin"
+              echo "🌐 Frontend: https://florkafun.online"
+              echo "🔧 Backend Admin: https://florkafun.online/admin/"
+              echo "📡 API: https://florkafun.online/api/"
               echo "📊 Monitoreo activo cada 2 minutos"
               echo "🔄 Auto-restart configurado"
               echo "📝 Logs en: /var/log/florka-monitor.log"
