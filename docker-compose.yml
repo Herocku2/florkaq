@@ -36,9 +36,9 @@ services:
     restart: unless-stopped
     working_dir: /srv/app
     volumes:
-      - ./backend:/srv/app
+      - ./backend:/srv/app:cached
       - strapi-uploads:/srv/app/public/uploads
-      - /srv/app/node_modules
+      - strapi-node-modules:/srv/app/node_modules
     ports:
       - "1337:1337"
     environment:
@@ -55,11 +55,8 @@ services:
       - PORT=1337
     command: >
       bash -c "
-        if [ ! -f package.json ]; then
-          npx create-strapi-app@latest . --quickstart --no-run --skip-cloud
-        fi
         npm install
-        echo 'y' | npm run develop
+        npm run develop
       "
     depends_on:
       - postgres
@@ -73,8 +70,8 @@ services:
     restart: unless-stopped
     working_dir: /app
     volumes:
-      - .:/app
-      - /app/node_modules
+      - .:/app:cached
+      - frontend-node-modules:/app/node_modules
     ports:
       - "5173:5173"
     command: >
@@ -123,6 +120,8 @@ volumes:
   postgres-data:
   strapi-uploads:
   redis-data:
+  strapi-node-modules:
+  frontend-node-modules:
 
 networks:
   florkafun-network:
