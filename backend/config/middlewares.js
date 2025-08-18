@@ -20,7 +20,14 @@ module.exports = [
     config: {
       enabled: true,
       headers: '*',
-      origin: ['http://localhost:5173', 'https://florkafun.online', 'https://www.florkafun.online'],
+      origin: [
+        'http://localhost:5173', 
+        'http://localhost:1337',
+        'http://84.247.140.138:1337',
+        'http://84.247.140.138:5173',
+        'https://florkafun.online', 
+        'https://www.florkafun.online'
+      ],
     },
   },
   'strapi::poweredBy',
