@@ -478,3 +478,47 @@ http://localhost:1337
 ✅ Permiso API actualizado: api::voto.voto.create
 ✅ Permiso API actualizado: api::voto.voto.delete
 🎉 Configuración de permisos completada!
+[2025-08-20 16:54:11.363] [32minfo[39m: File changed: /Users/anto/Documents/florkaproject2/kiroflorka/backend/config/database.js
+- Loading Strapi
+🚀 Iniciando FlorkaFun Backend...
+✅ FlorkaFun Backend iniciado correctamente!
+✔ Loading Strapi (3323ms)
+- Generating types
+✔ Generating types (408ms)
+
+ Project information
+
+[90m┌────────────────────[39m[90m┬──────────────────────────────────────────────────┐[39m
+[90m│[39m Time               [90m│[39m Wed Aug 20 2025 16:54:24 GMT-0500 (Colombia Sta… [90m│[39m
+[90m│[39m Launched in        [90m│[39m 3739 ms                                          [90m│[39m
+[90m│[39m Environment        [90m│[39m development                                      [90m│[39m
+[90m│[39m Process PID        [90m│[39m 71086                                            [90m│[39m
+[90m│[39m Version            [90m│[39m 4.15.5 (node v22.16.0)                           [90m│[39m
+[90m│[39m Edition            [90m│[39m Community                                        [90m│[39m
+[90m│[39m Database           [90m│[39m sqlite                                           [90m│[39m
+[90m└────────────────────[39m[90m┴──────────────────────────────────────────────────┘[39m
+
+ Actions available
+
+Welcome back!
+To manage your project 🚀, go to the administration panel at:
+http://localhost:1337/admin
+
+To access the server ⚡️, go to:
+http://localhost:1337
+
+🔧 Configurando permisos de users-permissions...
+✅ Rol Public encontrado: 2
+✅ Permiso actualizado: plugin::users-permissions.auth.register
+✅ Permiso actualizado: plugin::users-permissions.auth.callback
+✅ Permiso actualizado: plugin::users-permissions.auth.connect
+✅ Permiso actualizado: plugin::users-permissions.auth.forgotPassword
+✅ Permiso actualizado: plugin::users-permissions.auth.resetPassword
+✅ Permiso actualizado: plugin::users-permissions.auth.emailConfirmation
+✅ Permiso actualizado: plugin::users-permissions.user.me
+✅ Permiso API actualizado: api::token.token.find
+✅ Permiso API actualizado: api::token.token.findOne
+✅ Permiso API actualizado: api::voto.voto.find
+✅ Permiso API actualizado: api::voto.voto.create
+✅ Permiso API actualizado: api::voto.voto.delete
+🎉 Configuración de permisos completada!
