@@ -4,8 +4,8 @@
   "info": {
     "singularName": "usuario",
     "pluralName": "usuarios",
-    "displayName": "Moderadores",
-    "description": "Gestión de usuarios y moderadores de la plataforma FlorkaFun"
+    "displayName": "Usuario",
+    "description": "Usuarios de la plataforma FlorkaFun"
   },
   "options": {
     "draftAndPublish": false

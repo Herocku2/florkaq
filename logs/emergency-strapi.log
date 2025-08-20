@@ -1,0 +1,480 @@
+
+> florkafun-backend@0.1.0 develop
+> strapi develop
+
+- Building build context
+
+[INFO] Including the following ENV variables as part of the JS bundle:
+    - ADMIN_PATH
+    - STRAPI_ADMIN_BACKEND_URL
+    - STRAPI_TELEMETRY_DISABLED
+✔ Building build context (148ms)
+- Creating admin
+✔ Creating admin (15887ms)
+- Loading Strapi
+🚀 Iniciando FlorkaFun Backend...
+✅ FlorkaFun Backend iniciado correctamente!
+✔ Loading Strapi (5356ms)
+- Generating types
+✔ Generating types (422ms)
+
+ Project information
+
+[90m┌────────────────────[39m[90m┬──────────────────────────────────────────────────┐[39m
+[90m│[39m Time               [90m│[39m Wed Aug 20 2025 11:03:20 GMT-0500 (Colombia Sta… [90m│[39m
+[90m│[39m Launched in        [90m│[39m 5790 ms                                          [90m│[39m
+[90m│[39m Environment        [90m│[39m development                                      [90m│[39m
+[90m│[39m Process PID        [90m│[39m 61680                                            [90m│[39m
+[90m│[39m Version            [90m│[39m 4.15.5 (node v22.16.0)                           [90m│[39m
+[90m│[39m Edition            [90m│[39m Community                                        [90m│[39m
+[90m│[39m Database           [90m│[39m sqlite                                           [90m│[39m
+[90m└────────────────────[39m[90m┴──────────────────────────────────────────────────┘[39m
+
+ Actions available
+
+Welcome back!
+To manage your project 🚀, go to the administration panel at:
+http://localhost:1337/admin
+
+To access the server ⚡️, go to:
+http://localhost:1337
+
+🔧 Configurando permisos de users-permissions...
+✅ Rol Public encontrado: 2
+✅ Permiso actualizado: plugin::users-permissions.auth.register
+✅ Permiso actualizado: plugin::users-permissions.auth.callback
+✅ Permiso actualizado: plugin::users-permissions.auth.connect
+✅ Permiso actualizado: plugin::users-permissions.auth.forgotPassword
+✅ Permiso actualizado: plugin::users-permissions.auth.resetPassword
+✅ Permiso actualizado: plugin::users-permissions.auth.emailConfirmation
+✅ Permiso actualizado: plugin::users-permissions.user.me
+✅ Permiso API actualizado: api::token.token.find
+✅ Permiso API actualizado: api::token.token.findOne
+✅ Permiso API actualizado: api::voto.voto.find
+✅ Permiso API actualizado: api::voto.voto.create
+✅ Permiso API actualizado: api::voto.voto.delete
+🎉 Configuración de permisos completada!
+[2025-08-20 11:04:04.638] [32mhttp[39m: GET /admin (14 ms) 200
+[2025-08-20 11:04:11.965] [32mhttp[39m: GET /admin/ (13 ms) 200
+[2025-08-20 11:04:12.770] [32mhttp[39m: GET /admin/project-type (2 ms) 200
+[2025-08-20 11:04:12.879] [32mhttp[39m: GET /admin/init (4 ms) 200
+[2025-08-20 11:04:12.931] [32mhttp[39m: GET /admin/telemetry-properties (5 ms) 401
+[2025-08-20 11:04:12.935] [31merror[39m: ENOENT: no such file or directory, open '/Users/anto/Documents/florkaproject2/kiroflorka/backend/favicon.ico'
+Error: ENOENT: no such file or directory, open '/Users/anto/Documents/florkaproject2/kiroflorka/backend/favicon.ico'
+    at Object.openSync (node:fs:562:18)
+    at Object.readFileSync (node:fs:446:35)
+    at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-favicon/index.js:50:28
+    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
+    at dummyMiddleware (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/services/server/middleware.js:25:39)
+    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
+    at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/middlewares/body.js:45:15
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/middlewares/powered-by.js:9:5
+    at async cors (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@koa/cors/index.js:61:32)
+[2025-08-20 11:04:12.937] [32mhttp[39m: GET /favicon.ico (5 ms) 500
+[2025-08-20 11:04:14.339] [32mhttp[39m: GET /admin/florka-logo.svg (6 ms) 200
+[2025-08-20 11:04:14.340] [31merror[39m: ENOENT: no such file or directory, open '/Users/anto/Documents/florkaproject2/kiroflorka/backend/favicon.ico'
+Error: ENOENT: no such file or directory, open '/Users/anto/Documents/florkaproject2/kiroflorka/backend/favicon.ico'
+    at Object.openSync (node:fs:562:18)
+    at Object.readFileSync (node:fs:446:35)
+    at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-favicon/index.js:50:28
+    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
+    at dummyMiddleware (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/services/server/middleware.js:25:39)
+    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
+    at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/middlewares/body.js:45:15
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/middlewares/powered-by.js:9:5
+    at async cors (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@koa/cors/index.js:61:32)
+[2025-08-20 11:04:14.341] [32mhttp[39m: GET /favicon.ico (1 ms) 500
+[2025-08-20 11:04:36.118] [32mhttp[39m: POST /admin/login (196 ms) 200
+[2025-08-20 11:04:36.131] [31merror[39m: ENOENT: no such file or directory, open '/Users/anto/Documents/florkaproject2/kiroflorka/backend/favicon.ico'
+Error: ENOENT: no such file or directory, open '/Users/anto/Documents/florkaproject2/kiroflorka/backend/favicon.ico'
+    at Object.openSync (node:fs:562:18)
+    at Object.readFileSync (node:fs:446:35)
+    at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-favicon/index.js:50:28
+    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
+    at dummyMiddleware (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/services/server/middleware.js:25:39)
+    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
+    at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/middlewares/body.js:45:15
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/middlewares/powered-by.js:9:5
+    at async cors (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@koa/cors/index.js:61:32)
+[2025-08-20 11:04:36.131] [32mhttp[39m: GET /favicon.ico (1 ms) 500
+[2025-08-20 11:04:36.179] [32mhttp[39m: GET /admin/information (32 ms) 200
+[2025-08-20 11:04:36.201] [32mhttp[39m: GET /admin/users/me (47 ms) 200
+[2025-08-20 11:04:36.207] [32mhttp[39m: GET /admin/users/me/permissions (56 ms) 200
+[2025-08-20 11:04:36.233] [32mhttp[39m: GET /i18n/locales (16 ms) 200
+[2025-08-20 11:04:36.250] [32mhttp[39m: GET /admin/7804.48166818.chunk.js (2 ms) 200
+[2025-08-20 11:04:36.285] [32mhttp[39m: GET /content-manager/components (23 ms) 200
+[2025-08-20 11:04:36.302] [32mhttp[39m: GET /content-manager/content-types (36 ms) 200
+[2025-08-20 11:04:37.911] [32mhttp[39m: GET /admin/574.2407d583.chunk.js (5 ms) 200
+[2025-08-20 11:04:37.913] [31merror[39m: ENOENT: no such file or directory, open '/Users/anto/Documents/florkaproject2/kiroflorka/backend/favicon.ico'
+Error: ENOENT: no such file or directory, open '/Users/anto/Documents/florkaproject2/kiroflorka/backend/favicon.ico'
+    at Object.openSync (node:fs:562:18)
+    at Object.readFileSync (node:fs:446:35)
+    at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-favicon/index.js:50:28
+    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
+    at dummyMiddleware (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/services/server/middleware.js:25:39)
+    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
+    at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/middlewares/body.js:45:15
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/middlewares/powered-by.js:9:5
+    at async cors (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@koa/cors/index.js:61:32)
+[2025-08-20 11:04:37.913] [32mhttp[39m: GET /favicon.ico (1 ms) 500
+[2025-08-20 11:04:37.914] [32mhttp[39m: GET /admin/6715.e52d00ba.chunk.js (6 ms) 200
+[2025-08-20 11:04:38.069] [32mhttp[39m: GET /content-manager/init (39 ms) 200
+[2025-08-20 11:04:38.171] [32mhttp[39m: GET /content-manager/content-types-settings (72 ms) 200
+[2025-08-20 11:04:38.195] [31merror[39m: ENOENT: no such file or directory, open '/Users/anto/Documents/florkaproject2/kiroflorka/backend/favicon.ico'
+Error: ENOENT: no such file or directory, open '/Users/anto/Documents/florkaproject2/kiroflorka/backend/favicon.ico'
+    at Object.openSync (node:fs:562:18)
+    at Object.readFileSync (node:fs:446:35)
+    at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-favicon/index.js:50:28
+    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
+    at dummyMiddleware (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/services/server/middleware.js:25:39)
+    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
+    at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/middlewares/body.js:45:15
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/middlewares/powered-by.js:9:5
+    at async cors (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@koa/cors/index.js:61:32)
+[2025-08-20 11:04:38.195] [32mhttp[39m: GET /favicon.ico (1 ms) 500
+[2025-08-20 11:04:38.208] [32mhttp[39m: GET /content-manager/content-types/api::actividad.actividad/configuration (17 ms) 200
+[2025-08-20 11:04:38.276] [32mhttp[39m: GET /content-manager/collection-types/api::actividad.actividad?page=1&pageSize=10&sort=descripcion:ASC (29 ms) 200
+[2025-08-20 11:13:04.654] [32mhttp[39m: GET /admin/ (5 ms) 200
+[2025-08-20 11:13:06.248] [32mhttp[39m: GET /admin/project-type (3 ms) 200
+[2025-08-20 11:13:06.490] [32mhttp[39m: GET /admin/init (7 ms) 200
+[2025-08-20 11:13:06.582] [32mhttp[39m: GET /admin/telemetry-properties (7 ms) 401
+[2025-08-20 11:13:06.592] [31merror[39m: ENOENT: no such file or directory, open '/Users/anto/Documents/florkaproject2/kiroflorka/backend/favicon.ico'
+Error: ENOENT: no such file or directory, open '/Users/anto/Documents/florkaproject2/kiroflorka/backend/favicon.ico'
+    at Object.openSync (node:fs:562:18)
+    at Object.readFileSync (node:fs:446:35)
+    at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-favicon/index.js:50:28
+    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
+    at dummyMiddleware (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/services/server/middleware.js:25:39)
+    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
+    at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/middlewares/body.js:45:15
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/middlewares/powered-by.js:9:5
+    at async cors (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@koa/cors/index.js:61:32)
+[2025-08-20 11:13:06.592] [32mhttp[39m: GET /favicon.ico (1 ms) 500
+[2025-08-20 11:13:08.140] [32mhttp[39m: GET /admin/florka-logo.svg (2 ms) 200
+[2025-08-20 11:13:08.144] [31merror[39m: ENOENT: no such file or directory, open '/Users/anto/Documents/florkaproject2/kiroflorka/backend/favicon.ico'
+Error: ENOENT: no such file or directory, open '/Users/anto/Documents/florkaproject2/kiroflorka/backend/favicon.ico'
+    at Object.openSync (node:fs:562:18)
+    at Object.readFileSync (node:fs:446:35)
+    at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-favicon/index.js:50:28
+    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
+    at dummyMiddleware (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/services/server/middleware.js:25:39)
+    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
+    at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/middlewares/body.js:45:15
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/middlewares/powered-by.js:9:5
+    at async cors (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@koa/cors/index.js:61:32)
+[2025-08-20 11:13:08.145] [32mhttp[39m: GET /favicon.ico (1 ms) 500
+[2025-08-20 11:14:58.506] [32minfo[39m: File changed: /Users/anto/Documents/florkaproject2/kiroflorka/backend/config/plugins.js
+- Loading Strapi
+🚀 Iniciando FlorkaFun Backend...
+✅ FlorkaFun Backend iniciado correctamente!
+✔ Loading Strapi (2667ms)
+- Generating types
+✔ Generating types (384ms)
+
+ Project information
+
+[90m┌────────────────────[39m[90m┬──────────────────────────────────────────────────┐[39m
+[90m│[39m Time               [90m│[39m Wed Aug 20 2025 11:15:07 GMT-0500 (Colombia Sta… [90m│[39m
+[90m│[39m Launched in        [90m│[39m 3060 ms                                          [90m│[39m
+[90m│[39m Environment        [90m│[39m development                                      [90m│[39m
+[90m│[39m Process PID        [90m│[39m 62227                                            [90m│[39m
+[90m│[39m Version            [90m│[39m 4.15.5 (node v22.16.0)                           [90m│[39m
+[90m│[39m Edition            [90m│[39m Community                                        [90m│[39m
+[90m│[39m Database           [90m│[39m sqlite                                           [90m│[39m
+[90m└────────────────────[39m[90m┴──────────────────────────────────────────────────┘[39m
+
+ Actions available
+
+Welcome back!
+To manage your project 🚀, go to the administration panel at:
+http://localhost:1337/admin
+
+To access the server ⚡️, go to:
+http://localhost:1337
+
+🔧 Configurando permisos de users-permissions...
+✅ Rol Public encontrado: 2
+✅ Permiso actualizado: plugin::users-permissions.auth.register
+✅ Permiso actualizado: plugin::users-permissions.auth.callback
+✅ Permiso actualizado: plugin::users-permissions.auth.connect
+✅ Permiso actualizado: plugin::users-permissions.auth.forgotPassword
+✅ Permiso actualizado: plugin::users-permissions.auth.resetPassword
+✅ Permiso actualizado: plugin::users-permissions.auth.emailConfirmation
+✅ Permiso actualizado: plugin::users-permissions.user.me
+✅ Permiso API actualizado: api::token.token.find
+✅ Permiso API actualizado: api::token.token.findOne
+✅ Permiso API actualizado: api::voto.voto.find
+✅ Permiso API actualizado: api::voto.voto.create
+✅ Permiso API actualizado: api::voto.voto.delete
+🎉 Configuración de permisos completada!
+[2025-08-20 11:18:03.103] [32mhttp[39m: GET /admin (16 ms) 200
+[2025-08-20 11:18:42.217] [32minfo[39m: File changed: /Users/anto/Documents/florkaproject2/kiroflorka/backend/config/database.js
+- Loading Strapi
+🚀 Iniciando FlorkaFun Backend...
+✅ FlorkaFun Backend iniciado correctamente!
+✔ Loading Strapi (2163ms)
+- Generating types
+✔ Generating types (448ms)
+
+ Project information
+
+[90m┌────────────────────[39m[90m┬──────────────────────────────────────────────────┐[39m
+[90m│[39m Time               [90m│[39m Wed Aug 20 2025 11:18:49 GMT-0500 (Colombia Sta… [90m│[39m
+[90m│[39m Launched in        [90m│[39m 2630 ms                                          [90m│[39m
+[90m│[39m Environment        [90m│[39m development                                      [90m│[39m
+[90m│[39m Process PID        [90m│[39m 62391                                            [90m│[39m
+[90m│[39m Version            [90m│[39m 4.15.5 (node v22.16.0)                           [90m│[39m
+[90m│[39m Edition            [90m│[39m Community                                        [90m│[39m
+[90m│[39m Database           [90m│[39m sqlite                                           [90m│[39m
+[90m└────────────────────[39m[90m┴──────────────────────────────────────────────────┘[39m
+
+ Actions available
+
+Welcome back!
+To manage your project 🚀, go to the administration panel at:
+http://localhost:1337/admin
+
+To access the server ⚡️, go to:
+http://localhost:1337
+
+🔧 Configurando permisos de users-permissions...
+✅ Rol Public encontrado: 2
+✅ Permiso actualizado: plugin::users-permissions.auth.register
+✅ Permiso actualizado: plugin::users-permissions.auth.callback
+✅ Permiso actualizado: plugin::users-permissions.auth.connect
+✅ Permiso actualizado: plugin::users-permissions.auth.forgotPassword
+✅ Permiso actualizado: plugin::users-permissions.auth.resetPassword
+✅ Permiso actualizado: plugin::users-permissions.auth.emailConfirmation
+✅ Permiso actualizado: plugin::users-permissions.user.me
+✅ Permiso API actualizado: api::token.token.find
+✅ Permiso API actualizado: api::token.token.findOne
+✅ Permiso API actualizado: api::voto.voto.find
+✅ Permiso API actualizado: api::voto.voto.create
+✅ Permiso API actualizado: api::voto.voto.delete
+🎉 Configuración de permisos completada!
+[2025-08-20 11:28:08.349] [32minfo[39m: File changed: /Users/anto/Documents/florkaproject2/kiroflorka/backend/src/extensions/users-permissions/controllers/Auth.js
+- Loading Strapi
+🚀 Iniciando FlorkaFun Backend...
+✅ FlorkaFun Backend iniciado correctamente!
+✔ Loading Strapi (2722ms)
+- Generating types
+✔ Generating types (379ms)
+
+ Project information
+
+[90m┌────────────────────[39m[90m┬──────────────────────────────────────────────────┐[39m
+[90m│[39m Time               [90m│[39m Wed Aug 20 2025 11:28:17 GMT-0500 (Colombia Sta… [90m│[39m
+[90m│[39m Launched in        [90m│[39m 3111 ms                                          [90m│[39m
+[90m│[39m Environment        [90m│[39m development                                      [90m│[39m
+[90m│[39m Process PID        [90m│[39m 62655                                            [90m│[39m
+[90m│[39m Version            [90m│[39m 4.15.5 (node v22.16.0)                           [90m│[39m
+[90m│[39m Edition            [90m│[39m Community                                        [90m│[39m
+[90m│[39m Database           [90m│[39m sqlite                                           [90m│[39m
+[90m└────────────────────[39m[90m┴──────────────────────────────────────────────────┘[39m
+
+ Actions available
+
+Welcome back!
+To manage your project 🚀, go to the administration panel at:
+http://localhost:1337/admin
+
+To access the server ⚡️, go to:
+http://localhost:1337
+
+🔧 Configurando permisos de users-permissions...
+✅ Rol Public encontrado: 2
+✅ Permiso actualizado: plugin::users-permissions.auth.register
+✅ Permiso actualizado: plugin::users-permissions.auth.callback
+✅ Permiso actualizado: plugin::users-permissions.auth.connect
+✅ Permiso actualizado: plugin::users-permissions.auth.forgotPassword
+✅ Permiso actualizado: plugin::users-permissions.auth.resetPassword
+✅ Permiso actualizado: plugin::users-permissions.auth.emailConfirmation
+✅ Permiso actualizado: plugin::users-permissions.user.me
+✅ Permiso API actualizado: api::token.token.find
+✅ Permiso API actualizado: api::token.token.findOne
+✅ Permiso API actualizado: api::voto.voto.find
+✅ Permiso API actualizado: api::voto.voto.create
+✅ Permiso API actualizado: api::voto.voto.delete
+🎉 Configuración de permisos completada!
+[2025-08-20 11:28:58.311] [32minfo[39m: File changed: /Users/anto/Documents/florkaproject2/kiroflorka/backend/config/cron-tasks.js
+- Loading Strapi
+🚀 Iniciando FlorkaFun Backend...
+✅ FlorkaFun Backend iniciado correctamente!
+✔ Loading Strapi (1373ms)
+- Generating types
+✔ Generating types (355ms)
+
+ Project information
+
+[90m┌────────────────────[39m[90m┬──────────────────────────────────────────────────┐[39m
+[90m│[39m Time               [90m│[39m Wed Aug 20 2025 11:29:02 GMT-0500 (Colombia Sta… [90m│[39m
+[90m│[39m Launched in        [90m│[39m 1740 ms                                          [90m│[39m
+[90m│[39m Environment        [90m│[39m development                                      [90m│[39m
+[90m│[39m Process PID        [90m│[39m 62671                                            [90m│[39m
+[90m│[39m Version            [90m│[39m 4.15.5 (node v22.16.0)                           [90m│[39m
+[90m│[39m Edition            [90m│[39m Community                                        [90m│[39m
+[90m│[39m Database           [90m│[39m sqlite                                           [90m│[39m
+[90m└────────────────────[39m[90m┴──────────────────────────────────────────────────┘[39m
+
+ Actions available
+
+Welcome back!
+To manage your project 🚀, go to the administration panel at:
+http://localhost:1337/admin
+
+To access the server ⚡️, go to:
+http://localhost:1337
+
+🔧 Configurando permisos de users-permissions...
+✅ Rol Public encontrado: 2
+✅ Permiso actualizado: plugin::users-permissions.auth.register
+✅ Permiso actualizado: plugin::users-permissions.auth.callback
+✅ Permiso actualizado: plugin::users-permissions.auth.connect
+✅ Permiso actualizado: plugin::users-permissions.auth.forgotPassword
+✅ Permiso actualizado: plugin::users-permissions.auth.resetPassword
+✅ Permiso actualizado: plugin::users-permissions.auth.emailConfirmation
+✅ Permiso actualizado: plugin::users-permissions.user.me
+✅ Permiso API actualizado: api::token.token.find
+✅ Permiso API actualizado: api::token.token.findOne
+✅ Permiso API actualizado: api::voto.voto.find
+✅ Permiso API actualizado: api::voto.voto.create
+✅ Permiso API actualizado: api::voto.voto.delete
+🎉 Configuración de permisos completada!
+[2025-08-20 11:34:52.632] [32minfo[39m: File changed: /Users/anto/Documents/florkaproject2/kiroflorka/backend/package-lock.json
+- Loading Strapi
+🚀 Iniciando FlorkaFun Backend...
+✅ FlorkaFun Backend iniciado correctamente!
+✔ Loading Strapi (4527ms)
+- Generating types
+✔ Generating types (403ms)
+
+ Project information
+
+[90m┌────────────────────[39m[90m┬──────────────────────────────────────────────────┐[39m
+[90m│[39m Time               [90m│[39m Wed Aug 20 2025 11:35:09 GMT-0500 (Colombia Sta… [90m│[39m
+[90m│[39m Launched in        [90m│[39m 4936 ms                                          [90m│[39m
+[90m│[39m Environment        [90m│[39m development                                      [90m│[39m
+[90m│[39m Process PID        [90m│[39m 62811                                            [90m│[39m
+[90m│[39m Version            [90m│[39m 4.15.5 (node v22.16.0)                           [90m│[39m
+[90m│[39m Edition            [90m│[39m Community                                        [90m│[39m
+[90m│[39m Database           [90m│[39m sqlite                                           [90m│[39m
+[90m└────────────────────[39m[90m┴──────────────────────────────────────────────────┘[39m
+
+ Actions available
+
+Welcome back!
+To manage your project 🚀, go to the administration panel at:
+http://localhost:1337/admin
+
+To access the server ⚡️, go to:
+http://localhost:1337
+
+🔧 Configurando permisos de users-permissions...
+✅ Rol Public encontrado: 2
+✅ Permiso actualizado: plugin::users-permissions.auth.register
+✅ Permiso actualizado: plugin::users-permissions.auth.callback
+✅ Permiso actualizado: plugin::users-permissions.auth.connect
+✅ Permiso actualizado: plugin::users-permissions.auth.forgotPassword
+✅ Permiso actualizado: plugin::users-permissions.auth.resetPassword
+✅ Permiso actualizado: plugin::users-permissions.auth.emailConfirmation
+✅ Permiso actualizado: plugin::users-permissions.user.me
+✅ Permiso API actualizado: api::token.token.find
+✅ Permiso API actualizado: api::token.token.findOne
+✅ Permiso API actualizado: api::voto.voto.find
+✅ Permiso API actualizado: api::voto.voto.create
+✅ Permiso API actualizado: api::voto.voto.delete
+🎉 Configuración de permisos completada!
+[2025-08-20 12:57:41.504] [32minfo[39m: File changed: /Users/anto/Documents/florkaproject2/kiroflorka/backend/src/api/token/controllers/token.js
+[2025-08-20 12:57:41.518] [32minfo[39m: File changed: /Users/anto/Documents/florkaproject2/kiroflorka/backend/src/api/simple-auth/routes/simple-auth.js
+[2025-08-20 12:57:41.519] [32minfo[39m: File changed: /Users/anto/Documents/florkaproject2/kiroflorka/backend/src/api/paquete/controllers/paquete.js
+[2025-08-20 12:57:41.519] [32minfo[39m: File changed: /Users/anto/Documents/florkaproject2/kiroflorka/backend/src/api/create/routes/create-routes.js
+[2025-08-20 12:57:41.519] [32minfo[39m: File changed: /Users/anto/Documents/florkaproject2/kiroflorka/backend/src/api/token/services/token.js
+[2025-08-20 12:57:41.519] [32minfo[39m: File changed: /Users/anto/Documents/florkaproject2/kiroflorka/backend/src/api/foro/controllers/foro.js
+[2025-08-20 12:57:41.520] [32minfo[39m: File changed: /Users/anto/Documents/florkaproject2/kiroflorka/backend/src/api/token/content-types/token/schema.json
+[2025-08-20 12:57:41.521] [32minfo[39m: File changed: /Users/anto/Documents/florkaproject2/kiroflorka/backend/src/api/paquete/services/paquete.js
+[2025-08-20 12:57:41.522] [32minfo[39m: File changed: /Users/anto/Documents/florkaproject2/kiroflorka/backend/src/api/foro/routes/foro.js
+- Loading Strapi
+🚀 Iniciando FlorkaFun Backend...
+✅ FlorkaFun Backend iniciado correctamente!
+✔ Loading Strapi (4830ms)
+- Generating types
+✔ Generating types (414ms)
+
+ Project information
+
+[90m┌────────────────────[39m[90m┬──────────────────────────────────────────────────┐[39m
+[90m│[39m Time               [90m│[39m Wed Aug 20 2025 12:57:58 GMT-0500 (Colombia Sta… [90m│[39m
+[90m│[39m Launched in        [90m│[39m 5254 ms                                          [90m│[39m
+[90m│[39m Environment        [90m│[39m development                                      [90m│[39m
+[90m│[39m Process PID        [90m│[39m 67641                                            [90m│[39m
+[90m│[39m Version            [90m│[39m 4.15.5 (node v22.16.0)                           [90m│[39m
+[90m│[39m Edition            [90m│[39m Community                                        [90m│[39m
+[90m│[39m Database           [90m│[39m sqlite                                           [90m│[39m
+[90m└────────────────────[39m[90m┴──────────────────────────────────────────────────┘[39m
+
+ Actions available
+
+Welcome back!
+To manage your project 🚀, go to the administration panel at:
+http://localhost:1337/admin
+
+To access the server ⚡️, go to:
+http://localhost:1337
+
+[2025-08-20 12:57:59.747] [32minfo[39m: File changed: /Users/anto/Documents/florkaproject2/kiroflorka/backend/src/api/simple-auth/controllers/simple-auth.js
+🔧 Configurando permisos de users-permissions...
+❌ Error en configuración de permisos: ReferenceError: strapi is not defined
+    at setupPermissions (/Users/anto/Documents/florkaproject2/kiroflorka/backend/init-scripts/setup-permissions.js:6:24)
+    at Timeout._onTimeout (/Users/anto/Documents/florkaproject2/kiroflorka/backend/src/index.js:48:13)
+    at listOnTimeout (node:internal/timers:588:17)
+    at process.processTimers (node:internal/timers:523:7)
+- Loading Strapi
+🚀 Iniciando FlorkaFun Backend...
+✅ FlorkaFun Backend iniciado correctamente!
+✔ Loading Strapi (1311ms)
+- Generating types
+✔ Generating types (345ms)
+
+ Project information
+
+[90m┌────────────────────[39m[90m┬──────────────────────────────────────────────────┐[39m
+[90m│[39m Time               [90m│[39m Wed Aug 20 2025 12:58:03 GMT-0500 (Colombia Sta… [90m│[39m
+[90m│[39m Launched in        [90m│[39m 1674 ms                                          [90m│[39m
+[90m│[39m Environment        [90m│[39m development                                      [90m│[39m
+[90m│[39m Process PID        [90m│[39m 67652                                            [90m│[39m
+[90m│[39m Version            [90m│[39m 4.15.5 (node v22.16.0)                           [90m│[39m
+[90m│[39m Edition            [90m│[39m Community                                        [90m│[39m
+[90m│[39m Database           [90m│[39m sqlite                                           [90m│[39m
+[90m└────────────────────[39m[90m┴──────────────────────────────────────────────────┘[39m
+
+ Actions available
+
+Welcome back!
+To manage your project 🚀, go to the administration panel at:
+http://localhost:1337/admin
+
+To access the server ⚡️, go to:
+http://localhost:1337
+
+🔧 Configurando permisos de users-permissions...
+✅ Rol Public encontrado: 2
+✅ Permiso actualizado: plugin::users-permissions.auth.register
+✅ Permiso actualizado: plugin::users-permissions.auth.callback
+✅ Permiso actualizado: plugin::users-permissions.auth.connect
+✅ Permiso actualizado: plugin::users-permissions.auth.forgotPassword
+✅ Permiso actualizado: plugin::users-permissions.auth.resetPassword
+✅ Permiso actualizado: plugin::users-permissions.auth.emailConfirmation
+✅ Permiso actualizado: plugin::users-permissions.user.me
+✅ Permiso API actualizado: api::token.token.find
+✅ Permiso API actualizado: api::token.token.findOne
+✅ Permiso API actualizado: api::voto.voto.find
+✅ Permiso API actualizado: api::voto.voto.create
+✅ Permiso API actualizado: api::voto.voto.delete
+🎉 Configuración de permisos completada!

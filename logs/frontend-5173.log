@@ -1,0 +1,25 @@
+
+> anima-project@1.0.0 start
+> vite --host 0.0.0.0 --port 5173
+
+Re-optimizing dependencies because lockfile has changed
+
+  VITE v6.0.4  ready in 411 ms
+
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: http://192.168.0.126:5173/
+  ➜  Network: http://192.168.0.111:5173/
+Error: The following dependencies are imported but could not be resolved:
+
+  qrcode.react (imported by /Users/anto/Documents/florkaproject2/kiroflorka/src/components/PaymentModal/PaymentModal.jsx)
+
+Are they installed?
+    at file:///Users/anto/Documents/florkaproject2/kiroflorka/node_modules/vite/dist/node/chunks/dep-BZMjGe_U.js:18698:15
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///Users/anto/Documents/florkaproject2/kiroflorka/node_modules/vite/dist/node/chunks/dep-BZMjGe_U.js:51591:28
+11:32:52 AM [vite] (client) page reload backend/.strapi/client/index.html
+11:32:52 AM [vite] (ssr) page reload backend/.strapi/client/index.html
+12:57:41 PM [vite] (client) page reload backend/build/index.html
+12:57:41 PM [vite] (ssr) page reload backend/build/index.html
+12:58:51 PM [vite] (client) page reload backend/build/index 2.html
+12:58:51 PM [vite] (ssr) page reload backend/build/index 2.html

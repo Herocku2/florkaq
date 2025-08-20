@@ -2,27 +2,4 @@
 
 const { createCoreRouter } = require('@strapi/strapi').factories;
 
-module.exports = createCoreRouter('api::foro.foro', {
-  config: {
-    find: {
-      auth: false,
-      middlewares: [],
-    },
-    findOne: {
-      auth: false,
-      middlewares: [],
-    },
-    create: {
-      auth: false,
-      middlewares: [],
-    },
-    update: {
-      auth: false,
-      middlewares: [],
-    },
-    delete: {
-      auth: false,
-      middlewares: [],
-    },
-  },
-});
+module.exports = createCoreRouter('api::foro.foro');

@@ -633,6 +633,50 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
+export interface PluginI18NLocale extends Schema.CollectionType {
+  collectionName: 'i18n_locale';
+  info: {
+    singularName: 'locale';
+    pluralName: 'locales';
+    collectionName: 'locales';
+    displayName: 'Locale';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: false;
+    };
+    'content-type-builder': {
+      visible: false;
+    };
+  };
+  attributes: {
+    name: Attribute.String &
+      Attribute.SetMinMax<{
+        min: 1;
+        max: 50;
+      }>;
+    code: Attribute.String & Attribute.Unique;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'plugin::i18n.locale',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'plugin::i18n.locale',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiActividadActividad extends Schema.CollectionType {
   collectionName: 'actividades';
   info: {
@@ -793,67 +837,14 @@ export interface ApiForoForo extends Schema.CollectionType {
       }>;
     tokenRelacionado: Attribute.String & Attribute.Required;
     creador: Attribute.String & Attribute.Required;
-    moderado: Attribute.Boolean & Attribute.DefaultTo<true>;
+    moderado: Attribute.Boolean & Attribute.DefaultTo<false>;
     activo: Attribute.Boolean & Attribute.DefaultTo<true>;
     fechaCreacion: Attribute.DateTime & Attribute.DefaultTo<'now'>;
-    imagen: Attribute.Media;
-    imagenUrl: Attribute.String;
-    enlaceWeb: Attribute.String;
-    redesSociales: Attribute.JSON;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::foro.foro', 'oneToOne', 'admin::user'> &
       Attribute.Private;
     updatedBy: Attribute.Relation<'api::foro.foro', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-  };
-}
-
-export interface ApiLaunchCalendarLaunchCalendar extends Schema.CollectionType {
-  collectionName: 'launch_calendars';
-  info: {
-    singularName: 'launch-calendar';
-    pluralName: 'launch-calendars';
-    displayName: 'Launch Calendar';
-    description: 'Calendario de lanzamientos de tokens - Solo viernes, m\u00E1ximo 2 tokens por semana';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    launchDate: Attribute.Date & Attribute.Required & Attribute.Unique;
-    slotsUsed: Attribute.Integer &
-      Attribute.SetMinMax<{
-        min: 0;
-        max: 2;
-      }> &
-      Attribute.DefaultTo<0>;
-    maxSlots: Attribute.Integer &
-      Attribute.SetMinMax<{
-        min: 1;
-        max: 2;
-      }> &
-      Attribute.DefaultTo<2>;
-    available: Attribute.Boolean & Attribute.DefaultTo<true>;
-    tokenRequests: Attribute.Relation<
-      'api::launch-calendar.launch-calendar',
-      'oneToMany',
-      'api::solicitud-token.solicitud-token'
-    >;
-    notes: Attribute.Text;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::launch-calendar.launch-calendar',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::launch-calendar.launch-calendar',
-      'oneToOne',
-      'admin::user'
-    > &
       Attribute.Private;
   };
 }
@@ -1093,72 +1084,27 @@ export interface ApiRankingRanking extends Schema.CollectionType {
 }
 
 export interface ApiSolicitudTokenSolicitudToken extends Schema.CollectionType {
-  collectionName: 'solicitud_tokens';
+  collectionName: 'solicitudes_token';
   info: {
     singularName: 'solicitud-token';
-    pluralName: 'solicitud-tokens';
+    pluralName: 'solicitudes-token';
     displayName: 'Solicitud Token';
-    description: 'Solicitudes de creaci\u00F3n de tokens de los usuarios';
+    description: 'Solicitudes de creaci\u00F3n de tokens';
   };
   options: {
     draftAndPublish: false;
   };
   attributes: {
-    tokenName: Attribute.String & Attribute.Required;
-    tokenSymbol: Attribute.String &
+    usuario: Attribute.String & Attribute.Required;
+    paquete: Attribute.String & Attribute.Required;
+    estado: Attribute.Enumeration<['pendiente', 'aprobado', 'rechazado']> &
       Attribute.Required &
-      Attribute.SetMinMaxLength<{
-        maxLength: 10;
-      }>;
-    tokenDescription: Attribute.Text;
-    tokenImage: Attribute.Media;
-    ownerWallet: Attribute.String & Attribute.Required;
-    contactEmail: Attribute.Email & Attribute.Required;
-    telegramUsername: Attribute.String & Attribute.Required;
-    blockchainNetwork: Attribute.Enumeration<
-      ['solana', 'ethereum', 'binance', 'polygon', 'avalanche']
-    > &
-      Attribute.Required &
-      Attribute.DefaultTo<'solana'>;
-    blockExplorer: Attribute.String;
-    networkToHost: Attribute.String;
-    smartContract: Attribute.Text;
-    initialSaleDuration: Attribute.String;
-    tokenDistribution: Attribute.String;
-    tokenDistributionPercentage: Attribute.String;
-    developmentTeamPercentage: Attribute.String;
-    marketingPercentage: Attribute.String;
-    partnersInvestorsPercentage: Attribute.String;
-    twitterUrl: Attribute.String;
-    telegramGroupUrl: Attribute.String;
-    linkedinUrl: Attribute.String;
-    discordUrl: Attribute.String;
-    websiteUrl: Attribute.String;
-    supportChannelUrl: Attribute.String;
-    socialChannelDescription: Attribute.Text;
-    selectedPlan: Attribute.JSON & Attribute.Required;
-    paymentHash: Attribute.String;
-    selectedLaunchDate: Attribute.Relation<
-      'api::solicitud-token.solicitud-token',
-      'manyToOne',
-      'api::launch-calendar.launch-calendar'
-    >;
-    launchDateSelected: Attribute.Date;
-    paymentId: Attribute.String;
-    paymentStatus: Attribute.Enumeration<
-      ['pending', 'completed', 'failed', 'cancelled']
-    > &
-      Attribute.DefaultTo<'pending'>;
-    requestStatus: Attribute.Enumeration<
-      ['pending_review', 'approved', 'in_progress', 'completed', 'rejected']
-    > &
-      Attribute.DefaultTo<'pending_review'>;
-    userId: Attribute.String;
-    adminNotes: Attribute.Text;
-    completedAt: Attribute.DateTime;
-    paymentUrl: Attribute.String;
-    paymentCurrency: Attribute.String & Attribute.DefaultTo<'btc'>;
-    paymentAmount: Attribute.Decimal;
+      Attribute.DefaultTo<'pendiente'>;
+    datosToken: Attribute.JSON & Attribute.Required;
+    fechaPago: Attribute.DateTime;
+    aprobado: Attribute.Boolean & Attribute.DefaultTo<false>;
+    fechaCreacion: Attribute.DateTime & Attribute.DefaultTo<'now'>;
+    notas: Attribute.Text;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -1270,8 +1216,8 @@ export interface ApiUsuarioUsuario extends Schema.CollectionType {
   info: {
     singularName: 'usuario';
     pluralName: 'usuarios';
-    displayName: 'Moderadores';
-    description: 'Gesti\u00F3n de usuarios y moderadores de la plataforma FlorkaFun';
+    displayName: 'Usuario';
+    description: 'Usuarios de la plataforma FlorkaFun';
   };
   options: {
     draftAndPublish: false;
@@ -1404,11 +1350,11 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'plugin::i18n.locale': PluginI18NLocale;
       'api::actividad.actividad': ApiActividadActividad;
       'api::candidato.candidato': ApiCandidatoCandidato;
       'api::comentario.comentario': ApiComentarioComentario;
       'api::foro.foro': ApiForoForo;
-      'api::launch-calendar.launch-calendar': ApiLaunchCalendarLaunchCalendar;
       'api::news.noticia': ApiNewsNoticia;
       'api::paquete.paquete': ApiPaquetePaquete;
       'api::proyecto-next.proyecto-next': ApiProyectoNextProyectoNext;

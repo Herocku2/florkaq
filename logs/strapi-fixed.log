@@ -1,0 +1,20 @@
+
+> florkafun-backend@0.1.0 develop
+> strapi develop
+
+- Building build context
+
+[INFO] Including the following ENV variables as part of the JS bundle:
+    - ADMIN_PATH
+    - STRAPI_ADMIN_BACKEND_URL
+    - STRAPI_TELEMETRY_DISABLED
+✔ Building build context (116ms)
+- Creating admin
+✔ Creating admin (19125ms)
+- Loading Strapi
+(node:60110) Warning: [deprecated] In future versions, "sizeLimit" argument will be ignored from upload.config.providerOptions. Move it to upload.config
+(Use `node --trace-warnings ...` to show where the warning was created)
+[2025-08-20 10:47:26.571] [33mwarn[39m: The strapi::cors middleware no longer supports the `enabled` option. Using it to conditionally enable CORS might cause an insecure default. To disable strapi::cors, remove it from the exported array in config/middleware.js
+[ERROR]  There seems to be an unexpected error, try again with --debug for more information 
+
+┌──────────────────────────────────────────────────────────────────────────────┐│                                                                              ││   Error: Error creating endpoint POST /foros/:id/comentarios: Handler not    ││   found "foro.createComment"                                                 ││   at getAction                                                               ││   (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@s   ││   trapi/strapi/dist/services/server/compose-endpoint.js:105:11)              ││   at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/   ││   @strapi/strapi/dist/services/server/compose-endpoint.js:56:22              ││   at createRoute (/Users/anto/Documents/florkaproject2/kiroflorka/backend/   ││   node_modules/@strapi/strapi/dist/services/server/routing.js:71:5)          ││   at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/   ││   @strapi/strapi/dist/services/server/routing.js:80:9                        ││   at Array.forEach (<anonymous>)                                             ││   at Object.addRoutes (/Users/anto/Documents/florkaproject2/kiroflorka/bac   ││   kend/node_modules/@strapi/strapi/dist/services/server/routing.js:78:21)    ││   at Object.routes (/Users/anto/Documents/florkaproject2/kiroflorka/backen   ││   d/node_modules/@strapi/strapi/dist/services/server/api.js:20:20)           ││   at Object.routes (/Users/anto/Documents/florkaproject2/kiroflorka/backen   ││   d/node_modules/@strapi/strapi/dist/services/server/index.js:52:27)         ││   at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/   ││   @strapi/strapi/dist/services/server/register-routes.js:71:28               ││   at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/   ││   lodash/lodash.js:4967:15                                                   ││                                                                              │└──────────────────────────────────────────────────────────────────────────────┘

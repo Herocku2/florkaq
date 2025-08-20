@@ -30,7 +30,7 @@
     },
     "moderado": {
       "type": "boolean",
-      "default": true
+      "default": false
     },
     "activo": {
       "type": "boolean",
@@ -39,21 +39,6 @@
     "fechaCreacion": {
       "type": "datetime",
       "default": "now"
-    },
-    "imagen": {
-      "type": "media",
-      "multiple": false,
-      "required": false,
-      "allowedTypes": ["images"]
-    },
-    "imagenUrl": {
-      "type": "string"
-    },
-    "enlaceWeb": {
-      "type": "string"
-    },
-    "redesSociales": {
-      "type": "json"
     }
   }
 }

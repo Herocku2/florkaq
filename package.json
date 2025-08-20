@@ -5,14 +5,15 @@
   "source": "./index.html",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "start": "vite --host 0.0.0.0 --port 5173",
+    "dev": "vite --host 0.0.0.0 --port 5173",
     "build": "vite build",
+    "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
   "dependencies": {
     "prop-types": "^15.8.1",
-    "qrcode.react": "^4.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.8.1"

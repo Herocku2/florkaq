@@ -8,26 +8,26 @@
     - ADMIN_PATH
     - STRAPI_ADMIN_BACKEND_URL
     - STRAPI_TELEMETRY_DISABLED
-✔ Building build context (146ms)
+✔ Building build context (120ms)
 - Creating admin
-✔ Creating admin (17617ms)
+✔ Creating admin (16382ms)
 - Loading Strapi
-(node:17211) Warning: [deprecated] In future versions, "sizeLimit" argument will be ignored from upload.config.providerOptions. Move it to upload.config
+(node:54393) Warning: [deprecated] In future versions, "sizeLimit" argument will be ignored from upload.config.providerOptions. Move it to upload.config
 (Use `node --trace-warnings ...` to show where the warning was created)
-[2025-08-11 11:54:54.326] [33mwarn[39m: The strapi::cors middleware no longer supports the `enabled` option. Using it to conditionally enable CORS might cause an insecure default. To disable strapi::cors, remove it from the exported array in config/middleware.js
+[2025-08-20 10:09:57.431] [33mwarn[39m: The strapi::cors middleware no longer supports the `enabled` option. Using it to conditionally enable CORS might cause an insecure default. To disable strapi::cors, remove it from the exported array in config/middleware.js
 🚀 Iniciando FlorkaFun Backend...
 ✅ FlorkaFun Backend iniciado correctamente!
-✔ Loading Strapi (6709ms)
+✔ Loading Strapi (7363ms)
 - Generating types
-✔ Generating types (511ms)
+✔ Generating types (507ms)
 
  Project information
 
 [90m┌────────────────────[39m[90m┬──────────────────────────────────────────────────┐[39m
-[90m│[39m Time               [90m│[39m Mon Aug 11 2025 11:54:55 GMT-0500 (Colombia Sta… [90m│[39m
-[90m│[39m Launched in        [90m│[39m 7240 ms                                          [90m│[39m
+[90m│[39m Time               [90m│[39m Wed Aug 20 2025 10:10:00 GMT-0500 (Colombia Sta… [90m│[39m
+[90m│[39m Launched in        [90m│[39m 7881 ms                                          [90m│[39m
 [90m│[39m Environment        [90m│[39m development                                      [90m│[39m
-[90m│[39m Process PID        [90m│[39m 17211                                            [90m│[39m
+[90m│[39m Process PID        [90m│[39m 54393                                            [90m│[39m
 [90m│[39m Version            [90m│[39m 4.15.5 (node v22.16.0)                           [90m│[39m
 [90m│[39m Edition            [90m│[39m Community                                        [90m│[39m
 [90m│[39m Database           [90m│[39m sqlite                                           [90m│[39m
@@ -35,13 +35,157 @@
 
  Actions available
 
-Welcome back!
-To manage your project 🚀, go to the administration panel at:
-http://localhost:1337/admin
+One more thing...
+Create your first administrator 💻 by going to the administration panel at:
 
-To access the server ⚡️, go to:
-http://localhost:1337
+[90m┌─────────────────────────────┐[39m
+[90m│[39m http://localhost:1337/admin [90m│[39m
+[90m└─────────────────────────────┘[39m
 
+[2025-08-20 10:10:00.525] [32mhttp[39m: GET /admin (19 ms) 200
+[2025-08-20 10:10:00.552] [32mhttp[39m: GET /admin/main.c0caedbc.js (10 ms) 200
+[2025-08-20 10:10:01.853] [32mhttp[39m: GET /admin (3 ms) 200
+[2025-08-20 10:10:02.002] [32mhttp[39m: GET /admin/project-type (9 ms) 200
+[2025-08-20 10:10:02.245] [32mhttp[39m: POST /admin/renew-token (54 ms) 400
+[2025-08-20 10:10:02.259] [32mhttp[39m: GET /admin/init (8 ms) 200
+[2025-08-20 10:10:02.302] [32mhttp[39m: GET /admin/telemetry-properties (6 ms) 401
+[2025-08-20 10:10:02.307] [32mhttp[39m: GET /admin (22 ms) 200
+🔧 Configurando permisos de users-permissions...
+✅ Rol Public encontrado: 2
+✅ Permiso actualizado: plugin::users-permissions.auth.register
+✅ Permiso actualizado: plugin::users-permissions.auth.callback
+✅ Permiso actualizado: plugin::users-permissions.auth.connect
+✅ Permiso actualizado: plugin::users-permissions.auth.forgotPassword
+[2025-08-20 10:10:02.820] [32mhttp[39m: GET /admin/project-type (10 ms) 200
+✅ Permiso actualizado: plugin::users-permissions.auth.resetPassword
+✅ Permiso actualizado: plugin::users-permissions.auth.emailConfirmation
+✅ Permiso creado: plugin::users-permissions.user.me
+✅ Permiso API creado: api::token.token.find
+✅ Permiso API creado: api::token.token.findOne
+✅ Permiso API creado: api::voto.voto.find
+✅ Permiso API creado: api::voto.voto.create
+✅ Permiso API creado: api::voto.voto.delete
+🎉 Configuración de permisos completada!
+[2025-08-20 10:10:02.982] [32mhttp[39m: GET /admin/init (7 ms) 200
+[2025-08-20 10:10:03.008] [32mhttp[39m: GET /admin/telemetry-properties (8 ms) 401
+[2025-08-20 10:10:03.012] [31merror[39m: ENOENT: no such file or directory, open '/Users/anto/Documents/florkaproject2/kiroflorka/backend/favicon.ico'
+Error: ENOENT: no such file or directory, open '/Users/anto/Documents/florkaproject2/kiroflorka/backend/favicon.ico'
+    at Object.openSync (node:fs:562:18)
+    at Object.readFileSync (node:fs:446:35)
+    at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-favicon/index.js:50:28
+    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
+    at dummyMiddleware (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/services/server/middleware.js:25:39)
+    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
+    at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/middlewares/body.js:45:15
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/middlewares/powered-by.js:9:5
+    at async cors (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@koa/cors/index.js:61:32)
+[2025-08-20 10:10:03.015] [32mhttp[39m: GET /favicon.ico (4 ms) 500
+[2025-08-20 10:10:03.772] [32mhttp[39m: GET /admin/florka-logo.svg (3 ms) 200
+[2025-08-20 10:10:03.778] [31merror[39m: ENOENT: no such file or directory, open '/Users/anto/Documents/florkaproject2/kiroflorka/backend/favicon.ico'
+Error: ENOENT: no such file or directory, open '/Users/anto/Documents/florkaproject2/kiroflorka/backend/favicon.ico'
+    at Object.openSync (node:fs:562:18)
+    at Object.readFileSync (node:fs:446:35)
+    at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-favicon/index.js:50:28
+    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
+    at dummyMiddleware (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/services/server/middleware.js:25:39)
+    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
+    at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/middlewares/body.js:45:15
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/middlewares/powered-by.js:9:5
+    at async cors (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@koa/cors/index.js:61:32)
+[2025-08-20 10:10:03.779] [32mhttp[39m: GET /favicon.ico (2 ms) 500
+[2025-08-20 10:10:44.598] [32mhttp[39m: GET /admin (5 ms) 200
+[2025-08-20 10:10:52.303] [31merror[39m: ENOENT: no such file or directory, open '/Users/anto/Documents/florkaproject2/kiroflorka/backend/favicon.ico'
+Error: ENOENT: no such file or directory, open '/Users/anto/Documents/florkaproject2/kiroflorka/backend/favicon.ico'
+    at Object.openSync (node:fs:562:18)
+    at Object.readFileSync (node:fs:446:35)
+    at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-favicon/index.js:50:28
+    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
+    at dummyMiddleware (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/services/server/middleware.js:25:39)
+    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
+    at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/middlewares/body.js:45:15
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/middlewares/powered-by.js:9:5
+    at async cors (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@koa/cors/index.js:61:32)
+[2025-08-20 10:10:52.304] [32mhttp[39m: GET /favicon.ico (3 ms) 500
+[2025-08-20 10:10:52.307] [32mhttp[39m: GET /admin/telemetry-properties (15 ms) 401
+[2025-08-20 10:10:52.767] [31merror[39m: ENOENT: no such file or directory, open '/Users/anto/Documents/florkaproject2/kiroflorka/backend/favicon.ico'
+Error: ENOENT: no such file or directory, open '/Users/anto/Documents/florkaproject2/kiroflorka/backend/favicon.ico'
+    at Object.openSync (node:fs:562:18)
+    at Object.readFileSync (node:fs:446:35)
+    at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-favicon/index.js:50:28
+    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
+    at dummyMiddleware (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/services/server/middleware.js:25:39)
+    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
+    at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/middlewares/body.js:45:15
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/middlewares/powered-by.js:9:5
+    at async cors (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@koa/cors/index.js:61:32)
+[2025-08-20 10:10:52.768] [32mhttp[39m: GET /favicon.ico (1 ms) 500
+[2025-08-20 10:21:16.421] [32minfo[39m: File changed: /Users/anto/Documents/florkaproject2/kiroflorka/backend/package-lock.json
+- Loading Strapi
+(node:56224) Warning: [deprecated] In future versions, "sizeLimit" argument will be ignored from upload.config.providerOptions. Move it to upload.config
+(Use `node --trace-warnings ...` to show where the warning was created)
+[2025-08-20 10:21:23.870] [33mwarn[39m: The strapi::cors middleware no longer supports the `enabled` option. Using it to conditionally enable CORS might cause an insecure default. To disable strapi::cors, remove it from the exported array in config/middleware.js
+🚀 Iniciando FlorkaFun Backend...
+✅ FlorkaFun Backend iniciado correctamente!
+✔ Loading Strapi (2420ms)
+- Generating types
+✔ Generating types (375ms)
+
+ Project information
+
+[90m┌────────────────────[39m[90m┬──────────────────────────────────────────────────┐[39m
+[90m│[39m Time               [90m│[39m Wed Aug 20 2025 10:21:24 GMT-0500 (Colombia Sta… [90m│[39m
+[90m│[39m Launched in        [90m│[39m 2805 ms                                          [90m│[39m
+[90m│[39m Environment        [90m│[39m development                                      [90m│[39m
+[90m│[39m Process PID        [90m│[39m 56224                                            [90m│[39m
+[90m│[39m Version            [90m│[39m 4.15.5 (node v22.16.0)                           [90m│[39m
+[90m│[39m Edition            [90m│[39m Community                                        [90m│[39m
+[90m│[39m Database           [90m│[39m sqlite                                           [90m│[39m
+[90m└────────────────────[39m[90m┴──────────────────────────────────────────────────┘[39m
+
+ Actions available
+
+One more thing...
+Create your first administrator 💻 by going to the administration panel at:
+
+[90m┌─────────────────────────────┐[39m
+[90m│[39m http://localhost:1337/admin [90m│[39m
+[90m└─────────────────────────────┘[39m
+
+[2025-08-20 10:21:25.044] [32mhttp[39m: GET /admin (25 ms) 200
+[2025-08-20 10:21:25.854] [32mhttp[39m: GET /admin/project-type (11 ms) 200
+[2025-08-20 10:21:25.950] [32mhttp[39m: GET /admin/init (4 ms) 200
+[2025-08-20 10:21:25.998] [32mhttp[39m: GET /admin/telemetry-properties (3 ms) 401
+[2025-08-20 10:21:26.000] [31merror[39m: ENOENT: no such file or directory, open '/Users/anto/Documents/florkaproject2/kiroflorka/backend/favicon.ico'
+Error: ENOENT: no such file or directory, open '/Users/anto/Documents/florkaproject2/kiroflorka/backend/favicon.ico'
+    at Object.openSync (node:fs:562:18)
+    at Object.readFileSync (node:fs:446:35)
+    at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-favicon/index.js:50:28
+    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
+    at dummyMiddleware (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/services/server/middleware.js:25:39)
+    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
+    at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/middlewares/body.js:45:15
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/middlewares/powered-by.js:9:5
+    at async cors (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@koa/cors/index.js:61:32)
+[2025-08-20 10:21:26.001] [32mhttp[39m: GET /favicon.ico (2 ms) 500
+[2025-08-20 10:21:27.335] [31merror[39m: ENOENT: no such file or directory, open '/Users/anto/Documents/florkaproject2/kiroflorka/backend/favicon.ico'
+Error: ENOENT: no such file or directory, open '/Users/anto/Documents/florkaproject2/kiroflorka/backend/favicon.ico'
+    at Object.openSync (node:fs:562:18)
+    at Object.readFileSync (node:fs:446:35)
+    at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-favicon/index.js:50:28
+    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
+    at dummyMiddleware (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/services/server/middleware.js:25:39)
+    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
+    at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/middlewares/body.js:45:15
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/middlewares/powered-by.js:9:5
+    at async cors (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@koa/cors/index.js:61:32)
+[2025-08-20 10:21:27.335] [32mhttp[39m: GET /favicon.ico (1 ms) 500
+[2025-08-20 10:21:27.344] [32mhttp[39m: GET /admin/florka-logo.svg (3 ms) 200
 🔧 Configurando permisos de users-permissions...
 ✅ Rol Public encontrado: 2
 ✅ Permiso actualizado: plugin::users-permissions.auth.register
@@ -57,128 +201,35 @@ http://localhost:1337
 ✅ Permiso API actualizado: api::voto.voto.create
 ✅ Permiso API actualizado: api::voto.voto.delete
 🎉 Configuración de permisos completada!
-[2025-08-11 12:05:37.004] [32mhttp[39m: OPTIONS /api/simple-auth/me (5 ms) 204
-❌ Error obteniendo usuario: JsonWebTokenError: invalid signature
-    at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/jsonwebtoken/verify.js:171:19
-    at getSecret (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/jsonwebtoken/verify.js:97:14)
-    at module.exports [as verify] (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/jsonwebtoken/verify.js:101:10)
-    at Object.me (/Users/anto/Documents/florkaproject2/kiroflorka/backend/src/api/simple-auth/controllers/simple-auth.js:225:27)
-    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
-    at returnBodyMiddleware (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/services/server/compose-endpoint.js:42:24)
-    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
-    at policiesMiddleware (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/services/server/policy.js:15:11)
-    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
-    at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/services/server/compose-endpoint.js:27:18
-[2025-08-11 12:05:37.038] [32mhttp[39m: GET /api/simple-auth/me (21 ms) 200
-[2025-08-11 12:05:37.041] [32mhttp[39m: OPTIONS /api/simple-auth/me (1 ms) 204
-❌ Error obteniendo usuario: JsonWebTokenError: invalid signature
-    at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/jsonwebtoken/verify.js:171:19
-    at getSecret (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/jsonwebtoken/verify.js:97:14)
-    at module.exports [as verify] (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/jsonwebtoken/verify.js:101:10)
-    at Object.me (/Users/anto/Documents/florkaproject2/kiroflorka/backend/src/api/simple-auth/controllers/simple-auth.js:225:27)
-    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
-    at returnBodyMiddleware (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/services/server/compose-endpoint.js:42:24)
-    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
-    at policiesMiddleware (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/services/server/policy.js:15:11)
-    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
-    at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/services/server/compose-endpoint.js:27:18
-[2025-08-11 12:05:37.098] [32mhttp[39m: GET /api/simple-auth/me (40 ms) 200
-[2025-08-11 12:07:32.664] [32mhttp[39m: OPTIONS /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=6 (6 ms) 500
-[2025-08-11 12:07:32.675] [32mhttp[39m: OPTIONS /api/rankings/page/next (2 ms) 500
-🔓 Acceso público permitido: /api/tokens
-[2025-08-11 12:07:32.681] [32mhttp[39m: OPTIONS /api/tokens?filters%5Bestado%5D%5B%24eq%5D=proximo&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=6&sort=fechaLanzamiento%3Aasc (1 ms) 500
-[2025-08-11 12:07:32.683] [32mhttp[39m: OPTIONS /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=6 (1 ms) 500
-[2025-08-11 12:07:32.692] [32mhttp[39m: OPTIONS /api/rankings/page/next (5 ms) 500
-[2025-08-11 12:07:32.739] [32mhttp[39m: OPTIONS /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3 (2 ms) 500
-🔓 Acceso público permitido: /api/tokens
-[2025-08-11 12:07:32.752] [32mhttp[39m: OPTIONS /api/tokens?filters%5Bestado%5D%5B%24eq%5D=proximo&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=6&sort=fechaLanzamiento%3Aasc (1 ms) 500
-[2025-08-11 12:07:32.757] [32mhttp[39m: OPTIONS /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3 (3 ms) 500
-🔓 Acceso público permitido: /api/tokens
-[2025-08-11 12:07:32.763] [32mhttp[39m: OPTIONS /api/tokens?filters%5Bestado%5D%5B%24eq%5D=proximo&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3&sort=totalVotos%3Adesc (4 ms) 500
-🔓 Acceso público permitido: /api/tokens
-[2025-08-11 12:07:32.783] [32mhttp[39m: OPTIONS /api/tokens?filters%5Bestado%5D%5B%24eq%5D=proximo&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3&sort=totalVotos%3Adesc (1 ms) 500
-[2025-08-11 12:07:32.800] [32mhttp[39m: GET /img/image-4.png (10 ms) 404
-[2025-08-11 12:07:32.801] [32mhttp[39m: GET /img/image-3.png (2 ms) 404
-[2025-08-11 12:11:50.543] [32mhttp[39m: OPTIONS /candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=6 (3 ms) 500
-[2025-08-11 12:11:50.545] [32mhttp[39m: OPTIONS /rankings/page/next (1 ms) 500
-[2025-08-11 12:11:50.546] [32mhttp[39m: OPTIONS /candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=6 (1 ms) 500
-[2025-08-11 12:11:50.546] [32mhttp[39m: OPTIONS /rankings/page/next (0 ms) 500
-[2025-08-11 12:11:50.556] [32mhttp[39m: OPTIONS /tokens?filters%5Bestado%5D%5B%24eq%5D=proximo&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=6&sort=fechaLanzamiento%3Aasc (0 ms) 500
-[2025-08-11 12:11:50.557] [32mhttp[39m: OPTIONS /candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3 (1 ms) 500
-[2025-08-11 12:11:50.557] [32mhttp[39m: OPTIONS /tokens?filters%5Bestado%5D%5B%24eq%5D=proximo&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=6&sort=fechaLanzamiento%3Aasc (0 ms) 500
-[2025-08-11 12:11:50.558] [32mhttp[39m: OPTIONS /candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3 (1 ms) 500
-[2025-08-11 12:11:50.560] [32mhttp[39m: OPTIONS /tokens?filters%5Bestado%5D%5B%24eq%5D=proximo&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3&sort=totalVotos%3Adesc (0 ms) 500
-[2025-08-11 12:11:50.561] [32mhttp[39m: OPTIONS /tokens?filters%5Bestado%5D%5B%24eq%5D=proximo&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3&sort=totalVotos%3Adesc (0 ms) 500
-[2025-08-11 12:11:50.889] [32mhttp[39m: GET /img/image-4.png (5 ms) 404
-[2025-08-11 12:11:50.890] [32mhttp[39m: GET /img/image-3.png (2 ms) 404
-[2025-08-11 12:14:22.842] [32mhttp[39m: GET /api/rankings/page/home (352 ms) 200
-[2025-08-11 12:14:22.968] [32mhttp[39m: GET /api/rankings/page/home (68 ms) 200
-[2025-08-11 12:14:22.990] [32mhttp[39m: GET /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=9 (244 ms) 200
-🔓 Acceso público permitido: /api/tokens
-[2025-08-11 12:14:23.063] [32mhttp[39m: GET /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3 (115 ms) 200
-🔓 Acceso público permitido: /api/tokens
-[2025-08-11 12:14:23.249] [32mhttp[39m: GET /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=9 (240 ms) 200
-[2025-08-11 12:14:23.318] [32mhttp[39m: GET /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3 (226 ms) 200
-[2025-08-11 12:14:23.397] [32mhttp[39m: GET /api/tokens?filters%5Bestado%5D%5B%24eq%5D=lanzado&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=9&sort=fechaLanzamiento%3Adesc (364 ms) 200
-🔓 Acceso público permitido: /api/tokens
-[2025-08-11 12:14:23.557] [32mhttp[39m: GET /api/tokens?filters%5Bestado%5D%5B%24eq%5D=lanzado&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3&sort=fechaLanzamiento%3Adesc (443 ms) 200
-[2025-08-11 12:14:23.825] [32mhttp[39m: OPTIONS /uploads/superman_1066d0438e.jpeg (3 ms) 204
-[2025-08-11 12:14:23.828] [32mhttp[39m: OPTIONS /uploads/capitrana_marvel_edcd6c169e.jpeg (1 ms) 204
-[2025-08-11 12:14:23.842] [32mhttp[39m: OPTIONS /uploads/Donald_Trump_a9b7e8c58d.jpeg (1 ms) 204
-[2025-08-11 12:14:23.986] [32mhttp[39m: GET /uploads/superman_1066d0438e.jpeg (85 ms) 200
-[2025-08-11 12:14:23.991] [32mhttp[39m: OPTIONS /uploads/4_fantasticos_327f5082df.jpeg (1 ms) 204
-[2025-08-11 12:14:23.995] [32mhttp[39m: GET /uploads/capitrana_marvel_edcd6c169e.jpeg (46 ms) 200
-🔓 Acceso público permitido: /api/tokens
-[2025-08-11 12:14:24.011] [32mhttp[39m: GET /uploads/4_fantasticos_327f5082df.jpeg (43 ms) 200
-[2025-08-11 12:14:24.116] [32mhttp[39m: GET /api/tokens?filters%5Bestado%5D%5B%24eq%5D=lanzado&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=9&sort=fechaLanzamiento%3Adesc (638 ms) 200
-[2025-08-11 12:14:24.124] [32mhttp[39m: GET /uploads/Donald_Trump_a9b7e8c58d.jpeg (98 ms) 200
-[2025-08-11 12:14:24.125] [32mhttp[39m: GET /uploads/pump_fun_fd078a89d2.png (63 ms) 200
-[2025-08-11 12:14:24.127] [32mhttp[39m: GET /uploads/Captura_de_pantalla_2025_07_14_a_la_s_4_18_22_p_m_a3a51c80d2.png (59 ms) 200
-[2025-08-11 12:14:24.171] [32mhttp[39m: GET /api/tokens?filters%5Bestado%5D%5B%24eq%5D=lanzado&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3&sort=fechaLanzamiento%3Adesc (171 ms) 200
-[2025-08-11 12:49:41.299] [32mhttp[39m: GET /api/rankings/page/home (10 ms) 200
-[2025-08-11 12:49:41.320] [32mhttp[39m: GET /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=9 (55 ms) 200
-[2025-08-11 12:49:41.322] [32mhttp[39m: GET /api/rankings/page/home (16 ms) 200
-[2025-08-11 12:49:41.344] [32mhttp[39m: GET /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=9 (15 ms) 200
-🔓 Acceso público permitido: /api/tokens
-[2025-08-11 12:49:41.404] [32mhttp[39m: GET /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3 (28 ms) 200
-🔓 Acceso público permitido: /api/tokens
-[2025-08-11 12:49:41.431] [32mhttp[39m: GET /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3 (20 ms) 200
-[2025-08-11 12:49:41.438] [32mhttp[39m: GET /api/tokens?filters%5Bestado%5D%5B%24eq%5D=lanzado&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=9&sort=fechaLanzamiento%3Adesc (51 ms) 200
-🔓 Acceso público permitido: /api/tokens
-[2025-08-11 12:49:41.458] [32mhttp[39m: GET /api/tokens?filters%5Bestado%5D%5B%24eq%5D=lanzado&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3&sort=fechaLanzamiento%3Adesc (39 ms) 200
-🔓 Acceso público permitido: /api/tokens
-[2025-08-11 12:49:41.476] [32mhttp[39m: OPTIONS /uploads/4_fantasticos_327f5082df.jpeg (2 ms) 204
-[2025-08-11 12:49:41.484] [32mhttp[39m: OPTIONS /uploads/Donald_Trump_a9b7e8c58d.jpeg (1 ms) 204
-[2025-08-11 12:49:41.487] [32mhttp[39m: OPTIONS /uploads/pump_fun_fd078a89d2.png (1 ms) 204
-[2025-08-11 12:49:41.489] [32mhttp[39m: OPTIONS /uploads/superman_1066d0438e.jpeg (1 ms) 204
-[2025-08-11 12:49:41.502] [32mhttp[39m: OPTIONS /uploads/Captura_de_pantalla_2025_07_14_a_la_s_4_18_22_p_m_a3a51c80d2.png (0 ms) 204
-[2025-08-11 12:49:41.563] [32mhttp[39m: GET /api/tokens?filters%5Bestado%5D%5B%24eq%5D=lanzado&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=9&sort=fechaLanzamiento%3Adesc (118 ms) 200
-[2025-08-11 12:49:41.592] [32mhttp[39m: OPTIONS /uploads/capitrana_marvel_edcd6c169e.jpeg (21 ms) 204
-[2025-08-11 12:49:41.594] [32mhttp[39m: GET /uploads/Donald_Trump_a9b7e8c58d.jpeg (89 ms) 200
-[2025-08-11 12:49:41.595] [32mhttp[39m: GET /uploads/4_fantasticos_327f5082df.jpeg (86 ms) 200
-[2025-08-11 12:49:41.599] [32mhttp[39m: GET /uploads/pump_fun_fd078a89d2.png (86 ms) 200
-[2025-08-11 12:49:41.620] [32mhttp[39m: GET /uploads/superman_1066d0438e.jpeg (23 ms) 200
-[2025-08-11 12:49:41.629] [32mhttp[39m: GET /api/tokens?filters%5Bestado%5D%5B%24eq%5D=lanzado&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3&sort=fechaLanzamiento%3Adesc (163 ms) 200
-[2025-08-11 12:49:41.637] [32mhttp[39m: GET /uploads/Captura_de_pantalla_2025_07_14_a_la_s_4_18_22_p_m_a3a51c80d2.png (24 ms) 200
-[2025-08-11 12:49:41.639] [32mhttp[39m: GET /uploads/capitrana_marvel_edcd6c169e.jpeg (18 ms) 200
-[2025-08-11 13:14:05.905] [32mhttp[39m: GET /img/image-3.png (17 ms) 404
-[2025-08-11 13:14:05.909] [32mhttp[39m: GET /img/image-4.png (6 ms) 404
-[2025-08-11 13:14:05.911] [32mhttp[39m: GET /img/image-1.png (7 ms) 404
-[2025-08-11 13:14:06.152] [32mhttp[39m: GET /img/image-4.png (6 ms) 404
-[2025-08-11 13:14:06.154] [32mhttp[39m: GET /img/image-3.png (6 ms) 404
-[2025-08-11 13:14:06.156] [32mhttp[39m: GET /img/image-1.png (7 ms) 404
-[2025-08-11 13:22:44.347] [32mhttp[39m: GET /api/rankings/page/home (85 ms) 200
-[2025-08-11 13:22:44.361] [32mhttp[39m: GET /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=9 (21 ms) 200
-[2025-08-11 13:22:44.362] [32mhttp[39m: GET /api/rankings/page/home (7 ms) 200
-[2025-08-11 13:22:44.372] [32mhttp[39m: GET /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=9 (4 ms) 200
-🔓 Acceso público permitido: /api/tokens
-[2025-08-11 13:22:44.986] [32mhttp[39m: GET /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3 (437 ms) 200
-🔓 Acceso público permitido: /api/tokens
-[2025-08-11 13:22:45.429] [32mhttp[39m: GET /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3 (200 ms) 200
-[2025-08-11 13:22:45.527] [32mhttp[39m: GET /api/tokens?filters%5Bestado%5D%5B%24eq%5D=lanzado&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=9&sort=fechaLanzamiento%3Adesc (956 ms) 200
-🔓 Acceso público permitido: /api/tokens
-[2025-08-11 13:22:45.892] [32mhttp[39m: GET /uploads/superman_1066d0438e.jpeg (145 ms) 200
-[2025-08-11 13:22:46.086] [32mhttp[39m: GET /uploads/pump_fun_fd078a89d2.png (304 ms) 200
-[2025-08-11 13:22:46.090] [32mhttp[39m: GET /uploads/Captura_de_pantalla_2025_07_14_a_la_s_4_18_22_p_m_a3a51c80d2.png (299 ms) 200
-[2025-08-11 13:22:46.104] [32mhttp[39m: GET /api/tokens?filters%5Bestado%5D%5B%24eq%5D=lanzado&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3&sort=fechaLanzamiento%3Adesc (820 ms) 200
-[2025-08-11 13:22:46.127] [32mhttp[39m: GET /api/tokens?filters%5Bestado%5D%5B%24eq%5D=lanzado&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=9&sort=fechaLanzamiento%3Adesc (549 ms) 200
+[2025-08-20 10:40:51.000] [32mhttp[39m: GET /admin (12 ms) 200
+[2025-08-20 10:42:08.184] [32minfo[39m: File changed: /Users/anto/Documents/florkaproject2/kiroflorka/backend/src/api/actividad/content-types/actividad/schema.json
+[2025-08-20 10:42:08.186] [32minfo[39m: File changed: /Users/anto/Documents/florkaproject2/kiroflorka/backend/src/api/actividad/controllers/actividad.js
+[2025-08-20 10:42:08.186] [32minfo[39m: File changed: /Users/anto/Documents/florkaproject2/kiroflorka/backend/src/api/actividad/routes/actividad.js
+[2025-08-20 10:42:08.186] [32minfo[39m: File changed: /Users/anto/Documents/florkaproject2/kiroflorka/backend/src/api/actividad/services/actividad.js
+[2025-08-20 10:42:08.186] [32minfo[39m: File changed: /Users/anto/Documents/florkaproject2/kiroflorka/backend/src/api/admin/controllers/news-admin.js
+[2025-08-20 10:42:08.186] [32minfo[39m: File changed: /Users/anto/Documents/florkaproject2/kiroflorka/backend/src/api/admin/controllers/next-management.js
+[2025-08-20 10:42:08.186] [32minfo[39m: File changed: /Users/anto/Documents/florkaproject2/kiroflorka/backend/src/api/admin/controllers/create-admin.js
+[2025-08-20 10:42:08.186] [32minfo[39m: File changed: /Users/anto/Documents/florkaproject2/kiroflorka/backend/src/api/admin/controllers/forum-admin.js
+[2025-08-20 10:42:08.186] [32minfo[39m: File changed: /Users/anto/Documents/florkaproject2/kiroflorka/backend/src/api/admin/controllers/vote-management.js
+[2025-08-20 10:42:08.187] [32minfo[39m: File changed: /Users/anto/Documents/florkaproject2/kiroflorka/backend/src/api/admin/controllers/home-management.js
+[2025-08-20 10:42:08.187] [32minfo[39m: File changed: /Users/anto/Documents/florkaproject2/kiroflorka/backend/src/api/admin/routes/next-admin-routes.js
+[2025-08-20 10:42:08.187] [32minfo[39m: File changed: /Users/anto/Documents/florkaproject2/kiroflorka/backend/src/api/admin/routes/news-admin-routes.js
+[2025-08-20 10:42:08.187] [32minfo[39m: File changed: /Users/anto/Documents/florkaproject2/kiroflorka/backend/src/api/admin/routes/vote-admin-routes.js
+[2025-08-20 10:42:08.187] [32minfo[39m: File changed: /Users/anto/Documents/florkaproject2/kiroflorka/backend/src/api/admin/routes/home-admin-routes.js
+[2025-08-20 10:42:08.187] [32minfo[39m: File changed: /Users/anto/Documents/florkaproject2/kiroflorka/backend/src/api/admin/routes/create-admin-routes.js
+[2025-08-20 10:42:08.187] [32minfo[39m: File changed: /Users/anto/Documents/florkaproject2/kiroflorka/backend/src/api/admin/routes/forum-admin-routes.js
+[2025-08-20 10:42:08.187] [32minfo[39m: File changed: /Users/anto/Documents/florkaproject2/kiroflorka/backend/src/api/auth/controllers/auth.js
+[2025-08-20 10:42:08.188] [32minfo[39m: File changed: /Users/anto/Documents/florkaproject2/kiroflorka/backend/src/api/auth/routes/auth.js
+[2025-08-20 10:42:08.188] [32minfo[39m: File changed: /Users/anto/Documents/florkaproject2/kiroflorka/backend/src/api/candidato/content-types/candidato/schema.json
+[2025-08-20 10:42:08.188] [32minfo[39m: File changed: /Users/anto/Documents/florkaproject2/kiroflorka/backend/src/api/candidato/controllers/candidato.js
+[2025-08-20 10:42:08.188] [32minfo[39m: File changed: /Users/anto/Documents/florkaproject2/kiroflorka/backend/src/api/candidato/routes/candidato.js
+[2025-08-20 10:42:08.188] [32minfo[39m: File changed: /Users/anto/Documents/florkaproject2/kiroflorka/backend/src/api/candidato/services/candidato.js
+[2025-08-20 10:42:08.188] [32minfo[39m: File changed: /Users/anto/Documents/florkaproject2/kiroflorka/backend/src/api/comentario/content-types/comentario/schema.json
+[2025-08-20 10:42:08.188] [32minfo[39m: File changed: /Users/anto/Documents/florkaproject2/kiroflorka/backend/src/api/comentario/controllers/comentario.js
+- Loading Strapi
+(node:59473) Warning: [deprecated] In future versions, "sizeLimit" argument will be ignored from upload.config.providerOptions. Move it to upload.config
+(Use `node --trace-warnings ...` to show where the warning was created)
+[2025-08-20 10:42:13.349] [33mwarn[39m: The strapi::cors middleware no longer supports the `enabled` option. Using it to conditionally enable CORS might cause an insecure default. To disable strapi::cors, remove it from the exported array in config/middleware.js
+[ERROR]  There seems to be an unexpected error, try again with --debug for more information 
+
+┌──────────────────────────────────────────────────────────────────────────────┐│                                                                              ││   Error: Error creating endpoint GET /foros/:id/comentarios: Handler not     ││   found "foro.getComments"                                                   ││   at getAction                                                               ││   (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@s   ││   trapi/strapi/dist/services/server/compose-endpoint.js:105:11)              ││   at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/   ││   @strapi/strapi/dist/services/server/compose-endpoint.js:56:22              ││   at createRoute (/Users/anto/Documents/florkaproject2/kiroflorka/backend/   ││   node_modules/@strapi/strapi/dist/services/server/routing.js:71:5)          ││   at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/   ││   @strapi/strapi/dist/services/server/routing.js:80:9                        ││   at Array.forEach (<anonymous>)                                             ││   at Object.addRoutes (/Users/anto/Documents/florkaproject2/kiroflorka/bac   ││   kend/node_modules/@strapi/strapi/dist/services/server/routing.js:78:21)    ││   at Object.routes (/Users/anto/Documents/florkaproject2/kiroflorka/backen   ││   d/node_modules/@strapi/strapi/dist/services/server/api.js:20:20)           ││   at Object.routes (/Users/anto/Documents/florkaproject2/kiroflorka/backen   ││   d/node_modules/@strapi/strapi/dist/services/server/index.js:52:27)         ││   at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/   ││   @strapi/strapi/dist/services/server/register-routes.js:71:28               ││   at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/   ││   lodash/lodash.js:4967:15                                                   ││                                                                              │└──────────────────────────────────────────────────────────────────────────────┘

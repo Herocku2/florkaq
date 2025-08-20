@@ -76,17 +76,6 @@ module.exports = {
         }
       });
 
-      // También crear en la tabla personalizada de usuarios
-      await strapi.entityService.create('api::usuario.usuario', {
-        data: {
-          nombre: username,
-          email: email.toLowerCase(),
-          rol: 'usuario',
-          activo: true,
-          fechaRegistro: new Date()
-        }
-      });
-
       // Generar JWT
       const token = jwt.sign(
         { 

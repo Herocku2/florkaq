@@ -1,25 +1,24 @@
-module.exports = {
-  // Deshabilitar i18n para evitar errores de localización
-  i18n: {
-    enabled: false,
-  },
-  
-  // Configuración de upload
-  upload: {
+module.exports = ({ env }) => ({
+  // Configuración del plugin GraphQL
+  graphql: {
     config: {
-      provider: 'local',
-      providerOptions: {
-        sizeLimit: 100000000, // 100MB
+      endpoint: '/graphql',
+      shadowCRUD: true,
+      playgroundAlways: env('NODE_ENV') === 'development',
+      depthLimit: 7,
+      amountLimit: 100,
+      apolloServer: {
+        tracing: false,
       },
     },
   },
   
-  // Configuración de users-permissions
+  // Configuración del plugin de usuarios y permisos
   'users-permissions': {
     config: {
-      register: {
-        allowedFields: ['username', 'email', 'password'],
+      jwt: {
+        expiresIn: '7d',
       },
     },
   },
-};
+});

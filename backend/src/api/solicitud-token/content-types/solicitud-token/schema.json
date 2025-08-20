@@ -1,156 +1,47 @@
 {
   "kind": "collectionType",
-  "collectionName": "solicitud_tokens",
+  "collectionName": "solicitudes_token",
   "info": {
     "singularName": "solicitud-token",
-    "pluralName": "solicitud-tokens",
+    "pluralName": "solicitudes-token",
     "displayName": "Solicitud Token",
-    "description": "Solicitudes de creación de tokens de los usuarios"
+    "description": "Solicitudes de creación de tokens"
   },
   "options": {
     "draftAndPublish": false
   },
-  "pluginOptions": {},
   "attributes": {
-    "tokenName": {
+    "usuario": {
       "type": "string",
       "required": true
     },
-    "tokenSymbol": {
-      "type": "string",
-      "required": true,
-      "maxLength": 10
-    },
-    "tokenDescription": {
-      "type": "text"
-    },
-    "tokenImage": {
-      "type": "media",
-      "multiple": false,
-      "required": false,
-      "allowedTypes": ["images"]
-    },
-    "ownerWallet": {
+    "paquete": {
       "type": "string",
       "required": true
     },
-    "contactEmail": {
-      "type": "email",
-      "required": true
-    },
-    "telegramUsername": {
-      "type": "string",
-      "required": true
-    },
-    "blockchainNetwork": {
+    "estado": {
       "type": "enumeration",
-      "enum": ["solana", "ethereum", "binance", "polygon", "avalanche"],
-      "default": "solana",
+      "enum": ["pendiente", "aprobado", "rechazado"],
+      "default": "pendiente",
       "required": true
     },
-    "blockExplorer": {
-      "type": "string"
-    },
-    "networkToHost": {
-      "type": "string"
-    },
-    "smartContract": {
-      "type": "text"
-    },
-    "initialSaleDuration": {
-      "type": "string"
-    },
-    "tokenDistribution": {
-      "type": "string"
-    },
-    "tokenDistributionPercentage": {
-      "type": "string"
-    },
-    "developmentTeamPercentage": {
-      "type": "string"
-    },
-    "marketingPercentage": {
-      "type": "string"
-    },
-    "partnersInvestorsPercentage": {
-      "type": "string"
-    },
-    "twitterUrl": {
-      "type": "string"
-    },
-    "telegramGroupUrl": {
-      "type": "string"
-    },
-    "linkedinUrl": {
-      "type": "string"
-    },
-    "discordUrl": {
-      "type": "string"
-    },
-    "websiteUrl": {
-      "type": "string"
-    },
-    "supportChannelUrl": {
-      "type": "string"
-    },
-    "socialChannelDescription": {
-      "type": "text"
-    },
-    "selectedPlan": {
+    "datosToken": {
       "type": "json",
       "required": true
     },
-    "paymentHash": {
-      "type": "string"
-    },
-    "selectedLaunchDate": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::launch-calendar.launch-calendar",
-      "inversedBy": "tokenRequests"
-    },
-    "launchDateSelected": {
-      "type": "date"
-    },
-    "paymentId": {
-      "type": "string"
-    },
-    "paymentStatus": {
-      "type": "enumeration",
-      "enum": ["pending", "waiting", "confirming", "confirmed", "sending", "partially_paid", "finished", "failed", "refunded", "expired"],
-      "default": "pending"
-    },
-    "paymentStatus": {
-      "type": "enumeration",
-      "enum": ["pending", "completed", "failed", "cancelled"],
-      "default": "pending"
-    },
-    "requestStatus": {
-      "type": "enumeration",
-      "enum": ["pending_review", "approved", "in_progress", "completed", "rejected"],
-      "default": "pending_review"
-    },
-    "userId": {
-      "type": "string"
-    },
-    "adminNotes": {
-      "type": "text"
-    },
-    "completedAt": {
+    "fechaPago": {
       "type": "datetime"
     },
-    "paymentId": {
-      "type": "string"
+    "aprobado": {
+      "type": "boolean",
+      "default": false
     },
-    "paymentUrl": {
-      "type": "string"
+    "fechaCreacion": {
+      "type": "datetime",
+      "default": "now"
     },
-    "paymentCurrency": {
-      "type": "string",
-      "default": "btc"
-    },
-    "paymentAmount": {
-      "type": "decimal"
+    "notas": {
+      "type": "text"
     }
   }
 }

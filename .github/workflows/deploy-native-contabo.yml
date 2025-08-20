@@ -1,0 +1,91 @@
+name: Deploy to Contabo VPS (Native)
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        
+    - name: Install dependencies and build frontend
+      run: |
+        npm install
+        npm run build
+        
+    - name: Install backend dependencies
+      run: |
+        cd backend
+        npm install --production
+        
+    - name: Deploy to Contabo VPS
+      uses: appleboy/ssh-action@v1.0.0
+      with:
+        host: ${{ secrets.VPS_HOST }}
+        username: ${{ secrets.VPS_USERNAME }}
+        key: ${{ secrets.VPS_SSH_KEY }}
+        port: ${{ secrets.VPS_PORT }}
+        script: |
+          echo "🚀 Starting deployment..."
+          
+          # Variables
+          PROJECT_DIR="/var/www/florkafun"
+          BACKUP_DIR="/var/backups/florkafun"
+          
+          # Create backup of current deployment
+          if [ -d "$PROJECT_DIR" ]; then
+            echo "📦 Creating backup..."
+            mkdir -p $BACKUP_DIR
+            tar -czf $BACKUP_DIR/backup-$(date +%Y%m%d-%H%M%S).tar.gz -C $PROJECT_DIR .
+          fi
+          
+          # Pull latest code
+          echo "📥 Pulling latest code..."
+          if [ -d "$PROJECT_DIR/.git" ]; then
+            cd $PROJECT_DIR
+            git fetch origin
+            git reset --hard origin/main
+          else
+            rm -rf $PROJECT_DIR
+            git clone https://github.com/Herocku2/kiroflorka.git $PROJECT_DIR
+            cd $PROJECT_DIR
+          fi
+          
+          # Install backend dependencies
+          echo "🔧 Installing backend dependencies..."
+          cd $PROJECT_DIR/backend
+          npm install --production
+          
+          # Build Strapi
+          echo "🏗️ Building Strapi..."
+          npm run build
+          
+          # Install frontend dependencies and build
+          echo "🎨 Building frontend..."
+          cd $PROJECT_DIR
+          npm install
+          npm run build
+          
+          # Restart services
+          echo "🔄 Restarting services..."
+          pm2 restart florkafun-backend || pm2 start $PROJECT_DIR/backend/ecosystem.config.js
+          
+          # Reload Nginx
+          nginx -t && systemctl reload nginx
+          
+          echo "✅ Deployment completed successfully!"
+          
+          # Show status
+          pm2 status
+          systemctl status nginx --no-pager -l
