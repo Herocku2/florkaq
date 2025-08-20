@@ -108,4 +108,4 @@ Siguiendo el plan de implementación definido en `tasks.md`, los próximos pasos
 
 ## Licencia
 
-Este proyecto es privado y confidencial. Todos los derechos reservados.
+Este proyecto es privado y confidencial. Todos los derechos reservados.# Test de deployment automático
