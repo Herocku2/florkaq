@@ -522,3 +522,86 @@ http://localhost:1337
 ✅ Permiso API actualizado: api::voto.voto.create
 ✅ Permiso API actualizado: api::voto.voto.delete
 🎉 Configuración de permisos completada!
+[2025-08-21 12:33:35.899] [32mhttp[39m: GET /admin/ (106 ms) 200
+[2025-08-21 12:33:35.943] [32mhttp[39m: GET /admin/main.c0caedbc.js (16 ms) 200
+[2025-08-21 12:33:36.778] [32mhttp[39m: GET /admin/project-type (8 ms) 200
+[2025-08-21 12:33:36.871] [32mhttp[39m: GET /admin/init (16 ms) 200
+[2025-08-21 12:33:37.087] [32mhttp[39m: GET /admin/telemetry-properties (8 ms) 401
+[2025-08-21 12:33:37.142] [31merror[39m: ENOENT: no such file or directory, open '/Users/anto/Documents/florkaproject2/kiroflorka/backend/favicon.ico'
+Error: ENOENT: no such file or directory, open '/Users/anto/Documents/florkaproject2/kiroflorka/backend/favicon.ico'
+    at Object.openSync (node:fs:562:18)
+    at Object.readFileSync (node:fs:446:35)
+    at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-favicon/index.js:50:28
+    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
+    at dummyMiddleware (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/services/server/middleware.js:25:39)
+    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
+    at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/middlewares/body.js:45:15
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/middlewares/powered-by.js:9:5
+    at async cors (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@koa/cors/index.js:61:32)
+[2025-08-21 12:33:37.144] [32mhttp[39m: GET /favicon.ico (6 ms) 500
+[2025-08-21 12:33:38.703] [32mhttp[39m: GET /admin/florka-logo.svg (2 ms) 200
+[2025-08-21 12:33:38.706] [31merror[39m: ENOENT: no such file or directory, open '/Users/anto/Documents/florkaproject2/kiroflorka/backend/favicon.ico'
+Error: ENOENT: no such file or directory, open '/Users/anto/Documents/florkaproject2/kiroflorka/backend/favicon.ico'
+    at Object.openSync (node:fs:562:18)
+    at Object.readFileSync (node:fs:446:35)
+    at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-favicon/index.js:50:28
+    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
+    at dummyMiddleware (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/services/server/middleware.js:25:39)
+    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
+    at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/middlewares/body.js:45:15
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/middlewares/powered-by.js:9:5
+    at async cors (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@koa/cors/index.js:61:32)
+[2025-08-21 12:33:38.707] [32mhttp[39m: GET /favicon.ico (2 ms) 500
+[2025-08-21 12:34:09.415] [32mhttp[39m: POST /admin/login (206 ms) 200
+[2025-08-21 12:34:09.431] [31merror[39m: ENOENT: no such file or directory, open '/Users/anto/Documents/florkaproject2/kiroflorka/backend/favicon.ico'
+Error: ENOENT: no such file or directory, open '/Users/anto/Documents/florkaproject2/kiroflorka/backend/favicon.ico'
+    at Object.openSync (node:fs:562:18)
+    at Object.readFileSync (node:fs:446:35)
+    at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-favicon/index.js:50:28
+    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
+    at dummyMiddleware (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/services/server/middleware.js:25:39)
+    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
+    at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/middlewares/body.js:45:15
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/middlewares/powered-by.js:9:5
+    at async cors (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@koa/cors/index.js:61:32)
+[2025-08-21 12:34:09.432] [32mhttp[39m: GET /favicon.ico (1 ms) 500
+[2025-08-21 12:34:09.481] [32mhttp[39m: GET /admin/information (36 ms) 200
+[2025-08-21 12:34:09.501] [32mhttp[39m: GET /admin/users/me (51 ms) 200
+[2025-08-21 12:34:09.505] [32mhttp[39m: GET /admin/users/me/permissions (57 ms) 200
+[2025-08-21 12:34:09.527] [32mhttp[39m: GET /i18n/locales (14 ms) 200
+[2025-08-21 12:34:09.564] [32mhttp[39m: GET /content-manager/components (16 ms) 200
+[2025-08-21 12:34:09.578] [32mhttp[39m: GET /content-manager/content-types (26 ms) 200
+[2025-08-21 12:34:11.130] [31merror[39m: ENOENT: no such file or directory, open '/Users/anto/Documents/florkaproject2/kiroflorka/backend/favicon.ico'
+Error: ENOENT: no such file or directory, open '/Users/anto/Documents/florkaproject2/kiroflorka/backend/favicon.ico'
+    at Object.openSync (node:fs:562:18)
+    at Object.readFileSync (node:fs:446:35)
+    at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-favicon/index.js:50:28
+    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
+    at dummyMiddleware (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/services/server/middleware.js:25:39)
+    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
+    at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/middlewares/body.js:45:15
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/middlewares/powered-by.js:9:5
+    at async cors (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@koa/cors/index.js:61:32)
+[2025-08-21 12:34:11.130] [32mhttp[39m: GET /favicon.ico (1 ms) 500
+[2025-08-21 12:34:11.132] [32mhttp[39m: GET /admin/6715.e52d00ba.chunk.js (5 ms) 200
+[2025-08-21 12:34:11.297] [32mhttp[39m: GET /content-manager/init (21 ms) 200
+[2025-08-21 12:34:11.373] [32mhttp[39m: GET /content-manager/content-types-settings (57 ms) 200
+[2025-08-21 12:34:11.399] [31merror[39m: ENOENT: no such file or directory, open '/Users/anto/Documents/florkaproject2/kiroflorka/backend/favicon.ico'
+Error: ENOENT: no such file or directory, open '/Users/anto/Documents/florkaproject2/kiroflorka/backend/favicon.ico'
+    at Object.openSync (node:fs:562:18)
+    at Object.readFileSync (node:fs:446:35)
+    at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-favicon/index.js:50:28
+    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
+    at dummyMiddleware (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/services/server/middleware.js:25:39)
+    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
+    at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/middlewares/body.js:45:15
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/middlewares/powered-by.js:9:5
+    at async cors (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@koa/cors/index.js:61:32)
+[2025-08-21 12:34:11.400] [32mhttp[39m: GET /favicon.ico (2 ms) 500
+[2025-08-21 12:34:11.413] [32mhttp[39m: GET /content-manager/content-types/api::actividad.actividad/configuration (18 ms) 200
+[2025-08-21 12:34:11.473] [32mhttp[39m: GET /content-manager/collection-types/api::actividad.actividad?page=1&pageSize=10&sort=descripcion:ASC (22 ms) 200

@@ -60,8 +60,21 @@ jobs:
           # Install and build backend
           echo "🔧 Setting up backend..."
           cd $PROJECT_DIR/backend
+          
+          # Preserve existing .env if it exists
+          if [ -f ".env" ]; then
+            echo "📋 Preserving existing .env configuration"
+            cp .env .env.backup
+          fi
+          
           npm install --production
           npm run build
+          
+          # Restore .env if it was backed up
+          if [ -f ".env.backup" ]; then
+            echo "🔄 Restoring .env configuration"
+            mv .env.backup .env
+          fi
           
           # Install and build frontend
           echo "🎨 Setting up frontend..."
