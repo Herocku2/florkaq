@@ -4,21 +4,17 @@
   "version": "0.1.0",
   "description": "Backend de FlorkaFun basado en Strapi CMS",
   "scripts": {
-    "build": "strapi build",
-    "develop": "strapi develop",
+    "build": "strapi build --minify",
+    "develop": "strapi develop --no-build",
     "start": "strapi start",
-    "strapi": "strapi",
-    "postinstall": "strapi build"
+    "strapi": "strapi"
   },
   "dependencies": {
-    "@strapi/plugin-graphql": "4.15.5",
     "@strapi/plugin-i18n": "4.15.5",
     "@strapi/plugin-users-permissions": "4.15.5",
     "@strapi/strapi": "4.15.5",
     "bcryptjs": "^3.0.2",
     "jsonwebtoken": "^9.0.2",
-    "pg": "8.8.0",
-    "pg-connection-string": "2.5.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^5.3.4",

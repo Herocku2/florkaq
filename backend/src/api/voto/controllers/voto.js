@@ -117,5 +117,30 @@ module.exports = createCoreController('api::voto.voto', ({ strapi }) => ({
       console.error('Error getting voting stats:', error);
       return ctx.internalServerError('Error al obtener las estadísticas de votación');
     }
+  },
+
+  // Obtener votos por candidato específico
+  async findByCandidato(ctx) {
+    const { id } = ctx.params;
+    
+    try {
+      const votes = await strapi.entityService.findMany('api::voto.voto', {
+        filters: {
+          candidatoVotado: id
+        },
+        populate: ['usuario', 'candidatoVotado']
+      });
+
+      return {
+        data: votes,
+        meta: {
+          total: votes.length,
+          candidatoId: id
+        }
+      };
+    } catch (error) {
+      console.error('Error fetching votes by candidato:', error);
+      return ctx.internalServerError('Error al obtener los votos del candidato');
+    }
   }
 }));

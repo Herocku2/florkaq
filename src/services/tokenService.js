@@ -157,7 +157,7 @@ class TokenService {
 
     return await this.getCachedData(cacheKey, async () => {
       return await errorHandler.safeAsync(async () => {
-        const sortField = sortOrder === 'votes' ? 'totalVotos:desc' : 'fechaLanzamiento:asc';
+        const sortField = sortOrder === 'votes' ? 'fechaLanzamiento:asc' : 'fechaLanzamiento:asc';
 
         const params = {
           'filters[estado][$eq]': 'proximo',

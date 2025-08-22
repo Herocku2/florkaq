@@ -605,3 +605,95 @@ Error: ENOENT: no such file or directory, open '/Users/anto/Documents/florkaproj
 [2025-08-21 12:34:11.400] [32mhttp[39m: GET /favicon.ico (2 ms) 500
 [2025-08-21 12:34:11.413] [32mhttp[39m: GET /content-manager/content-types/api::actividad.actividad/configuration (18 ms) 200
 [2025-08-21 12:34:11.473] [32mhttp[39m: GET /content-manager/collection-types/api::actividad.actividad?page=1&pageSize=10&sort=descripcion:ASC (22 ms) 200
+[2025-08-21 14:14:53.481] [32mhttp[39m: OPTIONS /img/image-3.png (1 ms) 204
+[2025-08-21 14:14:53.483] [32mhttp[39m: OPTIONS /img/image-4.png (0 ms) 204
+[2025-08-21 14:14:53.484] [32mhttp[39m: OPTIONS /img/image-1.png (0 ms) 204
+[2025-08-21 14:14:53.490] [32mhttp[39m: GET /img/image-3.png (5 ms) 404
+[2025-08-21 14:14:53.490] [32mhttp[39m: GET /img/image-4.png (3 ms) 404
+[2025-08-21 14:14:53.491] [32mhttp[39m: GET /img/image-1.png (4 ms) 404
+[2025-08-21 14:22:53.317] [32mhttp[39m: GET /img/image-4.png (7 ms) 404
+[2025-08-21 14:22:53.318] [32mhttp[39m: GET /img/image-3.png (5 ms) 404
+[2025-08-21 14:22:53.319] [32mhttp[39m: GET /img/image-1.png (3 ms) 404
+[2025-08-21 15:48:15.561] [32mhttp[39m: GET /img/image-3.png (44 ms) 404
+[2025-08-21 15:48:15.567] [32mhttp[39m: GET /img/image-1.png (22 ms) 404
+[2025-08-21 15:48:15.568] [32mhttp[39m: GET /img/image-4.png (9 ms) 404
+[2025-08-21 15:56:15.255] [32mhttp[39m: GET /img/image-4.png (18 ms) 404
+[2025-08-21 15:56:15.259] [32mhttp[39m: GET /img/image-3.png (17 ms) 404
+[2025-08-21 15:56:15.260] [32mhttp[39m: GET /img/image-1.png (8 ms) 404
+[2025-08-21 20:48:43.581] [32mhttp[39m: OPTIONS /img/image-3.png (7 ms) 204
+[2025-08-21 20:48:43.587] [32mhttp[39m: OPTIONS /img/image-4.png (1 ms) 204
+[2025-08-21 20:48:43.594] [32mhttp[39m: OPTIONS /img/image-1.png (0 ms) 204
+[2025-08-21 20:48:43.599] [32mhttp[39m: GET /img/image-3.png (12 ms) 404
+[2025-08-21 20:48:43.600] [32mhttp[39m: GET /img/image-4.png (6 ms) 404
+[2025-08-21 20:48:43.601] [32mhttp[39m: GET /img/image-1.png (4 ms) 404
+[2025-08-21 20:48:43.805] [32mhttp[39m: GET /img/image-1.png (5 ms) 404
+[2025-08-21 20:48:43.806] [32mhttp[39m: GET /img/image-4.png (4 ms) 404
+[2025-08-21 20:48:43.807] [32mhttp[39m: GET /img/image-3.png (5 ms) 404
+[2025-08-21 21:01:43.497] [32mhttp[39m: OPTIONS /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=6 (5 ms) 204
+[2025-08-21 21:01:43.504] [32mhttp[39m: OPTIONS /api/rankings/page/home (0 ms) 204
+[2025-08-21 21:01:43.522] [32mhttp[39m: OPTIONS /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=6 (0 ms) 204
+[2025-08-21 21:01:43.524] [32mhttp[39m: OPTIONS /api/rankings/page/home (0 ms) 204
+🔓 Acceso público permitido: /api/tokens
+[2025-08-21 21:01:43.598] [32mhttp[39m: OPTIONS /api/tokens?filters%5Bestado%5D%5B%24eq%5D=lanzado&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=6&sort=fechaLanzamiento%3Adesc (0 ms) 204
+🔓 Acceso público permitido: /api/tokens
+🔓 Permitiendo acceso público a: /api/tokens
+[2025-08-21 21:01:43.637] [32mhttp[39m: OPTIONS /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3 (0 ms) 204
+[2025-08-21 21:01:43.638] [32mhttp[39m: OPTIONS /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3 (0 ms) 204
+[2025-08-21 21:01:43.664] [32mhttp[39m: GET /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3 (23 ms) 200
+[2025-08-21 21:01:43.670] [32mhttp[39m: GET /api/tokens?filters%5Bestado%5D%5B%24eq%5D=lanzado&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=6&sort=fechaLanzamiento%3Adesc (50 ms) 200
+🔓 Acceso público permitido: /api/tokens
+🔓 Permitiendo acceso público a: /api/tokens
+🔓 Acceso público permitido: /api/tokens
+[2025-08-21 21:01:43.675] [32mhttp[39m: OPTIONS /api/tokens?filters%5Bestado%5D%5B%24eq%5D=lanzado&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3&sort=fechaLanzamiento%3Adesc (0 ms) 204
+[2025-08-21 21:01:43.676] [32mhttp[39m: GET /api/candidatos?populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3 (9 ms) 200
+🔓 Acceso público permitido: /api/tokens
+🔓 Permitiendo acceso público a: /api/tokens
+[2025-08-21 21:01:43.688] [32mhttp[39m: GET /api/tokens?filters%5Bestado%5D%5B%24eq%5D=lanzado&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=6&sort=fechaLanzamiento%3Adesc (14 ms) 200
+[2025-08-21 21:01:43.689] [32mhttp[39m: GET /api/tokens?filters%5Bestado%5D%5B%24eq%5D=lanzado&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3&sort=fechaLanzamiento%3Adesc (11 ms) 200
+🔓 Acceso público permitido: /api/tokens
+🔓 Permitiendo acceso público a: /api/tokens
+[2025-08-21 21:01:43.703] [32mhttp[39m: GET /uploads/pokemon3_290faa1b46.jpeg (5 ms) 404
+[2025-08-21 21:01:43.706] [32mhttp[39m: GET /api/tokens?filters%5Bestado%5D%5B%24eq%5D=lanzado&populate=imagen&pagination%5Bpage%5D=1&pagination%5BpageSize%5D=3&sort=fechaLanzamiento%3Adesc (9 ms) 200
+[2025-08-22 06:26:57.967] [32mhttp[39m: OPTIONS /img/image-3.png (2 ms) 204
+[2025-08-22 06:26:57.974] [32mhttp[39m: OPTIONS /img/image-4.png (1 ms) 204
+[2025-08-22 06:26:57.986] [32mhttp[39m: OPTIONS /img/image-1.png (0 ms) 204
+[2025-08-22 06:26:57.998] [32mhttp[39m: GET /img/image-3.png (23 ms) 404
+[2025-08-22 06:26:57.999] [32mhttp[39m: GET /img/image-4.png (9 ms) 404
+[2025-08-22 06:26:58.003] [32mhttp[39m: GET /img/image-1.png (10 ms) 404
+[2025-08-22 06:34:57.738] [32mhttp[39m: GET /img/image-4.png (8 ms) 404
+[2025-08-22 06:34:57.740] [32mhttp[39m: GET /img/image-3.png (4 ms) 404
+[2025-08-22 06:34:57.742] [32mhttp[39m: GET /img/image-1.png (5 ms) 404
+(node:71086) [DEP0170] DeprecationWarning: The URL api::actividad.actividad?page=1&pageSize=10&sort=descripcion:ASC is invalid. Future versions of Node.js will throw an error.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-08-22 06:39:32.667] [32mhttp[39m: GET api:api/admin/content-manager/collectionType/api::actividad.actividad?page=1&pageSize=10&sort=descripcion:ASC (4 ms) 200
+[2025-08-22 06:39:32.684] [32mhttp[39m: GET /admin/main.c0caedbc.js (2 ms) 200
+[2025-08-22 06:39:33.630] [32mhttp[39m: GET /admin/project-type (3 ms) 200
+[2025-08-22 06:39:33.720] [32mhttp[39m: POST /admin/renew-token (17 ms) 200
+[2025-08-22 06:39:33.725] [32mhttp[39m: GET /admin/init (3 ms) 200
+[2025-08-22 06:39:33.746] [32mhttp[39m: GET /admin/telemetry-properties (16 ms) 200
+[2025-08-22 06:39:34.002] [31merror[39m: ENOENT: no such file or directory, open '/Users/anto/Documents/florkaproject2/kiroflorka/backend/favicon.ico'
+Error: ENOENT: no such file or directory, open '/Users/anto/Documents/florkaproject2/kiroflorka/backend/favicon.ico'
+    at Object.openSync (node:fs:562:18)
+    at Object.readFileSync (node:fs:446:35)
+    at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-favicon/index.js:50:28
+    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
+    at dummyMiddleware (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/services/server/middleware.js:25:39)
+    at dispatch (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/koa-compose/index.js:42:32)
+    at /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/middlewares/body.js:45:15
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@strapi/strapi/dist/middlewares/powered-by.js:9:5
+    at async cors (/Users/anto/Documents/florkaproject2/kiroflorka/backend/node_modules/@koa/cors/index.js:61:32)
+[2025-08-22 06:39:34.004] [32mhttp[39m: GET /favicon.ico (3 ms) 500
+[2025-08-22 06:39:35.436] [32mhttp[39m: GET /admin/information (18 ms) 200
+[2025-08-22 06:39:35.456] [32mhttp[39m: GET /admin/users/me (35 ms) 200
+[2025-08-22 06:39:35.461] [32mhttp[39m: GET /admin/users/me/permissions (42 ms) 200
+[2025-08-22 06:39:35.480] [32mhttp[39m: GET /i18n/locales (11 ms) 200
+[2025-08-22 06:39:35.496] [32mhttp[39m: GET /admin/6715.e52d00ba.chunk.js (2 ms) 200
+[2025-08-22 06:39:35.500] [32mhttp[39m: GET /admin/florka-logo.svg (3 ms) 200
+[2025-08-22 06:39:35.691] [32mhttp[39m: GET /content-manager/init (20 ms) 200
+[2025-08-22 06:39:35.722] [32mhttp[39m: GET /content-manager/content-types-settings (26 ms) 200
+[2025-08-22 06:39:35.755] [32mhttp[39m: GET /content-manager/content-types/api::actividad.actividad/configuration (13 ms) 200
+[2025-08-22 06:39:35.816] [32mhttp[39m: GET /content-manager/collection-types/api::actividad.actividad?page=1&pageSize=10&sort=descripcion:ASC (16 ms) 200
+[2025-08-22 06:45:10.221] [32mhttp[39m: GET /img/image-4.png (5 ms) 404
+[2025-08-22 06:45:10.223] [32mhttp[39m: GET /img/image-3.png (3 ms) 404
+[2025-08-22 06:45:10.224] [32mhttp[39m: GET /img/image-1.png (4 ms) 404
