@@ -6,7 +6,7 @@ module.exports = {
       args: 'start',
       env: {
         NODE_ENV: 'production',
-        DATABASE_CLIENT: 'postgres',
+        DATABASE_CLIENT: 'sqlite',
         HOST: '0.0.0.0',
         PORT: process.env.PORT || 1337,
       },

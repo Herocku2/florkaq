@@ -3,7 +3,12 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
-const JWT_SECRET = process.env.JWT_SECRET || 'florkafun-secret-key-2024';
+const JWT_SECRET = process.env.JWT_SECRET || process.env.ADMIN_JWT_SECRET || 'florka-admin-jwt-secret-2024-secure-key';
+
+// Advertencia de seguridad para JWT_SECRET
+if (!process.env.JWT_SECRET) {
+  console.warn('⚠️  ADVERTENCIA: Se está usando JWT_SECRET por defecto. Configura JWT_SECRET en variables de entorno para mayor seguridad.');
+}
 
 module.exports = {
   // Registro de usuario
