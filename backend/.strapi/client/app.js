@@ -10,6 +10,7 @@ import customisations from "../../src/admin/app.js";
 
 renderAdmin(document.getElementById("strapi"), {
   customisations,
+
   plugins: {
     i18n: i18N,
     "users-permissions": usersPermissions,
