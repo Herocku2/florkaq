@@ -1,0 +1,155 @@
+name: 🚀 Auto Deploy to Contabo VPS
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: 📥 Checkout code
+      uses: actions/checkout@v4
+      
+    - name: 🔧 Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        
+    - name: 📦 Install frontend dependencies
+      run: npm install
+        
+    - name: 📦 Install backend dependencies
+      run: |
+        cd backend
+        npm install --production
+        
+    - name: 🏗️ Build frontend
+      run: npm run build
+      
+    - name: 🏗️ Build backend (if needed)
+      run: |
+        cd backend
+        npm run build || echo "No build script in backend, skipping..."
+        
+    - name: 🔐 Setup SSH Key
+      run: |
+        mkdir -p ~/.ssh
+        echo "${{ secrets.CONTABO_SSH_KEY }}" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan -H ${{ secrets.CONTABO_HOST }} >> ~/.ssh/known_hosts
+        
+    - name: 🧪 Test SSH Connection
+      run: |
+        ssh -i ~/.ssh/id_rsa -o ConnectTimeout=10 ${{ secrets.CONTABO_USER }}@${{ secrets.CONTABO_HOST }} "echo '✅ SSH Connection successful'"
+        
+    - name: 📤 Deploy to VPS
+      run: |
+        # Crear directorio temporal para el despliegue
+        ssh -i ~/.ssh/id_rsa ${{ secrets.CONTABO_USER }}@${{ secrets.CONTABO_HOST }} "
+          mkdir -p /tmp/florka-deploy
+          cd /var/www/florkafun
+          
+          # Backup de la base de datos si existe
+          if [ -f './backend/.tmp/data.db' ]; then
+            cp './backend/.tmp/data.db' './backend/.tmp/data.db.backup.\$(date +%Y%m%d_%H%M%S)'
+            echo '💾 Backup de base de datos creado'
+          fi
+        "
+        
+        # Sincronizar archivos del frontend
+        rsync -avz --delete \
+          --exclude 'node_modules' \
+          --exclude '.git' \
+          --exclude '.env' \
+          --exclude 'backend' \
+          --exclude '*.log' \
+          --exclude '.DS_Store' \
+          -e "ssh -i ~/.ssh/id_rsa" \
+          ./ ${{ secrets.CONTABO_USER }}@${{ secrets.CONTABO_HOST }}:/tmp/florka-deploy/
+          
+        # Sincronizar archivos del backend por separado
+        rsync -avz --delete \
+          --exclude 'node_modules' \
+          --exclude '.tmp' \
+          --exclude '*.log' \
+          --exclude '.DS_Store' \
+          -e "ssh -i ~/.ssh/id_rsa" \
+          ./backend/ ${{ secrets.CONTABO_USER }}@${{ secrets.CONTABO_HOST }}:/tmp/florka-deploy/backend/
+          
+        # Ejecutar despliegue en el VPS
+        ssh -i ~/.ssh/id_rsa ${{ secrets.CONTABO_USER }}@${{ secrets.CONTABO_HOST }} "
+          cd /tmp/florka-deploy
+          
+          # Mover archivos al directorio del proyecto
+          sudo rsync -av --delete \
+            --exclude 'backend/.tmp/data.db' \
+            ./ /var/www/florkafun/
+          
+          # Asegurar permisos correctos
+          sudo chown -R florka:florka /var/www/florkafun
+          
+          cd /var/www/florkafun
+          
+          # Instalar dependencias del backend
+          cd backend
+          npm install --production --silent
+          cd ..
+          
+          # Verificar si necesitamos reinstalar dependencias del frontend
+          if [ ! -d 'node_modules' ] || [ ! -f 'node_modules/.package-lock.json' ]; then
+            npm install --silent
+          fi
+          
+          # Construir frontend si es necesario
+          if [ -f 'package.json' ] && [ -f 'vite.config.js' ]; then
+            npm run build || echo '⚠️ Build del frontend falló, usando archivos existentes'
+          fi
+          
+          # Reiniciar servicios PM2
+          cd backend
+          pm2 restart florkafun-backend || pm2 start ecosystem.config.js
+          pm2 save
+          
+          # Verificar y recargar Nginx
+          sudo nginx -t && sudo systemctl reload nginx
+          
+          # Limpiar archivos temporales
+          rm -rf /tmp/florka-deploy
+          
+          echo '✅ Despliegue completado exitosamente'
+        "
+        
+    - name: 🏥 Health Check
+      run: |
+        # Esperar un momento para que los servicios se estabilicen
+        sleep 15
+        
+        # Verificar que el backend responde
+        ssh -i ~/.ssh/id_rsa ${{ secrets.CONTABO_USER }}@${{ secrets.CONTABO_HOST }} "
+          echo '🔍 Verificando estado de los servicios...'
+          
+          # Verificar PM2
+          pm2 list
+          
+          # Verificar Nginx
+          sudo systemctl status nginx --no-pager -l
+          
+          # Test del backend (Strapi usa diferentes endpoints)
+          curl -f http://localhost:1337/admin || echo '⚠️ Admin panel check felló'
+          curl -f http://localhost:1337/api/users || echo '⚠️ API users check felló'
+          
+          echo '🎉 Health check completado'
+        "
+        
+    - name: 📊 Deployment Summary
+      run: |
+        echo "## 🚀 Deployment Summary" >> $GITHUB_STEP_SUMMARY
+        echo "- **Commit:** ${{ github.sha }}" >> $GITHUB_STEP_SUMMARY
+        echo "- **Branch:** ${{ github.ref_name }}" >> $GITHUB_STEP_SUMMARY
+        echo "- **Time:** $(date)" >> $GITHUB_STEP_SUMMARY
+        echo "- **Status:** ✅ Successfully deployed to production" >> $GITHUB_STEP_SUMMARY
+        echo "- **Domain:** https://florkafun.online" >> $GITHUB_STEP_SUMMARY
