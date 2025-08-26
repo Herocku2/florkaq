@@ -4,3 +4,4 @@
 - **Host:** 84.247.140.138
 - **Usuario:** florka
 - **Directorio:** /var/www/florkafun
+✅ VPS configurado correctamente - IP: 84.247.140.138
